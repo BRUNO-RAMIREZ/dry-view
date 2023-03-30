@@ -26,6 +26,7 @@
   --font-size-title: 18px;
   --font-size-subtitle: 15px;
   --font-size-text: 13px;
+  --font-size-big: 25px;
 
   //Transition
   --transition-primary: ease 0.4s;
@@ -44,10 +45,17 @@
   --padding-secondary: 7px;
 }
 
-html, body {
+
+html {
   width: 100%;
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+  height: 100%;
   font-family: Poppins;
+}
+
+body {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
