@@ -9,7 +9,7 @@
   background-color: var(--color-dark-blue);
 }
 
-.sidebar-header-section {
+.sidebar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,6 +17,14 @@
   &-title {
     color: var(--color-white);
     font-size: var(--font-size-big);
+  }
+
+  &-icon {
+
+    &:hover {
+      color: var(--color-white);
+      cursor: pointer;
+    }
   }
 }
 
