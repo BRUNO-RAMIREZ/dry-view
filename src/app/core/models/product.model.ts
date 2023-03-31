@@ -1,11 +1,9 @@
-export class ProductModel{
-    constructor(
-        public nombreProducto:string,
-        public codigoProducto:string,
-        public cantidad:number,
-        public precioCompra:number,
-        public precioVenta:number,
-        public foto:string
-
-    ){}
+export interface ProductModel{
+         nombreProducto:string;
+         descripcion:string;
+         codigoProducto?:string;
+         cantidad:number;
+         precioDeCompra:number;
+         precioDeVenta:number;
+         foto?:string;
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductModel} from '../../../../core/models/product.model';
 import {ProductosService} from '../../services/productos.service';
+import {productos} from '../../../../data/productos';
 @Component({
   selector: 'app-lista-productos',
   templateUrl: './lista-productos.component.html',
@@ -15,9 +16,7 @@ export class ListaProductosComponent implements OnInit {
 
   public numBotones:number[];
   constructor(private productoservice:ProductosService) {
-    this.listaProductos = [new ProductModel('Ardunio','ARD-2509',10,60,80,'La foto'),
-                           new ProductModel('Ardunio2','ARD-2506',8,61,85,'La foto'),
-                           new ProductModel('Ardunio3','ARD-2503',15,50,60,'La foto'),];
+    this.listaProductos = productos;
     this.maxProductosPorHoja = 10;
     this.numPaginas = 1;
     this.pagActual = 1;
@@ -29,7 +28,7 @@ export class ListaProductosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productoservice.getAllProductos().subscribe(list =>{
+    /*this.productoservice.getAllProductos().subscribe(list =>{
       this.listaProductos = list;
       if(this.listaProductos.length % this.maxProductosPorHoja == 0){
         this.numPaginas = this.listaProductos.length / this.maxProductosPorHoja;
@@ -47,7 +46,7 @@ export class ListaProductosComponent implements OnInit {
       }
     }, error =>{
       console.log('error en : ' + error);
-    });
+    });*/
   }
 
 }
