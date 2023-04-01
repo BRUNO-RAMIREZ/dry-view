@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  height: 50px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.user-account {
+  display: flex;
+}
+
+.avatar {
+  border: 2px solid var(--color-white);
+  border-radius: 50%;
+  width: 50px;
+}

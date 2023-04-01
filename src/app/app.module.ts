@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ViewComponentesExampleComponent } from './view-componentes-example/view-componentes-example.component';
 import { EliminarComponent } from './modules/users/eliminar/eliminar.component';
+import { RegistrarComponent } from './modules/productos/registrar/registrar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ViewComponentesExampleComponent,
-    EliminarComponent
+    EliminarComponent,
+    RegistrarComponent
   ],
   imports: [
     BrowserModule,
