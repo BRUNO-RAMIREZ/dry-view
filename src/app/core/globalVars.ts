@@ -1,0 +1,1 @@
+export const direccionAPI:string = 'la direccion de la api';
