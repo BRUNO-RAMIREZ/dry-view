@@ -1,1 +1,55 @@
-<p>registrar works!</p>
+<h2>{{tituloForm}}</h2>
+<div class="card">
+    <form [formGroup]="formProduct" (ngsubmit) = "registrar()">
+        <div>
+            <label class="form-label" for="foto"> Foto de producto</label><br>
+            <input  type="file">
+        </div>
+        <div>
+            <label for="nombre">Nombre del producto</label><br>
+            <input  class="form-control" formControlName="nombre" type="text">
+            <div *ngIf="formProduct.get('nombre')?.errors && formProduct.get('nombre')?.dirty">
+                <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('required')">Ingrese 5 carcateres </small>
+                <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('minlength')">Ingrese 5 carcateres </small>
+                <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('maxlength')">Ingrese 5 carcateres </small>
+            </div>
+           
+        </div>
+        <div>
+            <label  for="descripcion">Descripcion</label><br>
+            <input class="form-control" formControlName="descripcion" type="text">
+            <div *ngIf="formProduct.get('descripcion')?.errors && formProduct.get('descripcion')?.dirty">
+                <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('required')">Ingrese 5 carcateres </small>
+                <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('minlength')">Ingrese 5 carcateres </small>
+                <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('maxlength')">Ingrese 5 carcateres </small>
+            </div>
+        </div>
+        <div>
+            <div>
+                <label >Precio de compra</label><br>
+                <input class="form-control" formControlName="precioCompra" type="number">
+                <div *ngIf="formProduct.get('precioCompra')?.errors && formProduct.get('precioCompra')?.dirty">
+                    <small class="text-danger" *ngIf="formProduct.get('precioCompra')?.hasError('required')">Ingrese un precio </small>
+                   
+                </div>
+            </div>
+            <div>
+                <label >Precio de venta</label><br>
+                <input class="form-control"formControlName="precioVenta" type="number">
+                <div *ngIf="formProduct.get('precioVenta')?.errors && formProduct.get('precioVenta')?.dirty">
+                    <small class="text-danger" *ngIf="formProduct.get('precioVenta')?.hasError('required')">Ingrese un precio </small>
+               </div>
+            </div>    
+        </div>
+        <div>
+            <label >Cantidad</label><br>
+            <input class="form-control" formControlName="cantidad" type="number">
+            <div *ngIf="formProduct.get('cantidad')?.errors && formProduct.get('cantidad')?.dirty">
+                <small class="text-danger" *ngIf="formProduct.get('cantidad')?.hasError('required')">Ingrese una cantidad </small>
+           </div>
+        </div>   
+        
+        <button class="btn btn-primary m-4" [disabled]="formProduct.invalid">Registrar</button>
+        <button class="btn btn-primary ">Cancelar</button>
+    </form>
+</div>
