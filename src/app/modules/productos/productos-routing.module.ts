@@ -12,7 +12,7 @@ const routes: Routes = [
       { path: 'listado', component: ListadoComponent },
       { path: 'registrar', component: RegistrarComponent },
       { path: 'editar/:id', component: RegistrarComponent },
-      { path: '**', redirectTo: 'listado' }
+      // { path: '**', redirectTo: 'listado' }
       //{ path: ':id', component: HeroeComponent },
     ]
   }

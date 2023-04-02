@@ -4,9 +4,7 @@
   height: 100%;
   background-color: var(--color-disabled);
 
-  .item {
-    display: flex;
-    flex: 1;
-    min-width: 100%;
+  .dry-page-content {
+    width: 100vw;
   }
 }
