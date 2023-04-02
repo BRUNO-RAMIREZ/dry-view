@@ -1,16 +1,28 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormularioUsuarioComponent } from './modules/users/registrar/formulario-usuario/formulario-usuario.component';
-import { ListaProductosComponent } from './modules/productos/listado/lista-productos/lista-productos.component';
 
 const routes: Routes = [
-  {path: 'users/new', component:FormularioUsuarioComponent},
-  {path: 'users/edit/:id', component:FormularioUsuarioComponent},
-  {path: 'products/list', component:ListaProductosComponent},
-];
+  {
+    path: 'auth',
+    loadChildren: () => import('./modules/auth/auth.module').then( m => m.AuthModule )
+  },
+  {
+    path: 'productos',
+    loadChildren: () => import('./modules/productos/productos.module').then( m => m.ProductosModule )
+  },
+  {
+    path: 'usuarios',
+    loadChildren: () => import('./modules/usuarios/usuarios.module').then( m => m.UsuariosModule )
+  }
+]
+
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot( routes )
+  ],
+  exports: [
+    RouterModule
+  ]
 })
 export class AppRoutingModule { }
