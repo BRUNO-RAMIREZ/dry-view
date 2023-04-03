@@ -1,9 +1,14 @@
-export interface ProductModel{
-         nombreProducto:string;
-         descripcion:string;
-         codigoProducto?:string;
-         cantidad:number;
-         precioDeCompra:number;
-         precioDeVenta:number;
-         foto?:string;
+export interface ProductHTTPResponse {
+  products: ProductModel[];
 }
+
+export interface ProductModel {
+  id:            number;
+  name:          string;
+  description:   string;
+  image:         string;
+  purchasePrice: number;
+  salePrice:     number;
+  stock:         number;
+}
+

@@ -7,6 +7,7 @@ import {ListadoComponent} from './pages/listado/listado.component';
 import {EditarComponent} from './pages/editar/editar.component';
 import {RegistrarComponent} from './pages/registrar/registrar.component';
 import {HomeComponent} from './pages/home/home.component';
+import {ProductosService} from "./services/productos.service";
 
 
 @NgModule({
@@ -20,6 +21,9 @@ import {HomeComponent} from './pages/home/home.component';
     CommonModule,
     SharedModule,
     ProductosRoutingModule
+  ],
+  providers: [
+    ProductosService
   ]
 })
 export class ProductosModule {

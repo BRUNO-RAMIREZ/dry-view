@@ -1,7 +1,7 @@
 <article class="dry-page-listado-container">
   <section class="listado-header-section listado-header">
     <section class="listado-header-search-section listado-header-search">
-      <input type="text" class="listado-header-search-input">
+      <input type="text" class="listado-header-search-input" placeholder="Ingrese el nombre del producto a buscar...">
       <span class="material-symbols-rounded listado-header-search-icon">search</span>
     </section>
 
@@ -9,7 +9,7 @@
   </section>
 
   <section class="listado-content-section listado-content">
-    <table class="listado-content-table">
+    <table class="listado-content-table table">
       <thead>
       <th></th>
       <th>Nombre</th>
@@ -20,25 +20,25 @@
       </thead>
 
       <tbody>
-      <tr>
-        <td>Logo</td>
-        <td>Arduino</td>
-        <td>60.00</td>
-        <td>80.00</td>
-        <td>20.00</td>
+      <tr class="table-row" *ngFor="let product of products | async">
+        <td>{{product.image}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.purchasePrice}}</td>
+        <td>{{product.salePrice}}</td>
+        <td>{{product.stock}}</td>
         <td>
-          <span class="material-symbols-rounded">add</span>
-          <span class="material-symbols-rounded">visibility</span>
-          <span class="material-symbols-rounded">edit</span>
-          <span class="material-symbols-rounded">delete</span>
+          <span class="material-symbols-rounded table-row-icon icon-plus">add</span>
+          <span class="material-symbols-rounded table-row-icon icon-visibility">visibility</span>
+          <span class="material-symbols-rounded table-row-icon icon-edit">edit_square</span>
+          <span class="material-symbols-rounded table-row-icon icon-delete">delete</span>
         </td>
       </tr>
       </tbody>
     </table>
-  </section>
 
-  <section class="listado-footer-section listado-footer">
-    <label class="listado-footer-quantity">42 total</label>
-    <label>Paginacion</label>
+    <section class="listado-footer-section listado-footer">
+      <label class="listado-footer-quantity">20 total</label>
+      <label>Paginacion</label>
+    </section>
   </section>
 </article>

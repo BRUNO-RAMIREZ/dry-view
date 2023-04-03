@@ -1,7 +1,75 @@
 .dry-page-listado-container {
-  background-color: var(--color-white);
   border-radius: 3px;
   border-style: none;
-  margin: 20px;
   box-sizing: border-box;
+}
+
+.listado-header {
+  display: flex;
+  justify-content: space-between;
+
+  &-search {
+    display: flex;
+    width: 60%;
+
+    &-input {
+      border-style: none;
+      padding-left: 10px;
+      flex: 1;
+    }
+
+    &-icon {
+      background-color: #d9d9d9;
+      padding: 7px;
+      box-sizing: border-box;
+    }
+  }
+
+  &-button {
+    width: 15%;
+    border-style: none;
+    border-radius: 7px;
+    background-color: var(--color-warning);
+    box-sizing: border-box;
+  }
+}
+
+.listado-content {
+  background-color: var(--color-white);
+  box-sizing: border-box;
+  margin-top: 20px;
+  padding: 10px;
+
+  .table {
+    width: 100%;
+    font-weight: lighter;
+
+    &-row {
+      min-height: 20px;
+      background-color: var(--color-disabled);
+
+      &-icon {
+        border-radius: 50%;
+        font-weight: bold;
+        padding: 7px;
+        font-size: 15px;
+      }
+
+      .icon-plus {
+        background-color: var(--color-light-accent);
+      }
+
+      .icon-visibility {
+        background-color: rgb(44,168,255);
+      }
+
+      .icon-edit {
+        background-color: rgb(255,178,54);
+      }
+
+      .icon-delete {
+        background-color: rgb(255,54,54);
+      }
+    }
+  }
 }
