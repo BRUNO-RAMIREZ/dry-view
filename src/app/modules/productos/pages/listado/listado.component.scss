@@ -41,18 +41,33 @@
   padding: 10px;
 
   .table {
-    width: 100%;
     font-weight: lighter;
+
+    &-thead-th--bold-light {
+      font-weight: 600;
+    }
+
+    &-row--color-white {
+      background-color: var(--color-white);
+    }
+
+    &-row--color-disabled {
+      background-color: var(--color-disabled);
+    }
 
     &-row {
       min-height: 20px;
-      background-color: var(--color-disabled);
+      vertical-align: middle;
 
       &-icon {
         border-radius: 50%;
         font-weight: bold;
         padding: 7px;
         font-size: 15px;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
 
       .icon-plus {
@@ -69,6 +84,11 @@
 
       .icon-delete {
         background-color: rgb(255,54,54);
+      }
+
+      .item-img {
+        background-size: cover;
+        width: 50px;
       }
     }
   }

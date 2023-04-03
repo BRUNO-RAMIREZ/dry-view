@@ -18,5 +18,4 @@ export class ListadoComponent implements OnInit {
   ngOnInit(): void {
     this.products = this._productService.getAllProducts();
   }
-
 }

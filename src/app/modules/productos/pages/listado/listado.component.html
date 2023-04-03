@@ -12,16 +12,18 @@
     <table class="listado-content-table table">
       <thead>
       <th></th>
-      <th>Nombre</th>
-      <th>Precio de compra</th>
-      <th>Precio de venta</th>
-      <th>Cantidad</th>
-      <th>Acciones</th>
+      <th class="table-thead-th--bold-light">Nombre</th>
+      <th class="table-thead-th--bold-light">Precio de compra</th>
+      <th class="table-thead-th--bold-light">Precio de venta</th>
+      <th class="table-thead-th--bold-light">Cantidad</th>
+      <th class="table-thead-th--bold-light">Acciones</th>
       </thead>
 
       <tbody>
-      <tr class="table-row" *ngFor="let product of products | async">
-        <td>{{product.image}}</td>
+      <tr [ngClass]="(i % 2 === 0) ? 'table-row--color-disabled' : 'table-row--color-white'" class="table-row" *ngFor="let product of products | async; let i = index">
+        <td>
+          <img src="{{product.image}}" alt="image" class="item-img">
+        </td>
         <td>{{product.name}}</td>
         <td>{{product.purchasePrice}}</td>
         <td>{{product.salePrice}}</td>
@@ -37,7 +39,7 @@
     </table>
 
     <section class="listado-footer-section listado-footer">
-      <label class="listado-footer-quantity">20 total</label>
+      <label class="listado-footer-quantity">{{(products | async)?.length}} total</label>
       <label>Paginacion</label>
     </section>
   </section>

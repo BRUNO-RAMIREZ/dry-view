@@ -21,7 +21,7 @@
 }
 
 .sidebar-header-icon {
-  color: var(--color-white)
+  color: var(--color-white);
 }
 
 .sidebar-header-icon:hover {
@@ -43,6 +43,7 @@
 
 .sidebar-content-item {
   display: flex;
+  align-items: center;
   gap: 10px;
   padding: 7px 0;
 }
