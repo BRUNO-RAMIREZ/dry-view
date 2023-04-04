@@ -35,8 +35,8 @@ export class RegistrarComponent implements OnInit {
               private fb: FormBuilder) { 
   this.tituloForm = "";
     this.formProduct=this.fb.group({
-      nombre:['',[Validators.required,Validators.minLength(4),Validators.maxLength(80)]],
-      descripcion:['',[Validators.required,Validators.minLength(4),Validators.maxLength(80)]],
+      nombre:['',[Validators.required,Validators.minLength(4),Validators.maxLength(80),Validators.pattern('[a-zA-Z0-9]*')]],
+      descripcion:['',[Validators.required,Validators.minLength(4),Validators.maxLength(80),Validators.pattern('[a-zA-Z0-9]*')]],
       precioCompra:['',Validators.required],
       precioVenta:['',Validators.required],
       cantidad:['',Validators.required],

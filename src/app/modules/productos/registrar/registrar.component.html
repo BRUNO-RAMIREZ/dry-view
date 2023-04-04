@@ -9,9 +9,10 @@
             <label for="nombre">Nombre del producto</label><br>
             <input  class="form-control" formControlName="nombre" type="text">
             <div *ngIf="formProduct.get('nombre')?.errors && formProduct.get('nombre')?.dirty">
-                <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('required')">Ingrese 4 caracteres </small>
-                <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('minlength')">Ingrese 4 caracteres </small>
-                <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('maxlength')">Ingrese 4 caracteres </small>
+                <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('required')">Nombre requerido</small>
+                <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('minlength')">Minimo 4 caracteres </small>
+                <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('maxlength')">Maximo 80 caracteres </small>
+                <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('pattern')">No se permiten caracteres especiales </small>
             </div>
            
         </div>
@@ -19,9 +20,10 @@
             <label  for="descripcion">Descripcion</label><br>
             <input class="form-control" formControlName="descripcion" type="text">
             <div *ngIf="formProduct.get('descripcion')?.errors && formProduct.get('descripcion')?.dirty">
-                <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('required')">Ingrese 4 caracteres </small>
-                <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('minlength')">Ingrese 4 caracteres </small>
-                <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('maxlength')">Ingrese 4 caracteres </small>
+                <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('required')">Descripcion requerida </small>
+                <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('minlength')">Minimo  4 caracteres </small>
+                <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('maxlength')">Maximo 80  caracteres </small>
+                <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('pattern')">No se permiten caracteres especiales </small>
             </div>
         </div>
         <div>
