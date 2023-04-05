@@ -1,3 +1,9 @@
+.header-title {
+  margin-bottom: 35px;
+  font-size: var(--font-size-big);
+  font-weight: 400;
+}
+
 .dry-page-listado-container {
   border-radius: 3px;
   border-style: none;
@@ -37,7 +43,7 @@
 .listado-content {
   background-color: var(--color-white);
   box-sizing: border-box;
-  margin-top: 20px;
+  margin-top: 40px;
   padding: 10px;
 
   .table {
