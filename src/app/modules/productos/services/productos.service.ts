@@ -10,7 +10,27 @@ export class ProductosService {
 
   constructor(private http:HttpClient) { }
 
-  public getAllProductos():Observable<ProductModel[]>{
-    return this.http.get<ProductModel[]>(direccionAPI+'/apartadoProductos');
+  public getAllProducts():Observable<ProductModel[]>{
+    return this.http.get<ProductModel[]>(direccionAPI+'/products/getAll');
+  }
+  public createProduct(product:ProductModel){
+    return this.http.post<ProductModel>(direccionAPI+'/products/create',JSON.stringify(product));
+  }
+
+  public updateProduct(product:ProductModel){
+   /* let aux = {"name":product.name,
+              "description":product.description,
+              "image":product.image,
+              "purchasePrice":product.purchase_price,
+              "salePrice":product.sale_price,
+              "stock":product.stock};
+    console.log(aux);*/
+    return this.http.put(direccionAPI+'/products/'+product.id,product);
+  }
+  public deleteProduct(productid:number){
+    return this.http.delete(direccionAPI+'/products/'+productid);
+  }
+  public getProductById(id:string){
+    return this.http.get<ProductModel>(direccionAPI+'/products/'+id+'/findById');
   }
 }

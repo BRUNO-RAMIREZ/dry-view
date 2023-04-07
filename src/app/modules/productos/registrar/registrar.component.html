@@ -1,9 +1,13 @@
 <h2>{{tituloForm}}</h2>
 <div class="card">
-    <form [formGroup]="formProduct" (ngsubmit) = "registrar()">
+    <form [formGroup]="formProduct" >
         <div>
+            
             <label class="form-label" for="foto"> Foto de producto</label><br>
-            <input  type="file">
+            <div class="imgContainer">
+                <img *ngIf="imgPro != ''" [src]="imgPro" alt="">
+            </div>
+            <input  type="file" accept="image/*" alife-file-to-base64 (onFileChanged)="cambImagen($event)">
         </div>
         <div>
             <label for="nombre">Nombre del producto</label><br>
@@ -51,7 +55,7 @@
            </div>
         </div>   
         
-        <button class="btn btn-primary m-4" [disabled]="formProduct.invalid">Registrar</button>
-        <button class="btn btn-primary ">Cancelar</button>
+        <button (click)="registrar()" type="submit" class="btn btn-primary m-4" [disabled]="formProduct.invalid">Registrar</button>
+        <button class="btn btn-primary " (click)="redireccionar('/products/list')">Cancelar</button>
     </form>
 </div>

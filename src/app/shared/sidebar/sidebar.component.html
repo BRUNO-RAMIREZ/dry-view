@@ -7,9 +7,9 @@
   <hr class="hr">
 
   <section class="sidebar-content-section sidebar-content">
-      <section class="sidebar-content-item">
+      <section class="sidebar-content-item" (click)="redireccionar('/home')">
       <span class="material-symbols-rounded">home</span>
-      <label class="sidebar-content-item-text">Home</label>
+      <label class="sidebar-content-item-text" >Home</label>
     </section>
 
     <hr class="hr">
@@ -24,9 +24,9 @@
       <label class="sidebar-content-item-text">Facturar</label>
     </section>
 
-    <section class="sidebar-content-item">
+    <section class="sidebar-content-item" (click)="redireccionar('/products/list')">
       <span class="material-symbols-rounded">receipt_long</span>
-      <label class="sidebar-content-item-text" (click)="redireccionar('/products/list')">Lista de productos</label>
+      <label class="sidebar-content-item-text" >Lista de productos</label>
     </section>
 
     <section class="sidebar-content-item">
