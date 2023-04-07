@@ -6,4 +6,5 @@ export interface ProductModel{
     purchasePrice: number;
     salePrice:     number;
     stock:         number;
+
 }

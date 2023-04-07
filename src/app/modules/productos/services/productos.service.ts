@@ -32,5 +32,6 @@ export class ProductosService {
   }
   public getProductById(id:string){
     return this.http.get<ProductModel>(direccionAPI+'/products/'+id+'/findById');
+
   }
 }
