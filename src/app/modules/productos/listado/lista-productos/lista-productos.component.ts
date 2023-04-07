@@ -13,7 +13,7 @@ import {VentanaConfirmacionComponent} from '../../../../shared/ventana-confirmac
 export class ListaProductosComponent implements OnInit {
   
   public listaProductos:ProductModel[];
-
+  public listaProductosMostrandose:ProductModel[];
   public maxProductosPorHoja:number;
   public numPaginas:number;
   public pagActual:number;
@@ -22,6 +22,7 @@ export class ListaProductosComponent implements OnInit {
   constructor(private productoservice:ProductosService,private router:Router,
               public dialogo: MatDialog) {
     this.listaProductos = [];
+    this.listaProductosMostrandose = [];
     this.maxProductosPorHoja = 10;
     this.numPaginas = 1;
     this.pagActual = 1;
@@ -29,7 +30,12 @@ export class ListaProductosComponent implements OnInit {
   }
 
   public cambiarPagina(pag:number):void{
-
+    if(pag >=1 && pag <= this.numPaginas){
+      this.listaProductosMostrandose = [];
+      for(let i = (pag-1)*this.maxProductosPorHoja ; i < this.listaProductos.length && i < this.maxProductosPorHoja*pag; i++ ){
+        this.listaProductosMostrandose.push(this.listaProductos[i]);
+      }
+    }
   }
 
   public redireccionar(ruta:string){
