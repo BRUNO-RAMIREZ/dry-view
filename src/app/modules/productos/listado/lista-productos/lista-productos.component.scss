@@ -1,0 +1,95 @@
+/**body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+  button {
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: $font-size;
+    font-family: $font-family;
+    background-color: $primary-color;
+    color: #fff;
+    cursor: pointer;
+  }**/
+
+  /*
+  *{
+    position: relative;
+  }
+  */
+  /*
+   .contenedor{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  */
+  span{
+    margin-top: 5px;
+    margin-bottom: 30px;
+  } 
+  input{
+    width: 500px;
+  }
+.contenedor-tabla{
+    margin-top: 40px;
+}
+ th, td{
+    padding: 15px;
+    border-bottom: 1px solid black;
+ }
+ 
+
+th:first-child,
+td:first-child {
+  border-left: none;
+}
+
+th:last-child,
+td:last-child {
+  border-right: none;
+}
+
+tr:first-child th,
+tr:first-child td {
+  border-top: 2px solid black;
+}
+
+tr:last-child th,
+tr:last-child td {
+  border-bottom: 2px solid black;
+}
+
+.button-añadir{
+    background-color: #6a9277;
+    border-radius: 100%;
+    border: none;
+    margin: 5px;
+}
+.button-ojo{
+    background-color: #45b1e8;
+    border-radius: 100%;
+    border: none;
+    margin: 5px;
+}
+.button-editar{
+    background-color:#ffad08 ;
+    border-radius: 100%;
+    border: none;
+    margin: 5px;
+}
+.button-eliminar{
+    background-color: red;
+    border-radius: 100%;
+    border: none;
+    margin: 5px;
+}
+.contenedor-paginas{
+    display: flex;
+    justify-content: end;
+ }
+
