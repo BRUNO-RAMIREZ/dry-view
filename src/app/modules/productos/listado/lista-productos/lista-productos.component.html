@@ -62,16 +62,17 @@
     <button (click)="cambiarPagina((pagActual + 1))"> > </button>
     <button (click)="cambiarPagina((numPaginas))"> >> </button>
 </div> -->
+
 <!-- ------------------------------------------------ -->
 <head>
-    <link rel="stylesheet" href="lista-productos.component.scss">
+    <!-- <link rel="stylesheet" href="lista-productos.component.scss"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
     crossorigin="anonymous" 
     referrerpolicy="no-referrer" />
 </head>
 <body>
-    <!-- <iframe src="sidebar.component.html"></iframe> -->
+    
 
     <div class="contenedor">
 
@@ -124,7 +125,7 @@
             <td>
                 {{producto.stock}}
             </td>
-            <td class="iconos"> </td>>
+            <td class="iconos">
                 <button class="button-añadir"> 
                     <i class="fa-solid fa-plus" id="añadir"></i> 
                 </button>
