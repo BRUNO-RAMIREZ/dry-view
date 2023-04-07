@@ -29,7 +29,7 @@
         </tr>
         <tr *ngFor="let producto of listaProductos">
             <td>
-                {{producto.image}}
+                <div class=" contenedorimgLista"><img *ngIf="producto.image != ''" [src]="producto.image" alt=""></div>
             </td>
             <td>
                 {{producto.name}}

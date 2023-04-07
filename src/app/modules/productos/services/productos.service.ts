@@ -10,8 +10,8 @@ export class ProductosService {
 
   constructor(private http:HttpClient) { }
 
-  public getAllProducts():Observable<ProductModel[]>{
-    return this.http.get<ProductModel[]>(direccionAPI+'/products/getAll');
+  public getAllProducts():Observable<{products:ProductModel[]}>{
+    return this.http.get<{products:ProductModel[]}>(direccionAPI+'/products/getAll');
   }
   public createProduct(product:ProductModel){
     return this.http.post<ProductModel>(direccionAPI+'/products/create',JSON.stringify(product));
