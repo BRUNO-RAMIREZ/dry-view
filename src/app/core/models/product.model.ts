@@ -3,10 +3,10 @@ export interface ProductHTTPResponse {
 }
 
 export interface ProductModel {
-  id:            number;
+  id?:            number;
   name:          string;
   description:   string;
-  image:         string;
+  image?:         string;
   purchasePrice: number;
   salePrice:     number;
   stock:         number;

@@ -2,39 +2,62 @@
   <section class="image-container">
     <section class="image-section">
       <img src="" alt="">
+      <label>&</label>
     </section>
 
-    <button>Subir Foto</button>
+    <button class="image-container-button">Subir Foto</button>
   </section>
 
   <section class="form-section">
-    <form class="form">
+    <form class="form" [formGroup]="formularioProductos" (ngSubmit)="createProduct()">
       <section class="form-field">
-        <span></span>
-        <label>Nombre del producto</label>
+        <section class="form-field-header-input">
+          <span class="material-symbols-rounded">category</span>
+          <label>Nombre del producto</label>
+        </section>
+
+        <input type="text" class="form-field-input" formControlName="name" name="name" maxlength="80">
       </section>
 
       <section class="form-field">
-        <span></span>
-        <label>Descripcion</label>
+        <section class="form-field-header-input">
+          <span class="material-symbols-rounded">description</span>
+          <label>Descripcion</label>
+        </section>
+
+        <input type="text" class="form-field-input" formControlName="description" name="description" maxlength="150">
       </section>
 
       <section class="form-row-section">
         <section class="form-field">
-          <span></span>
-          <label>Precio de venta</label>
+          <section class="form-field-header-input">
+            <span class="material-symbols-rounded">request_quote</span>
+            <label>Precio de venta</label>
+          </section>
+
+          <input type="number" class="form-field-input" formControlName="purchasePrice" name="purchasePrice">
         </section>
 
         <section class="form-field">
-          <span></span>
-          <label>Precio de compra</label>
+          <section class="form-field-header-input">
+            <span class="material-symbols-rounded">payments</span>
+            <label>Precio de compra</label>
+          </section>
+
+          <input type="number" class="form-field-input" formControlName="salePrice" name="salePrice">
         </section>
       </section>
 
       <section class="form-field">
-        <span></span>
-        <labe>Cantidad</labe>
+        <section class="form-field-header-input">
+          <span class="material-symbols-rounded">production_quantity_limits</span>
+          <label>Cantidad</label>
+        </section>
+
+        <input type="text" class="form-field-input" formControlName="stock" name="stock">
       </section>
+
+      <button class="form-button" type="submit" [disabled]="formularioProductos.invalid">Registrar</button>
     </form>
   </section>
 </article>

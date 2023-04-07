@@ -8,6 +8,7 @@ import {EditarComponent} from './pages/editar/editar.component';
 import {RegistrarComponent} from './pages/registrar/registrar.component';
 import {HomeComponent} from './pages/home/home.component';
 import {ProductosService} from "./services/productos.service";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {ProductosService} from "./services/productos.service";
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     SharedModule,
     ProductosRoutingModule
   ],

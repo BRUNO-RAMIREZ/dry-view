@@ -14,6 +14,10 @@ export class ProductosService {
     this._baseURL = environment.baseURL;
   }
 
+  public createProduct(product: ProductModel): Observable<ProductModel> {
+    return this._http.post<ProductModel>(`${this._baseURL}/products/create`, product);
+  }
+
   public getAllProducts(): Observable<ProductModel[]> {
     return this._http.get<ProductHTTPResponse>(`${this._baseURL}/products/getAll`)
       .pipe(map(res => res.products));
