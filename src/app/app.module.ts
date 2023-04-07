@@ -10,6 +10,8 @@ import { RegistrarComponent } from './modules/productos/registrar/registrar.comp
 import { FormularioUsuarioComponent } from './modules/users/registrar/formulario-usuario/formulario-usuario.component';
 import {SharedModule} from "./shared/shared.module";
 import { ListaProductosComponent } from './modules/productos/listado/lista-productos/lista-productos.component';
+import { HomeComponent } from './modules/home/home.component';
+import {AlifeFileToBase64Module} from 'alife-file-to-base64';
 
 @NgModule({
   declarations: [
@@ -19,14 +21,17 @@ import { ListaProductosComponent } from './modules/productos/listado/lista-produ
     FormularioUsuarioComponent,
     ListaProductosComponent,
     EliminarComponent,
-    RegistrarComponent
+    RegistrarComponent,
+    HomeComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    AlifeFileToBase64Module
   ],
   providers: [],
   bootstrap: [AppComponent]

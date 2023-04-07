@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {ProductModel} from '../../../../core/models/product.model';
 import {ProductosService} from '../../services/productos.service';
-import {productos} from '../../../../data/productos';
+import {Route, Router} from '@angular/router';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-lista-productos',
   templateUrl: './lista-productos.component.html',
   styleUrls: ['./lista-productos.component.scss']
 })
 export class ListaProductosComponent implements OnInit {
+  
   public listaProductos:ProductModel[];
 
   public maxProductosPorHoja:number;
@@ -15,8 +17,8 @@ export class ListaProductosComponent implements OnInit {
   public pagActual:number;
 
   public numBotones:number[];
-  constructor(private productoservice:ProductosService) {
-    this.listaProductos = productos;
+  constructor(private productoservice:ProductosService,private router:Router,) {
+    this.listaProductos = [];
     this.maxProductosPorHoja = 10;
     this.numPaginas = 1;
     this.pagActual = 1;
@@ -27,8 +29,16 @@ export class ListaProductosComponent implements OnInit {
 
   }
 
+  public redireccionar(ruta:string){
+    this.router.navigate([ruta]);
+  }
+  public eliminarProducto(id:number){
+
+  }
+
+
   ngOnInit(): void {
-    /*this.productoservice.getAllProductos().subscribe(list =>{
+     this.productoservice.getAllProducts().subscribe(list =>{
       this.listaProductos = list;
       if(this.listaProductos.length % this.maxProductosPorHoja == 0){
         this.numPaginas = this.listaProductos.length / this.maxProductosPorHoja;
@@ -46,7 +56,10 @@ export class ListaProductosComponent implements OnInit {
       }
     }, error =>{
       console.log('error en : ' + error);
-    });*/
+    });
   }
 
+  
 }
+
+  

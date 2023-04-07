@@ -1,1 +1,1 @@
-export const direccionAPI:string = 'la direccion de la api';
+export const direccionAPI:string = 'http://localhost:8085/api';
