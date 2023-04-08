@@ -1,7 +1,8 @@
 
-<h1 mat-dialog-title>Confirmación</h1>
+<h1 mat-dialog-title>{{datos.mensaje}}</h1>
 <div mat-dialog-content>
-    <p>{{mensaje}}</p>
+    <p>{{datos.mensaje}}</p>
+    <p>{{datos.pro}}</p>
 </div>
 <div mat-dialog-actions>
     <button mat-button (click)="cerrarDialogo()">No</button>
