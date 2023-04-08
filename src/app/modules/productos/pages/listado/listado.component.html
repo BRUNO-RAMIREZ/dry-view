@@ -1,8 +1,13 @@
 <app-header [title]="title"></app-header>
-<article class="dry-page-listado-container">
+<article class="dry-page-listado-container animate__animated animate__fadeIn animate__faster">
   <section class="listado-header-section listado-header">
     <section class="listado-header-search-section listado-header-search">
-      <input type="text" class="listado-header-search-input" placeholder="Ingrese el nombre del producto a buscar...">
+      <input type="text"
+             class="listado-header-search-input"
+             placeholder="Ingrese el nombre del producto a buscar..."
+             #textSearch
+             (keyup)="searchProductByName(textSearch.value)">
+
       <span class="material-symbols-rounded listado-header-search-icon">search</span>
     </section>
 
@@ -10,7 +15,7 @@
   </section>
 
   <section class="listado-content-section listado-content">
-    <table class="listado-content-table table">
+    <table class="listado-content-table table" >
       <thead>
       <th></th>
       <th class="table-thead-th--bold-light">Nombre</th>
@@ -22,8 +27,12 @@
 
       <tbody>
       <tr [ngClass]="(i % 2 === 0) ? 'table-row--color-disabled' : 'table-row--color-white'"
-          class="table-row"
-          *ngFor="let product of products | async; let i = index; trackBy: trackById">
+          class="table-row animate__animated animate__fadeIn animate__faster"
+          *ngFor="let product of products
+          | async
+          | filterSearchPipe:productNameSearch
+          | paginate: {itemsPerPage:8  , currentPage: page, totalItems: totalProducts};
+           let i = index; trackBy: trackById">
         <td>
           <img src="{{product.image}}" alt="image" class="item-img">
         </td>
@@ -46,9 +55,12 @@
       <label class="listado-footer-quantity">{{totalProducts}} productos en total</label>
 
       <section class="listado-footer-pagination">
-        <button class="btn btn-primary" (click)="prevPage()">Anteriores</button>
-        &nbsp;
-        <button class="btn btn-primary" (click)="nextPage()">Siguientes</button>
+        <pagination-controls
+          class="my-pagination"
+          (pageChange)="page = $event"
+          previousLabel="Anterior"
+          nextLabel="Siguiente">
+        </pagination-controls>
       </section>
     </section>
   </section>

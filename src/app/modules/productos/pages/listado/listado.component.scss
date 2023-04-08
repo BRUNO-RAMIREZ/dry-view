@@ -203,3 +203,9 @@
     cursor: pointer;
   }
 }
+
+.my-pagination ::ng-deep .ngx-pagination .current {
+  background: var(--color-black);
+  color: var(--color-white);
+  border-radius: 50%;
+}

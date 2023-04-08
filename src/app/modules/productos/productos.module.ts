@@ -1,5 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {RouterModule} from "@angular/router";
+import {NgxPaginationModule} from "ngx-pagination";
 
 import {SharedModule} from "../../shared/shared.module";
 import {ProductosRoutingModule} from './productos-routing.module';
@@ -9,9 +11,8 @@ import {RegistrarComponent} from './pages/registrar/registrar.component';
 import {HomeComponent} from './pages/home/home.component';
 import {ProductosService} from "./services/productos.service";
 import {ReactiveFormsModule} from "@angular/forms";
-import {RouterModule} from "@angular/router";
 import {EliminarComponent} from './components/eliminar/eliminar.component';
-import { FiltroBusquedaPipe } from './pipes/filtro-busqueda.pipe';
+import {FilterSearchPipe} from './pipes/filter-search.pipe';
 
 
 @NgModule({
@@ -21,14 +22,15 @@ import { FiltroBusquedaPipe } from './pipes/filtro-busqueda.pipe';
     EditarComponent,
     RegistrarComponent,
     EliminarComponent,
-    FiltroBusquedaPipe,
+    FilterSearchPipe,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     SharedModule,
     ProductosRoutingModule,
-    RouterModule
+    RouterModule,
+    NgxPaginationModule
   ],
   providers: [
     ProductosService

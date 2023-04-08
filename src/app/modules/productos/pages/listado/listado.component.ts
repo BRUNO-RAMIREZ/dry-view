@@ -19,23 +19,24 @@ export class ListadoComponent implements OnInit {
   public productMapper: ProductMapper;
   public eliminarBoolean: boolean;
   public productData: any;
+  public productNameSearch: string;
   public page: number;
 
   constructor(private _productService: ProductosService,
               private router: Router) {
-    this.products         = new Observable<ProductListResponse[]>();
-    this.title            = 'Lista de productos';
-    this.totalProducts    = 0;
-    this.productMapper    = new ProductMapper();
-    this.eliminarBoolean  = false;
-    this.page             = 0;
+    this.products          = new Observable<ProductListResponse[]>();
+    this.title             = 'Lista de productos';
+    this.totalProducts     = 0;
+    this.productMapper     = new ProductMapper();
+    this.eliminarBoolean   = false;
+    this.productNameSearch = '';
+    this.page              = 0;
   }
 
   ngOnInit(): void {
     this.products = this._productService.productsObservable
       .pipe(
-        tap(products => this.totalProducts = products.length),
-        map(products => products.slice(0, 10))
+        tap(products => this.totalProducts = products.length)
       );
   }
 
@@ -48,7 +49,7 @@ export class ListadoComponent implements OnInit {
   }
 
   public searchProductByName(productName: string): void {
-
+    this.productNameSearch = productName;
   }
 
   public incrementStock(productId: number): void {
@@ -79,13 +80,4 @@ export class ListadoComponent implements OnInit {
     this.eliminarBoolean = false;
   }
 
-  public prevPage(): void {
-    if (this.page > 0) {
-      this.page -= 5;
-    }
-  }
-
-  public nextPage(): void {
-    this.page += 5;
-  }
 }
