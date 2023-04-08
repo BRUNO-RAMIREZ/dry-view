@@ -19,6 +19,7 @@ export class ListadoComponent implements OnInit {
   public productMapper: ProductMapper;
   public eliminarBoolean: boolean;
   public productData: any;
+  public page: number;
 
   constructor(private _productService: ProductosService,
               private router: Router) {
@@ -26,7 +27,8 @@ export class ListadoComponent implements OnInit {
     this.title            = 'Lista de productos';
     this.totalProducts    = 0;
     this.productMapper    = new ProductMapper();
-    this.eliminarBoolean    = false;
+    this.eliminarBoolean  = false;
+    this.page             = 0;
   }
 
   ngOnInit(): void {
@@ -75,5 +77,15 @@ export class ListadoComponent implements OnInit {
 
   public closeModal(): void{
     this.eliminarBoolean = false;
+  }
+
+  public prevPage(): void {
+    if (this.page > 0) {
+      this.page -= 5;
+    }
+  }
+
+  public nextPage(): void {
+    this.page += 5;
   }
 }

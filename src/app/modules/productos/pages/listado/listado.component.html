@@ -44,7 +44,12 @@
 
     <section class="listado-footer-section listado-footer">
       <label class="listado-footer-quantity">{{totalProducts}} productos en total</label>
-      <label>Paginacion</label>
+
+      <section class="listado-footer-pagination">
+        <button class="btn btn-primary" (click)="prevPage()">Anteriores</button>
+        &nbsp;
+        <button class="btn btn-primary" (click)="nextPage()">Siguientes</button>
+      </section>
     </section>
   </section>
 

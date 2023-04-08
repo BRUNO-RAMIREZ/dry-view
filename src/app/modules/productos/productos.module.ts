@@ -10,7 +10,8 @@ import {HomeComponent} from './pages/home/home.component';
 import {ProductosService} from "./services/productos.service";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
-import { EliminarComponent } from './components/eliminar/eliminar.component';
+import {EliminarComponent} from './components/eliminar/eliminar.component';
+import { FiltroBusquedaPipe } from './pipes/filtro-busqueda.pipe';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { EliminarComponent } from './components/eliminar/eliminar.component';
     EditarComponent,
     RegistrarComponent,
     EliminarComponent,
+    FiltroBusquedaPipe,
   ],
   imports: [
     CommonModule,
