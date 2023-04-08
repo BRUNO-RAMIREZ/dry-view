@@ -1,14 +1,62 @@
-export interface ProductHTTPResponse {
-  products: ProductModel[];
-}
-
-export interface ProductModel {
-  id?:            number;
+export interface ProductCreateRequest {
   name:          string;
   description:   string;
-  image?:         string;
+  image:         string;
   purchasePrice: number;
   salePrice:     number;
   stock:         number;
 }
 
+export interface ProductCreateResponse {
+  id:            number;
+  name:          string;
+  description:   string;
+  image:         string;
+  purchasePrice: number;
+  salePrice:     number;
+  stock:         number;
+}
+
+export interface ProductUpdateRequest {
+  id:            number;
+  name:          string;
+  description:   string;
+  image:         string;
+  purchasePrice: number;
+  salePrice:     number;
+  stock:         number;
+}
+
+export interface ProductUpdateResponse {
+  id:            number;
+  name:          string;
+  description:   string;
+  image:         string;
+  purchasePrice: number;
+  salePrice:     number;
+  stock:         number;
+}
+
+export interface ProductGetAllResponse {
+  products: ProductListResponse[];
+}
+
+export interface ProductListResponse {
+  id:            number;
+  name:          string;
+  description:   string;
+  image:         string;
+  purchasePrice: number;
+  salePrice:     number;
+  stock:         number;
+}
+
+export interface ProductDeleteRequest {
+  id:            number;
+  name:          string;
+  description:   string;
+  image:         string;
+  purchasePrice: number;
+  salePrice:     number;
+  stock:         number;
+}

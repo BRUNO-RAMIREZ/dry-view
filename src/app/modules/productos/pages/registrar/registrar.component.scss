@@ -1,6 +1,7 @@
 .dry-page-registrar-container {
   background-color: var(--color-white);
   box-sizing: border-box;
+  box-shadow: var(--box-shadow-primary);
   margin-top: 40px;
   padding: 50px 40px;
   display: flex;
@@ -13,21 +14,12 @@
   gap: 60px;
   flex-basis: 22%;
 
-  .image-section {
-    min-width: 180px;
-    min-height: 150px;
-    background-color: var(--color-disabled);
+  .image {
+    width: 100%;
+    background-size: cover;
     box-shadow: var(--box-shadow-secondary);
   }
 
-  &-button {
-    border-radius: 3px;
-    border-style: none;
-    box-sizing: border-box;
-    padding: 5px;
-    background-color: var(--color-light-blue);
-    color: var(--color-white);
-  }
 }
 
 .form-section {
@@ -68,9 +60,37 @@
       border-radius: 3px;
       border-style: none;
       box-sizing: border-box;
-      padding: 5px;
-      background-color: var(--color-light-blue);
-      color: var(--color-white);
+      padding: 7px;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }
+
+.disabled {
+  background-color: rgb(168,167,167);
+  color: var(--color-black);
+}
+
+.enable {
+  background-color: var(--color-light-blue);
+  color: var(--color-white);
+}
+
+label[for="fileInput"] {
+  display: inline-block;
+  padding: 8px;
+  background-color: var(--color-light-blue);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: var(--border-radius-buttons);
+}
+
+input[type="file"] {
+  display: none;
+}
+

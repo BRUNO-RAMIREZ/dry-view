@@ -1,8 +1,4 @@
-<section class="header">
-  <label class="header-title">Lista de productos</label>
-</section>
-
-
+<app-header [title]="title"></app-header>
 <article class="dry-page-listado-container">
   <section class="listado-header-section listado-header">
     <section class="listado-header-search-section listado-header-search">
@@ -10,7 +6,7 @@
       <span class="material-symbols-rounded listado-header-search-icon">search</span>
     </section>
 
-    <button type="button" class="listado-header-button">Registrar</button>
+    <button type="button" class="listado-header-button" (click)="goNavigateWindowRegister()">Registrar</button>
   </section>
 
   <section class="listado-content-section listado-content">
@@ -25,7 +21,9 @@
       </thead>
 
       <tbody>
-      <tr [ngClass]="(i % 2 === 0) ? 'table-row--color-disabled' : 'table-row--color-white'" class="table-row" *ngFor="let product of products | async; let i = index">
+      <tr [ngClass]="(i % 2 === 0) ? 'table-row--color-disabled' : 'table-row--color-white'"
+          class="table-row"
+          *ngFor="let product of products | async; let i = index; trackBy: trackById">
         <td>
           <img src="{{product.image}}" alt="image" class="item-img">
         </td>
@@ -34,18 +32,48 @@
         <td>{{product.salePrice}}</td>
         <td>{{product.stock}}</td>
         <td>
-          <span class="material-symbols-rounded table-row-icon icon-plus">add</span>
+          <span class="material-symbols-rounded table-row-icon icon-plus icon"
+                (click)="incrementStock(product.id)">add</span>
           <span class="material-symbols-rounded table-row-icon icon-visibility">visibility</span>
-          <span class="material-symbols-rounded table-row-icon icon-edit">edit_square</span>
-          <span class="material-symbols-rounded table-row-icon icon-delete">delete</span>
+          <span class="material-symbols-rounded table-row-icon icon-edit icon">edit_square</span>
+          <span class="material-symbols-rounded table-row-icon icon-delete icon" (click)="deleteProductById(product)">delete</span>
         </td>
       </tr>
       </tbody>
     </table>
 
     <section class="listado-footer-section listado-footer">
-      <label class="listado-footer-quantity">{{(products | async)?.length}} total</label>
+      <label class="listado-footer-quantity">{{totalProducts}} productos en total</label>
       <label>Paginacion</label>
     </section>
   </section>
+
+<!-- TODO: REFACTORIZAR ESTE MODAL DE ELIMINAR LLEVARLO A UN COMPONENTE-->
+  <ng-container *ngIf="productDelete">
+    <article class="dry-modal-container">
+      <section class="modal-header-section modal-header">
+        <label class="modal-header-text">¿Estas seguro que deseas eliminar el producto?</label>
+        <span class="material-symbols-rounded icon-cancel">cancel</span>
+      </section>
+
+      <section class="modal-content-section modal-content">
+        <img [src]="" alt="" class="modal-content-image">
+
+        <section class="modal-content-description content-description">
+            <label><b>Nombre: </b> </label>
+            <label><b>Precio de compra: </b></label>
+            <label><b>Precio de venta: </b></label>
+            <label><b>Cantidad: </b></label>
+            <label><b>Decription: </b></label>
+        </section>
+      </section>
+
+      <section class="modal-footer-section modal-footer">
+        <section class="content-footer">
+          <span class="material-symbols-rounded">delete_forever</span>
+          <label>Eliminar</label>
+        </section>
+      </section>
+    </article>
+  </ng-container>
 </article>

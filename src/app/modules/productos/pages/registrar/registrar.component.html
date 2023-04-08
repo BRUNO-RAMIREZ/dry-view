@@ -1,15 +1,12 @@
 <article class="dry-page-registrar-container">
   <section class="image-container">
-    <section class="image-section">
-      <img src="" alt="">
-      <label>&</label>
-    </section>
-
-    <button class="image-container-button">Subir Foto</button>
+    <img [src]="imageData? imageData: '../../../assets/foto-por-defecto.jpg'" class="image"/>
+    <label for="fileInput">Subir Foto</label>
+    <input id="fileInput" type="file" accept=".jpg,.png" title="subir foto" (change)="onFileSelected($event)">
   </section>
 
   <section class="form-section">
-    <form class="form" [formGroup]="formularioProductos" (ngSubmit)="createProduct()">
+    <form class="form" [formGroup]="formularyProducts" (ngSubmit)="createProduct()">
       <section class="form-field">
         <section class="form-field-header-input">
           <span class="material-symbols-rounded">category</span>
@@ -57,7 +54,10 @@
         <input type="text" class="form-field-input" formControlName="stock" name="stock">
       </section>
 
-      <button class="form-button" type="submit" [disabled]="formularioProductos.invalid">Registrar</button>
+      <button class="form-button" type="submit"
+              [disabled]="formularyProducts.invalid"
+              [ngClass]="formularyProducts.invalid? 'disabled': 'enable'">Registrar
+      </button>
     </form>
   </section>
 </article>

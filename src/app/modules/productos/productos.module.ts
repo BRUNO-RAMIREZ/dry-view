@@ -9,20 +9,24 @@ import {RegistrarComponent} from './pages/registrar/registrar.component';
 import {HomeComponent} from './pages/home/home.component';
 import {ProductosService} from "./services/productos.service";
 import {ReactiveFormsModule} from "@angular/forms";
+import {RouterModule} from "@angular/router";
+import { EliminarComponent } from './components/eliminar/eliminar.component';
 
 
 @NgModule({
   declarations: [
+    HomeComponent,
     ListadoComponent,
     EditarComponent,
     RegistrarComponent,
-    HomeComponent,
+    EliminarComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     SharedModule,
-    ProductosRoutingModule
+    ProductosRoutingModule,
+    RouterModule
   ],
   providers: [
     ProductosService
