@@ -12,7 +12,7 @@
         </div>
         <div>
             <label for="nombre">Nombre del producto</label><br>
-            <input  class="form-control" formControlName="nombre" type="text">
+            <input  class="form-control" formControlName="nombre" type="text" name="nombre">
             <div *ngIf="formProduct.get('nombre')?.errors && formProduct.get('nombre')?.dirty">
                 <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('required')">Nombre requerido</small>
                 <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('minlength')">Minimo 4 caracteres </small>
@@ -23,7 +23,7 @@
         </div>
         <div>
             <label  for="descripcion">Descripcion</label><br>
-            <input class="form-control" formControlName="descripcion" type="text">
+            <input class="form-control" formControlName="descripcion" type="text" name="descripcion">
             <div *ngIf="formProduct.get('descripcion')?.errors && formProduct.get('descripcion')?.dirty">
                 <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('required')">Descripcion requerida </small>
                 <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('minlength')">Minimo  4 caracteres </small>
@@ -61,44 +61,57 @@
     </form>
 </div>
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./estilos.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-</head>
 
-<body>
+
+    
+
+
     <h2>{{tituloForm}}</h2>
-    <form class="form" >
+    <form [formGroup]="formProduct" class="form">
         <h2 class="form_title">Registrar productos</h2>
-      
+        <div>
+            
+            <label class="form-label" for="foto"> Foto de producto</label><br>
+            <div class="imgContainer">
+                <img *ngIf="imgPro != ''" [src]="imgPro" alt="">
+            </div>
+            <input  type="file" accept="image/*" alife-file-to-base64 (onFileChanged)="cambImagen($event)">
+        </div>  
    
   <div class="form_container">
     <div class="form_group">
-        <input type="text" id="name" class="form_input" placeholder=" " required>
+        <input type="text" id="name" class="form_input" placeholder=" " requered formControlName="nombreDelProducto">
         <label for="name" class="form_label">Nombre del producto</label>
         <span class="icono_estilos material-symbols-rounded">
             category
             </span>
         <span class="form_line"></span>
-    </div>
+        <div *ngIf="formProduct.get('nombre')?.errors && formProduct.get('nombre')?.dirty">
+            <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('required')">Nombre requerido</small>
+            <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('minlength')">Minimo 4 caracteres </small>
+            <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('maxlength')">Maximo 80 caracteres </small>
+            <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('pattern')">No se permiten caracteres especiales </small>
+        </div>
+</div>
     <div class="form_group">
-       <input type="text" id="user" class="form_input" placeholder=" ">
+       <input type="text" id="user" class="form_input" placeholder=" " requered formControlName="descripcion">
       <label for="text"class="form_label">Descripción</label>
            <span class="icono_estilos material-symbols-rounded">
             description
             </span>
        <span class="form_line"></span>
+    <div *ngIf="formProduct.get('descripcion')?.errors && formProduct.get('descripcion')?.dirty">
+        <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('required')">Descripcion requerida </small>
+        <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('minlength')">Minimo  4 caracteres </small>
+        <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('maxlength')">Maximo 80  caracteres </small>
+        <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('pattern')">No se permiten caracteres especiales </small>
+    </div>
 
  </div>      
   <div class="form_row_section">
 
     <div class="form_group">
-    <input type="text" id="user" class="form_input" placeholder=" " required>
+    <input type="number" id="user" class="form_input" placeholder=" " required formControlName="precioDeVenta">
     <label for="user"class="form_label">Precio de venta</label>
       <span class="icono_estilos material-symbols-rounded">
         request_quote
@@ -106,7 +119,7 @@
     <span class="form_line"></span>
 </div>
     <div class="form_group">
-    <input type="text" id="user" class="form_input" placeholder=" " required>
+    <input type="number" id="user" class="form_input" placeholder=" " required formControlName="precioDeCompra">
     <label for="user"class="form_label">Precio de compra</label>
     <span class="icono_estilos material-symbols-rounded">
         payments
@@ -116,7 +129,7 @@
      </div>
            
                <div class="form_group reducir_cantidad">
-                   <input type="text" id="user" class="form_input" placeholder=" " required>
+                   <input type="number" id="user" class="form_input" placeholder=" " required formControlName="cantidad">
                    <label for="user"class="form_label">Cantidad</label>
                    <span class="iconos_cantidad material-symbols-rounded">
                     shopping_cart
@@ -127,6 +140,6 @@
                </div>
 </form>
 
-</body>
-</html>
+
+
 
