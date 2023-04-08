@@ -15,14 +15,28 @@
   </section>
 
   <section class="listado-content-section listado-content">
-    <table class="listado-content-table table" >
+    <table class="listado-content-table table">
       <thead>
       <th></th>
-      <th class="table-thead-th--bold-light">Nombre</th>
-      <th class="table-thead-th--bold-light">Precio de compra</th>
-      <th class="table-thead-th--bold-light">Precio de venta</th>
-      <th class="table-thead-th--bold-light">Cantidad</th>
-      <th class="table-thead-th--bold-light">Acciones</th>
+      <th class="table-thead-th--bold-light table-th">
+        <label class="table-th-label">Nombre</label>
+        <span class="material-symbols-rounded table-th-icon" (click)="changeOrder('nombre')">unfold_more</span>
+      </th>
+      <th class="table-thead-th--bold-light table-th">
+        <label class="table-th-label">Precio de compra</label>
+        <span class="material-symbols-rounded table-th-icon" (click)="changeOrder('purchasePrice')">unfold_more</span>
+      </th>
+      <th class="table-thead-th--bold-light table-th">
+        <label class="table-th-label">Precio de venta</label>
+        <span class="material-symbols-rounded table-th-icon" (click)="changeOrder('salePrice')">unfold_more</span>
+      </th>
+      <th class="table-thead-th--bold-light table-th">
+        <label class="table-th-label">Cantidad</label>
+        <span class="material-symbols-rounded table-th-icon" (click)="changeOrder('stock')">unfold_more</span>
+      </th>
+      <th class="table-thead-th--bold-light">
+        <label class="table-th-label">Acciones</label>
+      </th>
       </thead>
 
       <tbody>
@@ -31,6 +45,7 @@
           *ngFor="let product of products
           | async
           | filterSearchPipe:productNameSearch
+          | sortByPipe: sortBy
           | paginate: {itemsPerPage:8  , currentPage: page, totalItems: totalProducts};
            let i = index; trackBy: trackById">
         <td>
@@ -45,7 +60,8 @@
                 (click)="incrementStock(product.id)">add</span>
           <span class="material-symbols-rounded table-row-icon icon-visibility">visibility</span>
           <span class="material-symbols-rounded table-row-icon icon-edit icon">edit_square</span>
-          <span class="material-symbols-rounded table-row-icon icon-delete icon" (click)="openModal(product)">delete</span>
+          <span class="material-symbols-rounded table-row-icon icon-delete icon"
+                (click)="openModal(product)">delete</span>
         </td>
       </tr>
       </tbody>
@@ -65,8 +81,8 @@
     </section>
   </section>
 
-<!-- TODO: REFACTORIZAR ESTE MODAL DE ELIMINAR LLEVARLO A UN COMPONENTE-->
-  <ng-container *ngIf="eliminarBoolean">
+  <!-- TODO: REFACTORIZAR ESTE MODAL DE ELIMINAR LLEVARLO A UN COMPONENTE-->
+  <ng-container *ngIf="deleteBoolean">
     <article class="dry-modal-container">
       <section class="modal-header-section modal-header">
         <label class="modal-header-text">¿Estas seguro que deseas eliminar el producto?</label>
@@ -82,11 +98,11 @@
         </section>
 
         <section class="modal-content-description content-description">
-            <label><b>Nombre: </b> {{productData.name}}</label>
-            <label><b>Precio de compra: </b> {{productData.purchasePrice}}</label>
-            <label><b>Precio de venta: </b> {{productData.salePrice}}</label>
-            <label><b>Cantidad: </b> {{productData.stock}}</label>
-            <label><b>Decription: </b> {{productData.description}}</label>
+          <label><b>Nombre: </b> {{productData.name}}</label>
+          <label><b>Precio de compra: </b> {{productData.purchasePrice}}</label>
+          <label><b>Precio de venta: </b> {{productData.salePrice}}</label>
+          <label><b>Cantidad: </b> {{productData.stock}}</label>
+          <label><b>Decription: </b> {{productData.description}}</label>
         </section>
       </section>
 

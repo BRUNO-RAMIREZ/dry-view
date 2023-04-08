@@ -17,10 +17,11 @@ export class ListadoComponent implements OnInit {
   public products: Observable<ProductListResponse[]>;
   public totalProducts: number;
   public productMapper: ProductMapper;
-  public eliminarBoolean: boolean;
+  public deleteBoolean: boolean;
   public productData: any;
   public productNameSearch: string;
   public page: number;
+  public sortBy: string;
 
   constructor(private _productService: ProductosService,
               private router: Router) {
@@ -28,9 +29,10 @@ export class ListadoComponent implements OnInit {
     this.title             = 'Lista de productos';
     this.totalProducts     = 0;
     this.productMapper     = new ProductMapper();
-    this.eliminarBoolean   = false;
+    this.deleteBoolean   = false;
     this.productNameSearch = '';
     this.page              = 0;
+    this.sortBy            = 'nombre';
   }
 
   ngOnInit(): void {
@@ -57,14 +59,14 @@ export class ListadoComponent implements OnInit {
   }
 
   public deleteProductById(): void {
-    if (this.eliminarBoolean) {
+    if (this.deleteBoolean) {
         this._productService.deleteProductById(this.productData.id).subscribe();
-        this.eliminarBoolean = false;
+        this.deleteBoolean = false;
     }
   }
 
   public openModal(product: ProductListResponse) {
-    this.eliminarBoolean = true;
+    this.deleteBoolean = true;
     this.productData = {
       id: product.id,
       name: product.name,
@@ -77,7 +79,11 @@ export class ListadoComponent implements OnInit {
   }
 
   public closeModal(): void{
-    this.eliminarBoolean = false;
+    this.deleteBoolean = false;
   }
 
+  public changeOrder(value: string) {
+    console.warn(value);
+    this.sortBy = value;
+  }
 }

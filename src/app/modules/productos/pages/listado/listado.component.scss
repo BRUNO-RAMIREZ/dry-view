@@ -55,6 +55,13 @@
       background-color: var(--color-disabled);
     }
 
+    &-th {
+      &-icon {
+        font-size: var(--font-size-subtitle);
+        cursor: pointer;
+      }
+    }
+
     &-row {
       min-height: 20px;
       vertical-align: middle;
