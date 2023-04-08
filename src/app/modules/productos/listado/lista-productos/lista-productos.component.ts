@@ -67,7 +67,7 @@ export class ListaProductosComponent implements OnInit {
           this.productoservice.deleteProduct(producto.id).subscribe(res =>{
             console.log(res);
             this.listaProductos.splice(this.listaProductos.indexOf(producto),1);
-            this.listaProductosMostrandose.splice(this.listaProductos.indexOf(producto),1);
+            this.listaProductosMostrandose.splice(this.listaProductosMostrandose.indexOf(producto),1);
           },error =>{
             console.log(error);
           });
