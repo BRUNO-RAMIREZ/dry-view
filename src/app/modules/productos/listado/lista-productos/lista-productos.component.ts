@@ -3,6 +3,8 @@ import {ProductModel} from '../../../../core/models/product.model';
 import {ProductosService} from '../../services/productos.service';
 import {Route, Router} from '@angular/router';
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import {VentanaConfirmacionComponent} from '../../../../shared/ventana-confirmacion/ventana-confirmacion.component';
 @Component({
   selector: 'app-lista-productos',
   templateUrl: './lista-productos.component.html',
@@ -11,14 +13,16 @@ import { Subscription } from 'rxjs';
 export class ListaProductosComponent implements OnInit {
   
   public listaProductos:ProductModel[];
-
+  public listaProductosMostrandose:ProductModel[];
   public maxProductosPorHoja:number;
   public numPaginas:number;
   public pagActual:number;
 
   public numBotones:number[];
-  constructor(private productoservice:ProductosService,private router:Router,) {
+  constructor(private productoservice:ProductosService,private router:Router,
+              public dialogo: MatDialog) {
     this.listaProductos = [];
+    this.listaProductosMostrandose = [];
     this.maxProductosPorHoja = 10;
     this.numPaginas = 1;
     this.pagActual = 1;
@@ -26,20 +30,36 @@ export class ListaProductosComponent implements OnInit {
   }
 
   public cambiarPagina(pag:number):void{
-
+    if(pag >=1 && pag <= this.numPaginas){
+      this.listaProductosMostrandose = [];
+      for(let i = (pag-1)*this.maxProductosPorHoja ; i < this.listaProductos.length && i < this.maxProductosPorHoja*pag; i++ ){
+        this.listaProductosMostrandose.push(this.listaProductos[i]);
+      }
+    }
   }
 
   public redireccionar(ruta:string){
     this.router.navigate([ruta]);
   }
   public eliminarProducto(id:number){
+    this.dialogo
+    .open(VentanaConfirmacionComponent, {
+      data: "Estas seguro que desea eliminar el producto?"
+    })
+    .afterClosed()
+    .subscribe((confirmado: Boolean) => {
+      if (confirmado) {
 
+      } else {
+       
+      }
+    });
   }
 
 
   ngOnInit(): void {
      this.productoservice.getAllProducts().subscribe(list =>{
-      this.listaProductos = list;
+      this.listaProductos = list.products;
       if(this.listaProductos.length % this.maxProductosPorHoja == 0){
         this.numPaginas = this.listaProductos.length / this.maxProductosPorHoja;
       }else{

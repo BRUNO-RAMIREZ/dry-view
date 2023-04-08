@@ -27,9 +27,9 @@
                 Acciones
             </th>
         </tr>
-        <tr *ngFor="let producto of listaProductos">
+        <tr *ngFor="let producto of listaProductosMostrandose">
             <td>
-                {{producto.image}}
+                <div class=" contenedorimgLista"><img *ngIf="producto.image != ''" [src]="producto.image" alt=""></div>
             </td>
             <td>
                 {{producto.name}}
