@@ -161,13 +161,17 @@
 .modal-content {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  padding: 10px;
-  gap: 80px;
+  justify-content: space-evenly;
+  padding: 20px;
 
   &-image-section {
-    width: 30px;
-    max-width: 50px;
+    width: 200px;
+    max-width: 200px;
+
+    .image {
+      background-size: cover;
+      width: 100%;
+    }
   }
 
   &-description {
