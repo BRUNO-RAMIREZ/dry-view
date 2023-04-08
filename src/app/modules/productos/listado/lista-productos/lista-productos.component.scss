@@ -34,8 +34,18 @@
     margin-top: 5px;
     margin-bottom: 30px;
   } 
+  .contenedor-buscador{
+    display: flex;
+    justify-content: space-between;
+  }
   input{
-    width: 500px;
+    width: 400px;
+  }
+  .button-registrar{
+    background-color: #d8ee9c;
+    border-radius: 10px;
+    width: 130px;
+    height: 30px;
   }
 .contenedor-tabla{
     margin-top: 40px;

@@ -46,8 +46,8 @@
             <td>
                 <button>Cambiar Cantidad Icon</button>
                 <button>Vizualizar Icon</button>
-                <button (click)="redireccionar('product/edit/'+1)">Editar Icon</button>
-                <button (click)="eliminarProducto(1)">Eliminar Icon</button>
+                <button (click)="redireccionar('product/edit/'+producto.id)">Editar Icon</button>
+                <button (click)="eliminarProducto(producto)">Eliminar Icon</button>
             </td>
         </tr>
     </table>
@@ -81,9 +81,13 @@
         </div>
     <br>
     <div class="contenedor-buscador">
-        <input type="text" placeholder="Ingrese el nombre del producto a buscar..."> 
-        <button><i class="fa-solid fa-magnifying-glass"></i></button>
-        <button (click)="redireccionar('/product/new')">Registrar</button>
+        <div class="contenedor-buscador-hijo1">
+            <input type="text" placeholder="Ingrese el nombre del producto a buscar..."> 
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="contenedor-buscador-hijo2">
+            <button (click)="redireccionar('/product/new')" class="button-registrar">Registrar</button>
+        </div>
     </div>
 <br>
 
@@ -109,7 +113,7 @@
                 Acciones
             </th>
         </tr>
-        <tr *ngFor="let producto of listaProductos">
+        <tr *ngFor="let producto of listaProductosMostrandose">
             <td>
                 {{producto.image}}
             </td>
@@ -136,7 +140,7 @@
                 <button (click)="redireccionar('product/edit/'+1)" class="button-editar">
                     <i class="fa-regular fa-pen-to-square" id="editar"></i>
                 </button>
-                <button (click)="eliminarProducto(1)" class="button-eliminar">
+                <button (click)="eliminarProducto(producto)" class="button-eliminar">
                     <i class="fa-solid fa-trash" id="eliminar"></i>
                 </button>
             </td>
