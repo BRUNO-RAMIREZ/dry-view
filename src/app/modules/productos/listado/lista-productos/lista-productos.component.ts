@@ -58,7 +58,7 @@ export class ListaProductosComponent implements OnInit {
   public eliminarProducto(producto:ProductModel){
     this.dialogo
     .open(VentanaConfirmacionComponent, {
-      data:{mensaje:"Estas seguro que desea eliminar el producto?",pro:producto}
+      data:{mensaje:"¿Estas seguro que desea eliminar el producto?",pro:producto},panelClass:'custom-dialog-container'
     })
     .afterClosed()
     .subscribe((confirmado: Boolean) => {

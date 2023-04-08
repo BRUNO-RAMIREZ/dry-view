@@ -1,10 +1,18 @@
 
-<h1 mat-dialog-title>{{datos.mensaje}}</h1>
-<div mat-dialog-content>
-    <p>{{datos.mensaje}}</p>
-    <p>{{datos.pro}}</p>
-</div>
-<div mat-dialog-actions>
-    <button mat-button (click)="cerrarDialogo()">No</button>
-    <button mat-button (click)="confirmado()" cdkFocusInitial>Sí</button>
+<div class="contenedor"  >
+    
+    <div class="subcont"><span > {{datos.mensaje}}</span> <button (click)="cerrarDialogo()" >X</button> </div>
+    
+    
+    <div class="contenedorObjeto">
+        <div class=" contenedorimg"><img *ngIf="datos.pro.image != ''" [src]="datos.pro.image" alt=""></div>
+        <div class="infoContenedor">
+            <span class="varNam">Nombre: </span><span class="dataNam">{{datos.pro.name}}</span><br>
+            <span class="varNam">Precio de compra: </span><span class="dataNam">{{datos.pro.purchasePrice}}</span><br>
+            <span class="varNam">Precio de venta: </span><span class="dataNam">{{datos.pro.salePrice}}</span><br>
+            <span class="varNam">Cantidad: </span><span class="dataNam">{{datos.pro.stock}}</span><br>
+            <span class="varNam">Descripcion: </span><span class="dataNam">{{datos.pro.description}}</span><br>
+        </div>
+    </div>
+    <div class="btndown"><button (click)="cerrarDialogo()"> Eliminar</button></div>
 </div>
