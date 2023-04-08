@@ -14,7 +14,7 @@ export class ProductosService {
     return this.http.get<{products:ProductModel[]}>(direccionAPI+'/products/getAll');
   }
   public createProduct(product:ProductModel){
-    return this.http.post<ProductModel>(direccionAPI+'/products/create',JSON.stringify(product));
+    return this.http.post<ProductModel>(direccionAPI+'/products/create',product);
   }
 
   public updateProduct(product:ProductModel){

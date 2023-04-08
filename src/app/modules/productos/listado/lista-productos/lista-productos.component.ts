@@ -5,6 +5,7 @@ import {Route, Router} from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import {VentanaConfirmacionComponent} from '../../../../shared/ventana-confirmacion/ventana-confirmacion.component';
+
 @Component({
   selector: 'app-lista-productos',
   templateUrl: './lista-productos.component.html',
@@ -32,26 +33,46 @@ export class ListaProductosComponent implements OnInit {
   public cambiarPagina(pag:number):void{
     if(pag >=1 && pag <= this.numPaginas){
       this.listaProductosMostrandose = [];
+      
+
       for(let i = (pag-1)*this.maxProductosPorHoja ; i < this.listaProductos.length && i < this.maxProductosPorHoja*pag; i++ ){
+       
         this.listaProductosMostrandose.push(this.listaProductos[i]);
       }
+
+      let primerBoton = 0;
+      if(pag - 2 > 0){
+        primerBoton = pag -2;
+      }
+      this.numBotones = [];
+      for(let i = primerBoton ; i < primerBoton+4 && i < this.numPaginas;i++){
+        this.numBotones.push(i);
+      }
+      
     }
   }
 
   public redireccionar(ruta:string){
     this.router.navigate([ruta]);
   }
-  public eliminarProducto(id:number){
+  public eliminarProducto(producto:ProductModel){
     this.dialogo
     .open(VentanaConfirmacionComponent, {
-      data: "Estas seguro que desea eliminar el producto?"
+      data:{mensaje:"Estas seguro que desea eliminar el producto?",pro:producto}
     })
     .afterClosed()
     .subscribe((confirmado: Boolean) => {
-      if (confirmado) {
-
-      } else {
-       
+      if (confirmado) { 
+        if(producto.id){
+          this.productoservice.deleteProduct(producto.id).subscribe(res =>{
+            console.log(res);
+            this.listaProductos.splice(this.listaProductos.indexOf(producto),1);
+            this.listaProductosMostrandose.splice(this.listaProductos.indexOf(producto),1);
+          },error =>{
+            console.log(error);
+          });
+        }
+        
       }
     });
   }
@@ -74,9 +95,11 @@ export class ListaProductosComponent implements OnInit {
       for(let i:number = 0 ; i < numBot ; i++){
         this.numBotones[i] = i+1;
       }
+      this.cambiarPagina(1);
     }, error =>{
       console.log('error en : ' + error);
     });
+    
   }
 
   
