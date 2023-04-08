@@ -1,7 +1,6 @@
-
-
 <div class="card">
-    <form [formGroup]="formProduct" >
+    <form [formGroup]="formProduct" class="form">
+        <h2 class="form_title">{{tituloForm}}</h2>
         <div>
             
             <label class="form-label" for="foto"> Foto de producto</label><br>
@@ -9,54 +8,86 @@
                 <img *ngIf="imgPro != ''" [src]="imgPro" alt="">
             </div>
             <input  type="file" accept="image/*" alife-file-to-base64 (onFileChanged)="cambImagen($event)">
+        </div>  
+   
+  <div class="form_container">
+    <div class="form_group">
+        <input type="text" id="name" class="form_input" placeholder=" "  formControlName="nombre">
+        <label for="name" class="form_label">Nombre del producto</label>
+        <span class="icono_estilos material-symbols-rounded">
+            category
+            </span>
+        <span class="form_line"></span>
+        <div *ngIf="formProduct.get('nombre')?.errors && formProduct.get('nombre')?.dirty">
+            <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('required')">Nombre requerido</small>
+            <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('minlength')">Minimo 4 caracteres </small>
+            <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('maxlength')">Maximo 80 caracteres </small>
+            <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('pattern')">No se permiten caracteres especiales </small>
         </div>
-        <div>
-            <label for="nombre">Nombre del producto</label><br>
-            <input  class="form-control" formControlName="nombre" type="text">
-            <div *ngIf="formProduct.get('nombre')?.errors && formProduct.get('nombre')?.dirty">
-                <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('required')">Nombre requerido</small>
-                <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('minlength')">Minimo 4 caracteres </small>
-                <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('maxlength')">Maximo 80 caracteres </small>
-                <small class="text-danger" *ngIf="formProduct.get('nombre')?.hasError('pattern')">No se permiten caracteres especiales </small>
-            </div>
-           
-        </div>
-        <div>
-            <label  for="descripcion">Descripcion</label><br>
-            <input class="form-control" formControlName="descripcion" type="text">
-            <div *ngIf="formProduct.get('descripcion')?.errors && formProduct.get('descripcion')?.dirty">
-                <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('required')">Descripcion requerida </small>
-                <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('minlength')">Minimo  4 caracteres </small>
-                <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('maxlength')">Maximo 80  caracteres </small>
-                <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('pattern')">No se permiten caracteres especiales </small>
-            </div>
-        </div>
-        <div>
-            <div>
-                <label >Precio de compra</label><br>
-                <input class="form-control" formControlName="precioCompra" type="number">
-                <div *ngIf="formProduct.get('precioCompra')?.errors && formProduct.get('precioCompra')?.dirty">
-                    <small class="text-danger" *ngIf="formProduct.get('precioCompra')?.hasError('required')">Ingrese un precio </small>
-                   
-                </div>
-            </div>
-            <div>
-                <label >Precio de venta</label><br>
-                <input class="form-control"formControlName="precioVenta" type="number">
-                <div *ngIf="formProduct.get('precioVenta')?.errors && formProduct.get('precioVenta')?.dirty">
-                    <small class="text-danger" *ngIf="formProduct.get('precioVenta')?.hasError('required')">Ingrese un precio </small>
-               </div>
-            </div>    
-        </div>
-        <div>
-            <label >Cantidad</label><br>
-            <input class="form-control" formControlName="cantidad" type="number">
-            <div *ngIf="formProduct.get('cantidad')?.errors && formProduct.get('cantidad')?.dirty">
-                <small class="text-danger" *ngIf="formProduct.get('cantidad')?.hasError('required')">Ingrese una cantidad </small>
-           </div>
-        </div>   
-        
-        <button (click)="registrar()" type="submit" class="btn btn-primary m-4" [disabled]="formProduct.invalid">Registrar</button>
-        <button class="btn btn-primary " (click)="redireccionar('/products/list')">Cancelar</button>
-    </form>
 </div>
+    <div class="form_group">
+       <input type="text" id="user" class="form_input" placeholder=" " formControlName="descripcion">
+      <label for="text"class="form_label">Descripción</label>
+           <span class="icono_estilos material-symbols-rounded">
+            description
+            </span>
+       <span class="form_line"></span>
+    <div *ngIf="formProduct.get('descripcion')?.errors && formProduct.get('descripcion')?.dirty">
+        <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('required')">Descripcion requerida </small>
+        <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('minlength')">Minimo  4 caracteres </small>
+        <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('maxlength')">Maximo 80  caracteres </small>
+        <small class="text-danger" *ngIf="formProduct.get('descripcion')?.hasError('pattern')">No se permiten caracteres especiales </small>
+    </div>
+
+ </div>      
+  <div class="form_row_section">
+
+    <div class="form_group">
+    <input type="number" id="user" class="form_input" placeholder=" " required formControlName="precioVenta">
+    <label for="user"class="form_label">Precio de venta</label>
+      <span class="icono_estilos material-symbols-rounded">
+        request_quote
+        </span>
+    <span class="form_line"></span>
+    <div *ngIf="formProduct.get('precioVenta')?.errors && formProduct.get('precioVenta')?.dirty">
+        <small class="text-danger" *ngIf="formProduct.get('precioVenta')?.hasError('required')">Ingrese un precio </small>
+   </div>
+</div>
+    <div class="form_group">
+    <input type="number" id="user" class="form_input" placeholder=" " required formControlName="precioCompra">
+    <label for="user"class="form_label">Precio de compra</label>
+    <span class="icono_estilos material-symbols-rounded">
+        payments
+        </span>
+    <span class="form_line"></span>
+    <div *ngIf="formProduct.get('precioCompra')?.errors && formProduct.get('precioCompra')?.dirty">
+        <small class="text-danger" *ngIf="formProduct.get('precioCompra')?.hasError('required')">Ingrese un precio </small>
+       
+    </div>
+</div>
+     </div>
+           
+               <div class="form_group reducir_cantidad">
+                   <input type="number" id="user" class="form_input" placeholder=" " required formControlName="cantidad">
+                   <label for="user"class="form_label">Cantidad</label>
+                   <span class="iconos_cantidad material-symbols-rounded">
+                    shopping_cart
+                    </span>
+                   <span class="form_line"></span>
+                   <div *ngIf="formProduct.get('cantidad')?.errors && formProduct.get('cantidad')?.dirty">
+                    <small class="text-danger" *ngIf="formProduct.get('cantidad')?.hasError('required')">Ingrese una cantidad </small>
+               </div>
+               </div>
+               <button (click)="registrar()" type="submit" class="btn btn-primary m-4" [disabled]="formProduct.invalid">Registrar</button>
+               <button class="btn btn-primary " (click)="redireccionar('/products/list')">Cancelar</button>
+                   
+               </div>
+</form>
+
+</div>
+    
+
+
+
+
+
