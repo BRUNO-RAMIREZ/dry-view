@@ -51,10 +51,10 @@
         <td>
           <img src="{{product.image}}" alt="image" class="item-img">
         </td>
-        <td>{{product.name}}</td>
-        <td>{{product.purchasePrice}}</td>
-        <td>{{product.salePrice}}</td>
-        <td>{{product.stock}}</td>
+        <td class="table-row-td" [title]="product.name">{{product.name}}</td>
+        <td class="table-row-td" [title]="product.purchasePrice">{{product.purchasePrice}}</td>
+        <td class="table-row-td" [title]="product.salePrice">{{product.salePrice}}</td>
+        <td class="table-row-td" [title]="product.stock">{{product.stock}}</td>
         <td>
           <span class="material-symbols-rounded table-row-icon icon-plus icon"
                 (click)="incrementStock(product.id)">add</span>

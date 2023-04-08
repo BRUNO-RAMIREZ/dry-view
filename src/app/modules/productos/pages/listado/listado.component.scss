@@ -66,6 +66,13 @@
       min-height: 20px;
       vertical-align: middle;
 
+      &-td {
+        max-width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
       &-icon {
         border-radius: 50%;
         font-weight: bold;
