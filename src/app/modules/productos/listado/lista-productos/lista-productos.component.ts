@@ -24,7 +24,7 @@ export class ListaProductosComponent implements OnInit {
               public dialogo: MatDialog) {
     this.listaProductos = [];
     this.listaProductosMostrandose = [];
-    this.maxProductosPorHoja = 10;
+    this.maxProductosPorHoja = 10 ;
     this.numPaginas = 1;
     this.pagActual = 1;
     this.numBotones = [1];
@@ -46,9 +46,9 @@ export class ListaProductosComponent implements OnInit {
       }
       this.numBotones = [];
       for(let i = primerBoton ; i < primerBoton+4 && i < this.numPaginas;i++){
-        this.numBotones.push(i);
+        this.numBotones.push((i+1));
       }
-      
+      this.pagActual = pag;
     }
   }
 

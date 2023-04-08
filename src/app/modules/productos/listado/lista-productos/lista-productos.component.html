@@ -1,77 +1,5 @@
-<!-- <span> Lista de Productos</span>
-<br>
-<input type="text" placeholder="Ingrese el nombre del producto a buscar..."> <button>IMG LUPA</button>
-<button (click)="redireccionar('/product/new')">Registrar</button>
 
-<br>
 
-<div>
-    <table>
-        <tr>
-            <th>
-
-            </th>
-            <th>
-                Nombre
-            </th>
-            <th>
-                Precio de Compra
-            </th>
-            <th>
-                Precio de venta
-            </th>
-            <th>
-                Cantidad
-            </th>
-            <th>
-                Acciones
-            </th>
-        </tr>
-        <tr *ngFor="let producto of listaProductosMostrandose">
-            <td>
-                <div class=" contenedorimgLista"><img *ngIf="producto.image != ''" [src]="producto.image" alt=""></div>
-            </td>
-            <td>
-                {{producto.name}}
-            </td>
-            <td>
-                {{producto.purchasePrice}}
-            </td>
-            <td>
-                {{producto.salePrice}}
-            </td>
-            <td>
-                {{producto.stock}}
-            </td>
-            <td>
-                <button>Cambiar Cantidad Icon</button>
-                <button>Vizualizar Icon</button>
-                <button (click)="redireccionar('product/edit/'+producto.id)">Editar Icon</button>
-                <button (click)="eliminarProducto(producto)">Eliminar Icon</button>
-            </td>
-        </tr>
-    </table>
-</div>
-<br>
-<br>
-<div>{{numPaginas}}</div> 
-<div>
-    <button (click)="cambiarPagina(1)"> << </button>
-    <button (click)="cambiarPagina((pagActual - 1))"> < </button>
-    <button (click)="cambiarPagina(boton)"  *ngFor="let boton of numBotones">{{boton}}</button>
-    <button (click)="cambiarPagina((pagActual + 1))"> > </button>
-    <button (click)="cambiarPagina((numPaginas))"> >> </button>
-</div> -->
-
-<!-- ------------------------------------------------ -->
-<head>
-    <!-- <link rel="stylesheet" href="lista-productos.component.scss"> -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
-    crossorigin="anonymous"  
-    referrerpolicy="no-referrer" /> -->
-</head>
-<body>
     
 
     <div class="contenedor">
@@ -115,7 +43,7 @@
         </tr>
         <tr *ngFor="let producto of listaProductosMostrandose">
             <td>
-                {{producto.image}}
+                <div class=" contenedorimgLista"><img *ngIf="producto.image != ''" [src]="producto.image" alt=""></div>
             </td>
             <td>
                 {{producto.name}}
@@ -137,7 +65,7 @@
                     <i class="fa-regular fa-eye" id="ojo"></i>
                 </button>
 
-                <button (click)="redireccionar('product/edit/'+1)" class="button-editar">
+                <button (click)="redireccionar('product/edit/'+producto.id)"  class="button-editar">
                     <i class="fa-regular fa-pen-to-square" id="editar"></i>
                 </button>
                 <button (click)="eliminarProducto(producto)" class="button-eliminar">
@@ -150,7 +78,7 @@
 <br>
 <br>
 <div class="contenedor-paginas">
-<div>{{numPaginas}}</div> 
+<div>{{pagActual}}</div> 
 <div>
     <button (click)="cambiarPagina(1)"> << </button>
     <button (click)="cambiarPagina((pagActual - 1))"> < </button>
@@ -160,4 +88,3 @@
 </div>
 </div>
 </div>
-</body>
