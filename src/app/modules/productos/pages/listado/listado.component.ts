@@ -17,7 +17,8 @@ export class ListadoComponent implements OnInit {
   public products: Observable<ProductListResponse[]>;
   public totalProducts: number;
   public productMapper: ProductMapper;
-  public productDelete: boolean;
+  public eliminarBoolean: boolean;
+  public productData: any;
 
   constructor(private _productService: ProductosService,
               private router: Router) {
@@ -25,7 +26,7 @@ export class ListadoComponent implements OnInit {
     this.title            = 'Lista de productos';
     this.totalProducts    = 0;
     this.productMapper    = new ProductMapper();
-    this.productDelete    = false;
+    this.eliminarBoolean    = false;
   }
 
   ngOnInit(): void {
@@ -52,9 +53,27 @@ export class ListadoComponent implements OnInit {
     if (productId) this._productService.updateStock(productId).subscribe();
   }
 
-  public deleteProductById(product: ProductListResponse) {
-    this.productDelete = true;
-    const productDelete: ProductDeleteRequest = this.productMapper.fromProductListResponseToProductDeleteRequest(product);
+  public deleteProductById(): void {
+    if (this.eliminarBoolean) {
+        this._productService.deleteProductById(this.productData.id).subscribe();
+        this.eliminarBoolean = false;
+    }
+  }
 
+  public openModal(product: ProductListResponse) {
+    this.eliminarBoolean = true;
+    this.productData = {
+      id: product.id,
+      name: product.name,
+      description: product.description,
+      image: product.image,
+      purchasePrice: product.purchasePrice,
+      salePrice: product.salePrice,
+      stock: product.stock
+    }
+  }
+
+  public closeModal(): void{
+    this.eliminarBoolean = false;
   }
 }

@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, Observable, of} from "rxjs";
+import {switchMap} from "rxjs/operators";
 import {environment} from "../../../../environments/environment";
 
 import {
@@ -57,6 +58,17 @@ export class ProductosService {
             return product;
           });
           this._products.next(updateProducts);
+        })
+      );
+  }
+
+  public deleteProductById(productId: number): Observable<void> {
+    return this._http.delete<void>(`${this._baseURL}/products/${productId}`)
+      .pipe(
+        map(() => {
+          const currentProducts = this._products.getValue();
+          const updatedProducts = currentProducts.filter((product: ProductUpdateRequest) => product.id !== productId);
+          this._products.next(updatedProducts);
         })
       );
   }

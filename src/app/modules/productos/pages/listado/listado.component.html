@@ -36,7 +36,7 @@
                 (click)="incrementStock(product.id)">add</span>
           <span class="material-symbols-rounded table-row-icon icon-visibility">visibility</span>
           <span class="material-symbols-rounded table-row-icon icon-edit icon">edit_square</span>
-          <span class="material-symbols-rounded table-row-icon icon-delete icon" (click)="deleteProductById(product)">delete</span>
+          <span class="material-symbols-rounded table-row-icon icon-delete icon" (click)="openModal(product)">delete</span>
         </td>
       </tr>
       </tbody>
@@ -49,30 +49,35 @@
   </section>
 
 <!-- TODO: REFACTORIZAR ESTE MODAL DE ELIMINAR LLEVARLO A UN COMPONENTE-->
-  <ng-container *ngIf="productDelete">
+  <ng-container *ngIf="eliminarBoolean">
     <article class="dry-modal-container">
       <section class="modal-header-section modal-header">
         <label class="modal-header-text">¿Estas seguro que deseas eliminar el producto?</label>
-        <span class="material-symbols-rounded icon-cancel">cancel</span>
+
+        <button (click)="closeModal()" class="modal-header-button">
+          <span class="material-symbols-rounded icon-cancel">cancel</span>
+        </button>
       </section>
 
       <section class="modal-content-section modal-content">
-        <img [src]="" alt="" class="modal-content-image">
+        <section class="modal-content-image-section">
+          <img [src]="productData.image" alt="" class="image">
+        </section>
 
         <section class="modal-content-description content-description">
-            <label><b>Nombre: </b> </label>
-            <label><b>Precio de compra: </b></label>
-            <label><b>Precio de venta: </b></label>
-            <label><b>Cantidad: </b></label>
-            <label><b>Decription: </b></label>
+            <label><b>Nombre: </b> {{productData.name}}</label>
+            <label><b>Precio de compra: </b> {{productData.purchasePrice}}</label>
+            <label><b>Precio de venta: </b> {{productData.salePrice}}</label>
+            <label><b>Cantidad: </b> {{productData.stock}}</label>
+            <label><b>Decription: </b> {{productData.description}}</label>
         </section>
       </section>
 
       <section class="modal-footer-section modal-footer">
-        <section class="content-footer">
+        <button class="modal-footer-button" (click)="deleteProductById()">
           <span class="material-symbols-rounded">delete_forever</span>
-          <label>Eliminar</label>
-        </section>
+          <label class="modal-footer-text">Eliminar</label>
+        </button>
       </section>
     </article>
   </ng-container>

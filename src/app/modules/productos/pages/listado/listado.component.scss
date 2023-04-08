@@ -148,6 +148,13 @@
     font-size: var(--font-size-title);
   }
 
+  &-button {
+    display: grid;
+    place-items: center;
+    border: none;
+    background-color: transparent;
+  }
+
   .icon-cancel {
     font-size: 40px;
   }
@@ -155,12 +162,13 @@
 
 .modal-content {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
   padding: 10px;
+  gap: 80px;
 
-  &-image {
-    width: 50px;
+  &-image-section {
+    width: 30px;
     max-width: 50px;
   }
 
@@ -183,17 +191,18 @@
   border-top: 1px solid #ccc;
   background-color: var(--color-light-green);
 
-  .content-footer {
+  &-button {
     display: flex;
     gap: 12px;
     padding: 7px 15px;
     box-sizing: border-box;
+    border: none;
     border-radius: 3px;
     background-color: var(--color-dark-green);
+  }
 
-    &:hover {
-      cursor: pointer;
-    }
+  &-text {
+    cursor: pointer;
   }
 }
 
