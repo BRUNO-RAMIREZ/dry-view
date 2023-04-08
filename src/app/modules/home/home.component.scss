@@ -1,0 +1,35 @@
+.container{
+    display: flex;
+    background-color: var( --color-light-blue-secondary);
+    padding: 20px;
+    color: white;
+    text-align: justify;
+   align-items: center;
+   justify-content: space-evenly;
+   border-radius: 10px;
+   
+
+}
+.container p{
+    padding: 30px;
+}
+.title{
+    background-color:var(--color-dark-blue);
+    margin-top: 15px;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+}
+img{
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    border-radius: 5px;
+    
+}
+.mision_img{
+    margin-left: 90px;
+}
+.vision_img{
+    margin-right: 90px;
+}
