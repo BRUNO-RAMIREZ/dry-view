@@ -13,6 +13,7 @@ import {ProductosService} from "./services/productos.service";
 import {ReactiveFormsModule} from "@angular/forms";
 import {EliminarComponent} from './components/eliminar/eliminar.component';
 import {FilterSearchPipe} from './pipes/filter-search.pipe';
+import { SortByNamePipe } from './pipes/sort-by-name.pipe';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import {FilterSearchPipe} from './pipes/filter-search.pipe';
     RegistrarComponent,
     EliminarComponent,
     FilterSearchPipe,
+    SortByNamePipe,
   ],
   imports: [
     CommonModule,
