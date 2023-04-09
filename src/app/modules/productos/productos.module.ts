@@ -15,6 +15,7 @@ import {EliminarComponent} from './components/eliminar/eliminar.component';
 import {FilterSearchPipe} from './pipes/filter-search.pipe';
 import {SortByPipe} from './pipes/sort-by.pipe';
 import {HomeComponent} from "./pages/home/home.component";
+import { CardComponent } from './components/card/card.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {HomeComponent} from "./pages/home/home.component";
     EliminarComponent,
     FilterSearchPipe,
     SortByPipe,
+    CardComponent,
   ],
   imports: [
     CommonModule,
