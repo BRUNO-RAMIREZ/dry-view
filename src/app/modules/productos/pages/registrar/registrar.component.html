@@ -1,3 +1,4 @@
+<app-header [title]="'Registrar producto'"></app-header>
 <article class="dry-page-registrar-container table-row animate__animated animate__fadeIn animate__faster">
   <section class="image-container">
     <img [src]="imageData? imageData: '../../../assets/foto-por-defecto.jpg'" class="image"/>
@@ -54,10 +55,13 @@
         <input type="text" class="form-field-input" formControlName="stock" name="stock">
       </section>
 
-      <button class="form-button" type="submit"
-              [disabled]="formularyProducts.invalid"
-              [ngClass]="formularyProducts.invalid? 'disabled': 'enable'">Registrar
-      </button>
+      <section class="form-field-buttons">
+        <button class="form-button form-button-registrar" type="submit"
+                [disabled]="formularyProducts.invalid"
+                [ngClass]="formularyProducts.invalid? 'disabled': 'enable'">Registrar
+        </button>
+        <button class="form-button form-button-cancelar" (click)="redirectToWindowProductList()">Cancelar</button>
+      </section>
     </form>
   </section>
 </article>

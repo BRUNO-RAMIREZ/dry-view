@@ -49,6 +49,10 @@
         padding-left: 10px;
         box-sizing: border-box;
       }
+      &-buttons {
+        display: flex;
+        justify-content: space-between;
+      }
     }
 
     &-row-section {
@@ -64,6 +68,18 @@
 
       &:hover {
         cursor: pointer;
+      }
+
+      &-registrar {
+        width: 45%;
+        min-width: 45%;
+      }
+
+      &-cancelar {
+        width: 45%;
+        min-width: 45%;
+        background-color: var(--color-black);
+        color: var(--color-white);
       }
     }
   }

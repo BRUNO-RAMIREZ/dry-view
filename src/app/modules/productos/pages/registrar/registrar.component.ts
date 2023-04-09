@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ProductCommon, ProductCreateRequest, ProductCreateResponse} from "../../../../core/models/product.model";
 import {Subject} from "rxjs";
 import {switchMap, take} from "rxjs/operators";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-registrar',
@@ -21,7 +21,8 @@ export class RegistrarComponent implements OnInit, OnDestroy {
 
   constructor(private _productService: ProductosService,
               private _formsBuilder: FormBuilder,
-              private _activateRoute: ActivatedRoute) {
+              private _activateRoute: ActivatedRoute,
+              private _router: Router) {
     this.imageData = '';
     this._unsubscribed = new Subject<void>();
     this.productCommon = {
@@ -74,6 +75,10 @@ export class RegistrarComponent implements OnInit, OnDestroy {
       }
       reader.readAsDataURL(file);
     }
+  }
+
+  public redirectToWindowProductList(): void {
+    this._router.navigate(['/productos/listado']);
   }
 
   private _buildProduct(): ProductCreateRequest {

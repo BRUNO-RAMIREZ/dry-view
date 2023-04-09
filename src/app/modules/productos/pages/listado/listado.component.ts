@@ -13,7 +13,6 @@ import {ProductMapper} from "../../../../core/mappers/product.mapper";
   styleUrls: ['./listado.component.scss']
 })
 export class ListadoComponent implements OnInit {
-  public title: string;
   public products: Observable<ProductListResponse[]>;
   public totalProducts: number;
   public productMapper: ProductMapper;
@@ -24,9 +23,8 @@ export class ListadoComponent implements OnInit {
   public sortBy: string;
 
   constructor(private _productService: ProductosService,
-              private router: Router) {
+              private _router: Router) {
     this.products          = new Observable<ProductListResponse[]>();
-    this.title             = 'Lista de productos';
     this.totalProducts     = 0;
     this.productMapper     = new ProductMapper();
     this.deleteBoolean   = false;
@@ -47,7 +45,7 @@ export class ListadoComponent implements OnInit {
   }
 
   public goNavigateWindowRegister(): void {
-    this.router.navigate(['/productos/registrar']);
+    this._router.navigate(['/productos/registrar']);
   }
 
   public searchProductByName(productName: string): void {
