@@ -58,7 +58,7 @@ export class ListaProductosComponent implements OnInit {
   public eliminarProducto(producto:ProductModel){
     this.dialogo
     .open(VentanaConfirmacionComponent, {
-      data:{mensaje:"Estas seguro que desea eliminar el producto?",pro:producto}
+      data:{mensaje:"¿Estas seguro que desea eliminar el producto?",pro:producto},panelClass:'custom-dialog-container'
     })
     .afterClosed()
     .subscribe((confirmado: Boolean) => {
@@ -67,7 +67,7 @@ export class ListaProductosComponent implements OnInit {
           this.productoservice.deleteProduct(producto.id).subscribe(res =>{
             console.log(res);
             this.listaProductos.splice(this.listaProductos.indexOf(producto),1);
-            this.listaProductosMostrandose.splice(this.listaProductos.indexOf(producto),1);
+            this.listaProductosMostrandose.splice(this.listaProductosMostrandose.indexOf(producto),1);
           },error =>{
             console.log(error);
           });
