@@ -17,6 +17,7 @@ export class ListadoComponent implements OnInit {
   public totalProducts: number;
   public productMapper: ProductMapper;
   public deleteBoolean: boolean;
+  public seeBoolean: boolean;
   public productData: any;
   public productNameSearch: string;
   public page: number;
@@ -27,7 +28,8 @@ export class ListadoComponent implements OnInit {
     this.products          = new Observable<ProductListResponse[]>();
     this.totalProducts     = 0;
     this.productMapper     = new ProductMapper();
-    this.deleteBoolean   = false;
+    this.deleteBoolean     = false;
+    this.seeBoolean        = false;
     this.productNameSearch = '';
     this.page              = 0;
     this.sortBy            = 'nombre';
@@ -63,7 +65,26 @@ export class ListadoComponent implements OnInit {
     }
   }
 
-  public openModal(product: ProductListResponse) {
+  public seeProductById(): void {
+    if (this.seeBoolean) {
+      this.seeBoolean = false;
+    }
+  }
+
+  public openModalSee(product: ProductListResponse) {
+    this.seeBoolean = true;
+    this.productData = {
+      id: product.id,
+      name: product.name,
+      description: product.description,
+      image: product.image,
+      purchasePrice: product.purchasePrice,
+      salePrice: product.salePrice,
+      stock: product.stock
+    }
+  }
+
+  public openModalDelete(product: ProductListResponse) {
     this.deleteBoolean = true;
     this.productData = {
       id: product.id,
@@ -78,6 +99,7 @@ export class ListadoComponent implements OnInit {
 
   public closeModal(): void{
     this.deleteBoolean = false;
+    this.seeBoolean = false;
   }
 
   public changeOrder(value: string) {

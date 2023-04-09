@@ -7,7 +7,7 @@ import {
   ProductCreateRequest,
   ProductCreateResponse,
   ProductGetAllResponse, ProductGetByIdResponse,
-  ProductListResponse, ProductUpdateRequest,
+  ProductListResponse, ProductUpdateRequest, ProductUpdateResponse, ProductUpdateStockRequest,
 } from "../../../core/models/product.model";
 import {HttpClient} from "@angular/common/http";
 import {map} from "rxjs/operators";
@@ -48,7 +48,7 @@ export class ProductosService {
     return this._http.put<void>(`${this._baseURL}/products/${productId}/updateStock`, {})
       .pipe(map(() => {
           const currentProducts = this._products.getValue();
-          const updateProducts = currentProducts.map((product: ProductUpdateRequest) => {
+          const updateProducts = currentProducts.map((product: ProductUpdateStockRequest) => {
             if (product.id === productId) {
               return {
                 ...product,
@@ -61,6 +61,27 @@ export class ProductosService {
         })
       );
   }
+
+  public updateProduct(productUpdateRequest: ProductUpdateRequest): Observable<ProductUpdateResponse> {
+    return this._http.put<ProductUpdateResponse>(`${this._baseURL}/products/${productUpdateRequest.id}`, productUpdateRequest)
+      .pipe(
+        map((response: ProductUpdateResponse) => {
+          const currentProducts = this._products.getValue();
+          const updatedProducts = currentProducts.map((product: ProductUpdateRequest) => {
+            if (product.id === productUpdateRequest.id) {
+              return {
+                ...product,
+                ...productUpdateRequest // Optional: update the product locally as well
+              };
+            }
+            return product;
+          });
+          this._products.next(updatedProducts);
+          return response;
+        })
+      );
+  }
+
 
   public getProductById(productId: number): Observable<ProductGetByIdResponse> {
     return this._http.get<ProductGetByIdResponse>(`${this._baseURL}/products/${productId}/findById`);

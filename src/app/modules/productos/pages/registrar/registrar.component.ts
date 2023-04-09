@@ -1,7 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProductosService} from "../../services/productos.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ProductCommon, ProductCreateRequest, ProductCreateResponse} from "../../../../core/models/product.model";
+import {
+  ProductCreateRequest,
+  ProductCreateResponse,
+  ProductUpdateRequest, ProductUpdateResponse
+} from "../../../../core/models/product.model";
 import {Subject} from "rxjs";
 import {switchMap, take} from "rxjs/operators";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -14,7 +18,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class RegistrarComponent implements OnInit, OnDestroy {
   public formularyProducts!: FormGroup;
   public imageData: string;
-  public productCommon: ProductCommon;
+  public productUpdateRequest: ProductUpdateRequest;
 
   private _unsubscribed: Subject<void>;
 
@@ -25,7 +29,8 @@ export class RegistrarComponent implements OnInit, OnDestroy {
               private _router: Router) {
     this.imageData = '';
     this._unsubscribed = new Subject<void>();
-    this.productCommon = {
+    this.productUpdateRequest = {
+      id: 0,
       name: '',
       description: '',
       image: '',
@@ -39,7 +44,10 @@ export class RegistrarComponent implements OnInit, OnDestroy {
     this._activateRoute.params
       .pipe(
         switchMap(({id}) => this._productService.getProductById(id))
-      ).subscribe(response => console.log('PRODUCTO: ', response))
+      ).subscribe(response => {
+      this.productUpdateRequest = response;
+      this._validate();
+    })
     this._validate();
   }
 
@@ -49,19 +57,32 @@ export class RegistrarComponent implements OnInit, OnDestroy {
   }
 
   public createProduct(): void {
-    if (this.formularyProducts.valid) {
-      const product = this._buildProduct();
-      console.warn(product);
-      this._productService.createProduct(product)
+    if (this.productUpdateRequest.id) {
+      console.warn(this.productUpdateRequest.id);
+      this._productService.updateProduct(this.productUpdateRequest)
         .pipe(take(1))
         .subscribe(
-          (response: ProductCreateResponse) => {
-            console.warn('Product created successfully', response)
+          (response: ProductUpdateResponse) => {
+            console.warn('Product Updated successfully', response)
           },
           (error) => {
-            console.error('An error occurred while creating the product', error)
+            console.error('An error occurred while updated the product', error)
           });
-      this.formularyProducts.reset();
+    }else {
+      if (this.formularyProducts.valid) {
+        const product = this._buildProduct();
+        console.warn(product);
+        this._productService.createProduct(product)
+          .pipe(take(1))
+          .subscribe(
+            (response: ProductCreateResponse) => {
+              console.warn('Product created successfully', response)
+            },
+            (error) => {
+              console.error('An error occurred while creating the product', error)
+            });
+        this.formularyProducts.reset();
+      }
     }
   }
 
@@ -96,11 +117,11 @@ export class RegistrarComponent implements OnInit, OnDestroy {
 
   private _validate(): void {
     this.formularyProducts = this._formsBuilder.group({
-      name: ['', [Validators.required, Validators.maxLength]],
-      description: ['', [Validators.required, Validators.maxLength]],
-      purchasePrice: [0, Validators.min(0)],
-      salePrice: [0, Validators.min(0)],
-      stock: [0, Validators.min(0)]
+      name: [this.productUpdateRequest.name ? this.productUpdateRequest.name: '', [Validators.required, Validators.maxLength]],
+      description: [this.productUpdateRequest.description ? this.productUpdateRequest.description: '', [Validators.required, Validators.maxLength]],
+      purchasePrice: [this.productUpdateRequest.purchasePrice ? this.productUpdateRequest.purchasePrice: 0, Validators.min(0)],
+      salePrice: [this.productUpdateRequest.salePrice ? this.productUpdateRequest.salePrice: 0, Validators.min(0)],
+      stock: [this.productUpdateRequest.stock ? this.productUpdateRequest.stock: 0, Validators.min(0)]
     });
   }
 }

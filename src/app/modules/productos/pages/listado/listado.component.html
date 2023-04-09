@@ -58,10 +58,12 @@
         <td>
           <span class="material-symbols-rounded table-row-icon icon-plus icon"
                 (click)="incrementStock(product.id)">add</span>
-          <span class="material-symbols-rounded table-row-icon icon-visibility">visibility</span>
-          <span class="material-symbols-rounded table-row-icon icon-edit icon" [routerLink]="['/productos/editar', product.id ]">edit_square</span>
+          <span class="material-symbols-rounded table-row-icon icon-visibility"
+                (click)="openModalSee(product)">visibility</span>
+          <span class="material-symbols-rounded table-row-icon icon-edit icon"
+                [routerLink]="['/productos/editar', product.id ]">edit_square</span>
           <span class="material-symbols-rounded table-row-icon icon-delete icon"
-                (click)="openModal(product)">delete</span>
+                (click)="openModalDelete(product)">delete</span>
         </td>
       </tr>
       </tbody>
@@ -98,11 +100,11 @@
         </section>
 
         <section class="modal-content-description content-description">
-          <label><b>Nombre: </b> {{productData.name}}</label>
-          <label><b>Precio de compra: </b> {{productData.purchasePrice}}</label>
-          <label><b>Precio de venta: </b> {{productData.salePrice}}</label>
-          <label><b>Cantidad: </b> {{productData.stock}}</label>
-          <label><b>Decription: </b> {{productData.description}}</label>
+          <label [title]="productData.name"><b>Nombre: </b> {{productData.name}}</label>
+          <label [title]="productData.purchasePrice"><b>Precio de compra: </b> {{productData.purchasePrice}}</label>
+          <label [title]="productData.salePrice"><b>Precio de venta: </b> {{productData.salePrice}}</label>
+          <label [title]="productData.stock"><b>Cantidad: </b> {{productData.stock}}</label>
+          <label [title]="productData.description"><b>Decription: </b> {{productData.description}}</label>
         </section>
       </section>
 
@@ -110,6 +112,39 @@
         <button class="modal-footer-button" (click)="deleteProductById()">
           <span class="material-symbols-rounded">delete_forever</span>
           <label class="modal-footer-text">Eliminar</label>
+        </button>
+      </section>
+    </article>
+  </ng-container>
+
+  <!-- TODO: REFACTORIZAR ESTE MODAL DE VISUALIZAR PRODUCTO LLEVARLO A UN COMPONENTE-->
+  <ng-container *ngIf="seeBoolean">
+    <article class="dry-modal-container">
+      <section class="modal-header-section modal-header modal-see">
+        <label class="modal-header-text"><b>Informacion del producto</b></label>
+
+        <button (click)="closeModal()" class="modal-header-button">
+          <span class="material-symbols-rounded icon-cancel">cancel</span>
+        </button>
+      </section>
+
+      <section class="modal-content-section modal-content">
+        <section class="modal-content-image-section">
+          <img [src]="productData.image" alt="" class="image">
+        </section>
+
+        <section class="modal-content-description content-description">
+          <label [title]="productData.name"><b>Nombre: </b> {{productData.name}}</label>
+          <label [title]="productData.purchasePrice"><b>Precio de compra: </b> {{productData.purchasePrice}}</label>
+          <label [title]="productData.salePrice"><b>Precio de venta: </b> {{productData.salePrice}}</label>
+          <label [title]="productData.stock"><b>Cantidad: </b> {{productData.stock}}</label>
+          <label [title]="productData.description"><b>Decription: </b> {{productData.description}}</label>
+        </section>
+      </section>
+
+      <section class="modal-footer-section modal-footer modal-see">
+        <button class="modal-footer-button" (click)="seeProductById()">
+          <label class="modal-footer-text">Salir</label>
         </button>
       </section>
     </article>
