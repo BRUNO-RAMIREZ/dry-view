@@ -157,3 +157,8 @@ tr:last-child td {
     width: 95%;
   }
   }
+  @media screen and (max-width:840px){
+   input{
+      width: 300px;
+    }
+  }
