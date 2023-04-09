@@ -100,3 +100,4 @@ export class ListaProductosComponent implements OnInit {
       console.log('error en : ' + error);
     });   
 }
+}
