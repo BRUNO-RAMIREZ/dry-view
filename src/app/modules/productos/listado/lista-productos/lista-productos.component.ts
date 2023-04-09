@@ -98,10 +98,5 @@ export class ListaProductosComponent implements OnInit {
       this.cambiarPagina(1);
     }, error =>{
       console.log('error en : ' + error);
-    });
-    this.listaProductosMostrandose = [{name:"aaaa", description:"bbbbb", purchasePrice:5, salePrice:10, stock:20, id:505, image:"lolo"}];
-    this.listaProductosMostrandose = [{name:"awwwa", description:"bbddddb", purchasePrice:15, salePrice:20, stock:10, id:505, image:"lolo"}];
-  } 
+    });   
 }
-
-  
