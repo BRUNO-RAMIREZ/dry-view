@@ -6,7 +6,7 @@ import {environment} from "../../../../environments/environment";
 import {
   ProductCreateRequest,
   ProductCreateResponse,
-  ProductGetAllResponse,
+  ProductGetAllResponse, ProductGetByIdResponse,
   ProductListResponse, ProductUpdateRequest,
 } from "../../../core/models/product.model";
 import {HttpClient} from "@angular/common/http";
@@ -60,6 +60,10 @@ export class ProductosService {
           this._products.next(updateProducts);
         })
       );
+  }
+
+  public getProductById(productId: number): Observable<ProductGetByIdResponse> {
+    return this._http.get<ProductGetByIdResponse>(`${this._baseURL}/products/${productId}/findById`);
   }
 
   public deleteProductById(productId: number): Observable<void> {

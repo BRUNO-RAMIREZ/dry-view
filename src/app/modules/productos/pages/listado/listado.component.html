@@ -59,7 +59,7 @@
           <span class="material-symbols-rounded table-row-icon icon-plus icon"
                 (click)="incrementStock(product.id)">add</span>
           <span class="material-symbols-rounded table-row-icon icon-visibility">visibility</span>
-          <span class="material-symbols-rounded table-row-icon icon-edit icon">edit_square</span>
+          <span class="material-symbols-rounded table-row-icon icon-edit icon" [routerLink]="['/productos/editar', product.id ]">edit_square</span>
           <span class="material-symbols-rounded table-row-icon icon-delete icon"
                 (click)="openModal(product)">delete</span>
         </td>

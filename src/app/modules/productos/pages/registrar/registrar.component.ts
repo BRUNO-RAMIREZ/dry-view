@@ -1,9 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProductosService} from "../../services/productos.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ProductCreateRequest, ProductCreateResponse} from "../../../../core/models/product.model";
+import {ProductCommon, ProductCreateRequest, ProductCreateResponse} from "../../../../core/models/product.model";
 import {Subject} from "rxjs";
-import {take} from "rxjs/operators";
+import {switchMap, take} from "rxjs/operators";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-registrar',
@@ -13,17 +14,31 @@ import {take} from "rxjs/operators";
 export class RegistrarComponent implements OnInit, OnDestroy {
   public formularyProducts!: FormGroup;
   public imageData: string;
+  public productCommon: ProductCommon;
 
   private _unsubscribed: Subject<void>;
 
 
   constructor(private _productService: ProductosService,
-              private _formsBuilder: FormBuilder) {
+              private _formsBuilder: FormBuilder,
+              private _activateRoute: ActivatedRoute) {
     this.imageData = '';
     this._unsubscribed = new Subject<void>();
+    this.productCommon = {
+      name: '',
+      description: '',
+      image: '',
+      purchasePrice: 0,
+      salePrice: 0,
+      stock: 0
+    }
   }
 
   ngOnInit(): void {
+    this._activateRoute.params
+      .pipe(
+        switchMap(({id}) => this._productService.getProductById(id))
+      ).subscribe(response => console.log('PRODUCTO: ', response))
     this._validate();
   }
 
