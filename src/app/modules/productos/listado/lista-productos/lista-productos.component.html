@@ -72,14 +72,14 @@
 </div>
 <br>
 <br>
-<div class="contenedor-paginas">
-<div>{{pagActual}}</div> 
-<div>
-    <button (click)="cambiarPagina(1)"> << </button>
-    <button (click)="cambiarPagina((pagActual - 1))"> < </button>
-    <button (click)="cambiarPagina(boton)"  *ngFor="let boton of numBotones">{{boton}}</button>
-    <button (click)="cambiarPagina((pagActual + 1))"> > </button>
-    <button (click)="cambiarPagina((numPaginas))"> >> </button>
-</div>
-</div>
+    <div class="contenedor-paginas">
+        <div>{{pagActual}}</div> 
+            <div>
+                <button (click)="cambiarPagina(1)"> << </button>
+                <button (click)="cambiarPagina((pagActual - 1))"> < </button>
+                <button (click)="cambiarPagina(boton)"  *ngFor="let boton of numBotones">{{boton}}</button>
+                <button (click)="cambiarPagina((pagActual + 1))"> > </button>
+                <button (click)="cambiarPagina((numPaginas))"> >> </button>
+            </div>
+    </div>
 </div>

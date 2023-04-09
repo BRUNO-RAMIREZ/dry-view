@@ -1,6 +1,12 @@
 .dry-page-container {
-  display: flex;
+  //display: flex;
+  gap: 20px;
+  //box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
   width: 100%;
+  //max-width: 1100px;
+ // margin: auto;
   height: 100%;
   background-color: var(--color-disabled);
 }
@@ -11,9 +17,10 @@
   box-sizing: border-box;
 }*/
 .contenido_derecho{
-  width: 1200px;
-  height: 100%;
+  //width: 75%;
+
 }
-.barra{
-  width: 220px;
+.barra_lateral{
+  //width: 25%;
+
 }
