@@ -41,7 +41,7 @@
 
       <tbody>
       <tr [ngClass]="(i % 2 === 0) ? 'table-row--color-disabled' : 'table-row--color-white'"
-          class="table-row animate__animated animate__fadeIn animate__faster"
+          class="table-row"
           *ngFor="let product of products
           | async
           | filterSearchPipe:productNameSearch

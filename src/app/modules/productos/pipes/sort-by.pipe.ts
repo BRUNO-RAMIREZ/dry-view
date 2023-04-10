@@ -6,7 +6,7 @@ import {ProductListResponse} from "../../../core/models/product.model";
 })
 export class SortByPipe implements PipeTransform {
 
-  transform(products: ProductListResponse[], sortBy: string = ''): ProductListResponse[] {
+  transform([...products]: ProductListResponse[], sortBy: string = ''): ProductListResponse[] {
     switch (sortBy) {
       case 'nombre':
         return products.sort(

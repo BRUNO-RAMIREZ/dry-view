@@ -48,16 +48,18 @@ export class ProductosService {
     return this._http.put<void>(`${this._baseURL}/products/${productId}/updateStock`, {})
       .pipe(map(() => {
           const currentProducts = this._products.getValue();
-          const updateProducts = currentProducts.map((product: ProductUpdateStockRequest) => {
-            if (product.id === productId) {
-              return {
-                ...product,
-                stock: product.stock + 1
-              };
-            }
-            return product;
-          });
-          this._products.next(updateProducts);
+        const updatedProducts = currentProducts.map((product: ProductUpdateStockRequest) => {
+          if (product.id === productId) {
+            const updatedProduct = {
+              ...product,
+              stock: product.stock + 1
+            };
+            return updatedProduct;
+          }
+          return product;
+        });
+        const updatedProductsCopy = [...updatedProducts];
+        this._products.next(updatedProductsCopy);
         })
       );
   }

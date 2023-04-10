@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {Observable} from "rxjs";
-import {map, tap} from "rxjs/operators";
+import {map, take, tap} from "rxjs/operators";
 
 import {ProductosService} from "../../services/productos.service";
 import {ProductDeleteRequest, ProductListResponse} from "../../../../core/models/product.model";
@@ -32,7 +32,7 @@ export class ListadoComponent implements OnInit {
     this.seeBoolean        = false;
     this.productNameSearch = '';
     this.page              = 0;
-    this.sortBy            = 'nombre';
+    this.sortBy            = '';
   }
 
   ngOnInit(): void {
@@ -55,7 +55,7 @@ export class ListadoComponent implements OnInit {
   }
 
   public incrementStock(productId: number): void {
-    if (productId) this._productService.updateStock(productId).subscribe();
+    if (productId) this._productService.updateStock(productId).pipe(take(1)).subscribe();
   }
 
   public deleteProductById(): void {
