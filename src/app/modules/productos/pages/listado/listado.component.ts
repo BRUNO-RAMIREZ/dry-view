@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {Observable} from "rxjs";
-import {map, take, tap} from "rxjs/operators";
+import {Observable, Subject} from "rxjs";
+import {map, take, takeUntil, tap} from "rxjs/operators";
 
 import {ProductosService} from "../../services/productos.service";
 import {ProductDeleteRequest, ProductListResponse} from "../../../../core/models/product.model";
@@ -12,7 +12,7 @@ import {ProductMapper} from "../../../../core/mappers/product.mapper";
   templateUrl: './listado.component.html',
   styleUrls: ['./listado.component.scss']
 })
-export class ListadoComponent implements OnInit {
+export class ListadoComponent implements OnInit, OnDestroy {
   public products: Observable<ProductListResponse[]>;
   public totalProducts: number;
   public productMapper: ProductMapper;
@@ -22,6 +22,8 @@ export class ListadoComponent implements OnInit {
   public productNameSearch: string;
   public page: number;
   public sortBy: string;
+
+  private _unsubscribed: Subject<void>;
 
   constructor(private _productService: ProductosService,
               private _router: Router) {
@@ -33,6 +35,7 @@ export class ListadoComponent implements OnInit {
     this.productNameSearch = '';
     this.page              = 0;
     this.sortBy            = '';
+    this._unsubscribed = new Subject<void>();
   }
 
   ngOnInit(): void {
@@ -40,6 +43,11 @@ export class ListadoComponent implements OnInit {
       .pipe(
         tap(products => this.totalProducts = products.length)
       );
+  }
+
+  ngOnDestroy(): void {
+    this._unsubscribed.next();
+    this._unsubscribed.complete();
   }
 
   public trackById(index: number, product: ProductListResponse): number{
@@ -55,12 +63,18 @@ export class ListadoComponent implements OnInit {
   }
 
   public incrementStock(productId: number): void {
-    if (productId) this._productService.updateStock(productId).pipe(take(1)).subscribe();
+    if (productId) {
+      this._productService.updateStock(productId)
+        .pipe(takeUntil(this._unsubscribed))
+        .subscribe();
+    }
   }
 
   public deleteProductById(): void {
     if (this.deleteBoolean) {
-        this._productService.deleteProductById(this.productData.id).subscribe();
+        this._productService.deleteProductById(this.productData.id)
+          .pipe(take(1))
+          .subscribe();
         this.deleteBoolean = false;
     }
   }
