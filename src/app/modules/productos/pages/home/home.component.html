@@ -1,35 +1,66 @@
 <app-header [title]="'Home'"></app-header>
 <article class="dry-home-page-container animate__animated animate__fadeIn animate__faster">
-  <section class="home-page-top-content">
-    <section class="home-page-top-content-text-section">
-      <label class="text">Nuestros productos</label>
-    </section>
+  <section class="top-content-text-section">
+    <label class="text">Mision</label>
+  </section>
 
-    <section class="home-page-top-content-search-section">
-      <input type="text"
-             class="home-page-top-content-search-section-input"
-             placeholder="Ingrese el nombre del producto a buscar..."
-             #textSearch
-             (keyup)="searchProductByName(textSearch.value)">
-
-      <span class="material-symbols-rounded home-page-top-content-search-section-icon">search</span>
+  <section class="mid-content-text-section-father">
+    <section class="mid-content-text-section-children">
+      <img src="./assets/mision.jpg" alt="" class="imagen">
+      <label class="label">
+        Nuestra mision es proveer a nuestros clientes los mejores repuestos electronicos del mercado,
+        ofreciendo precios competitivos, garantia y un serevicio al cliente excepcional, Nos esforzamos por
+        manetenernos actualizados con los ultimas tendencias y tecnologias, para brindar siempre la mejor
+        expericiencia de compra
+      </label>
     </section>
   </section>
 
-  <section class="home-page-mid-content">
-    <app-card [product]="product" *ngFor="let product of products
-          | async
-          | filterSearchPipe:productNameSearch
-          | paginate: {itemsPerPage:8  , currentPage: page, totalItems: totalProducts};
-           let i = index; trackBy: trackById"></app-card>
+  <section class="top-content-text-section">
+    <label class="text">Vision</label>
   </section>
 
-  <section class="home-page-bottom-content">
-    <pagination-controls
-      class="my-pagination"
-      (pageChange)="page = $event"
-      previousLabel="Anterior"
-      nextLabel="Siguiente">
-    </pagination-controls>
+  <section class="mid-content-text-section-father">
+    <section class="mid-content-text-section-children bottom">
+      <img src="./assets/vision.jpg" alt="" class="imagen">
+      <label class="label">
+        Ser la tienda lider en venta de repuestos electrónicos en la región, ofreciendo una amplia gama
+        de productos de calidad y excelencia en el servicio al cliente.
+      </label>
+    </section>
   </section>
 </article>
+<!--<article class="dry-home-page-container animate__animated animate__fadeIn animate__faster">-->
+<!--  <section class="home-page-top-content">-->
+<!--    <section class="home-page-top-content-text-section">-->
+<!--      <label class="text">Nuestros productos</label>-->
+<!--    </section>-->
+
+<!--    <section class="home-page-top-content-search-section">-->
+<!--      <input type="text"-->
+<!--             class="home-page-top-content-search-section-input"-->
+<!--             placeholder="Ingrese el nombre del producto a buscar..."-->
+<!--             #textSearch-->
+<!--             (keyup)="searchProductByName(textSearch.value)">-->
+
+<!--      <span class="material-symbols-rounded home-page-top-content-search-section-icon">search</span>-->
+<!--    </section>-->
+<!--  </section>-->
+
+<!--  <section class="home-page-mid-content">-->
+<!--    <app-card [product]="product" *ngFor="let product of products-->
+<!--          | async-->
+<!--          | filterSearchPipe:productNameSearch-->
+<!--          | paginate: {itemsPerPage:8  , currentPage: page, totalItems: totalProducts};-->
+<!--           let i = index; trackBy: trackById"></app-card>-->
+<!--  </section>-->
+
+<!--  <section class="home-page-bottom-content">-->
+<!--    <pagination-controls-->
+<!--      class="my-pagination"-->
+<!--      (pageChange)="page = $event"-->
+<!--      previousLabel="Anterior"-->
+<!--      nextLabel="Siguiente">-->
+<!--    </pagination-controls>-->
+<!--  </section>-->
+<!--</article>-->

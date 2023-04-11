@@ -78,6 +78,7 @@ export class RegistrarComponent implements OnInit, OnDestroy {
           .pipe(take(1))
           .subscribe(
             (response: ProductCreateResponse) => {
+              this._router.navigate(['/productos/listado']);
               console.warn('Product created successfully', response)
             },
             (error) => {
