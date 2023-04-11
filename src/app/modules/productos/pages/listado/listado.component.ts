@@ -85,7 +85,7 @@ export class ListadoComponent implements OnInit, OnDestroy {
     }
   }
 
-  public openModalSee(product: ProductListResponse) {
+  public openModalSee(product: ProductListResponse): void {
     this.seeBoolean = true;
     this.productData = {
       id: product.id,
@@ -98,7 +98,7 @@ export class ListadoComponent implements OnInit, OnDestroy {
     }
   }
 
-  public openModalDelete(product: ProductListResponse) {
+  public openModalDelete(product: ProductListResponse): void {
     this.deleteBoolean = true;
     this.productData = {
       id: product.id,
@@ -116,7 +116,7 @@ export class ListadoComponent implements OnInit, OnDestroy {
     this.seeBoolean = false;
   }
 
-  public changeOrder(value: string) {
+  public changeOrder(value: string): void {
     console.warn(value);
     this.sortBy = value;
   }

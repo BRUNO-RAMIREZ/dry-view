@@ -28,7 +28,6 @@ export class RegistrarComponent implements OnInit, OnDestroy {
               private _activateRoute: ActivatedRoute,
               private _router: Router) {
     this.imageData = '';
-    this._unsubscribed = new Subject<void>();
     this.productUpdateRequest = {
       id: 0,
       name: '',
@@ -38,6 +37,8 @@ export class RegistrarComponent implements OnInit, OnDestroy {
       salePrice: 0,
       stock: 0
     }
+    this._unsubscribed = new Subject<void>();
+    this._validate();
   }
 
   ngOnInit(): void {
@@ -46,9 +47,9 @@ export class RegistrarComponent implements OnInit, OnDestroy {
         switchMap(({id}) => this._productService.getProductById(id))
       ).subscribe(response => {
       this.productUpdateRequest = response;
+      this.imageData = this.productUpdateRequest.image;
       this._validate();
     })
-    this._validate();
   }
 
   ngOnDestroy(): void {
@@ -58,8 +59,9 @@ export class RegistrarComponent implements OnInit, OnDestroy {
 
   public createProduct(): void {
     if (this.productUpdateRequest.id) {
-      console.warn(this.productUpdateRequest.id);
-      this._productService.updateProduct(this.productUpdateRequest)
+      const productUpdateRequest: ProductUpdateRequest = {...this.formularyProducts.value, id: this.productUpdateRequest.id};
+      console.warn(productUpdateRequest);
+      this._productService.updateProduct(productUpdateRequest)
         .pipe(take(1))
         .subscribe(
           (response: ProductUpdateResponse) => {
@@ -123,5 +125,6 @@ export class RegistrarComponent implements OnInit, OnDestroy {
       salePrice: [this.productUpdateRequest.salePrice ? this.productUpdateRequest.salePrice: 0, Validators.min(0)],
       stock: [this.productUpdateRequest.stock ? this.productUpdateRequest.stock: 0, Validators.min(0)]
     });
+
   }
 }

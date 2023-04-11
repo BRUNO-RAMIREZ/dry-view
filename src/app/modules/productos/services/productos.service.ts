@@ -49,6 +49,7 @@ export class ProductosService {
       .pipe(map(() => {
           const currentProducts = this._products.getValue();
         const updatedProducts = currentProducts.map((product: ProductUpdateStockRequest) => {
+
           if (product.id === productId) {
             const updatedProduct = {
               ...product,
@@ -69,7 +70,8 @@ export class ProductosService {
       .pipe(
         map((response: ProductUpdateResponse) => {
           const currentProducts = this._products.getValue();
-          const updatedProducts = currentProducts.map((product: ProductUpdateRequest) => {
+          const updatedProducts = currentProducts.map((product) => {
+            console.warn("TYPEOF: ", typeof product)
             if (product.id === productUpdateRequest.id) {
               return {
                 ...product,
