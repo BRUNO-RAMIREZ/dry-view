@@ -15,8 +15,7 @@ import {EliminarComponent} from './components/eliminar/eliminar.component';
 import {FilterSearchPipe} from './pipes/filter-search.pipe';
 import {SortByPipe} from './pipes/sort-by.pipe';
 import {HomeComponent} from "./pages/home/home.component";
-import { CardComponent } from './components/card/card.component';
-import { TamArregloObservablePipe } from './pipes/tam-arreglo-observable.pipe';
+import {CardComponent} from './components/card/card.component';
 
 
 @NgModule({
@@ -30,7 +29,6 @@ import { TamArregloObservablePipe } from './pipes/tam-arreglo-observable.pipe';
     FilterSearchPipe,
     SortByPipe,
     CardComponent,
-    TamArregloObservablePipe,
   ],
   imports: [
     CommonModule,
