@@ -80,12 +80,12 @@
         </div>
       </section>
 
-      <section class="form-field-buttons">
-        <button class="form-button form-button-registrar" type="submit"
+      <section class="form-field-buttons" style="min-width: 500px; align-items: center; display: flex; justify-content: center;">
+        <button   class="form-button form-button-registrar" type="submit"
                 [disabled]="formularyProducts.invalid"
-                [ngClass]="formularyProducts.invalid? 'disabled': 'enable'" style="color:white">Registrar
+                [ngClass]="formularyProducts.invalid? 'disabled': 'enable'" style="color:white; min-width: 300px">Registrar
         </button>
-        <button class="form-button form-button-cancelar" (click)="redirectToWindowProductList()">Cancelar</button>
+       
       </section>
     </form>
   </section>
