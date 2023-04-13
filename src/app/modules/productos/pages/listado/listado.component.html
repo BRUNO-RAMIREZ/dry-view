@@ -52,8 +52,8 @@
           <img src="{{product.image}}" alt="image" class="item-img">
         </td>
         <td class="table-row-td" [title]="product.name">{{product.name}}</td>
-        <td class="table-row-td" [title]="product.purchasePrice">{{product.purchasePrice}}</td>
-        <td class="table-row-td" [title]="product.salePrice">{{product.salePrice}}</td>
+        <td class="table-row-td" [title]="product.purchasePrice">{{product.purchasePrice | number : '1.2-2'}}</td>
+        <td class="table-row-td" [title]="product.salePrice">{{product.salePrice  | number : '1.2-2'}}</td>
         <td class="table-row-td" [title]="product.stock">{{product.stock}}</td>
         <td>
           <span class="material-symbols-rounded table-row-icon icon-plus icon"
@@ -87,7 +87,7 @@
   <ng-container *ngIf="deleteBoolean">
     <article class="dry-modal-container">
       <section class="modal-header-section modal-header">
-        <label class="modal-header-text">¿Estas seguro que deseas eliminar el producto?</label>
+        <label class="modal-header-text">¿Est&aacute;s seguro que deseas eliminar el producto?</label>
 
         <button (click)="closeModal()" class="modal-header-button">
           <span class="material-symbols-rounded icon-cancel">cancel</span>
@@ -104,7 +104,7 @@
           <label [title]="productData.purchasePrice"><b>Precio de compra: </b> {{productData.purchasePrice}}</label>
           <label [title]="productData.salePrice"><b>Precio de venta: </b> {{productData.salePrice}}</label>
           <label [title]="productData.stock"><b>Cantidad: </b> {{productData.stock}}</label>
-          <label [title]="productData.description"><b>Decription: </b> {{productData.description}}</label>
+          <label [title]="productData.description"><b>Decripci&oacute;n: </b> {{productData.description}}</label>
         </section>
       </section>
 
