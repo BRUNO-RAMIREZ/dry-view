@@ -22,7 +22,7 @@ export class ListadoComponent implements OnInit, OnDestroy {
   public productNameSearch: string;
   public page: number;
   public sortBy: string;
-
+  public upSort:boolean;
   private _unsubscribed: Subject<void>;
 
   constructor(private _productService: ProductosService,
@@ -31,6 +31,7 @@ export class ListadoComponent implements OnInit, OnDestroy {
     this.totalProducts     = 0;
     this.productMapper     = new ProductMapper();
     this.deleteBoolean     = false;
+    this.upSort            = true;
     this.seeBoolean        = false;
     this.productNameSearch = '';
     this.page              = 0;
@@ -50,6 +51,8 @@ export class ListadoComponent implements OnInit, OnDestroy {
     this._unsubscribed.complete();
   }
 
+
+
   public trackById(index: number, product: ProductListResponse): number{
     return product.id;
   }
@@ -60,6 +63,7 @@ export class ListadoComponent implements OnInit, OnDestroy {
 
   public searchProductByName(productName: string): void {
     this.productNameSearch = productName;
+
   }
 
   public incrementStock(productId: number): void {
@@ -119,5 +123,6 @@ export class ListadoComponent implements OnInit, OnDestroy {
   public changeOrder(value: string): void {
     console.warn(value);
     this.sortBy = value;
+    this.upSort = ! this.upSort;
   }
 }
