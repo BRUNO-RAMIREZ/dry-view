@@ -58,6 +58,8 @@ export class RegistrarComponent implements OnInit, OnDestroy {
   }
 
   public createProduct(): void {
+
+    
     if (this.productUpdateRequest.id) {
       const productUpdateRequest: ProductUpdateRequest = {...this.formularyProducts.value, id: this.productUpdateRequest.id};
       console.warn(productUpdateRequest);
@@ -65,7 +67,8 @@ export class RegistrarComponent implements OnInit, OnDestroy {
         .pipe(take(1))
         .subscribe(
           (response: ProductUpdateResponse) => {
-            console.warn('Product Updated successfully', response)
+            console.warn('Product Updated successfully', response);
+            this.redirectToWindowProductList();
           },
           (error) => {
             console.error('An error occurred while updated the product', error)
@@ -78,8 +81,8 @@ export class RegistrarComponent implements OnInit, OnDestroy {
           .pipe(take(1))
           .subscribe(
             (response: ProductCreateResponse) => {
-              this._router.navigate(['/productos/listado']);
               console.warn('Product created successfully', response)
+              this.redirectToWindowProductList();
             },
             (error) => {
               console.error('An error occurred while creating the product', error)
@@ -117,14 +120,29 @@ export class RegistrarComponent implements OnInit, OnDestroy {
     }
     return product;
   }
+  get nombre(){
+    return this.formularyProducts.get('name')
+  }
+  get descripcion(){
+    return this.formularyProducts.get('description')
+  }
+  get precioCompra(){
+    return this.formularyProducts.get('purchasePrice')
+  }
+  get precioVenta(){
+    return this.formularyProducts.get('salePrice')
+  }
+  get cantidad(){
+    return this.formularyProducts.get('stock')
+  }
 
   private _validate(): void {
     this.formularyProducts = this._formsBuilder.group({
-      name: [this.productUpdateRequest.name ? this.productUpdateRequest.name: '', [Validators.required, Validators.maxLength]],
-      description: [this.productUpdateRequest.description ? this.productUpdateRequest.description: '', [Validators.required, Validators.maxLength]],
-      purchasePrice: [this.productUpdateRequest.purchasePrice ? this.productUpdateRequest.purchasePrice: 0, Validators.min(0)],
-      salePrice: [this.productUpdateRequest.salePrice ? this.productUpdateRequest.salePrice: 0, Validators.min(0)],
-      stock: [this.productUpdateRequest.stock ? this.productUpdateRequest.stock: 0, Validators.min(0)]
+      name: [this.productUpdateRequest.name ? this.productUpdateRequest.name: '', [Validators.required,Validators.minLength(4),Validators.maxLength(80),Validators.pattern('[a-zA-Z0-9]*')]],
+      description: [this.productUpdateRequest.description ? this.productUpdateRequest.description: '', [Validators.required,Validators.minLength(4),Validators.maxLength(80),Validators.pattern('[a-zA-Z0-9]*')]],
+      purchasePrice: [this.productUpdateRequest.purchasePrice ? this.productUpdateRequest.purchasePrice: 0, [Validators.min(0),Validators.required]],
+      salePrice: [this.productUpdateRequest.salePrice ? this.productUpdateRequest.salePrice: 0, [Validators.min(0),Validators.required]],
+      stock: [this.productUpdateRequest.stock ? this.productUpdateRequest.stock: 0, [Validators.min(0),Validators.required]]
     });
 
   }
