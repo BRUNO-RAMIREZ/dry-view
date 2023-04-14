@@ -62,8 +62,8 @@ export class ListadoComponent implements OnInit, OnDestroy {
   }
 
   public searchProductByName(productName: string): void {
-    this.productNameSearch = productName;
 
+    this.productNameSearch = productName;
   }
 
   public incrementStock(productId: number): void {
@@ -91,7 +91,9 @@ export class ListadoComponent implements OnInit, OnDestroy {
     this.deleteBoolean = true;
     this.productModal = product;
   }
-
+  public pageChangeA(event:any):void{
+    this.page = event;
+  }
   public closeModal(): void{
     this.deleteBoolean = false;
     this.seeBoolean = false;

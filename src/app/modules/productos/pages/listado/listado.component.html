@@ -40,13 +40,13 @@
       </thead>
 
       <tbody>
-      <tr [ngClass]="(i % 2 === 0) ? 'table-row--color-disabled' : 'table-row--color-white'"
+        <tr [ngClass]="(i % 2 === 0) ? 'table-row--color-disabled' : 'table-row--color-white'"
           class="table-row"
           *ngFor="let product of products
           | async
           | filterSearchPipe:productNameSearch
           | sortByPipe:sortBy :upSort
-          | paginate: {itemsPerPage:10  , currentPage: page, totalItems: totalProducts};
+          | paginate: { itemsPerPage:10  , currentPage: page, totalItems: (products | async | filterSearchPipe:productNameSearch).length};
            let i = index; trackBy: trackById">
         <td>
           <img src="{{product.image}}" alt="image" class="item-img">
@@ -66,18 +66,19 @@
                 (click)="openModalDelete(product)">delete</span>
         </td>
 
-      </tr>
+        </tr>
       <td *ngIf="(products | async | filterSearchPipe:productNameSearch)?.length === 0">No existen productos para esta busqueda</td>
       </tbody>
     </table>
 
     <section class="listado-footer-section listado-footer">
-      <label class="listado-footer-quantity">{{totalProducts }} productos en total</label>
+      <label class="listado-footer-quantity">{{(products | async | filterSearchPipe:productNameSearch).length }} productos en total</label>
 
       <section class="listado-footer-pagination">
         <pagination-controls
           class="my-pagination"
-          (pageChange)="page = $event"
+          (pageChange)="pageChangeA($event)"
+          (pageBoundsCorrection)="pageChangeA($event)"
           previousLabel="Anterior"
           nextLabel="Siguiente"
           [autoHide]="true">
