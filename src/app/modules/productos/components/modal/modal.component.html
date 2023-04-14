@@ -1,0 +1,30 @@
+<article class="dry-modal-container">
+  <div class="modal-header-section modal-header" #marginTopModal>
+    <label class="modal-header-text">{{title}}</label>
+
+    <button (click)="closeModal()" class="modal-header-button">
+      <span class="material-symbols-rounded icon-cancel">cancel</span>
+    </button>
+  </div>
+
+  <section class="modal-content-section modal-content">
+    <section class="modal-content-image-section">
+      <img [src]="product.image" alt="" class="image">
+    </section>
+
+    <section class="modal-content-description content-description">
+      <label [title]="product.name"><b>Nombre: </b> {{product.name}}</label>
+      <label [title]="product.purchasePrice"><b>Precio de compra: </b> {{product.purchasePrice}}</label>
+      <label [title]="product.salePrice"><b>Precio de venta: </b> {{product.salePrice}}</label>
+      <label [title]="product.stock"><b>Cantidad: </b> {{product.stock}}</label>
+      <label [title]="product.description"><b>Decripci&oacute;n: </b> {{product.description}}</label>
+    </section>
+  </section>
+
+  <div class="modal-footer-section modal-footer" #marginBottomModal>
+    <button class="modal-footer-button" (click)="deleteProductById()">
+      <span class="material-symbols-rounded" #iconBottomModal>{{icon}}</span>
+      <label class="modal-footer-text">{{txtButton}}</label>
+    </button>
+  </div>
+</article>

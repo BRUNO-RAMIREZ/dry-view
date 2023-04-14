@@ -11,11 +11,12 @@ import {RegistrarComponent} from './pages/registrar/registrar.component';
 import {HomeRouterOutletComponent} from './pages/home-router-outlet/home-router-outlet.component';
 import {ProductosService} from "./services/productos.service";
 import {ReactiveFormsModule} from "@angular/forms";
-import {EliminarComponent} from './components/eliminar/eliminar.component';
+import {ModalComponent} from './components/modal/modal.component';
 import {FilterSearchPipe} from './pipes/filter-search.pipe';
 import {SortByPipe} from './pipes/sort-by.pipe';
 import {HomeComponent} from "./pages/home/home.component";
 import {CardComponent} from './components/card/card.component';
+import {ChangeColorDirective} from './directives/change-color.directive';
 
 
 @NgModule({
@@ -25,10 +26,11 @@ import {CardComponent} from './components/card/card.component';
     ListadoComponent,
     EditarComponent,
     RegistrarComponent,
-    EliminarComponent,
+    ModalComponent,
     FilterSearchPipe,
     SortByPipe,
     CardComponent,
+    ChangeColorDirective,
   ],
   imports: [
     CommonModule,
