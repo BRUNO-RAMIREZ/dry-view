@@ -18,11 +18,11 @@ export class ListadoComponent implements OnInit, OnDestroy {
   public productMapper: ProductMapper;
   public deleteBoolean: boolean;
   public seeBoolean: boolean;
-  public productData: any;
   public productNameSearch: string;
   public page: number;
   public sortBy: string;
   public upSort:boolean;
+  public productModal!: ProductListResponse;
   private _unsubscribed: Subject<void>;
 
   constructor(private _productService: ProductosService,
@@ -74,14 +74,7 @@ export class ListadoComponent implements OnInit, OnDestroy {
     }
   }
 
-  public deleteProductById(): void {
-    if (this.deleteBoolean) {
-        this._productService.deleteProductById(this.productData.id)
-          .pipe(take(1))
-          .subscribe();
-        this.deleteBoolean = false;
-    }
-  }
+
 
   public seeProductById(): void {
     if (this.seeBoolean) {
@@ -91,28 +84,12 @@ export class ListadoComponent implements OnInit, OnDestroy {
 
   public openModalSee(product: ProductListResponse): void {
     this.seeBoolean = true;
-    this.productData = {
-      id: product.id,
-      name: product.name,
-      description: product.description,
-      image: product.image,
-      purchasePrice: product.purchasePrice,
-      salePrice: product.salePrice,
-      stock: product.stock
-    }
+    this.productModal = product;
   }
 
   public openModalDelete(product: ProductListResponse): void {
     this.deleteBoolean = true;
-    this.productData = {
-      id: product.id,
-      name: product.name,
-      description: product.description,
-      image: product.image,
-      purchasePrice: product.purchasePrice,
-      salePrice: product.salePrice,
-      stock: product.stock
-    }
+    this.productModal = product;
   }
 
   public closeModal(): void{

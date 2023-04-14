@@ -65,7 +65,7 @@
           <span class="material-symbols-rounded table-row-icon icon-delete icon"
                 (click)="openModalDelete(product)">delete</span>
         </td>
-        
+
       </tr>
       <td *ngIf="(products | async | filterSearchPipe:productNameSearch)?.length === 0">No existen productos para esta busqueda</td>
       </tbody>
@@ -79,76 +79,31 @@
           class="my-pagination"
           (pageChange)="page = $event"
           previousLabel="Anterior"
-          nextLabel="Siguiente">
+          nextLabel="Siguiente"
+          [autoHide]="true">
         </pagination-controls>
       </section>
     </section>
   </section>
 
-  <!-- TODO: REFACTORIZAR ESTE MODAL DE ELIMINAR LLEVARLO A UN COMPONENTE-->
+  <!-- TODO: MODAL DE ELIMINAR-->
   <ng-container *ngIf="deleteBoolean">
-    <article class="dry-modal-container">
-      <section class="modal-header-section modal-header">
-        <label class="modal-header-text">¿Est&aacute;s seguro que deseas eliminar el producto?</label>
-
-        <button (click)="closeModal()" class="modal-header-button">
-          <span class="material-symbols-rounded icon-cancel">cancel</span>
-        </button>
-      </section>
-
-      <section class="modal-content-section modal-content">
-        <section class="modal-content-image-section">
-          <img [src]="productData.image" alt="" class="image">
-        </section>
-
-        <section class="modal-content-description content-description">
-          <label [title]="productData.name"><b>Nombre: </b> {{productData.name}}</label>
-          <label [title]="productData.purchasePrice"><b>Precio de compra: </b> {{productData.purchasePrice}}</label>
-          <label [title]="productData.salePrice"><b>Precio de venta: </b> {{productData.salePrice}}</label>
-          <label [title]="productData.stock"><b>Cantidad: </b> {{productData.stock}}</label>
-          <label [title]="productData.description"><b>Decripci&oacute;n: </b> {{productData.description}}</label>
-        </section>
-      </section>
-
-      <section class="modal-footer-section modal-footer">
-        <button class="modal-footer-button" (click)="deleteProductById()">
-          <span class="material-symbols-rounded">delete_forever</span>
-          <label class="modal-footer-text">Aceptar</label>
-        </button>
-      </section>
-    </article>
+    <app-modal [product]="productModal"
+               (onCloseModal)="closeModal()"
+               [title]="'¿Estás seguro que deseas eliminar el producto?'"
+               [color]="'rgb(153,217,140)'"
+               [icon]="'delete_forever'"
+               [txtButton]="'Eliminar'"
+    ></app-modal>
   </ng-container>
 
-  <!-- TODO: REFACTORIZAR ESTE MODAL DE VISUALIZAR PRODUCTO LLEVARLO A UN COMPONENTE-->
+  <!-- TODO: MODAL DE VISUALIZAR-->
   <ng-container *ngIf="seeBoolean">
-    <article class="dry-modal-container">
-      <section class="modal-header-section modal-header modal-see">
-        <label class="modal-header-text"><b>Informacion del producto</b></label>
-
-        <button (click)="closeModal()" class="modal-header-button">
-          <span class="material-symbols-rounded icon-cancel">cancel</span>
-        </button>
-      </section>
-
-      <section class="modal-content-section modal-content">
-        <section class="modal-content-image-section">
-          <img [src]="productData.image" alt="" class="image">
-        </section>
-
-        <section class="modal-content-description content-description">
-          <label [title]="productData.name"><b>Nombre: </b> {{productData.name}}</label>
-          <label [title]="productData.purchasePrice"><b>Precio de compra: </b> {{productData.purchasePrice}}</label>
-          <label [title]="productData.salePrice"><b>Precio de venta: </b> {{productData.salePrice}}</label>
-          <label [title]="productData.stock"><b>Cantidad: </b> {{productData.stock}}</label>
-          <label [title]="productData.description"><b>Decription: </b> {{productData.description}}</label>
-        </section>
-      </section>
-
-      <section class="modal-footer-section modal-footer modal-see">
-        <button class="modal-footer-button" (click)="seeProductById()">
-          <label class="modal-footer-text">Salir</label>
-        </button>
-      </section>
-    </article>
+    <app-modal [product]="productModal"
+               (onCloseModal)="closeModal()"
+               [title]="'Información del producto'"
+               [color]="'rgb(52,160,164)'"
+               [txtButton]="'Salir'"
+    ></app-modal>
   </ng-container>
 </article>
