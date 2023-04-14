@@ -1,13 +1,14 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {ProductListResponse} from "../../../../core/models/product.model";
 import {take} from "rxjs/operators";
+import {ProductosService} from "../../services/productos.service";
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss']
 })
-export class ModalComponent implements OnInit, AfterViewInit {
+export class ModalComponent implements AfterViewInit {
   @ViewChild('marginTopModal', {static: false}) marginTopModal!: ElementRef;
   @ViewChild('marginBottomModal', {static: false}) marginBottomModal!: ElementRef;
   @ViewChild('iconBottomModal', {static: false}) iconBottomModal!: ElementRef;
@@ -20,16 +21,13 @@ export class ModalComponent implements OnInit, AfterViewInit {
   @Input() public icon: string;
   @Input() public txtButton: string;
 
-  constructor() {
+  constructor(private _productService: ProductosService) {
     this.onCloseModal = new EventEmitter<boolean>();
     this.title = '';
     this.product = {id: 0, name: '', description: '', image: '', purchasePrice: 0, salePrice: 0, stock: 0}
     this.color = '';
     this.icon = '';
     this.txtButton = '';
-  }
-
-  ngOnInit(): void {
   }
 
   ngAfterViewInit() {
@@ -42,12 +40,12 @@ export class ModalComponent implements OnInit, AfterViewInit {
     this.onCloseModal.emit(true);
   }
 
-  // public deleteProductById(): void {
-  //   if (this.deleteBoolean) {
-  //     this._productService.deleteProductById(this.productData.id)
-  //       .pipe(take(1))
-  //       .subscribe();
-  //     this.deleteBoolean = false;
-  //   }
-  // }
+  public deleteProductById(): void {
+    if (this.txtButton === 'Eliminar') {
+      this._productService.deleteProductById(this.product.id)
+        .pipe(take(1))
+        .subscribe();
+    }
+    this.closeModal();
+  }
 }

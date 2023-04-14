@@ -22,7 +22,7 @@
   </section>
 
   <div class="modal-footer-section modal-footer" #marginBottomModal>
-    <button class="modal-footer-button">
+    <button class="modal-footer-button" (click)="deleteProductById()">
       <span class="material-symbols-rounded" #iconBottomModal>{{icon}}</span>
       <label class="modal-footer-text">{{txtButton}}</label>
     </button>
