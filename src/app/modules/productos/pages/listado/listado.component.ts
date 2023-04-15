@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {Observable, Subject} from "rxjs";
 import {map, take, takeUntil, tap} from "rxjs/operators";
@@ -21,7 +21,8 @@ export class ListadoComponent implements OnInit, OnDestroy {
   public productNameSearch: string;
   public page: number;
   public sortBy: string;
-  public upSort:boolean;
+  public order: string;
+  public iconArrow: string;
   public productModal!: ProductListResponse;
   private _unsubscribed: Subject<void>;
 
@@ -31,7 +32,8 @@ export class ListadoComponent implements OnInit, OnDestroy {
     this.totalProducts     = 0;
     this.productMapper     = new ProductMapper();
     this.deleteBoolean     = false;
-    this.upSort            = true;
+    this.order             = 'ascendent';
+    this.iconArrow         = 'unfold_more';
     this.seeBoolean        = false;
     this.productNameSearch = '';
     this.page              = 0;
@@ -100,8 +102,20 @@ export class ListadoComponent implements OnInit, OnDestroy {
   }
 
   public changeOrder(value: string): void {
-    console.warn(value);
     this.sortBy = value;
-    this.upSort = ! this.upSort;
+    this._orderCase();
+  }
+
+  private _orderCase(): void {
+    switch (this.order) {
+      case 'ascendent': {
+        this.order = 'descendent';
+        this.iconArrow = 'expand_less';
+      } break;
+      case 'descendent': {
+          this.order = 'ascendent',
+          this.iconArrow = 'expand_more';
+      }; break;
+    }
   }
 }

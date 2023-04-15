@@ -6,62 +6,38 @@ import {ProductListResponse} from "../../../core/models/product.model";
 })
 export class SortByPipe implements PipeTransform {
 
-  transform([...products]: ProductListResponse[], sortBy: string = '',upSort:boolean): ProductListResponse[] {
+  transform([...products]: ProductListResponse[], sortBy: string , order:string): ProductListResponse[] {
     switch (sortBy) {
       case 'nombre':
-        if(upSort){
           return products.sort(
             (productPrevious, productNext) => {
-              return (productPrevious.name > productNext.name) ? 1 : -1;
+              return (order === 'ascendent') ?
+                ((productPrevious.name > productNext.name) ? 1 : -1):
+                ((productPrevious.name > productNext.name) ? -1 : 1);
             });
-        }else{
-          return products.sort(
-            (productPrevious, productNext) => {
-              return (productPrevious.name > productNext.name) ? -1 : 1;
-            });
-        }
         break;
       case 'purchasePrice':
-        if(upSort){
           return products.sort(
-          
             (productPrevious, productNext) => {
-              return (productPrevious.purchasePrice > productNext.purchasePrice) ? 1 : -1;
+              return (order === 'ascendent') ?
+                ((productPrevious.purchasePrice > productNext.purchasePrice) ? 1 : -1):
+                ((productPrevious.purchasePrice > productNext.purchasePrice) ? -1 : 1);
             });
-        }else{
-          return products.sort(
-          
-            (productPrevious, productNext) => {
-              return (productPrevious.purchasePrice > productNext.purchasePrice) ? -1 : 1;
-            });
-        }
         break;
       case 'salePrice':
-        if(upSort){
           return products.sort(
             (productPrevious, productNext) => {
-              return (productPrevious.salePrice > productNext.salePrice) ? 1 : -1;
+              return (order === 'ascendent') ?
+                ((productPrevious.salePrice > productNext.salePrice) ? 1 : -1):
+                ((productPrevious.salePrice > productNext.salePrice) ? -1 : 1);
             });
-        }else{
-          return products.sort(
-            (productPrevious, productNext) => {
-              return (productPrevious.salePrice > productNext.salePrice) ? -1 : 1;
-            });
-        }
-        
       case 'stock':
-        if(upSort){
           return products.sort(
             (productPrevious, productNext) => {
-              return (productPrevious.stock > productNext.stock) ? 1 : -1;
+              return (order === 'ascendent') ?
+                ((productPrevious.stock > productNext.stock) ? 1 : -1):
+                ((productPrevious.stock > productNext.stock) ? -1 : 1);
             });
-        }else{
-          return products.sort(
-            (productPrevious, productNext) => {
-              return (productPrevious.stock > productNext.stock) ? -1 : 1;
-            });
-        }
-        
       default:
         return products;
     }

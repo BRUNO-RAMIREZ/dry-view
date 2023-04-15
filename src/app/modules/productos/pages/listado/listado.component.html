@@ -20,19 +20,19 @@
       <th></th>
       <th class="table-thead-th--bold-light table-th">
         <label class="table-th-label">Nombre</label>
-        <span class="material-symbols-rounded table-th-icon" (click)="changeOrder('nombre')">unfold_more</span>
+        <span class="material-symbols-rounded table-th-icon" (click)="changeOrder('nombre')" >{{iconArrow}}</span>
       </th>
       <th class="table-thead-th--bold-light table-th">
         <label class="table-th-label">Precio de compra</label>
-        <span class="material-symbols-rounded table-th-icon" (click)="changeOrder('purchasePrice')">unfold_more</span>
+        <span class="material-symbols-rounded table-th-icon"(click)="changeOrder('purchasePrice')">{{iconArrow}}</span>
       </th>
       <th class="table-thead-th--bold-light table-th">
         <label class="table-th-label">Precio de venta</label>
-        <span class="material-symbols-rounded table-th-icon" (click)="changeOrder('salePrice')">unfold_more</span>
+        <span class="material-symbols-rounded table-th-icon" (click)="changeOrder('salePrice')">{{iconArrow}}</span>
       </th>
       <th class="table-thead-th--bold-light table-th">
         <label class="table-th-label">Cantidad</label>
-        <span class="material-symbols-rounded table-th-icon" (click)="changeOrder('stock')">unfold_more</span>
+        <span class="material-symbols-rounded table-th-icon" (click)="changeOrder('stock')">{{iconArrow}}</span>
       </th>
       <th class="table-thead-th--bold-light">
         <label class="table-th-label">Acciones</label>
@@ -40,21 +40,21 @@
       </thead>
 
       <tbody>
-        <tr [ngClass]="(i % 2 === 0) ? 'table-row--color-disabled' : 'table-row--color-white'"
+      <tr [ngClass]="(i % 2 === 0) ? 'table-row--color-disabled' : 'table-row--color-white'"
           class="table-row"
           *ngFor="let product of products
           | async
           | filterSearchPipe:productNameSearch
-          | sortByPipe:sortBy :upSort
+          | sortByPipe:sortBy :order
           | paginate: { itemsPerPage:10  , currentPage: page, totalItems: (products | async | filterSearchPipe:productNameSearch).length};
            let i = index; trackBy: trackById">
         <td>
           <img src="{{product.image}}" alt="image" class="item-img">
         </td>
-        <td class="table-row-td-datos" [title]="product.name">{{product.name}}</td>
-        <td class="table-row-td-datos" [title]="product.purchasePrice">{{product.purchasePrice | number : '1.2-2'}}</td>
-        <td class="table-row-td-datos" [title]="product.salePrice">{{product.salePrice  | number : '1.2-2'}}</td>
-        <td class="table-row-td-datos" [title]="product.stock">{{product.stock}}</td>
+        <td class="table-row-td" [title]="product.name">{{product.name}}</td>
+        <td class="table-row-td" [title]="product.purchasePrice">{{product.purchasePrice | number : '1.2-2'}}</td>
+        <td class="table-row-td" [title]="product.salePrice">{{product.salePrice  | number : '1.2-2'}}</td>
+        <td class="table-row-td" [title]="product.stock">{{product.stock}}</td>
         <td>
           <span class="material-symbols-rounded table-row-icon icon-plus icon"
                 (click)="incrementStock(product.id)">add</span>
@@ -66,7 +66,7 @@
                 (click)="openModalDelete(product)">delete</span>
         </td>
 
-        </tr>
+      </tr>
       <td *ngIf="(products | async | filterSearchPipe:productNameSearch)?.length === 0">No existen productos para esta busqueda</td>
       </tbody>
     </table>
