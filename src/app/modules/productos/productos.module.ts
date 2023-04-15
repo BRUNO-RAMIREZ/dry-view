@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from "@angular/router";
 import {NgxPaginationModule} from "ngx-pagination";
+import {ToastrModule, ToastrService} from "ngx-toastr";
 
 import {SharedModule} from "../../shared/shared.module";
 import {ProductosRoutingModule} from './productos-routing.module';
@@ -17,6 +18,7 @@ import {SortByPipe} from './pipes/sort-by.pipe';
 import {HomeComponent} from "./pages/home/home.component";
 import {CardComponent} from './components/card/card.component';
 import {ChangeColorDirective} from './directives/change-color.directive';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -38,11 +40,13 @@ import {ChangeColorDirective} from './directives/change-color.directive';
     SharedModule,
     ProductosRoutingModule,
     RouterModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   providers: [
-    ProductosService
+    ProductosService,
+    ToastrService
   ]
 })
+
 export class ProductosModule {
 }

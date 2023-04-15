@@ -45,7 +45,7 @@
 
     &-thead-th--bold-light {
       font-weight: 600;
-      text-align: center;  
+      text-align: center;
     }
 
     &-row--color-white {
@@ -59,29 +59,29 @@
     &-th {
       &-icon {
         font-size: var(--font-size-subtitle);
-        cursor: pointer;   
-         
+        cursor: pointer;
+
       }
     }
 
     &-row {
       min-height: 20px;
       vertical-align: middle;
-      
+
 
       &-td {
         max-width: 200px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-       
+
         &-datos{
           text-align: center;
         }
-        
+
       }
-     
-     
+
+
       &-icon {
         border-radius: 50%;
         font-weight: bold;
@@ -93,7 +93,7 @@
       .icon-plus {
         background-color: var(--color-light-accent);
         margin-left: 30px;
-        
+
 
         &:hover {
           cursor: pointer;
@@ -151,6 +151,14 @@
   border-radius: 50%;
 }
 
-.modal-see {
-  background-color: var(--color-light-accent);
+@media screen and (max-width: 1200px){
+
+}
+
+@media screen and (max-width: 1020px){
+
+}
+
+@media screen and (max-width: 720px){
+
 }
