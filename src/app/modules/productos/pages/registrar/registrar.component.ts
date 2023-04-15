@@ -107,7 +107,19 @@ export class RegistrarComponent implements OnInit, OnDestroy {
   public redirectToWindowProductList(): void {
     this._router.navigate(['/productos/listado']);
   }
+  public verificarNum(event:any){
+    var ch = event.key;
 
+    if(ch.charCodeAt(0) >=48 && ch.charCodeAt(0) <=57 ){
+      console.log("si es");
+    }else{
+
+      if(ch == 'e' || ch == 'E' || ch == '+' || ch == '-' ){
+        this.formularyProducts.setValue({
+        });
+      }
+    }
+  }
   private _buildProduct(): ProductCreateRequest {
     const formValue = this.formularyProducts.value;
     const product: ProductCreateRequest = {
@@ -138,8 +150,8 @@ export class RegistrarComponent implements OnInit, OnDestroy {
 
   private _validate(): void {
     this.formularyProducts = this._formsBuilder.group({
-      name: [this.productUpdateRequest.name ? this.productUpdateRequest.name: '', [Validators.required,Validators.minLength(4),Validators.maxLength(80),Validators.pattern('[a-zA-Z0-9]*')]],
-      description: [this.productUpdateRequest.description ? this.productUpdateRequest.description: '', [Validators.required,Validators.minLength(4),Validators.maxLength(80),Validators.pattern('[a-zA-Z0-9]*')]],
+      name: [this.productUpdateRequest.name ? this.productUpdateRequest.name: '', [Validators.required,Validators.minLength(4),Validators.maxLength(80),Validators.pattern('[a-zA-Z0-9_ñÑ]*')]],
+      description: [this.productUpdateRequest.description ? this.productUpdateRequest.description: '', [Validators.required,Validators.minLength(4),Validators.maxLength(80),Validators.pattern('[a-zA-Z0-9_ñÑ]*')]],
       purchasePrice: [this.productUpdateRequest.purchasePrice ? this.productUpdateRequest.purchasePrice: 0, [Validators.min(0),Validators.required]],
       salePrice: [this.productUpdateRequest.salePrice ? this.productUpdateRequest.salePrice: 0, [Validators.min(0),Validators.required]],
       stock: [this.productUpdateRequest.stock ? this.productUpdateRequest.stock: 0, [Validators.min(0),Validators.required]]
