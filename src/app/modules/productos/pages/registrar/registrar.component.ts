@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, DoCheck, OnDestroy, OnInit} from '@angular/core';
 import {ProductosService} from "../../services/productos.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {
@@ -16,10 +16,11 @@ import {ToastrService} from "ngx-toastr";
   templateUrl: './registrar.component.html',
   styleUrls: ['./registrar.component.scss']
 })
-export class RegistrarComponent implements OnInit, OnDestroy {
+export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
   public formularyProducts!: FormGroup;
   public imageData: string;
   public productUpdateRequest: ProductUpdateRequest;
+  public title: string;
 
   private _unsubscribed: Subject<void>;
 
@@ -39,6 +40,7 @@ export class RegistrarComponent implements OnInit, OnDestroy {
       salePrice: 0,
       stock: 0
     }
+    this.title = '';
     this._unsubscribed = new Subject<void>();
     this._validate();
   }
@@ -53,6 +55,10 @@ export class RegistrarComponent implements OnInit, OnDestroy {
       this.imageData = this.productUpdateRequest.image;
       this._validate();
     })
+  }
+
+  ngDoCheck(): void {
+    this.title = this.productUpdateRequest.id? 'Editar producto': 'Registrar producto';
   }
 
   ngOnDestroy(): void {
