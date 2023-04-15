@@ -46,7 +46,7 @@
             <label>Precio de venta</label>
           </section>
 
-          <input type="number" class="form-field-input" formControlName="purchasePrice" name="purchasePrice">
+          <input type="number" class="form-field-input" formControlName="purchasePrice" name="purchasePrice" (keypress)="verificarNum($event)">
           <div *ngIf="formularyProducts.get('purchasePrice')?.errors && formularyProducts.get('purchasePrice')?.dirty">
             <small class="text-danger" *ngIf="formularyProducts.get('purchasePrice')?.hasError('required')">Ingrese un precio </small>
             <small class="text-danger" *ngIf="formularyProducts.get('purchasePrice')?.hasError('min')">No puede ser negativo</small>
@@ -59,7 +59,7 @@
             <label>Precio de compra</label>
           </section>
 
-          <input type="number" class="form-field-input" formControlName="salePrice" name="salePrice">
+          <input type="number" class="form-field-input" formControlName="salePrice" name="salePrice" (keypress)="verificarNum($event)">
           <div *ngIf="formularyProducts.get('salePrice')?.errors && formularyProducts.get('salePrice')?.dirty">
             <small class="text-danger" *ngIf="formularyProducts.get('salePrice')?.hasError('required')">Ingrese un precio </small>
             <small class="text-danger" *ngIf="formularyProducts.get('salePrice')?.hasError('min')">No puede ser negativo</small>
@@ -73,7 +73,7 @@
           <label>Cantidad</label>
         </section>
 
-        <input type="text" class="form-field-input" formControlName="stock" name="stock">
+        <input type="number" class="form-field-input" formControlName="stock" name="stock" (keypress)="verificarNum($event)">
         <div *ngIf="formularyProducts.get('stock')?.errors && formularyProducts.get('stock')?.dirty">
           <small class="text-danger" *ngIf="formularyProducts.get('stock')?.hasError('required')">Ingrese una cantidad </small>
           <small class="text-danger" *ngIf="formularyProducts.get('stock')?.hasError('min')">No puede ser negativo </small>
