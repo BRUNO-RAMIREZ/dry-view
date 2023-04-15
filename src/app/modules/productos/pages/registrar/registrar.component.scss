@@ -20,6 +20,7 @@
     box-shadow: var(--box-shadow-secondary);
   }
 
+
 }
 
 .form-section {
@@ -97,12 +98,16 @@
 
 label[for="fileInput"] {
   display: inline-block;
-  padding: 8px;
+  padding: 3px;
   background-color: var(--color-light-blue);
   color: #fff;
   font-size: 16px;
+  width: 147px;
+  height: 29px;
+  margin-left: 34px;
   cursor: pointer;
   text-align: center;
+  align-content: center;
   border-radius: var(--border-radius-buttons);
 }
 
