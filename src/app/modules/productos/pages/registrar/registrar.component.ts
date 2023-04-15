@@ -58,8 +58,6 @@ export class RegistrarComponent implements OnInit, OnDestroy {
   }
 
   public createProduct(): void {
-
-    
     if (this.productUpdateRequest.id) {
       const productUpdateRequest: ProductUpdateRequest = {...this.formularyProducts.value, id: this.productUpdateRequest.id};
       console.warn(productUpdateRequest);
@@ -125,7 +123,7 @@ export class RegistrarComponent implements OnInit, OnDestroy {
     const product: ProductCreateRequest = {
       name: formValue.name,
       description: formValue.description,
-      image: this.imageData,
+      image: this.imageData ? this.imageData : '../../../../../assets/image-default.jpg',
       purchasePrice: formValue.purchasePrice,
       salePrice: formValue.salePrice,
       stock: formValue.stock,
