@@ -36,7 +36,8 @@
             ],
             "styles": [
               "node_modules/ngx-dry/src/assets/css/ngx-dry-style.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },

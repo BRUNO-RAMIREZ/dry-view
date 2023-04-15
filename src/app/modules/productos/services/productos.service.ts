@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable, of} from "rxjs";
-import {switchMap} from "rxjs/operators";
+import {switchMap, tap} from "rxjs/operators";
 import {environment} from "../../../../environments/environment";
 
 import {
@@ -68,10 +68,10 @@ export class ProductosService {
   public updateProduct(productUpdateRequest: ProductUpdateRequest): Observable<ProductUpdateResponse> {
     return this._http.put<ProductUpdateResponse>(`${this._baseURL}/products/${productUpdateRequest.id}`, productUpdateRequest)
       .pipe(
+        tap((response) => console.warn("PRODUCTO", response)),
         map((response: ProductUpdateResponse) => {
           const currentProducts = this._products.getValue();
           const updatedProducts = currentProducts.map((product) => {
-            console.warn("TYPEOF: ", typeof product)
             if (product.id === productUpdateRequest.id) {
               return {
                 ...product,

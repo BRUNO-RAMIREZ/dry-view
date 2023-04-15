@@ -1,7 +1,8 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {ProductListResponse} from "../../../../core/models/product.model";
-import {take} from "rxjs/operators";
+import {catchError, take} from "rxjs/operators";
 import {ProductosService} from "../../services/productos.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-modal',
@@ -21,7 +22,8 @@ export class ModalComponent implements AfterViewInit {
   @Input() public icon: string;
   @Input() public txtButton: string;
 
-  constructor(private _productService: ProductosService) {
+  constructor(private _productService: ProductosService,
+              private _toastrService: ToastrService) {
     this.onCloseModal = new EventEmitter<boolean>();
     this.title = '';
     this.product = {id: 0, name: '', description: '', image: '', purchasePrice: 0, salePrice: 0, stock: 0}
@@ -44,7 +46,11 @@ export class ModalComponent implements AfterViewInit {
     if (this.txtButton === 'Eliminar') {
       this._productService.deleteProductById(this.product.id)
         .pipe(take(1))
-        .subscribe();
+        .subscribe(() => {
+          this._toastrService.warning(`${this.product.name} eliminado con éxito`, 'Eliminar')
+        }, (error) => {
+          this._toastrService.error(`Ocurrió un error al eliminar el producto`)
+        });
     }
     this.closeModal();
   }
