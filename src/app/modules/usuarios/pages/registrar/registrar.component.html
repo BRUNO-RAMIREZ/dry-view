@@ -4,86 +4,73 @@
     <img [src]="'../../../assets/foto-por-defecto.jpg'" class="image"/>
     <label for="fileInput">Subir Foto</label>
     <input id="fileInput" type="file" accept=".jpg,.png" title="subir foto">
-<!--    <input id="fileInput" type="file" accept=".jpg,.png" title="subir foto" (change)="onFileSelected($event)">-->
   </section>
 
   <section class="form-section">
-<!--    <form class="form" [formGroup]="formularyProducts" (ngSubmit)="createProduct()">-->
     <form class="form">
-      <section class="form-field">
-        <section class="form-field-header-input">
-          <span class="material-symbols-rounded" style="font-size: 35px;">category</span>
-          <label>Nombre del producto</label>
+      <section class="form-row-section">
+        <section class="form-field">
+          <section class="form-field-header-input">
+            <span class="material-symbols-rounded" style="font-size: 35px;">badge</span>
+            <label>Nombres</label>
+          </section>
+
+          <input type="text" class="form-field-input" formControlName="name" name="name" maxlength="81">
         </section>
 
-        <input type="text" class="form-field-input" formControlName="name" name="name" maxlength="81">
-<!--        <div *ngIf="formularyProducts.get('name')?.errors && formularyProducts.get('name')?.dirty">-->
-<!--          <small class="text-danger" *ngIf="formularyProducts.get('name')?.hasError('required')">Nombre requerido</small>-->
-<!--          <small class="text-danger" *ngIf="formularyProducts.get('name')?.hasError('minlength')">Minimo 4 caracteres </small>-->
-<!--          <small class="text-danger" *ngIf="formularyProducts.get('name')?.hasError('maxlength')">Maximo 80 caracteres </small>-->
-<!--          <small class="text-danger" *ngIf="formularyProducts.get('name')?.hasError('pattern')">No se permiten caracteres especiales </small>-->
-<!--        </div>-->
+        <section class="form-field">
+          <section class="form-field-header-input">
+            <span class="material-symbols-rounded" style="font-size: 35px;">badge</span>
+            <label>Apellidos</label>
+          </section>
+
+          <input type="text" class="form-field-input" formControlName="lastName" name="lastName" maxlength="81">
+        </section>
       </section>
 
       <section class="form-field">
         <section class="form-field-header-input">
-          <span class="material-symbols-rounded" style="font-size: 35px;">description</span>
-          <label>Descripcion</label>
+          <span class="material-symbols-rounded" style="font-size: 35px;">email</span>
+          <label>Correo electrónico</label>
 
         </section>
 
-        <input type="text" class="form-field-input" formControlName="description" name="description" maxlength="81">
-<!--        <div *ngIf="formularyProducts.get('description')?.errors && formularyProducts.get('description')?.dirty">-->
-<!--          <small class="text-danger" *ngIf="formularyProducts.get('description')?.hasError('required')">Descripcion requerida </small>-->
-<!--          <small class="text-danger" *ngIf="formularyProducts.get('description')?.hasError('minlength')">Minimo  4 caracteres </small>-->
-<!--          <small class="text-danger" *ngIf="formularyProducts.get('description')?.hasError('maxlength')">Maximo 80  caracteres </small>-->
-<!--          <small class="text-danger" *ngIf="formularyProducts.get('description')?.hasError('pattern')">No se permiten caracteres especiales </small>-->
-<!--        </div>-->
+        <input type="email" class="form-field-input" formControlName="email" name="email" maxlength="81">
       </section>
 
       <section class="form-row-section">
         <section class="form-field">
           <section class="form-field-header-input">
-            <span class="material-symbols-rounded" style="font-size: 35px;">request_quote</span>
-            <label>Precio de venta</label>
+            <span class="material-symbols-rounded" style="font-size: 35px;">phone_iphone</span>
+            <label>Celular</label>
           </section>
 
-          <input type="number" class="form-field-input" formControlName="purchasePrice" name="purchasePrice">
-<!--          <div *ngIf="formularyProducts.get('purchasePrice')?.errors && formularyProducts.get('purchasePrice')?.dirty">-->
-<!--            <small class="text-danger" *ngIf="formularyProducts.get('purchasePrice')?.hasError('required')">Ingrese un precio </small>-->
-<!--            <small class="text-danger" *ngIf="formularyProducts.get('purchasePrice')?.hasError('min')">No puede ser negativo</small>-->
-<!--          </div>-->
+          <input type="number" class="form-field-input" formControlName="phone" name="phone">
         </section>
 
         <section class="form-field">
           <section class="form-field-header-input">
-            <span class="material-symbols-rounded" style="font-size: 35px;">payments</span>
-            <label>Precio de compra</label>
+            <span class="material-symbols-rounded" style="font-size: 35px;">person</span>
+            <label>Usuario</label>
           </section>
 
-          <input type="number" class="form-field-input" formControlName="salePrice" name="salePrice">
-<!--          <div *ngIf="formularyProducts.get('salePrice')?.errors && formularyProducts.get('salePrice')?.dirty">-->
-<!--            <small class="text-danger" *ngIf="formularyProducts.get('salePrice')?.hasError('required')">Ingrese un precio </small>-->
-<!--            <small class="text-danger" *ngIf="formularyProducts.get('salePrice')?.hasError('min')">No puede ser negativo</small>-->
-<!--          </div>-->
+          <input type="text" class="form-field-input" formControlName="user" name="user">
         </section>
       </section>
 
       <section class="form-field">
         <section class="form-field-header-input">
-          <span class="material-symbols-rounded" style="font-size: 35px;">production_quantity_limits</span>
-          <label>Cantidad</label>
+          <span class="material-symbols-rounded" style="font-size: 35px;">lock</span>
+          <label>Password</label>
         </section>
 
-        <input type="number" class="form-field-input" formControlName="stock" name="stock">
-<!--        <div *ngIf="formularyProducts.get('stock')?.errors && formularyProducts.get('stock')?.dirty">-->
-<!--          <small class="text-danger" *ngIf="formularyProducts.get('stock')?.hasError('required')">Ingrese una cantidad </small>-->
-<!--          <small class="text-danger" *ngIf="formularyProducts.get('stock')?.hasError('min')">No puede ser negativo </small>-->
-<!--        </div>-->
+        <input type="password" class="form-field-input" formControlName="password" name="password">
       </section>
 
-      <section class="form-field-buttons" style="min-width: 500px; align-items: center; display: flex; justify-content: center;">
-        <button class="form-button form-button-registrar" type="submit">Registrar</button>
+      <section class="form-field-buttons"
+               style="min-width: 500px; align-items: center; display: flex; justify-content: center;">
+        <button class="form-button form-button-registrar" type="submit"
+                style="color: white;background-color: #1A759F">Registrar</button>
       </section>
     </form>
   </section>
