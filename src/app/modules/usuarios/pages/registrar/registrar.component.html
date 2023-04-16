@@ -1,0 +1,90 @@
+<app-header [title]="'Registrar usuario'"></app-header>
+<article class="dry-page-registrar-container table-row animate__animated animate__fadeIn animate__faster">
+  <section class="image-container">
+    <img [src]="'../../../assets/foto-por-defecto.jpg'" class="image"/>
+    <label for="fileInput">Subir Foto</label>
+    <input id="fileInput" type="file" accept=".jpg,.png" title="subir foto">
+<!--    <input id="fileInput" type="file" accept=".jpg,.png" title="subir foto" (change)="onFileSelected($event)">-->
+  </section>
+
+  <section class="form-section">
+<!--    <form class="form" [formGroup]="formularyProducts" (ngSubmit)="createProduct()">-->
+    <form class="form">
+      <section class="form-field">
+        <section class="form-field-header-input">
+          <span class="material-symbols-rounded" style="font-size: 35px;">category</span>
+          <label>Nombre del producto</label>
+        </section>
+
+        <input type="text" class="form-field-input" formControlName="name" name="name" maxlength="81">
+<!--        <div *ngIf="formularyProducts.get('name')?.errors && formularyProducts.get('name')?.dirty">-->
+<!--          <small class="text-danger" *ngIf="formularyProducts.get('name')?.hasError('required')">Nombre requerido</small>-->
+<!--          <small class="text-danger" *ngIf="formularyProducts.get('name')?.hasError('minlength')">Minimo 4 caracteres </small>-->
+<!--          <small class="text-danger" *ngIf="formularyProducts.get('name')?.hasError('maxlength')">Maximo 80 caracteres </small>-->
+<!--          <small class="text-danger" *ngIf="formularyProducts.get('name')?.hasError('pattern')">No se permiten caracteres especiales </small>-->
+<!--        </div>-->
+      </section>
+
+      <section class="form-field">
+        <section class="form-field-header-input">
+          <span class="material-symbols-rounded" style="font-size: 35px;">description</span>
+          <label>Descripcion</label>
+
+        </section>
+
+        <input type="text" class="form-field-input" formControlName="description" name="description" maxlength="81">
+<!--        <div *ngIf="formularyProducts.get('description')?.errors && formularyProducts.get('description')?.dirty">-->
+<!--          <small class="text-danger" *ngIf="formularyProducts.get('description')?.hasError('required')">Descripcion requerida </small>-->
+<!--          <small class="text-danger" *ngIf="formularyProducts.get('description')?.hasError('minlength')">Minimo  4 caracteres </small>-->
+<!--          <small class="text-danger" *ngIf="formularyProducts.get('description')?.hasError('maxlength')">Maximo 80  caracteres </small>-->
+<!--          <small class="text-danger" *ngIf="formularyProducts.get('description')?.hasError('pattern')">No se permiten caracteres especiales </small>-->
+<!--        </div>-->
+      </section>
+
+      <section class="form-row-section">
+        <section class="form-field">
+          <section class="form-field-header-input">
+            <span class="material-symbols-rounded" style="font-size: 35px;">request_quote</span>
+            <label>Precio de venta</label>
+          </section>
+
+          <input type="number" class="form-field-input" formControlName="purchasePrice" name="purchasePrice">
+<!--          <div *ngIf="formularyProducts.get('purchasePrice')?.errors && formularyProducts.get('purchasePrice')?.dirty">-->
+<!--            <small class="text-danger" *ngIf="formularyProducts.get('purchasePrice')?.hasError('required')">Ingrese un precio </small>-->
+<!--            <small class="text-danger" *ngIf="formularyProducts.get('purchasePrice')?.hasError('min')">No puede ser negativo</small>-->
+<!--          </div>-->
+        </section>
+
+        <section class="form-field">
+          <section class="form-field-header-input">
+            <span class="material-symbols-rounded" style="font-size: 35px;">payments</span>
+            <label>Precio de compra</label>
+          </section>
+
+          <input type="number" class="form-field-input" formControlName="salePrice" name="salePrice">
+<!--          <div *ngIf="formularyProducts.get('salePrice')?.errors && formularyProducts.get('salePrice')?.dirty">-->
+<!--            <small class="text-danger" *ngIf="formularyProducts.get('salePrice')?.hasError('required')">Ingrese un precio </small>-->
+<!--            <small class="text-danger" *ngIf="formularyProducts.get('salePrice')?.hasError('min')">No puede ser negativo</small>-->
+<!--          </div>-->
+        </section>
+      </section>
+
+      <section class="form-field">
+        <section class="form-field-header-input">
+          <span class="material-symbols-rounded" style="font-size: 35px;">production_quantity_limits</span>
+          <label>Cantidad</label>
+        </section>
+
+        <input type="number" class="form-field-input" formControlName="stock" name="stock">
+<!--        <div *ngIf="formularyProducts.get('stock')?.errors && formularyProducts.get('stock')?.dirty">-->
+<!--          <small class="text-danger" *ngIf="formularyProducts.get('stock')?.hasError('required')">Ingrese una cantidad </small>-->
+<!--          <small class="text-danger" *ngIf="formularyProducts.get('stock')?.hasError('min')">No puede ser negativo </small>-->
+<!--        </div>-->
+      </section>
+
+      <section class="form-field-buttons" style="min-width: 500px; align-items: center; display: flex; justify-content: center;">
+        <button class="form-button form-button-registrar" type="submit">Registrar</button>
+      </section>
+    </form>
+  </section>
+</article>
