@@ -11,6 +11,7 @@ import {SortByPipe} from "./pipes/sort-by.pipe";
 import {NgxPaginationModule} from "ngx-pagination";
 import {CardComponent} from "./components/card/card.component";
 import {ProductosService} from "../productos/services/productos.service";
+import {UsuariosService} from "./services/usuarios.service";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {ProductosService} from "../productos/services/productos.service";
     NgxPaginationModule
   ],
   providers: [
-    ProductosService
+    ProductosService,
+    UsuariosService
   ]
 })
 export class UsuariosModule {
