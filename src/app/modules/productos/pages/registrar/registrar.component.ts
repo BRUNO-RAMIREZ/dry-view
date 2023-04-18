@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, DoCheck, OnDestroy, OnInit} from '@angular/core';
 import {ProductosService} from "../../services/productos.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {
@@ -7,18 +7,20 @@ import {
   ProductUpdateRequest, ProductUpdateResponse
 } from "../../../../core/models/product.model";
 import {Subject} from "rxjs";
-import {switchMap, take} from "rxjs/operators";
+import {filter, switchMap, take} from "rxjs/operators";
 import {ActivatedRoute, Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-registrar',
   templateUrl: './registrar.component.html',
   styleUrls: ['./registrar.component.scss']
 })
-export class RegistrarComponent implements OnInit, OnDestroy {
+export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
   public formularyProducts!: FormGroup;
   public imageData: string;
   public productUpdateRequest: ProductUpdateRequest;
+  public title: string;
 
   private _unsubscribed: Subject<void>;
 
@@ -26,7 +28,8 @@ export class RegistrarComponent implements OnInit, OnDestroy {
   constructor(private _productService: ProductosService,
               private _formsBuilder: FormBuilder,
               private _activateRoute: ActivatedRoute,
-              private _router: Router) {
+              private _router: Router,
+              private _toastrService: ToastrService) {
     this.imageData = '';
     this.productUpdateRequest = {
       id: 0,
@@ -37,6 +40,7 @@ export class RegistrarComponent implements OnInit, OnDestroy {
       salePrice: 0,
       stock: 0
     }
+    this.title = '';
     this._unsubscribed = new Subject<void>();
     this._validate();
   }
@@ -44,12 +48,17 @@ export class RegistrarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this._activateRoute.params
       .pipe(
+        filter(params => params.hasOwnProperty('id')),
         switchMap(({id}) => this._productService.getProductById(id))
       ).subscribe(response => {
       this.productUpdateRequest = response;
       this.imageData = this.productUpdateRequest.image;
       this._validate();
     })
+  }
+
+  ngDoCheck(): void {
+    this.title = this.productUpdateRequest.id? 'Editar producto': 'Registrar producto';
   }
 
   ngOnDestroy(): void {
@@ -59,31 +68,33 @@ export class RegistrarComponent implements OnInit, OnDestroy {
 
   public createProduct(): void {
     if (this.productUpdateRequest.id) {
-      const productUpdateRequest: ProductUpdateRequest = {...this.formularyProducts.value, id: this.productUpdateRequest.id};
-      console.warn(productUpdateRequest);
+      const productUpdateRequest: ProductUpdateRequest = {
+        ...this.formularyProducts.value,
+        id: this.productUpdateRequest.id,
+        image: this.imageData
+      };
       this._productService.updateProduct(productUpdateRequest)
         .pipe(take(1))
         .subscribe(
           (response: ProductUpdateResponse) => {
-            console.warn('Product Updated successfully', response);
+            this._toastrService.warning(`${response.name} actualizado con éxito`, 'Actualizar')
             this.redirectToWindowProductList();
           },
           (error) => {
-            console.error('An error occurred while updated the product', error)
+            this._toastrService.error(`Ocurrió un error al actualizar el producto`)
           });
-    }else {
+    } else {
       if (this.formularyProducts.valid) {
         const product = this._buildProduct();
-        console.warn(product);
         this._productService.createProduct(product)
           .pipe(take(1))
           .subscribe(
             (response: ProductCreateResponse) => {
-              console.warn('Product created successfully', response)
+              this._toastrService.success(`${response.name} registrado con éxito`, 'Registrar')
               this.redirectToWindowProductList();
             },
             (error) => {
-              console.error('An error occurred while creating the product', error)
+              this._toastrService.error(`Ocurrió un error al registrar el producto`)
             });
         this.formularyProducts.reset();
       }
@@ -105,19 +116,20 @@ export class RegistrarComponent implements OnInit, OnDestroy {
   public redirectToWindowProductList(): void {
     this._router.navigate(['/productos/listado']);
   }
-  public verificarNum(event:any){
+
+  public verificarNum(event: any) {
     var ch = event.key;
 
-    if(ch.charCodeAt(0) >=48 && ch.charCodeAt(0) <=57 ){
+    if (ch.charCodeAt(0) >= 48 && ch.charCodeAt(0) <= 57) {
       console.log("si es");
-    }else{
+    } else {
 
-      if(ch == 'e' || ch == 'E' || ch == '+' || ch == '-' ){
-        this.formularyProducts.setValue({
-        });
+      if (ch == 'e' || ch == 'E' || ch == '+' || ch == '-') {
+        this.formularyProducts.setValue({});
       }
     }
   }
+
   private _buildProduct(): ProductCreateRequest {
     const formValue = this.formularyProducts.value;
     const product: ProductCreateRequest = {
@@ -130,29 +142,34 @@ export class RegistrarComponent implements OnInit, OnDestroy {
     }
     return product;
   }
-  get nombre(){
+
+  get nombre() {
     return this.formularyProducts.get('name')
   }
-  get descripcion(){
+
+  get descripcion() {
     return this.formularyProducts.get('description')
   }
-  get precioCompra(){
+
+  get precioCompra() {
     return this.formularyProducts.get('purchasePrice')
   }
-  get precioVenta(){
+
+  get precioVenta() {
     return this.formularyProducts.get('salePrice')
   }
-  get cantidad(){
+
+  get cantidad() {
     return this.formularyProducts.get('stock')
   }
 
   private _validate(): void {
     this.formularyProducts = this._formsBuilder.group({
-      name: [this.productUpdateRequest.name ? this.productUpdateRequest.name: '', [Validators.required,Validators.minLength(4),Validators.maxLength(80),Validators.pattern('[a-zA-Z0-9_ñÑ]*')]],
-      description: [this.productUpdateRequest.description ? this.productUpdateRequest.description: '', [Validators.required,Validators.minLength(4),Validators.maxLength(80),Validators.pattern('[a-zA-Z0-9_ñÑ]*')]],
-      purchasePrice: [this.productUpdateRequest.purchasePrice ? this.productUpdateRequest.purchasePrice: 0, [Validators.min(0),Validators.required]],
-      salePrice: [this.productUpdateRequest.salePrice ? this.productUpdateRequest.salePrice: 0, [Validators.min(0),Validators.required]],
-      stock: [this.productUpdateRequest.stock ? this.productUpdateRequest.stock: 0, [Validators.min(0),Validators.required]]
+      name: [this.productUpdateRequest.name ? this.productUpdateRequest.name : '', [Validators.required, Validators.minLength(4), Validators.maxLength(80), Validators.pattern('[a-zA-Z0-9_ñÑ]*')]],
+      description: [this.productUpdateRequest.description ? this.productUpdateRequest.description : '', [Validators.required, Validators.minLength(4), Validators.maxLength(80), Validators.pattern('[a-zA-Z0-9_ñÑ]*')]],
+      purchasePrice: [this.productUpdateRequest.purchasePrice ? this.productUpdateRequest.purchasePrice : 0, [Validators.min(0), Validators.required]],
+      salePrice: [this.productUpdateRequest.salePrice ? this.productUpdateRequest.salePrice : 0, [Validators.min(0), Validators.required]],
+      stock: [this.productUpdateRequest.stock ? this.productUpdateRequest.stock : 0, [Validators.min(0), Validators.required]]
     });
 
   }
