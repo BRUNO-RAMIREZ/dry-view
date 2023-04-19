@@ -6,10 +6,14 @@ import {Router, RouterModule} from '@angular/router';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+  public desplegado:boolean;
   constructor(private _router: RouterModule) {
+    this.desplegado = true;
   }
 
   ngOnInit(): void {
   }
-
+  cambiarEstado(){
+    this.desplegado = !this.desplegado
+  }
 }
