@@ -1,0 +1,67 @@
+.home-page-top-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+
+  &-text-section {
+    border-radius: 3px;
+    box-sizing: border-box;
+    background-color: var(--color-dark-blue);
+    padding: 5px;
+    min-width: 40%;
+
+    .text {
+      color: var(--color-white);
+      font-size: var(--font-size-big);
+      font-weight: 600;
+    }
+  }
+
+  &-search-section {
+    display: flex;
+    justify-content: space-between;
+    min-width: 40%;
+
+    &-input {
+      border-style: none;
+      padding-left: 10px;
+      flex: 1;
+    }
+
+    &-icon {
+      display: flex;
+      align-items: center;
+      background-color: #d9d9d9;
+      padding: 7px;
+      box-sizing: border-box;
+    }
+  }
+}
+
+.home-page-mid-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  border-radius: 3px;
+  border-style: none;
+  box-sizing: border-box;
+  background-color: var(--color-white);
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.home-page-bottom-content {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: var(--color-white);
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.my-pagination ::ng-deep .ngx-pagination .current {
+  background: var(--color-black);
+  color: var(--color-white);
+  border-radius: 50%;
+}

@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -8,11 +9,14 @@ import {Component, Input, OnInit} from '@angular/core';
 export class HeaderComponent implements OnInit {
   @Input() public title: string;
 
-  constructor() {
+  constructor(private _router: Router) {
     this.title = '';
   }
 
   ngOnInit(): void {
   }
 
+  public redirectToWindowLogin(): void {
+    this._router.navigate(['/auth']);
+  }
 }
