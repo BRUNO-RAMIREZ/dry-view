@@ -1,43 +1,59 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {UserAuthRequest} from "../../../../core/models/user.model";
 import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
+import {Subject} from "rxjs";
+import {takeUntil} from "rxjs/operators";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   public formularyLogin!: FormGroup;
+
+  private _unsubscribed: Subject<void>;
 
   constructor(private _formsBuilder: FormBuilder,
               private _authService: AuthService,
-              private _router: Router) {
-    this.formularyLogin = this._formsBuilder.group({
-      email: ['', [Validators.maxLength(80), Validators.required]],
-      password: ['',[Validators.maxLength(80), Validators.required]]
-    });
+              private _router: Router,
+              private _tostrService: ToastrService) {
+    this._unsubscribed = new Subject();
   }
 
   ngOnInit(): void {
   }
 
-  public login(): void{
+  ngOnDestroy(): void {
+    this._unsubscribed.next();
+    this._unsubscribed.complete();
+  }
+
+  public login(): void {
     const userAuthRequest: UserAuthRequest = {
       email: this.formularyLogin.value.email,
       password: this.formularyLogin.value.password
     }
-    this._authService.login(userAuthRequest).subscribe(
+    this._authService.login(userAuthRequest)
+      .pipe(takeUntil(this._unsubscribed))
+      .subscribe(
       response => {
         this._authService.setAuthToken(response.email, response.password);
-        console.warn("LOGUEADO CORRECTAMENTE", response)
         this._router.navigate(['/productos/home'])
       },
       (error) => {
-        console.log("Credeanciales incorrectas");
+        this._tostrService.error('El email o la contraseña ingresada es incorrecta', 'Login')
       }
     );
+  }
+
+  private _validate(): void {
+    this.formularyLogin = this._formsBuilder.group({
+      email: ['', [Validators.maxLength(80), Validators.required]],
+      password: ['', [Validators.maxLength(80), Validators.required]]
+    });
   }
 }
