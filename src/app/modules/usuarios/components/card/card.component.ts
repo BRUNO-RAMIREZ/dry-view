@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ProductListResponse} from "../../../../core/models/product.model";
+import {UserListResponse} from "../../../../core/models/user.model";
 
 @Component({
   selector: 'app-card',
@@ -7,17 +7,18 @@ import {ProductListResponse} from "../../../../core/models/product.model";
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
-  @Input() product: ProductListResponse;
+  @Input() user: UserListResponse;
 
   constructor() {
-    this.product = {
+    this.user = {
       id: 0,
       name: '',
-      description: '',
+      lastName: '',
       image: '',
-      purchasePrice: 0,
-      salePrice: 0,
-      stock: 0
+      email: '',
+      phone: 0,
+      username: '',
+      password:''
     }
   }
 

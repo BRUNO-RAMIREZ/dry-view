@@ -1,0 +1,165 @@
+.dry-page-listado-container {
+    border-radius: 3px;
+    border-style: none;
+    box-sizing: border-box;
+  }
+  
+  .listado-header {
+    display: flex;
+    justify-content: space-between;
+  
+    &-search {
+      display: flex;
+      width: 60%;
+  
+      &-input {
+        border-style: none;
+        padding-left: 10px;
+        flex: 1;
+      }
+  
+      &-icon {
+        background-color: #d9d9d9;
+        padding: 7px;
+        box-sizing: border-box;
+      }
+    }
+  
+    &-button {
+      width: 15%;
+      border-style: none;
+      border-radius: 7px;
+      background-color: var(--color-warning);
+      box-sizing: border-box;
+    }
+  }
+  
+  .listado-content {
+    background-color: var(--color-white);
+    box-sizing: border-box;
+    margin-top: 40px;
+    padding: 10px;
+  
+    .table {
+      font-weight: lighter;
+  
+      &-thead-th--bold-light {
+        font-weight: 600;
+        text-align: center;
+      }
+  
+      &-row--color-white {
+        background-color: var(--color-white);
+      }
+  
+      &-row--color-disabled {
+        background-color: var(--color-disabled);
+      }
+  
+      &-th {
+        &-icon {
+          font-size: var(--font-size-subtitle);
+          cursor: pointer;
+  
+        }
+      }
+  
+      &-row {
+        min-height: 20px;
+        vertical-align: middle;
+  
+  
+        &-td {
+          max-width: 200px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+  
+          &-datos{
+            text-align: center;
+          }
+  
+        }
+  
+  
+        &-icon {
+          border-radius: 50%;
+          font-weight: bold;
+          padding: 7px;
+          font-size: 15px;
+          margin-left: 9px;
+        }
+  
+        .icon-plus {
+          background-color: var(--color-light-accent);
+          margin-left: 30px;
+  
+  
+          &:hover {
+            cursor: pointer;
+            background-color: var(--color-black);
+            color: var(--color-white);
+          }
+        }
+  
+        .icon-visibility {
+          background-color: rgb(44, 168, 255);
+  
+          &:hover {
+            cursor: pointer;
+            background-color: var(--color-black);
+            color: var(--color-white);
+          }
+        }
+  
+        .icon-edit {
+          background-color: rgb(255, 178, 54);
+  
+          &:hover {
+            cursor: pointer;
+            background-color: var(--color-black);
+            color: var(--color-white);
+          }
+        }
+  
+        .icon-delete {
+          background-color: rgb(255, 54, 54);
+  
+          &:hover {
+            cursor: pointer;
+            background-color: var(--color-black);
+            color: var(--color-white);
+          }
+        }
+  
+        .item-img {
+          background-size: cover;
+          width: 50px;
+        }
+      }
+    }
+  }
+  
+  .listado-footer {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .my-pagination ::ng-deep .ngx-pagination .current {
+    background: var(--color-black);
+    color: var(--color-white);
+    border-radius: 50%;
+  }
+  
+  @media screen and (max-width: 1200px){
+  
+  }
+  
+  @media screen and (max-width: 1020px){
+  
+  }
+  
+  @media screen and (max-width: 720px){
+  
+  }
+  
