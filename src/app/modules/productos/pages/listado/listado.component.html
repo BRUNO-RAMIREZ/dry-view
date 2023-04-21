@@ -63,7 +63,7 @@
           <span class="material-symbols-rounded table-row-icon icon-edit icon"
                 [routerLink]="['/productos/editar', product.id ]">edit_square</span>
           <span class="material-symbols-rounded table-row-icon icon-delete icon"
-                (click)="openModalDelete(product)">delete</span>
+          (click)="openModalDelete(product)">delete</span>
         </td>
 
       </tr>
@@ -92,7 +92,7 @@
     <app-modal [product]="productModal"
                (onCloseModal)="closeModal()"
                [title]="'¿Estás seguro que deseas eliminar el producto?'"
-               [color]="'rgb(153,217,140)'"
+               [color]="'rgb(160,217,140)'"
                [icon]="'delete_forever'"
                [txtButton]="'Eliminar'"
     ></app-modal>

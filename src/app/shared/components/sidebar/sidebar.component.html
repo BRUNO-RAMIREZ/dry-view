@@ -34,5 +34,25 @@
       <span class="material-symbols-rounded sidebar-header-icon">list_alt</span>
       <label class="sidebar-content-item-text">Lista de usuarios</label>
     </section> -->
+    <section class="sidebar-content-item"(click)="modal.open(contenido,{centered:true})">
+      <span class="material-symbols-rounded sidebar-header-icon">logout</span>
+      <label class="sidebar-content-item-text">Salir</label>
+    </section>
   </section>
 </article>
+
+
+
+<!--  MODAL DE LOGOUT-->
+
+<ng-template data-backdrop="static" #contenido let-modal >
+  <div class="modal-header">
+        <h5>¿Estas seguro que deseas cerrar sesion?</h5>
+      </div>
+      <div class="modal-body">
+        <button type="button" class="btn btn-success"  (click)="logout()">SI</button>
+        <button type="button" class="btn btn-danger" (click)="modal.close()">NO</button>
+      </div>
+      <div class="modal-footer"></div>
+  
+</ng-template>
