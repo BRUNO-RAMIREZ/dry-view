@@ -38,6 +38,7 @@ export class AuthService {
   public logout(): void {
     sessionStorage.removeItem(this.AUTH_TOKEN_KEY);
     sessionStorage.removeItem(this.CREDENTIALS_KEY);
+   
   }
 
   isLoggedIn(): boolean {

@@ -8,10 +8,12 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { ErrorMessageDirective } from './directives/error-message.directive';
 
 
+
 @NgModule({
   declarations: [
     LoginComponent,
-    ErrorMessageDirective
+    ErrorMessageDirective,
+    
   ],
   imports: [
     CommonModule,
