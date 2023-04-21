@@ -57,6 +57,7 @@
     }
 
     &-th {
+      text-align: left;
       &-icon {
         font-size: var(--font-size-subtitle);
         cursor: pointer;
@@ -70,6 +71,7 @@
 
 
       &-td {
+        min-width: 180px;
         max-width: 200px;
         white-space: nowrap;
         overflow: hidden;

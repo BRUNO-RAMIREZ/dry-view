@@ -1,7 +1,7 @@
 <article class="dry-sidebar-container sidebar">
   <section class="sidebar-header-section sidebar-header">
-    <label class="sidebar-header-title">DRY</label>
-    <span class="material-symbols-rounded sidebar-header-icon">menu</span>
+    <label class="sidebar-header-title" *ngIf="desplegado">DRY</label>
+    <span class="material-symbols-rounded sidebar-header-icon" (click)="cambiarEstado()">menu</span>
   </section>
 
   <hr class="hr">
@@ -9,14 +9,14 @@
   <section class="sidebar-content-section sidebar-content">
       <section class="sidebar-content-item" routerLink="/productos">
       <span class="material-symbols-rounded sidebar-header-icon">home</span>
-      <label class="sidebar-content-item-text">Home</label>
+      <label class="sidebar-content-item-text" *ngIf="desplegado">Inicio</label>
     </section>
 
     <hr class="hr">
 <!--    *ngIf="isAuthenticated()"-->
     <section class="sidebar-content-item" routerLink="/productos/ventas">
       <span class="material-symbols-rounded sidebar-header-icon">format_list_numbered</span>
-      <label class="sidebar-content-item-text">Registro de ventas</label>
+      <label class="sidebar-content-item-text" *ngIf="desplegado">Registro de ventas</label>
     </section>
 
    <!-- <section class="sidebar-content-item" routerLink="/productos/facturar">
@@ -27,7 +27,7 @@
 <!--    *ngIf="isAuthenticated()"-->
     <section class="sidebar-content-item" routerLink="/productos/listado">
       <span class="material-symbols-rounded sidebar-header-icon">receipt_long</span>
-      <label class="sidebar-content-item-text">Lista de productos</label>
+      <label class="sidebar-content-item-text" *ngIf="desplegado">Lista de productos</label>
     </section>
 
     <!--<section class="sidebar-content-item" routerLink="/usuarios">

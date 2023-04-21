@@ -1,12 +1,12 @@
-<app-header [title]="'Lista de productos'"></app-header>
+<app-header [title]="'Lista de Usuarios'"></app-header>
 <article class="dry-page-listado-container animate__animated animate__fadeIn animate__faster">
   <section class="listado-header-section listado-header">
     <section class="listado-header-search-section listado-header-search">
       <input type="text"
              class="listado-header-search-input"
-             placeholder="Ingrese el nombre del producto a buscar..."
+             placeholder="Ingrese el nombre del usuario a buscar..."
              #textSearch
-             (keyup)="searchProductByName(textSearch.value)">
+             (keyup)="searchUserByName(textSearch.value)">
 
       <span class="material-symbols-rounded listado-header-search-icon">search</span>
     </section>
@@ -19,20 +19,20 @@
       <thead>
       <th></th>
       <th class="table-thead-th--bold-light table-th">
-        <label class="table-th-label">Nombre</label>
+        <label class="table-th-label">Nombres</label>
         <span class="material-symbols-rounded table-th-icon" (click)="changeOrder('nombre')" >{{iconArrow}}</span>
       </th>
       <th class="table-thead-th--bold-light table-th">
-        <label class="table-th-label">Precio de compra</label>
-        <span class="material-symbols-rounded table-th-icon"(click)="changeOrder('purchasePrice')">{{iconArrow}}</span>
+        <label class="table-th-label">Apellidos</label>
+        <span class="material-symbols-rounded table-th-icon"(click)="changeOrder('lastName')">{{iconArrow}}</span>
       </th>
       <th class="table-thead-th--bold-light table-th">
-        <label class="table-th-label">Precio de venta</label>
-        <span class="material-symbols-rounded table-th-icon" (click)="changeOrder('salePrice')">{{iconArrow}}</span>
+        <label class="table-th-label">Correos Electrónicos</label>
+        <span class="material-symbols-rounded table-th-icon" (click)="changeOrder('email')">{{iconArrow}}</span>
       </th>
       <th class="table-thead-th--bold-light table-th">
-        <label class="table-th-label">Cantidad</label>
-        <span class="material-symbols-rounded table-th-icon" (click)="changeOrder('stock')">{{iconArrow}}</span>
+        <label class="table-th-label">Celular</label>
+        <span class="material-symbols-rounded table-th-icon" (click)="changeOrder('phone')">{{iconArrow}}</span>
       </th>
       <th class="table-thead-th--bold-light">
         <label class="table-th-label">Acciones</label>
@@ -42,37 +42,37 @@
       <tbody>
       <tr [ngClass]="(i % 2 === 0) ? 'table-row--color-disabled' : 'table-row--color-white'"
           class="table-row animate__animated animate__fadeIn animate__faster"
-          *ngFor="let product of products
+          *ngFor="let user of users
           | async
-          | filterSearchPipe:productNameSearch
+          | filterSearchPipe:userNameSearch
           | sortByPipe:sortBy :order
-          | paginate: { itemsPerPage:10  , currentPage: page, totalItems: (products | async | filterSearchPipe:productNameSearch).length};
+          | paginate: { itemsPerPage:10  , currentPage: page, totalItems: (users | async | filterSearchPipe:userNameSearch).length};
            let i = index; trackBy: trackById">
         <td>
-          <img src="{{product.image}}" alt="image" class="item-img">
+          <img src="{{user.image}}" alt="image" class="item-img">
         </td>
-        <td class="table-row-td" [title]="product.name">{{product.name}}</td>
-        <td class="table-row-td" [title]="product.purchasePrice">{{product.purchasePrice | number : '1.2-2'}}</td>
-        <td class="table-row-td" [title]="product.salePrice">{{product.salePrice  | number : '1.2-2'}}</td>
-        <td class="table-row-td" [title]="product.stock">{{product.stock}}</td>
-         <td>       <!--********************** -->
-          <span class="material-symbols-rounded table-row-icon icon-plus icon"
-                (click)="incrementStock(product.id)">add</span>
+        <td class="table-row-td" [title]="user.name">{{user.name}}</td>
+        <td class="table-row-td" [title]="user.lastName">{{user.lastName}}</td>
+        <td class="table-row-td" [title]="user.email">{{user.email}}</td>
+        <td class="table-row-td" [title]="user.phone">{{user.phone}}</td>
+        <td>
+          <!--<span class="material-symbols-rounded table-row-icon icon-plus icon"
+                (click)="incrementStock(user.id)">add</span> -->
           <span class="material-symbols-rounded table-row-icon icon-visibility"
-                (click)="openModalSee(product)">visibility</span>
+                (click)="openModalSee(user)">visibility</span>
           <span class="material-symbols-rounded table-row-icon icon-edit icon"
-                [routerLink]="['/productos/editar', product.id ]">edit_square</span>
+                [routerLink]="['/usuarios/editar', user.id ]">edit_square</span>
           <span class="material-symbols-rounded table-row-icon icon-delete icon"
-          (click)="openModalDelete(product)">delete</span>
+                (click)="openModalDelete(user)">delete</span>
         </td>
 
       </tr>
-      <td *ngIf="(products | async | filterSearchPipe:productNameSearch)?.length === 0">No existen productos para esta busqueda</td>
+      <td *ngIf="(users | async | filterSearchPipe:userNameSearch)?.length === 0">Lista vacia de usuarios</td>
       </tbody>
     </table>
 
     <section class="listado-footer-section listado-footer">
-      <label class="listado-footer-quantity">{{(products | async | filterSearchPipe:productNameSearch).length }} productos en total</label>
+      <label class="listado-footer-quantity">{{(users | async | filterSearchPipe:userNameSearch).length }} usuarios en total</label>
 
       <section class="listado-footer-pagination">
         <pagination-controls
@@ -87,24 +87,25 @@
     </section>
   </section>
 
-  <!-- TODO: MODAL DE ELIMINAR-->
+  <!-- TODO: MODAL DE ELIMINAR
   <ng-container *ngIf="deleteBoolean">
-    <app-modal [product]="productModal"
+    <app-modal [user]="userModal"
                (onCloseModal)="closeModal()"
-               [title]="'¿Estás seguro que deseas eliminar el producto?'"
-               [color]="'rgb(160,217,140)'"
+               [title]="'¿Estás seguro que deseas eliminar el usero?'"
+               [color]="'rgb(153,217,140)'"
                [icon]="'delete_forever'"
                [txtButton]="'Eliminar'"
     ></app-modal>
   </ng-container>
-
-  <!-- TODO: MODAL DE VISUALIZAR-->
+  -->
+  <!-- TODO: MODAL DE VISUALIZAR
   <ng-container *ngIf="seeBoolean">
-    <app-modal [product]="productModal"
+    <app-modal [user]="userModal"
                (onCloseModal)="closeModal()"
-               [title]="'Información del producto'"
+               [title]="'Información del usero'"
                [color]="'rgb(52,160,164)'"
                [txtButton]="'Salir'"
     ></app-modal>
   </ng-container>
+  -->
 </article>

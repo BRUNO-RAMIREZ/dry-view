@@ -1,22 +1,22 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {ProductListResponse} from "../../../core/models/product.model";
+import {UserListResponse} from "../../../core/models/user.model";
 
 @Pipe({
   name: 'filterSearchPipe'
 })
 export class FilterSearchPipe implements PipeTransform {
 
-  transform(products: ProductListResponse[] | null, productNameSearch: string = ''): ProductListResponse[] {
-    if (products === null) return [];
+  transform(users: UserListResponse[] | null, userNameSearch: string = ''): UserListResponse[] {
+    if (users === null) return [];
 
-    if (productNameSearch.length === 0) return products;
+    if (userNameSearch.length === 0) return users;
 
-    productNameSearch = productNameSearch.trim().toUpperCase();
-    const productsFiltered = products.filter(product => {
-      const name = product.name.trim().toUpperCase();
-      return name.includes(productNameSearch)
+    userNameSearch = userNameSearch.trim().toUpperCase();
+    const usersFiltered = users.filter(user => {
+      const name = user.name.trim().toUpperCase();
+      return name.includes(userNameSearch)
     });
-    return productsFiltered;
+    return usersFiltered;
   }
 
 }

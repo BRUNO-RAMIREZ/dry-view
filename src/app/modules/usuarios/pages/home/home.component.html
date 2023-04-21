@@ -2,7 +2,7 @@
 <article class="dry-home-page-container animate__animated animate__fadeIn animate__faster">
   <section class="home-page-top-content">
     <section class="home-page-top-content-text-section">
-      <label class="text">Nuestros productos</label>
+      <label class="text">Nuestros usuarios</label>
     </section>
 
     <section class="home-page-top-content-search-section">
@@ -10,17 +10,17 @@
              class="home-page-top-content-search-section-input"
              placeholder="Ingrese el nombre del producto a buscar..."
              #textSearch
-             (keyup)="searchProductByName(textSearch.value)">
+             (keyup)="searchUserByName(textSearch.value)">
 
       <span class="material-symbols-rounded home-page-top-content-search-section-icon">search</span>
     </section>
   </section>
 
   <section class="home-page-mid-content">
-    <app-card [product]="product" *ngFor="let product of products
+    <app-card [user]="user" *ngFor="let user of users
           | async
-          | filterSearchPipe:productNameSearch
-          | paginate: {itemsPerPage:8  , currentPage: page, totalItems: totalProducts};
+          | filterSearchPipe:userNameSearch
+          | paginate: {itemsPerPage:8  , currentPage: page, totalItems: totalUsers};
            let i = index; trackBy: trackById">
     </app-card>
   </section>

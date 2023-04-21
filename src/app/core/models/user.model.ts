@@ -9,6 +9,54 @@ export interface UserAuthResponse {
   phone: number;
   username: string;
   password: string;
+  image:string;
+}
+export interface UserUpdateRequest {
+  id: number;
+  name: string;
+  lastName: string;
+  email: string;
+  phone: number;
+  username: string;
+  password: string;
+  image:string
+}
+
+export interface UserUpdateResponse {
+  id: number;
+  name: string;
+  lastName: string;
+  email: string;
+  phone: number;
+  username: string;
+  password: string;
+  image:string
+}
+
+
+export interface UserGetByIdResponse {
+  id: number;
+  name: string;
+  lastName: string;
+  email: string;
+  phone: number;
+  username: string;
+  password: string;
+  image:string
+}
+
+export interface UserGetAllResponse {
+  users: UserListResponse[];
+}
+export interface UserListResponse {
+  id: number;
+  name: string;
+  lastName: string;
+  email: string;
+  phone: number;
+  username: string;
+  password: string;
+  image:string
 }
 
 export interface UserAuthRequest {
@@ -23,6 +71,7 @@ export interface UserCreateRequest {
   phone: number;
   username: string;
   password: string;
+  image:string;
 }
 
 export interface UserCreateResponse  {
@@ -33,4 +82,5 @@ export interface UserCreateResponse  {
   phone: number;
   username: string;
   password: string;
+  image:string
 }
