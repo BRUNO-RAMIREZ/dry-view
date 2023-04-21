@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from "rxjs";
-import {ProductListResponse} from "../../../../core/models/product.model";
-import {ProductosService} from "../../../productos/services/productos.service";
+import {UserListResponse} from "../../../../core/models/user.model";
+import {UsuariosService} from "../../../usuarios/services/usuarios.service";
 import {tap} from "rxjs/operators";
 
 @Component({
@@ -10,31 +10,31 @@ import {tap} from "rxjs/operators";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  public products: Observable<ProductListResponse[]>;
-  public productNameSearch: string;
-  public totalProducts: number;
+  public users: Observable<UserListResponse[]>;
+  public userNameSearch: string;
+  public totalUsers: number;
   public page: number;
 
-  constructor(private _productService: ProductosService) {
-    this.products = new Observable<ProductListResponse[]>();
-    this.productNameSearch = '';
-    this.totalProducts = 0;
+  constructor(private _userService: UsuariosService) {
+    this.users = new Observable<UserListResponse[]>();
+    this.userNameSearch = '';
+    this.totalUsers = 0;
     this.page = 0;
   }
 
   ngOnInit(): void {
-    this.products = this._productService.productsObservable
+    this.users = this._userService.usersObservable
       .pipe(
-        tap(products => this.totalProducts = products.length)
+        tap(users => this.totalUsers = users.length)
       );
   }
 
-  public searchProductByName(productName: string): void {
-    this.productNameSearch = productName;
+  public searchUserByName(userName: string): void {
+    this.userNameSearch = userName;
   }
 
-  public trackById(index: number, product: ProductListResponse): number{
-    return product.id;
+  public trackById(index: number, user: UserListResponse): number{
+    return user.id;
   }
 
 }
