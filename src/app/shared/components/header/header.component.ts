@@ -15,7 +15,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  public irAMiCuenta(): void{
+    this._router.navigate(['/usuarios']);
+  }
   public redirectToWindowLogin(): void {
     this._router.navigate(['/auth']);
   }

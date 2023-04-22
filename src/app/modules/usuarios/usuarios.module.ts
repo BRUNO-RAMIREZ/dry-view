@@ -13,6 +13,7 @@ import {CardComponent} from "./components/card/card.component";
 import {ProductosService} from "../productos/services/productos.service";
 import {UsuariosService} from "./services/usuarios.service";
 import { ListadoComponent } from './pages/listado/listado.component';
+import { InformacionCuentaComponent } from './pages/informacion-cuenta/informacion-cuenta.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ListadoComponent } from './pages/listado/listado.component';
     FilterSearchPipe,
     SortByPipe,
     CardComponent,
-    ListadoComponent
+    ListadoComponent,
+    InformacionCuentaComponent
   ],
   imports: [
     CommonModule,
