@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {RouterModule} from '@angular/router';
+import { Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {AuthService} from "../../../modules/auth/services/auth.service";
+import { NgbModal,NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -8,12 +9,16 @@ import {AuthService} from "../../../modules/auth/services/auth.service";
 })
 export class SidebarComponent implements OnInit {
 
-  public desplegado:boolean;
-  
-  constructor(private _router: RouterModule,
+public desplegado:boolean;  
+constructor(config: NgbModalConfig, private _router: Router,public modal:NgbModal,
               private _authService: AuthService) {
-    this.desplegado = true;
-  }
+                config.backdrop = 'static';
+                this.desplegado = true;
+                
+
+
+              }
+
 
   ngOnInit(): void {
   }
@@ -25,4 +30,14 @@ export class SidebarComponent implements OnInit {
     return !!sessionStorage.getItem('authToken');
 
   }
+
+  logout(){
+    this._authService.logout();
+    this.modal.dismissAll();
+    this._router.navigate(['/auth']);
+   
+    
+  }
+
+  
 }

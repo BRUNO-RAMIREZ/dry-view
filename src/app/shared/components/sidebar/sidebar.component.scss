@@ -67,3 +67,34 @@
 .sidebar-content-item-text {
   cursor: pointer;
 }
+
+
+.modal-header{
+  background-color:rgb(160,217,140);
+  justify-content: center;
+}
+.modal-body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  
+}
+.btn{
+  display: flex;
+  width: 85px;
+  justify-content: center;
+  border-radius: 30px; 
+  font-weight: 600;
+  margin: 0px 20px;
+  &.btn-success{
+    background-color: rgb(50,206,25);
+  }
+  &.btn-danger{
+    background-color: rgb(254,0,15);
+  }
+}
+.modal-footer{
+  background-color:rgb(160,217,140);
+  height: 55px;
+}

@@ -57,3 +57,19 @@ dry-home-page-container {
   display: flex;
   flex-direction: row-reverse;
 }
+
+@media (max-width: 500px) {
+  .mid-content-text-section-children{
+    display: flex;
+    flex-direction: column;
+  }
+  /* styles to apply for screens smaller than or equal to 768 pixels wide */
+}
+@media (max-width: 500px) {
+  .mid-content-text-section-children bottom{
+    display: flex;
+    flex-direction:column;
+  }
+  /* styles to apply for screens smaller than or equal to 768 pixels wide */
+}
+
