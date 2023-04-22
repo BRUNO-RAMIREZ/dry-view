@@ -2,22 +2,30 @@
   <section class="login-content-container login-content">
     <section class="login-content-form form">
       <form class="form" [formGroup]="formularyLogin" (ngSubmit)="login()">
-        <label class="form-title">Login</label>
+        <label class="form-title">LOGIN</label>
         <section class="form-field">
-          <label class="form-field-label form-field-text--bold">Email</label>
+          <label class="form-field-label form-field-text--bold">Correo Electronico</label>
           <input type="email" class="form-field-input form-field--common" formControlName="email" name="email" required>
+          <div *ngIf="formularyLogin.controls['email'].invalid && (formularyLogin.controls['email'].dirty || formularyLogin.controls['email'].touched)">
+            <div *ngIf="formularyLogin.controls['email'].errors?.required">Este campo es requerido</div>
+            <div *ngIf="formularyLogin.controls['email'].errors?.email">Correo electrónico inválido</div>
+          </div>
         </section>
 
         <section class="form-field">
-          <label class="form-field-label form-field-text--bold">Password</label>
+          <label class="form-field-label form-field-text--bold">Contraseña</label>
           <input type="password" class="form-field-input form-field--common" formControlName="password" name="password" required>
+          <div *ngIf="formularyLogin.controls['password'].invalid && (formularyLogin.controls['password'].dirty || formularyLogin.controls['password'].touched)">
+            <div *ngIf="formularyLogin.controls['password'].errors?.required">Este campo es requerido</div>
+            <div *ngIf="formularyLogin.controls['password'].errors?.minlength">La contraseña debe tener al menos 3 caracteres</div>
+          </div>
         </section>
-        <label class="form-field-label--size-small">Forgot password?</label>
+        <label class="form-field-label--size-small text-hover" (click)="navigateWindowRestorePassword()">¿Olvidaste tu contraseña?</label>
 
         <section class="form-field">
           <button type="submit" class="form-field-button form-field--common form-field-text--bold">Login</button>
         </section>
-        <label class="form-field-label-footer form-field-label--size-small">New to out platform? Signup</label>
+        <label class="form-field-label-footer form-field-label--size-small">¿Eres nuevo en la plataforma? <b class="text-hover">Registrate</b></label>
       </form>
     </section>
 

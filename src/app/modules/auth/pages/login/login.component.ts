@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit, OnDestroy {
               private _router: Router,
               private _tostrService: ToastrService) {
     this._unsubscribed = new Subject();
+    this._validate();
   }
 
   ngOnInit(): void {
@@ -50,10 +51,26 @@ export class LoginComponent implements OnInit, OnDestroy {
     );
   }
 
+  public hasError(field: string): boolean {
+    return this.formularyLogin.get(field)?.invalid || false;
+  }
+
+  public navigateWindowRestorePassword(): void {
+    this._router.navigate(['/auth/recuperar-contraseña'])
+  }
+
+  public markFieldAsTouched(fieldName: string): void {
+    const field = this.formularyLogin.get(fieldName);
+    if (field) {
+      field.markAsTouched();
+    }
+  }
+
+
   private _validate(): void {
     this.formularyLogin = this._formsBuilder.group({
-      email: ['', [Validators.maxLength(80), Validators.required]],
-      password: ['', [Validators.maxLength(80), Validators.required]]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(3)]]
     });
   }
 }

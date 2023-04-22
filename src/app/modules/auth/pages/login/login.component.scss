@@ -53,6 +53,8 @@
       font-size: 12px;
     }
 
+
+
     &-input {
       padding-left: 10px;
     }
@@ -64,6 +66,13 @@
 
     &-label-footer {
       text-align: center;
+    }
+  }
+
+  .text-hover {
+    &:hover {
+      color: var(--color-warning);
+      cursor: pointer;
     }
   }
 }
@@ -105,4 +114,3 @@
     }
   }
 }
-

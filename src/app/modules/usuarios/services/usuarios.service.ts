@@ -1,20 +1,26 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from "../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {UserCreateRequest,
-        UserCreateResponse,
-        UserListResponse,
-        UserGetAllResponse,
-        UserUpdateRequest,
-        UserUpdateResponse,
-        UserGetByIdResponse} from "../../../core/models/user.model";
-import {Observable,BehaviorSubject} from "rxjs";
-import {switchMap, tap} from "rxjs/operators";
-import {map} from "rxjs/operators";
-@Injectable()
+import {
+  UserCreateRequest,
+  UserCreateResponse,
+  UserGetAllResponse,
+  UserGetByEmailResponse,
+  UserGetByIdResponse,
+  UserListResponse,
+  UserUpdateRequest,
+  UserUpdateResponse
+} from "../../../core/models/user.model";
+import {BehaviorSubject, Observable} from "rxjs";
+import {map, tap} from "rxjs/operators";
+
+@Injectable({
+  providedIn: 'root'
+})
 export class UsuariosService {
   private _baseURL: string;
   private _users: BehaviorSubject<UserListResponse[]>;
+
   constructor(private _http: HttpClient) {
     this._baseURL = environment.baseURL;
     this._users = new BehaviorSubject<UserListResponse[]>([/*{name:'hola',lastName:'serg',password:'123',username:'asdf',image:'',email:'asdfffff',id:0,phone:0},
@@ -34,9 +40,9 @@ export class UsuariosService {
     {name:'wasad',lastName:'serg',password:'123',username:'asdf',image:'',email:'asdfffff',id:0,phone:0},
   {name:'wasad',lastName:'serg',password:'123',username:'asdf',image:'',email:'asdfffff',id:0,phone:0}*/]);
 
-    this.getAllUsers().subscribe(response => {
-      this._users.next(response);
-    })
+    // this.getAllUsers().subscribe(response => {
+    //   this._users.next(response);
+    // })
   }
 
   public createUser(user: UserCreateRequest): Observable<UserCreateResponse> {
@@ -53,7 +59,6 @@ export class UsuariosService {
     return this._http.get<UserGetAllResponse>(`${this._baseURL}/users/getAll`)
       .pipe(map(res => res.users));
   }
-
 
 
   public updateUser(userUpdateRequest: UserUpdateRequest): Observable<UserUpdateResponse> {
@@ -87,9 +92,17 @@ export class UsuariosService {
       .pipe(
         map(() => {
           const currentUsers = this._users.getValue();
-          const updatedProducts = currentUsers.filter((user:UserUpdateResponse) => user.id != userId);
+          const updatedProducts = currentUsers.filter((user: UserUpdateResponse) => user.id != userId);
           this._users.next(updatedProducts);
         })
       );
+  }
+
+  public getUserByEmail(email: string): Observable<UserGetByEmailResponse> {
+    return this._http.get<UserGetByEmailResponse>(`${this._baseURL}/users/getByEmail/${email}`);
+  }
+
+  public changePasswordByUserId(userId: number, passwordNew: string): Observable<void> {
+    return this._http.put<void>(`${this._baseURL}/users//${userId}/changePassword/${passwordNew}`, {});
   }
 }
