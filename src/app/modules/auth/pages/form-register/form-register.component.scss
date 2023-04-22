@@ -160,3 +160,33 @@ input[type="file"] {
   font-size: var(--font-size-text);
   color: #f34141;
 }
+
+@media (max-width: 600px) {
+  .dry-form-register-content {
+    flex-direction: column;
+  }
+
+  .image-container {
+    display: grid;
+    place-items: center;
+    width: 100%;
+
+    .image {
+      width: 250px;
+    }
+  }
+
+  .form-field {
+    width: 100%;
+  }
+
+  .form-row-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .form-field {
+      min-width: 100%;
+    }
+  }
+}
