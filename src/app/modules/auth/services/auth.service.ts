@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from "../../../../environments/environment";
 import {Observable} from "rxjs";
 import {UserAuthRequest, UserAuthResponse} from "../../../core/models/user.model";
@@ -38,7 +38,7 @@ export class AuthService {
   public logout(): void {
     sessionStorage.removeItem(this.AUTH_TOKEN_KEY);
     sessionStorage.removeItem(this.CREDENTIALS_KEY);
-   
+
   }
 
   isLoggedIn(): boolean {
