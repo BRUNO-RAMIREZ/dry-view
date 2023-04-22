@@ -59,6 +59,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     this._router.navigate(['/auth/recuperar-contraseña'])
   }
 
+  public navigateWindowFormRegister(): void {
+    this._router.navigate(['/auth/form-registro'])
+  }
+
   public markFieldAsTouched(fieldName: string): void {
     const field = this.formularyLogin.get(fieldName);
     if (field) {

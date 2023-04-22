@@ -9,6 +9,7 @@ import {ErrorMessageDirective} from './directives/error-message.directive';
 import {RestorePasswordComponent} from './pages/restore-password/restore-password.component';
 import {AuthRouterOutletComponent} from './pages/auth-router-outlet/auth-router-outlet.component';
 import {FormChangePasswordComponent} from './pages/form-change-password/form-change-password.component';
+import { FormRegisterComponent } from './pages/form-register/form-register.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {FormChangePasswordComponent} from './pages/form-change-password/form-cha
     ErrorMessageDirective,
     RestorePasswordComponent,
     AuthRouterOutletComponent,
-    FormChangePasswordComponent
+    FormChangePasswordComponent,
+    FormRegisterComponent
   ],
   imports: [
     CommonModule,

@@ -23,26 +23,7 @@ export class UsuariosService {
 
   constructor(private _http: HttpClient) {
     this._baseURL = environment.baseURL;
-    this._users = new BehaviorSubject<UserListResponse[]>([/*{name:'hola',lastName:'serg',password:'123',username:'asdf',image:'',email:'asdfffff',id:0,phone:0},
-    {name:'halo',lastName:'serg',password:'123',username:'asdf',image:'',email:'asdfffff',id:0,phone:0},
-    {name:'hi',lastName:'serg',password:'123',username:'asdf',image:'',email:'asdfffff',id:0,phone:0},
-    {name:'hello',lastName:'serg',password:'123',username:'asdf',image:'',email:'asdfffff',id:0,phone:0},
-    {name:'wasad',lastName:'serg',password:'123',username:'asdf',image:'',email:'asdfffff',id:0,phone:0},
-    {name:'wasad',lastName:'serg',password:'123',username:'asdf',image:'',email:'asdfffff',id:0,phone:0},
-    {name:'wasad',lastName:'serg',password:'123',username:'asdf',image:'',email:'asdfffff',id:0,phone:0},
-    {name:'wasad',lastName:'serg',password:'123',username:'asdf',image:'',email:'asdfffff',id:0,phone:0},
-    {name:'wasad',lastName:'serg',password:'123',username:'asdf',image:'',email:'asdfffff',id:0,phone:0},
-    {name:'wasad',lastName:'serg',password:'123',username:'asdf',image:'',email:'asdfffff',id:0,phone:0},
-    {name:'wasad',lastName:'serg',password:'123',username:'asdf',image:'',email:'asdfffff',id:0,phone:0},
-    {name:'wasad',lastName:'serg',password:'123',username:'asdf',image:'',email:'asdfffff',id:0,phone:0},
-    {name:'wasad',lastName:'serg',password:'123',username:'asdf',image:'',email:'asdfffff',id:0,phone:0},
-    {name:'wasad',lastName:'serg',password:'123',username:'asdf',image:'',email:'asdfffff',id:0,phone:0},
-    {name:'wasad',lastName:'serg',password:'123',username:'asdf',image:'',email:'asdfffff',id:0,phone:0},
-  {name:'wasad',lastName:'serg',password:'123',username:'asdf',image:'',email:'asdfffff',id:0,phone:0}*/]);
-
-    // this.getAllUsers().subscribe(response => {
-    //   this._users.next(response);
-    // })
+    this._users = new BehaviorSubject<UserListResponse[]>([])
   }
 
   public createUser(user: UserCreateRequest): Observable<UserCreateResponse> {
