@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {
   ProductCreateRequest,
@@ -36,20 +36,18 @@ export class FormRegisterComponent implements OnInit {
   }
 
   public createUser(): void {
-
-      const user = this._buildUser();
-      this._usersService.createUser(user)
-        .pipe(take(1))
-        .subscribe(
-          (response: UserCreateResponse) => {
-            this._toastrService.success(`${response.name} se ha registrado con éxito`, 'Registrar')
-            this.redirectToWindowLogin();
-          },
-          (error) => {
-            this._toastrService.error(`Ocurrió un error al registrar el usuario`, 'Error')
-          });
-      this.formularyUser.reset();
-
+    const user = this._buildUser();
+    this._usersService.createUser(user)
+      .pipe(take(1))
+      .subscribe(
+        (response: UserCreateResponse) => {
+          this._toastrService.success(`${response.name} se ha registrado con éxito`, 'Registrar')
+          this.redirectToWindowLogin();
+        },
+        (error) => {
+          this._toastrService.error(`Ocurrió un error al registrar el usuario`, 'Error')
+        });
+    this.formularyUser.reset();
   }
 
   public onFileSelected(event: any): void {
@@ -85,12 +83,43 @@ export class FormRegisterComponent implements OnInit {
 
   private _validate(): void {
     this.formularyUser = this._formsBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(80)]],
-      lastName: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(80)]],
-      email: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(80)]],
-      phone: [0, [Validators.min(0), Validators.required]],
-      username: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(80)]],
-      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(80)]],
+      name: ['', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(80),
+        Validators.pattern('^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$')
+      ]
+      ],
+      lastName: ['', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(80),
+        Validators.pattern('^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$')
+      ]
+      ],
+      email: ['', [
+        Validators.required,
+        Validators.email,
+      ]
+      ],
+      phone: [0, [
+        Validators.required,
+        Validators.min(0),
+        Validators.pattern(/^\+?\d{10,14}$/)
+      ]
+      ],
+      username: ['', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(40)
+      ]
+      ],
+      password: ['', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(40)
+      ]
+      ],
       image: ['', [Validators.required]],
     });
   }

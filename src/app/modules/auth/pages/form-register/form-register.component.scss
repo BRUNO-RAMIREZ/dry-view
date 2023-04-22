@@ -6,12 +6,6 @@
   max-width: 100%;
 }
 
-.page-title {
-  display: flex;
-  justify-content: flex-start;
-  text-align: start;
-}
-
 .dry-form-register-content {
   background-color: var(--color-white);
   box-sizing: border-box;
@@ -20,6 +14,7 @@
   padding: 40px;
   display: flex;
   gap: 40px;
+  min-width: 80%;
 }
 
 .image-container {
@@ -72,7 +67,12 @@
 
     &-row-section {
       display: flex;
-      gap: 35%;
+      justify-content: space-between;
+      gap: 50px;
+
+      .form-field {
+        width: 50%;
+      }
     }
 
     &-button {
@@ -139,3 +139,24 @@ input[type="file"] {
   display: none;
 }
 
+.correct-field-text-icon {
+  color: #1A759F;
+}
+
+.incorrect-field-text-icon {
+  color: #f34141;
+}
+
+.correct-field-input {
+  border-bottom: 1px solid rgba(26,117,159,100) !important;
+}
+
+.incorrect-field-input {
+  border-bottom: 1px solid red !important;
+
+}
+
+.error-text {
+  font-size: var(--font-size-text);
+  color: #f34141;
+}
