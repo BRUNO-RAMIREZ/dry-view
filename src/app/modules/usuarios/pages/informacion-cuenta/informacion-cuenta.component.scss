@@ -1,3 +1,16 @@
+.dry-page-informacion-cuenta-container {
+    background-color: var(--color-white);
+    box-sizing: border-box;
+    box-shadow: var(--box-shadow-primary);
+    margin-top: 40px;
+    padding: 50px 40px;
+    display: flex;
+    gap: 40px;
+  }
+  .header{
+    display: flex;
+    justify-content: space-between;
+  }
 h1{
-    background-color: blue;
+
 }
