@@ -1,20 +1,17 @@
-import {Directive, ElementRef, OnInit} from '@angular/core';
+import {Directive, ElementRef, Input } from '@angular/core';
 
 @Directive({
   selector: '[errorMessage]'
 })
-export class ErrorMessageDirective implements OnInit {
-  private htmlElement;
+export class ErrorMessageDirective{
+  private htmlElement: ElementRef<HTMLElement>;
+
+  @Input() set mensaje(value: string) {
+    this.htmlElement.nativeElement.innerText = value;
+  };
 
   constructor(private el: ElementRef<HTMLElement>) {
     this.htmlElement = el;
-  }
-
-  ngOnInit(): void {
-    this.setColor();
-  }
-
-  private setColor(): void {
-    this.htmlElement.nativeElement.style.color = 'red';
+    this.mensaje = 'Este campo es requerido';
   }
 }

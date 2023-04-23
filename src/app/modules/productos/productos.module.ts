@@ -42,6 +42,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     RouterModule,
     NgxPaginationModule,
   ],
+  exports: [
+    ChangeColorDirective
+  ],
   providers: [
     ProductosService,
     ToastrService
