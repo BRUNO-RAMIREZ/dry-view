@@ -25,6 +25,7 @@ export class SidebarComponent implements OnInit {
     }else{
       this._router.navigate(['/usuarios/home']);
     }
+    
   }
   ngOnInit(): void {
   }

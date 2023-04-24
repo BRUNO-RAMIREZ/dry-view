@@ -31,11 +31,11 @@
 
     <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/usuarios">
       <span class="material-symbols-rounded sidebar-header-icon">list_alt</span>
-      <label class="sidebar-content-item-text">Lista de usuarios</label>
+      <label class="sidebar-content-item-text" *ngIf="desplegado">Lista de usuarios</label>
     </section>
-    <section class="sidebar-content-item"(click)="modal.open(contenido,{centered:true})">
+    <section  class="sidebar-content-item"(click)="modal.open(contenido,{centered:true})">
       <span class="material-symbols-rounded sidebar-header-icon">logout</span>
-      <label class="sidebar-content-item-text">Salir</label>
+      <label class="sidebar-content-item-text" *ngIf="desplegado">Salir</label>
     </section>
   </section>
 </article>
@@ -46,7 +46,7 @@
 
 <ng-template data-backdrop="static" #contenido let-modal >
   <div class="modal-header">
-        <h5>¿Estas seguro que deseas cerrar sesion?</h5>
+        <h5>¿Est&aacute;s seguro que deseas cerrar sesi&oacute;n?</h5>
       </div>
       <div class="modal-body">
         <button type="button" class="btn btn-success"  (click)="logout()">SI</button>
