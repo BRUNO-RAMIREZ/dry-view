@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from "rxjs";
-import {UserListResponse} from "../../../../core/models/user.model";
-import {UsuariosService} from "../../../usuarios/services/usuarios.service";
+import {ProductListResponse} from "../../../../core/models/product.model";
+import {ProductosService} from "../../../productos/services/productos.service";
 import {tap} from "rxjs/operators";
+import {FilterSearchPipe} from '../../../productos/pipes/filter-search.pipe';
 
 @Component({
   selector: 'app-home',
@@ -10,31 +11,31 @@ import {tap} from "rxjs/operators";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  public users: Observable<UserListResponse[]>;
-  public userNameSearch: string;
-  public totalUsers: number;
+  public products: Observable<ProductListResponse[]>;
+  public productNameSearch: string;
+  public totalProducts: number;
   public page: number;
 
-  constructor(private _userService: UsuariosService) {
-    this.users = new Observable<UserListResponse[]>();
-    this.userNameSearch = '';
-    this.totalUsers = 0;
+  constructor(private _productService: ProductosService,  public pipeProd:FilterSearchPipe) {
+    this.products = new Observable<ProductListResponse[]>();
+    this.productNameSearch = '';
+    this.totalProducts = 0;
     this.page = 0;
   }
 
   ngOnInit(): void {
-    this.users = this._userService.usersObservable
+    this.products = this._productService.productsObservable
       .pipe(
-        tap(users => this.totalUsers = users.length)
+        tap(products => this.totalProducts = products.length)
       );
   }
 
-  public searchUserByName(userName: string): void {
-    this.userNameSearch = userName;
+  public searchProductByName(productName: string): void {
+    this.productNameSearch = productName;
   }
 
-  public trackById(index: number, user: UserListResponse): number{
-    return user.id;
+  public trackById(index: number, product: ProductListResponse): number{
+    return product.id;
   }
 
 }
