@@ -7,18 +7,18 @@
   <hr class="hr">
 
   <section class="sidebar-content-section sidebar-content">
-      <section class="sidebar-content-item" routerLink="/productos">
+      <section class="sidebar-content-item" routerLink="/productos" (click)="homeRedirect()">
       <span class="material-symbols-rounded sidebar-header-icon">home</span>
       <label class="sidebar-content-item-text" *ngIf="desplegado">Inicio</label>
     </section>
 
     <hr class="hr">
 
-    <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/productos/ventas">
+   <!-- <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/productos/ventas">
       <span class="material-symbols-rounded sidebar-header-icon">format_list_numbered</span>
       <label class="sidebar-content-item-text" *ngIf="desplegado">Registro de ventas</label>
     </section>
-
+  -->
    <!-- <section class="sidebar-content-item" routerLink="/productos/facturar">
       <span class="material-symbols-rounded sidebar-header-icon">edit_square</span>
       <label class="sidebar-content-item-text">Facturar</label>
@@ -29,10 +29,10 @@
       <label class="sidebar-content-item-text" *ngIf="desplegado">Lista de productos</label>
     </section>
 
-    <!--<section class="sidebar-content-item" routerLink="/usuarios">
+    <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/usuarios">
       <span class="material-symbols-rounded sidebar-header-icon">list_alt</span>
       <label class="sidebar-content-item-text">Lista de usuarios</label>
-    </section> -->
+    </section>
     <section class="sidebar-content-item"(click)="modal.open(contenido,{centered:true})">
       <span class="material-symbols-rounded sidebar-header-icon">logout</span>
       <label class="sidebar-content-item-text">Salir</label>

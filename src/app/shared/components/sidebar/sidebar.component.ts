@@ -19,7 +19,13 @@ export class SidebarComponent implements OnInit {
 
 
   }
-
+  public homeRedirect(){
+    if(this.isAuthenticated()){
+      this._router.navigate(['/productos/home']);
+    }else{
+      this._router.navigate(['/usuarios/home']);
+    }
+  }
   ngOnInit(): void {
   }
 
