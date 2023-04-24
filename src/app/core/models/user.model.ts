@@ -74,7 +74,7 @@ export interface UserCreateRequest {
   image:string;
 }
 
-export interface UserCreateResponse  {
+export interface UserCreateResponse {
   id: number;
   name: string;
   lastName: string;
@@ -82,5 +82,15 @@ export interface UserCreateResponse  {
   phone: number;
   username: string;
   password: string;
-  image:string
+}
+
+export interface UserGetByEmailResponse {
+  id: number;
+  name: string;
+  lastName: string;
+  email: string;
+  phone: number;
+  username: string;
+  password: string;
+  image?:string
 }

@@ -4,8 +4,8 @@ import {SharedModule} from "../../shared/shared.module";
 
 import {UsuariosRoutingModule} from './usuarios-routing.module';
 import {RegistrarComponent} from './pages/registrar/registrar.component';
-import { HomeRouterOutletComponent } from './pages/home-router-outlet/home-router-outlet.component';
-import { HomeComponent } from './pages/home/home.component';
+import {HomeRouterOutletComponent} from './pages/home-router-outlet/home-router-outlet.component';
+import {HomeComponent} from './pages/home/home.component';
 import {FilterSearchPipe} from "./pipes/filter-search.pipe";
 import {SortByPipe} from "./pipes/sort-by.pipe";
 import {NgxPaginationModule} from "ngx-pagination";
@@ -33,8 +33,7 @@ import { InformacionCuentaComponent } from './pages/informacion-cuenta/informaci
     NgxPaginationModule
   ],
   providers: [
-    ProductosService,
-    UsuariosService
+    ProductosService
   ]
 })
 export class UsuariosModule {
