@@ -29,7 +29,7 @@
       <label class="sidebar-content-item-text" *ngIf="desplegado">Lista de productos</label>
     </section>
 
-    <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/usuarios">
+    <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/usuarios/listado">
       <span class="material-symbols-rounded sidebar-header-icon">list_alt</span>
       <label class="sidebar-content-item-text" *ngIf="desplegado">Lista de usuarios</label>
     </section>
@@ -53,5 +53,5 @@
         <button type="button" class="btn btn-danger" (click)="modal.close()">NO</button>
       </div>
       <div class="modal-footer"></div>
-  
+
 </ng-template>
