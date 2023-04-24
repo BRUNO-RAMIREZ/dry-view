@@ -12,6 +12,7 @@ import {NgxPaginationModule} from "ngx-pagination";
 import {CardComponent} from "./components/card/card.component";
 import {ProductosService} from "../productos/services/productos.service";
 import {ListadoComponent} from './pages/listado/listado.component';
+import { ModalComponent } from './componentes/modal/modal.component';
 
 
 @NgModule({
