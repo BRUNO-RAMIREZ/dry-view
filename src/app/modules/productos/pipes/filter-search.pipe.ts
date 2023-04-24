@@ -2,9 +2,9 @@ import {Pipe, PipeTransform} from '@angular/core';
 import {ProductListResponse} from "../../../core/models/product.model";
 
 @Pipe({
-  name: 'filterSearchPipe'
+  name: 'filterSearchPipeProd'
 })
-export class FilterSearchPipe implements PipeTransform {
+export class FilterSearchPipeProducts implements PipeTransform {
 
   transform(products: ProductListResponse[] | null, productNameSearch: string = ''): ProductListResponse[] {
     if (products === null) return [];

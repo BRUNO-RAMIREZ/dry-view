@@ -20,7 +20,7 @@
     
       <app-card [product]="product" *ngFor="let product of products
             | async
-            | filterSearchPipe:productNameSearch
+            | filterSearchPipeProd:productNameSearch
             | paginate: {itemsPerPage:8  , currentPage: page, totalItems: totalProducts};
             let i = index; trackBy: trackById">
       </app-card>

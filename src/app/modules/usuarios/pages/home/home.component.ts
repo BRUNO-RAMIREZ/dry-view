@@ -3,8 +3,7 @@ import {Observable} from "rxjs";
 import {ProductListResponse} from "../../../../core/models/product.model";
 import {ProductosService} from "../../../productos/services/productos.service";
 import {tap} from "rxjs/operators";
-import {FilterSearchPipe} from '../../../productos/pipes/filter-search.pipe';
-
+import {FilterSearchPipeProducts} from '../../../productos/pipes/filter-search.pipe';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,7 +15,7 @@ export class HomeComponent implements OnInit {
   public totalProducts: number;
   public page: number;
 
-  constructor(private _productService: ProductosService,  public pipeProd:FilterSearchPipe) {
+  constructor(private _productService: ProductosService) {
     this.products = new Observable<ProductListResponse[]>();
     this.productNameSearch = '';
     this.totalProducts = 0;

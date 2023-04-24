@@ -7,6 +7,7 @@ import {RegistrarComponent} from './pages/registrar/registrar.component';
 import {HomeRouterOutletComponent} from './pages/home-router-outlet/home-router-outlet.component';
 import {HomeComponent} from './pages/home/home.component';
 import {FilterSearchPipe} from "./pipes/filter-search.pipe";
+import {ProductosModule} from '../productos/productos.module';
 import {SortByPipe} from "./pipes/sort-by.pipe";
 import {NgxPaginationModule} from "ngx-pagination";
 import {CardComponent} from "./components/card/card.component";
@@ -30,7 +31,9 @@ import { ModalComponent } from './componentes/modal/modal.component';
     CommonModule,
     SharedModule,
     UsuariosRoutingModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ProductosModule
+    
   ],
   providers: [
     ProductosService
