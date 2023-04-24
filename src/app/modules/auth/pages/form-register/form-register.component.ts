@@ -105,7 +105,7 @@ export class FormRegisterComponent implements OnInit {
       phone: [0, [
         Validators.required,
         Validators.min(0),
-        Validators.pattern(/^\+?\d{10,14}$/)
+        Validators.pattern(/^\+?\d{7,10}$/)
       ]
       ],
       username: ['', [
