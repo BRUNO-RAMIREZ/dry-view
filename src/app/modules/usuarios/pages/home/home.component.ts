@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {ProductListResponse} from "../../../../core/models/product.model";
 import {ProductosService} from "../../../productos/services/productos.service";
 import {tap} from "rxjs/operators";
-import {FilterSearchPipeProducts} from '../../../productos/pipes/filter-search.pipe';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

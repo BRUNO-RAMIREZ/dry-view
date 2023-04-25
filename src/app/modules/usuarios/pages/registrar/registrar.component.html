@@ -1,4 +1,4 @@
-<app-header [title]="'Registrar usuario'"></app-header>
+<app-header [title]="title"></app-header>
 <article class="dry-page-registrar-container table-row animate__animated animate__fadeIn animate__faster">
   <section class="image-container">
     <img [src]="'../../../assets/foto-por-defecto.jpg'" class="image"/>
@@ -102,7 +102,7 @@
                style="min-width: 500px; align-items: center; display: flex; justify-content: center;">
         <button class="form-button form-button-registrar" type="submit"
                 style="color: white;background-color: #1A759F">Registrar</button>
-        <button class="form-button form-button-cancelar" (click)="redirectToWindowUser()">Cancelar</button>
+        <button class="form-button form-button-cancelar" (click)="redirectToWindowUser()" type="button">Cancelar</button>
       </section>
     </form>
   </section>

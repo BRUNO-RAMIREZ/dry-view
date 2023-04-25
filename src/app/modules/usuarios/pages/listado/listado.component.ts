@@ -54,14 +54,11 @@ export class ListadoComponent implements OnInit, OnDestroy {
     this._unsubscribed.complete();
   }
 
-
-
   public trackById(index: number, user: UserListResponse): number{
     return user.id;
   }
 
   public goNavigateWindowRegister(): void {
-    console.log("entra")
     this._router.navigate(['/usuarios/registrar']);
   }
 
