@@ -52,6 +52,7 @@ export class RegistrarComponent implements OnInit, DoCheck {
         filter(params => params.hasOwnProperty('id')),
         switchMap(({id}) => this._usersService.getUserById(id))
       ).subscribe(response => {
+        console.warn(response);
       this.userUpdateRequest = response;
       this.imageData = this.userUpdateRequest.image;
       this._validate();
@@ -140,7 +141,7 @@ export class RegistrarComponent implements OnInit, DoCheck {
       phone: formValue.phone,
       username: formValue.username,
       password: formValue.password,
-      image: formValue.image
+      image: this.imageData ? this.imageData : '../../../../../assets/image-default.jpg'
     }
     return user;
   }
