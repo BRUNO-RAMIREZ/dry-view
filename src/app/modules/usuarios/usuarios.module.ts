@@ -15,7 +15,6 @@ import {ProductosService} from "../productos/services/productos.service";
 import {ListadoComponent} from './pages/listado/listado.component';
 import {ModalComponent} from './components/modal/modal.component';
 
-
 @NgModule({
   declarations: [
     RegistrarComponent,
@@ -24,8 +23,7 @@ import {ModalComponent} from './components/modal/modal.component';
     FilterSearchPipe,
     SortByPipe,
     CardComponent,
-    ListadoComponent,
-    ModalComponent
+    ListadoComponent
   ],
   imports: [
     CommonModule,
