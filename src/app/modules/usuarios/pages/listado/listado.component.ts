@@ -1,11 +1,12 @@
-import {Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {Observable, Subject} from "rxjs";
-import {map, take, takeUntil, tap} from "rxjs/operators";
+import {tap} from "rxjs/operators";
 
 import {UsuariosService} from "../../services/usuarios.service";
 import {UserListResponse} from "../../../../core/models/user.model";
 import {ProductMapper} from "../../../../core/mappers/product.mapper";
+
 @Component({
   selector: 'app-listado',
   templateUrl: './listado.component.html',

@@ -75,7 +75,7 @@ export class FormRegisterComponent implements OnInit {
       phone: formValue.phone,
       username: formValue.username,
       password: formValue.password,
-      image: this.imageData ? this.imageData : '../../../../../assets/image-default.jpg'
+      image: this.imageData ? this.imageData : '../../../assets/person-default.jpg'
     }
     return user;
   }

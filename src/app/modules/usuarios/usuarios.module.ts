@@ -13,7 +13,7 @@ import {NgxPaginationModule} from "ngx-pagination";
 import {CardComponent} from "./components/card/card.component";
 import {ProductosService} from "../productos/services/productos.service";
 import {ListadoComponent} from './pages/listado/listado.component';
-import { ModalComponent } from './componentes/modal/modal.component';
+import {ModalComponent} from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,8 @@ import { ModalComponent } from './componentes/modal/modal.component';
     FilterSearchPipe,
     SortByPipe,
     CardComponent,
-    ListadoComponent
+    ListadoComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +32,7 @@ import { ModalComponent } from './componentes/modal/modal.component';
     UsuariosRoutingModule,
     NgxPaginationModule,
     ProductosModule
-    
+
   ],
   providers: [
     ProductosService
