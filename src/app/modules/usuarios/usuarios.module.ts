@@ -13,7 +13,6 @@ import {CardComponent} from "./components/card/card.component";
 import {ProductosService} from "../productos/services/productos.service";
 import {ListadoComponent} from './pages/listado/listado.component';
 
-
 @NgModule({
   declarations: [
     RegistrarComponent,
@@ -22,8 +21,7 @@ import {ListadoComponent} from './pages/listado/listado.component';
     FilterSearchPipe,
     SortByPipe,
     CardComponent,
-    ListadoComponent,
-    ModalComponent
+    ListadoComponent
   ],
   imports: [
     CommonModule,
