@@ -24,6 +24,7 @@ export class AuthService {
   public setAuthToken(token: string, credentials: any): void {
     sessionStorage.setItem(this.AUTH_TOKEN_KEY, token);
     sessionStorage.setItem(this.CREDENTIALS_KEY, JSON.stringify(credentials));
+    //console.log(token, credentials);
   }
 
   public getAuthToken(): string | null {
