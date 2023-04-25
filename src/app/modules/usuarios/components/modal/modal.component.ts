@@ -1,7 +1,6 @@
-
 import {AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {UserListResponse} from "../../../../core/models/user.model";
-import {catchError, take} from "rxjs/operators";
+import {take} from "rxjs/operators";
 import {UsuariosService} from "../../services/usuarios.service";
 import {ToastrService} from "ngx-toastr";
 
@@ -56,6 +55,6 @@ export class ModalComponent implements AfterViewInit {
     }
     this.closeModal();
   }
-  
+
 
 }
