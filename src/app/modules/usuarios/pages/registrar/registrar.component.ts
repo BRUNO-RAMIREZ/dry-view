@@ -177,7 +177,7 @@ export class RegistrarComponent implements OnInit, DoCheck {
       email: [this.userUpdateRequest.email ? this.userUpdateRequest.email : '', [Validators.required, Validators.email]],
       phone: [this.userUpdateRequest.phone ? this.userUpdateRequest.phone : 0, [Validators.min(0), Validators.required, Validators.pattern('[0-9]{8}')]],
       username: [this.userUpdateRequest.username ? this.userUpdateRequest.username : '', [Validators.required,  Validators.minLength(4), Validators.maxLength(80),Validators.pattern('[a-zA-Z0-9ñÑ]*')]],
-      password: [this.userUpdateRequest.password ? this.userUpdateRequest.password : '', Validators.required, Validators.minLength(4), Validators.maxLength(80)]
+      password: [this.userUpdateRequest.password ? this.userUpdateRequest.password : '', [Validators.required, Validators.minLength(4), Validators.maxLength(80)]]
     });
   }
 }
