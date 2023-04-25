@@ -24,6 +24,10 @@ export class UsuariosService {
   constructor(private _http: HttpClient) {
     this._baseURL = environment.baseURL;
     this._users = new BehaviorSubject<UserListResponse[]>([])
+    this.getAllUsers().subscribe(response => {
+      console.log(response);
+      this._users.next(response);
+    })
   }
 
   public createUser(user: UserCreateRequest): Observable<UserCreateResponse> {
