@@ -2,25 +2,25 @@
 <article class="dry-modal-container">
     <div class="modal-header-section modal-header" #marginTopModal>
       <label class="modal-header-text">{{title}}</label>
-
+  
       <button (click)="closeModal()" class="modal-header-button">
         <span class="material-symbols-rounded icon-cancel">cancel</span>
       </button>
     </div>
-
+  
     <section class="modal-content-section modal-content">
       <section class="modal-content-image-section">
         <img [src]="user.image" alt="" class="image" style="margin-top: 1px; margin-right: 1px; margin-bottom: 1px; margin-left: 1px;">
       </section>
-
+  
       <section class="modal-content-description content-description">
         <label [title]="user.name"><b>Nombres: </b> {{user.name}}</label>
         <label [title]="user.lastName"><b>Apellidos: </b> {{user.lastName}}</label>
-        <label [title]="user.email"><b>Correo Electrónico: </b> {{user.email}}</label>
+        <label [title]="user.email"><b>Correos Electrónicos: </b> {{user.email}}</label>
         <label [title]="user.phone"><b>Celular: </b> {{user.phone}}</label>
       </section>
     </section>
-
+  
     <div class="modal-footer-section modal-footer" #marginBottomModal>
       <button class="modal-footer-button" (click)="deleteUsertById()">
         <span class="material-symbols-rounded" #iconBottomModal>{{icon}}</span>
@@ -28,3 +28,4 @@
       </button>
     </div>
   </article>
+  
