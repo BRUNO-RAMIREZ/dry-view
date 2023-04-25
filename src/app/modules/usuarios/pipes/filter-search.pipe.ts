@@ -2,7 +2,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 import {UserListResponse} from "../../../core/models/user.model";
 
 @Pipe({
-  name: 'filterSearchPipe'
+  name: 'filterSearchPipeUser'
 })
 export class FilterSearchPipe implements PipeTransform {
 

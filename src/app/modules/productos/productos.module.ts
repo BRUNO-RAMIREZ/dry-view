@@ -13,7 +13,7 @@ import {HomeRouterOutletComponent} from './pages/home-router-outlet/home-router-
 import {ProductosService} from "./services/productos.service";
 import {ReactiveFormsModule} from "@angular/forms";
 import {ModalComponent} from './components/modal/modal.component';
-import {FilterSearchPipe} from './pipes/filter-search.pipe';
+import {FilterSearchPipeProducts} from './pipes/filter-search.pipe';
 import {SortByPipe} from './pipes/sort-by.pipe';
 import {HomeComponent} from "./pages/home/home.component";
 import {CardComponent} from './components/card/card.component';
@@ -29,7 +29,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     EditarComponent,
     RegistrarComponent,
     ModalComponent,
-    FilterSearchPipe,
+    FilterSearchPipeProducts,
     SortByPipe,
     CardComponent,
     ChangeColorDirective,
@@ -43,7 +43,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     NgxPaginationModule,
   ],
   exports: [
-    ChangeColorDirective
+    ChangeColorDirective,
+    FilterSearchPipeProducts
   ],
   providers: [
     ProductosService,

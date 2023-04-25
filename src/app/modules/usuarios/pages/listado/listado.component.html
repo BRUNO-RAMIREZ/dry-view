@@ -44,9 +44,9 @@
           class="table-row animate__animated animate__fadeIn animate__faster"
           *ngFor="let user of users
           | async
-          | filterSearchPipe:userNameSearch
+          | filterSearchPipeUser:userNameSearch
           | sortByPipe:sortBy :order
-          | paginate: { itemsPerPage:10  , currentPage: page, totalItems: (users | async | filterSearchPipe:userNameSearch).length};
+          | paginate: { itemsPerPage:10  , currentPage: page, totalItems: (users | async | filterSearchPipeUser:userNameSearch).length};
            let i = index; trackBy: trackById">
         <td>
           <img src="{{user.image}}" alt="image" class="item-img">
@@ -67,12 +67,12 @@
         </td>
 
       </tr>
-      <td *ngIf="(users | async | filterSearchPipe:userNameSearch)?.length === 0">Lista vacia de usuarios</td>
+      <td *ngIf="(users | async | filterSearchPipeUser:userNameSearch)?.length === 0">Lista vacia de usuarios</td>
       </tbody>
     </table>
 
     <section class="listado-footer-section listado-footer">
-      <label class="listado-footer-quantity">{{(users | async | filterSearchPipe:userNameSearch).length }} usuarios en total</label>
+      <label class="listado-footer-quantity">{{(users | async | filterSearchPipeUser:userNameSearch).length }} usuarios en total</label>
 
       <section class="listado-footer-pagination">
         <pagination-controls
@@ -87,19 +87,17 @@
     </section>
   </section>
 
-  <!--TODO: MODAL DE ELIMINAR
+<!--  TODO: MODAL DE ELIMINAR
   <ng-container *ngIf="deleteBoolean">
-    <app-modal [user]="userModal" (onCloseModal)="closeModal()" [title]="'¿Estás seguro que deseas eliminar el usero?'"
+    <app-modal [user]="userModal" (onCloseModal)="closeModal()" [title]="'¿Estás seguro que deseas eliminar el user?'"
       [color]="'rgb(153,217,140)'" [icon]="'delete_forever'" [txtButton]="'Eliminar'"></app-modal>
-<<<<<<< HEAD
-  </ng-container>
--->
+  </ng-container>-->
 
-  <!-- TODO: MODAL DE VISUALIZAR
+<!--  TODO: MODAL DE VISUALIZAR
   <ng-container *ngIf="seeBoolean">
     <app-modal [user]="userModal"
                (onCloseModal)="closeModal()"
-               [title]="'Información del usero'"
+               [title]="'Información del user'"
                [color]="'rgb(52,160,164)'"
                [txtButton]="'Salir'"
     ></app-modal>

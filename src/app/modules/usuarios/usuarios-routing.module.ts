@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {HomeRouterOutletComponent} from "./pages/home-router-outlet/home-router-outlet.component";
 import {HomeComponent} from "./pages/home/home.component";
 import {RegistrarComponent} from "./pages/registrar/registrar.component";
 import { ListadoComponent } from './pages/listado/listado.component';
 import { InformacionCuentaComponent } from './pages/informacion-cuenta/informacion-cuenta.component';
-//aumente el import info cuenta de la linea 7
 const routes: Routes = [
   {
     path: '',
@@ -26,4 +25,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class UsuariosRoutingModule { }
+export class UsuariosRoutingModule {
+}

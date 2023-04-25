@@ -75,7 +75,7 @@ export class FormRegisterComponent implements OnInit {
       phone: formValue.phone,
       username: formValue.username,
       password: formValue.password,
-      image: this.imageData ? this.imageData : '../../../../../assets/image-default.jpg'
+      image: this.imageData ? this.imageData : '../../../assets/person-default.jpg'
     }
     return user;
   }
@@ -105,7 +105,7 @@ export class FormRegisterComponent implements OnInit {
       phone: [0, [
         Validators.required,
         Validators.min(0),
-        Validators.pattern(/^\+?\d{10,14}$/)
+        Validators.pattern(/^\+?\d{7,10}$/)
       ]
       ],
       username: ['', [
