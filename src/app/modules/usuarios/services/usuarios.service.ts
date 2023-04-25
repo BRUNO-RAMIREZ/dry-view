@@ -31,7 +31,6 @@ export class UsuariosService {
     return this._http.post<UserCreateResponse>(`${this._baseURL}/users/create`, user);
   }
 
-
   public get usersObservable(): Observable<UserListResponse[]> {
     return this._users.asObservable();
   }
@@ -41,7 +40,6 @@ export class UsuariosService {
     return this._http.get<UserGetAllResponse>(`${this._baseURL}/users/getAll`)
       .pipe(map(res => res.users));
   }
-
 
   public updateUser(userUpdateRequest: UserUpdateRequest): Observable<UserUpdateResponse> {
     return this._http.put<UserUpdateResponse>(`${this._baseURL}/users/${userUpdateRequest.id}`, userUpdateRequest)
@@ -63,7 +61,6 @@ export class UsuariosService {
         })
       );
   }
-
 
   public getUserById(userId: number): Observable<UserGetByIdResponse> {
     return this._http.get<UserGetByIdResponse>(`${this._baseURL}/users/${userId}/findById`);

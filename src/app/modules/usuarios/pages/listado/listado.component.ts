@@ -61,6 +61,7 @@ export class ListadoComponent implements OnInit, OnDestroy {
   }
 
   public goNavigateWindowRegister(): void {
+    console.log("entra")
     this._router.navigate(['/usuarios/registrar']);
   }
 

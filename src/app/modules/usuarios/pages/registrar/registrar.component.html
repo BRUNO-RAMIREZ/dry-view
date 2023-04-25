@@ -3,11 +3,11 @@
   <section class="image-container">
     <img [src]="'../../../assets/foto-por-defecto.jpg'" class="image"/>
     <label for="fileInput">Subir Foto</label>
-    <input id="fileInput" type="file" accept=".jpg,.png" title="subir foto">
+    <input id="fileInput" type="file" accept=".jpg,.png" title="subir foto" (change)="onFileSelected($event)">
   </section>
 
   <section class="form-section">
-    <form class="form">
+    <form class="form" [formGroup]="formularyUsers" (ngSubmit)="createUser()">
       <section class="form-row-section">
         <section class="form-field">
           <section class="form-field-header-input">
@@ -22,7 +22,7 @@
             <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('maxlength')">Maximo 80 caracteres </small>
             <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('pattern')">No se permiten caracteres especiales </small>
             <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('pattern')">No se permiten numeros </small>
-        </div>
+          </div>
         </section>
 
         <section class="form-field">
@@ -32,13 +32,13 @@
           </section>
 
           <input type="text" class="form-field-input" formControlName="lastName" name="lastName" maxlength="81">
-          <div *ngIf="formularyUsers.get('name')?.errors && formularyUsers.get('name')?.dirty">
-            <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('required')">Apellido requerido</small>
-            <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('minlength')">Minimo 4 caracteres </small>
-            <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('maxlength')">Maximo 80 caracteres </small>
-            <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('pattern')">No se permiten caracteres especiales </small>
-            <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('pattern')">No se permiten numeros </small>
-        </div>
+          <div *ngIf="formularyUsers.get('lastName')?.errors && formularyUsers.get('lastName')?.dirty">
+            <small class="text-danger" *ngIf="formularyUsers.get('lastName')?.hasError('required')">Apellido requerido</small>
+            <small class="text-danger" *ngIf="formularyUsers.get('lastName')?.hasError('minlength')">Minimo 4 caracteres </small>
+            <small class="text-danger" *ngIf="formularyUsers.get('lastName')?.hasError('maxlength')">Maximo 80 caracteres </small>
+            <small class="text-danger" *ngIf="formularyUsers.get('lastName')?.hasError('pattern')">No se permiten caracteres especiales </small>
+            <small class="text-danger" *ngIf="formularyUsers.get('lastName')?.hasError('pattern')">No se permiten numeros </small>
+          </div>
         </section>
       </section>
 
@@ -50,10 +50,9 @@
         </section>
 
         <input type="email" class="form-field-input" formControlName="email" name="email" maxlength="81">
-        <div *ngIf="formularyUsers.get('name')?.errors && formularyUsers.get('name')?.dirty">
-          <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('required')">Solo se permiten correos electronicos</small>
-
-      </div>
+        <div *ngIf="formularyUsers.get('email')?.errors && formularyUsers.get('email')?.dirty">
+          <small class="text-danger" *ngIf="formularyUsers.get('email')?.hasError('required')">Solo se permiten correos electronicos</small>
+        </div>
       </section>
 
       <section class="form-row-section">
@@ -61,13 +60,13 @@
           <section class="form-field-header-input">
             <span class="material-symbols-rounded" style="font-size: 35px;">phone_iphone</span>
             <label>Celular</label>
-            <div *ngIf="formularyUsers.get('name')?.errors && formularyUsers.get('name')?.dirty">
-              <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('required')">Solo se permiten numeros celulares</small>
-    
-          </div>        
+
           </section>
 
           <input type="number" class="form-field-input" formControlName="phone" name="phone">
+          <div *ngIf="formularyUsers.get('phone')?.errors && formularyUsers.get('phone')?.dirty">
+            <small class="text-danger" *ngIf="formularyUsers.get('phone')?.hasError('required')">Solo se permiten numeros celulares</small>
+          </div>
         </section>
 
         <section class="form-field">
@@ -76,12 +75,12 @@
             <label>Usuario</label>
           </section>
 
-          <input type="text" class="form-field-input" formControlName="user" name="user">
-          <div *ngIf="formularyUsers.get('user')?.errors && formularyUsers.get('user')?.dirty">
-            <small class="text-danger" *ngIf="formularyUsers.get('user')?.hasError('required')">usuario requerido</small>
-            <small class="text-danger" *ngIf="formularyUsers.get('user')?.hasError('minlength')">Minimo 4 caracteres </small>
-            <small class="text-danger" *ngIf="formularyUsers.get('user')?.hasError('maxlength')">Maximo 80 caracteres </small>
-        </div>  
+          <input type="text" class="form-field-input" formControlName="username" name="username">
+          <div *ngIf="formularyUsers.get('username')?.errors && formularyUsers.get('username')?.dirty">
+            <small class="text-danger" *ngIf="formularyUsers.get('username')?.hasError('required')">usuario requerido</small>
+            <small class="text-danger" *ngIf="formularyUsers.get('username')?.hasError('minlength')">Minimo 4 caracteres </small>
+            <small class="text-danger" *ngIf="formularyUsers.get('username')?.hasError('maxlength')">Maximo 80 caracteres </small>
+          </div>
         </section>
       </section>
 
@@ -96,15 +95,14 @@
           <small class="text-danger" *ngIf="formularyUsers.get('password')?.hasError('required')">paswword requerido</small>
           <small class="text-danger" *ngIf="formularyUsers.get('password')?.hasError('minlength')">Minimo 4 caracteres </small>
           <small class="text-danger" *ngIf="formularyUsers.get('password')?.hasError('maxlength')">Maximo 80 caracteres </small>
-      </div>       
+        </div>
       </section>
 
       <section class="form-field-buttons"
                style="min-width: 500px; align-items: center; display: flex; justify-content: center;">
         <button class="form-button form-button-registrar" type="submit"
                 style="color: white;background-color: #1A759F">Registrar</button>
-                <button class="form-button form-button-cancelar" (click)="redirectToWindowUser()">Cancelar</button>
-
+        <button class="form-button form-button-cancelar" (click)="redirectToWindowUser()">Cancelar</button>
       </section>
     </form>
   </section>

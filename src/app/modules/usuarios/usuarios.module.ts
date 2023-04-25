@@ -14,6 +14,7 @@ import {CardComponent} from "./components/card/card.component";
 import {ProductosService} from "../productos/services/productos.service";
 import {ListadoComponent} from './pages/listado/listado.component';
 import {ModalComponent} from './components/modal/modal.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -31,8 +32,8 @@ import {ModalComponent} from './components/modal/modal.component';
     SharedModule,
     UsuariosRoutingModule,
     NgxPaginationModule,
-    ProductosModule
-
+    ProductosModule,
+    ReactiveFormsModule
   ],
   providers: [
     ProductosService

@@ -1,19 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { UsuariosService } from '../../services/usuarios.service'
+import {Component, DoCheck, OnInit} from '@angular/core';
+import {UsuariosService} from '../../services/usuarios.service'
 import {
   UserCreateRequest,
   UserCreateResponse,
-  UserUpdateRequest, UserUpdateResponse
+  UserUpdateRequest,
+  UserUpdateResponse
 } from "../../../../core/models/user.model";
-import { Subject } from "rxjs";
-import { filter, switchMap, take } from "rxjs/operators";
-import { ActivatedRoute, Router } from "@angular/router";
-import { ToastrService } from "ngx-toastr";
-
-import { Directive, Input, DoCheck } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { FormBuilder, Validators } from "@angular/forms";
-import { Subscription } from 'rxjs';
+import {Subject} from "rxjs";
+import {filter, switchMap, take} from "rxjs/operators";
+import {ActivatedRoute, Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-registrar',
@@ -28,11 +25,11 @@ export class RegistrarComponent implements OnInit, DoCheck {
   public imageData: string;
   private _unsubscribed: Subject<void>;
 
-  constructor(private UsuariosService: UsuariosService,
-    private _formsBuilder: FormBuilder,
-    private _activateRoute: ActivatedRoute,
-    private _router: Router,
-    private _toastrService: ToastrService) {
+  constructor(private _usersService: UsuariosService,
+              private _formsBuilder: FormBuilder,
+              private _activateRoute: ActivatedRoute,
+              private _router: Router,
+              private _toastrService: ToastrService) {
     this.imageData = '';
     this.userUpdateRequest = {
       id: 0,
@@ -48,16 +45,18 @@ export class RegistrarComponent implements OnInit, DoCheck {
     this._unsubscribed = new Subject<void>();
     this._validate();
   }
+
   ngOnInit(): void {
+    console.log("NG ONINIT")
     this._activateRoute.params
       .pipe(
         filter(params => params.hasOwnProperty('id')),
-        switchMap(({ id }) => this.UsuariosService.getUserById(id))
+        switchMap(({id}) => this._usersService.getUserById(id))
       ).subscribe(response => {
-        this.userUpdateRequest = response;
-        this.imageData = this.userUpdateRequest.image;
-        this._validate();
-      })
+      this.userUpdateRequest = response;
+      this.imageData = this.userUpdateRequest.image;
+      this._validate();
+    })
   }
 
   ngDoCheck(): void {
@@ -71,12 +70,12 @@ export class RegistrarComponent implements OnInit, DoCheck {
 
   public createUser(): void {
     if (this.userUpdateRequest.id) {
-      const UserUpdateRequest: UserUpdateRequest = {
+      const userUpdateRequest: UserUpdateRequest = {
         ...this.formularyUsers.value,
         id: this.userUpdateRequest.id,
         image: this.imageData
       };
-      this.UsuariosService.updateUser(UserUpdateRequest)
+      this._usersService.updateUser(userUpdateRequest)
         .pipe(take(1))
         .subscribe(
           (response: UserUpdateResponse) => {
@@ -84,12 +83,12 @@ export class RegistrarComponent implements OnInit, DoCheck {
             this.redirectToWindowUser();
           },
           (error) => {
-            this._toastrService.error(`Ocurrió un error al actualizar el usuarios`)
+            this._toastrService.error(`Ocurrió un error al actualizar el usuario`)
           });
     } else {
       if (this.formularyUsers.valid) {
-        const user = this._buildProduct();
-        this.UsuariosService.createUser(user)
+        const user = this._buildUser();
+        this._usersService.createUser(user)
           .pipe(take(1))
           .subscribe(
             (response: UserCreateResponse) => {
@@ -97,7 +96,7 @@ export class RegistrarComponent implements OnInit, DoCheck {
               this.redirectToWindowUser();
             },
             (error) => {
-              this._toastrService.error(`Ocurrió un error al registrar el producto`)
+              this._toastrService.error(`Ocurrió un error al registrar el usuario`)
             });
         this.formularyUsers.reset();
       }
@@ -117,7 +116,7 @@ export class RegistrarComponent implements OnInit, DoCheck {
   }
 
   public redirectToWindowUser(): void {
-    this._router.navigate(['/usuarios/registrar']);
+    this._router.navigate(['/usuarios/listado']);
   }
 
   public verificarNum(event: any) {
@@ -133,18 +132,18 @@ export class RegistrarComponent implements OnInit, DoCheck {
     }
   }
 
-  private _buildProduct(): UserCreateRequest {
+  private _buildUser(): UserCreateRequest {
     const formValue = this.formularyUsers.value;
-    const product: UserCreateRequest = {
+    const user: UserCreateRequest = {
       name: formValue.name,
-      lastName: formValue.description,
-      image: this.imageData ? this.imageData : '../../../../../assets/image-default.jpg',
-      email: formValue.purchasePrice,
-      phone: formValue.salePrice,
-      username: formValue.s,
-      password: formValue.stock,
+      lastName: formValue.lastName,
+      email: formValue.email,
+      phone: formValue.phone,
+      username: formValue.username,
+      password: formValue.password,
+      image: formValue.image
     }
-    return product;
+    return user;
   }
 
   get nombre() {
@@ -166,19 +165,19 @@ export class RegistrarComponent implements OnInit, DoCheck {
   get user() {
     return this.formularyUsers.get('user')
   }
+
   get password() {
     return this.formularyUsers.get('password')
   }
+
   private _validate(): void {
     this.formularyUsers = this._formsBuilder.group({
       name: [this.userUpdateRequest.name ? this.userUpdateRequest.name : '', [Validators.required, Validators.minLength(4), Validators.maxLength(80), Validators.pattern('[a-zA-Z ]')]],
       lastName: [this.userUpdateRequest.lastName ? this.userUpdateRequest.lastName : '', [Validators.required, Validators.minLength(4), Validators.maxLength(80), Validators.pattern('[a-zA-Z ]')]],
-      email: [this.userUpdateRequest.email ? this.userUpdateRequest.email : 0, [Validators.min(0), Validators.required], Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')],
-      phone: [this.userUpdateRequest.phone ? this.userUpdateRequest.phone : 0, [Validators.min(0), Validators.required], Validators.pattern('^\d{8}$')],
-      username: [this.userUpdateRequest.username ? this.userUpdateRequest.username : 0, [Validators.min(0), Validators.required], Validators.pattern('^[a-zA-Z0-9]+$')],
-      password: [this.userUpdateRequest.password ? this.userUpdateRequest.password : 0, [Validators.min(0), Validators.required]]
+      email: [this.userUpdateRequest.email ? this.userUpdateRequest.email : '', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')]],
+      phone: [this.userUpdateRequest.phone ? this.userUpdateRequest.phone : 0, [Validators.min(0), Validators.required, Validators.pattern('^\d{8}$')]],
+      username: [this.userUpdateRequest.username ? this.userUpdateRequest.username : '', [Validators.required, Validators.pattern('^[a-zA-Z0-9]+$')]],
+      password: [this.userUpdateRequest.password ? this.userUpdateRequest.password : '', Validators.required]
     });
-
   }
-
 }
