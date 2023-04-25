@@ -47,7 +47,6 @@ export class RegistrarComponent implements OnInit, DoCheck {
   }
 
   ngOnInit(): void {
-    console.log("NG ONINIT")
     this._activateRoute.params
       .pipe(
         filter(params => params.hasOwnProperty('id')),
@@ -56,7 +55,7 @@ export class RegistrarComponent implements OnInit, DoCheck {
       this.userUpdateRequest = response;
       this.imageData = this.userUpdateRequest.image;
       this._validate();
-    })
+    });
   }
 
   ngDoCheck(): void {

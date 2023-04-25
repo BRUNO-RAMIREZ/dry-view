@@ -12,7 +12,9 @@ import {SortByPipe} from "./pipes/sort-by.pipe";
 import {NgxPaginationModule} from "ngx-pagination";
 import {CardComponent} from "./components/card/card.component";
 import {ProductosService} from "../productos/services/productos.service";
-import {ListadoComponent} from './pages/listado/listado.component';
+import {UsuariosService} from "./services/usuarios.service";
+import { ListadoComponent } from './pages/listado/listado.component';
+import { InformacionCuentaComponent } from './pages/informacion-cuenta/informacion-cuenta.component';
 import {ModalComponent} from './components/modal/modal.component';
 import {ReactiveFormsModule} from "@angular/forms";
 
@@ -25,7 +27,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     SortByPipe,
     CardComponent,
     ListadoComponent,
-    ModalComponent
+    InformacionCuentaComponent
   ],
   imports: [
     CommonModule,

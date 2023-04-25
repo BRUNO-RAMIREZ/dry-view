@@ -1,0 +1,39 @@
+.dry-page-informacion-cuenta-container {
+    background-color: var(--color-white);
+    box-sizing: border-box;
+    box-shadow: var(--box-shadow-primary);
+    margin-top: 40px;
+    padding: 50px 40px;
+    display: flex;
+    gap: 40px;
+  }
+  .header{
+    display: flex;
+    justify-content: space-between;
+  }
+  .btn-cerrar-sesion{
+    border: none;
+  }
+  .icono-cerrar-sesion{
+    width: 50px;
+    height: 50px;
+    border: none;
+  }
+  img{
+    width: 150px;
+    height: 150px;
+  }
+  .contenido-info-cuenta{
+    display: flex;
+    justify-content: space-between;
+    width: 100vh;
+  }
+  .lado_izquierdo{
+    //background-color: blue;
+  }
+  .lado_derecho{
+    //background-color: red;
+  }
+h1{
+
+}
