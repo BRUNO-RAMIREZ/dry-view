@@ -138,6 +138,9 @@ label[for="fileInput"] {
 input[type="file"] {
   display: none;
 }
+/*input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}*/
 
 .correct-field-text-icon {
   color: #1A759F;
