@@ -25,7 +25,7 @@ export class SidebarComponent implements OnInit {
     }else{
       this._router.navigate(['/usuarios/home']);
     }
-    
+
   }
   ngOnInit(): void {
   }
@@ -42,6 +42,6 @@ export class SidebarComponent implements OnInit {
   logout() {
     this._authService.logout();
     this.modal.dismissAll();
-    this._router.navigate(['/auth']);
+    this._router.navigate(['/usuarios']);
   }
 }
