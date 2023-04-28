@@ -1,18 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import {
   ProductCreateRequest,
   ProductCreateResponse,
   ProductUpdateRequest,
   ProductUpdateResponse
 } from "../../../../core/models/product.model";
-import {Subject} from "rxjs";
-import {ProductosService} from "../../../productos/services/productos.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {ToastrService} from "ngx-toastr";
-import {filter, switchMap, take} from "rxjs/operators";
-import {UsuariosService} from "../../../usuarios/services/usuarios.service";
-import {UserCreateRequest, UserCreateResponse} from "../../../../core/models/user.model";
+import { Subject } from "rxjs";
+import { ProductosService } from "../../../productos/services/productos.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
+import { filter, switchMap, take } from "rxjs/operators";
+import { UsuariosService } from "../../../usuarios/services/usuarios.service";
+import { UserCreateRequest, UserCreateResponse } from "../../../../core/models/user.model";
 
 @Component({
   selector: 'app-form-register',
@@ -24,10 +24,10 @@ export class FormRegisterComponent implements OnInit {
   public imageData: string;
 
   constructor(private _usersService: UsuariosService,
-              private _formsBuilder: FormBuilder,
-              private _activateRoute: ActivatedRoute,
-              private _router: Router,
-              private _toastrService: ToastrService) {
+    private _formsBuilder: FormBuilder,
+    private _activateRoute: ActivatedRoute,
+    private _router: Router,
+    private _toastrService: ToastrService) {
     this.imageData = '';
     this._validate();
   }
@@ -104,8 +104,7 @@ export class FormRegisterComponent implements OnInit {
       ],
       phone: [0, [
         Validators.required,
-        Validators.min(0),
-        Validators.pattern(/^\+?\d{7,10}$/)
+        Validators.pattern('^([6-7][0-9]{7})$')
       ]
       ],
       username: ['', [
@@ -123,4 +122,5 @@ export class FormRegisterComponent implements OnInit {
       image: ['', [Validators.required]],
     });
   }
+  
 }

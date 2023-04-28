@@ -60,7 +60,7 @@
               <label>Celular</label>
             </section>
 
-            <input type="number" class="form-field-input" formControlName="phone" name="phone" [ngClass]="((formularyUser.get('phone')?.touched && formularyUser.get('phone')?.errors) ? 'incorrect-field-input': 'correct-field-input')">
+            <input type="number" class="form-field-input" formControlName="phone" maxlength="8" name="phone" [ngClass]="((formularyUser.get('phone')?.touched && formularyUser.get('phone')?.errors) ? 'incorrect-field-input': 'correct-field-input')">
             <ng-container *ngIf="formularyUser.get('phone')?.errors && formularyUser.get('phone')?.touched">
               <div *ngIf="formularyUser.get('phone')?.hasError('required')" class="error-text">El número de teléfono es obligatorio</div>
               <div *ngIf="formularyUser.get('phone')?.hasError('pattern')" class="error-text">El número de teléfono no es válido</div>
