@@ -5,6 +5,13 @@
   height: 100vh;
   max-width: 100%;
 }
+h3{
+  font-size: var(--font-size-big);
+  margin-left: 10%;
+  margin-top: 1%;
+ color: #212529;
+ font-weight: 400;
+}
 
 .dry-form-register-content {
   background-color: var(--color-white);

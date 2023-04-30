@@ -4,7 +4,7 @@
       <form class="form" [formGroup]="formularyLogin" (ngSubmit)="login()">
         <label class="form-title">LOGIN</label>
         <section class="form-field">
-          <label class="form-field-label form-field-text--bold">Correo Electronico</label>
+          <label class="form-field-label form-field-text--bold">Correo Electrónico</label>
           <input type="email" class="form-field-input form-field--common" formControlName="email" name="email" required>
           <ng-container
             *ngIf="formularyLogin.controls['email'].invalid && (formularyLogin.controls['email'].dirty || formularyLogin.controls['email'].touched)">

@@ -60,10 +60,11 @@
             <label>Celular</label>
           </section>
 
-          <input type="number" class="form-field-input" formControlName="phone" name="phone" maxlength="8">
+          <input type="tel" class="form-field-input" formControlName="phone" name="phone"  onkeypress="return event.charCode>=48 && event.charCode<=57" maxlength="8" (keydown)="onKeyDown($event)">
           <div *ngIf="formularyUsers.get('phone')?.errors && formularyUsers.get('phone')?.dirty">
             <small class="text-danger" *ngIf="formularyUsers.get('phone')?.hasError('required')">Numero Celular requerido</small>
-            <small class="text-danger" *ngIf="formularyUsers.get('phone')?.hasError('pattern')">Solo se permiten numeros celulares</small>
+
+            <small class="text-danger" *ngIf="formularyUsers.get('phone')?.hasError('pattern')">Solo numeros de bolivia</small>
           </div>
         </section>
 
@@ -89,18 +90,21 @@
           <label>Password</label>
         </section>
 
-        <input type="password" class="form-field-input" formControlName="password" name="password">
-        <div *ngIf="formularyUsers.get('password')?.errors && formularyUsers.get('password')?.dirty">
+        <input type="password" id="_texto" class="form-field-input" formControlName="password" name="password" maxlength="10" (keydown)="oneKeyDown($event)">
+        <div *ngIf="formularyUsers.get('password')?.errors && formularyUsers.get('password')?.dirty" >
           <small class="text-danger" *ngIf="formularyUsers.get('password')?.hasError('required')">Contraseña requerida</small>
+          <small class="text-danger" *ngIf="formularyUsers.get('password')?.hasError('maxlength')">Maximo 10 caracteres </small>
           <small class="text-danger" *ngIf="formularyUsers.get('password')?.hasError('minlength')">Minimo 4 caracteres </small>
-          <small class="text-danger" *ngIf="formularyUsers.get('password')?.hasError('maxlength')">Maximo 80 caracteres </small>
+          
+         
+         
         </div>
       </section>
 
       <section class="form-field-buttons"
                style="min-width: 500px; align-items: center; display: flex; justify-content: center;">
         <button class="form-button form-button-registrar" type="submit"
-                style="color: white;background-color: #1A759F">Registrar</button>
+                style="color: white;background-color: #1A759F"   [ngClass]="formularyUsers.invalid? 'disabled': 'enable'">Registrar</button>
         <button class="form-button form-button-cancelar" (click)="redirectToWindowUser()" type="button">Cancelar</button>
       </section>
     </form>
