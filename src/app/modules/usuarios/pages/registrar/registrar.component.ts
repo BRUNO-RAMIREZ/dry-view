@@ -12,6 +12,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
+
 @Component({
   selector: 'app-registrar',
   templateUrl: './registrar.component.html',
@@ -20,10 +21,12 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class RegistrarComponent implements OnInit, DoCheck {
   public formularyUsers!: FormGroup;
   public userUpdateRequest: UserUpdateRequest;
+  
 
   public title: string;
   public imageData: string;
   private _unsubscribed: Subject<void>;
+  
 
   constructor(private _usersService: UsuariosService,
               private _formsBuilder: FormBuilder,
@@ -46,6 +49,9 @@ export class RegistrarComponent implements OnInit, DoCheck {
     this._validate();
   }
 
+
+  
+  
   ngOnInit(): void {
     this._activateRoute.params
       .pipe(
@@ -67,7 +73,8 @@ export class RegistrarComponent implements OnInit, DoCheck {
     this._unsubscribed.next();
     this._unsubscribed.complete();
   }
-
+ 
+  
   public createUser(): void {
     if (this.userUpdateRequest.id) {
       const userUpdateRequest: UserUpdateRequest = {
@@ -92,6 +99,7 @@ export class RegistrarComponent implements OnInit, DoCheck {
           .pipe(take(1))
           .subscribe(
             (response: UserCreateResponse) => {
+              
               this._toastrService.success(`${response.name} registrado con éxito`, 'Registrar')
               this.redirectToWindowUser();
             },
@@ -144,6 +152,7 @@ export class RegistrarComponent implements OnInit, DoCheck {
       image: this.imageData ? this.imageData : '../../../../../assets/image-default.jpg'
     }
     return user;
+    
   }
 
   get nombre() {
@@ -175,9 +184,9 @@ export class RegistrarComponent implements OnInit, DoCheck {
       name: [this.userUpdateRequest.name ? this.userUpdateRequest.name : '', [Validators.required, Validators.minLength(4), Validators.maxLength(80), Validators.pattern('[a-zA-ZñÑ ]*')]],
       lastName: [this.userUpdateRequest.lastName ? this.userUpdateRequest.lastName : '', [Validators.required, Validators.minLength(4), Validators.maxLength(80), Validators.pattern('[a-zA-ZñÑ ]*')]],
       email: [this.userUpdateRequest.email ? this.userUpdateRequest.email : '', [Validators.required, Validators.email]],
-      phone: [this.userUpdateRequest.phone ? this.userUpdateRequest.phone : 0, [Validators.min(0), Validators.required, Validators.pattern('[0-9]{8}')]],
+      phone: [this.userUpdateRequest.phone ? this.userUpdateRequest.phone : 0, [Validators.min(0), Validators.required, Validators.pattern('[7](\d{7})')]],
       username: [this.userUpdateRequest.username ? this.userUpdateRequest.username : '', [Validators.required,  Validators.minLength(4), Validators.maxLength(80),Validators.pattern('[a-zA-Z0-9ñÑ]*')]],
-      password: [this.userUpdateRequest.password ? this.userUpdateRequest.password : '', [Validators.required, Validators.minLength(4), Validators.maxLength(80)]]
+      password: [this.userUpdateRequest.password ? this.userUpdateRequest.password : '', [Validators.required, Validators.minLength(4), Validators.maxLength(10),Validators.pattern('[a-zA-Z0-9ñÑ]*')]]
     });
   }
 }

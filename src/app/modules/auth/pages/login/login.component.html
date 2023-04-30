@@ -4,7 +4,7 @@
       <form class="form" [formGroup]="formularyLogin" (ngSubmit)="login()">
         <label class="form-title">LOGIN</label>
         <section class="form-field">
-          <label class="form-field-label form-field-text--bold">Correo Electronico</label>
+          <label class="form-field-label form-field-text--bold">Correo Electrónico</label>
           <input type="email" class="form-field-input form-field--common" formControlName="email" name="email" required>
           <div *ngIf="formularyLogin.controls['email'].invalid && (formularyLogin.controls['email'].dirty || formularyLogin.controls['email'].touched)">
             <div *ngIf="formularyLogin.controls['email'].errors?.required">Este campo es requerido</div>
@@ -25,7 +25,7 @@
         <section class="form-field">
           <button type="submit" class="form-field-button form-field--common form-field-text--bold">Login</button>
         </section>
-        <label class="form-field-label-footer form-field-label--size-small">¿Eres nuevo en la plataforma? <b class="text-hover" (click)="navigateWindowFormRegister()">Registrate</b></label>
+        <label class="form-field-label-footer form-field-label--size-small">¿Eres nuevo en la plataforma? <b class="text-hover" (click)="navigateWindowFormRegister()">Reg&iacute;strate</b></label>
       </form>
     </section>
 

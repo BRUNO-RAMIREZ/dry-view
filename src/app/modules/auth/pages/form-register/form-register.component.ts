@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component,DoCheck, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {
   ProductCreateRequest,
@@ -23,17 +23,20 @@ export class FormRegisterComponent implements OnInit {
   public formularyUser!: FormGroup;
   public imageData: string;
 
+  
   constructor(private _usersService: UsuariosService,
               private _formsBuilder: FormBuilder,
               private _activateRoute: ActivatedRoute,
               private _router: Router,
               private _toastrService: ToastrService) {
     this.imageData = '';
+    
     this._validate();
   }
 
   ngOnInit(): void {
   }
+
 
   public createUser(): void {
     const user = this._buildUser();

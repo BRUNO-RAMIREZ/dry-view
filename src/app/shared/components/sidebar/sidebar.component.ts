@@ -15,7 +15,7 @@ export class SidebarComponent implements OnInit {
   constructor(config: NgbModalConfig, private _router: Router, public modal: NgbModal,
               private _authService: AuthService) {
     config.backdrop = 'static';
-    this.desplegado = true;
+    this.desplegado = false;
 
 
   }
