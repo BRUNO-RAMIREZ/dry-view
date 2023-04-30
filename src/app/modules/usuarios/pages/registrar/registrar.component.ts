@@ -1,4 +1,4 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, DoCheck, OnDestroy, OnInit} from '@angular/core';
 import {UsuariosService} from '../../services/usuarios.service'
 import {
   UserCreateRequest,
@@ -7,7 +7,7 @@ import {
   UserUpdateResponse
 } from "../../../../core/models/user.model";
 import {Subject} from "rxjs";
-import {filter, switchMap, take} from "rxjs/operators";
+import {filter, switchMap, take, takeUntil} from "rxjs/operators";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -18,7 +18,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   templateUrl: './registrar.component.html',
   styleUrls: ['./registrar.component.scss']
 })
-export class RegistrarComponent implements OnInit, DoCheck {
+export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
   public formularyUsers!: FormGroup;
   public userUpdateRequest: UserUpdateRequest;
   
@@ -56,9 +56,9 @@ export class RegistrarComponent implements OnInit, DoCheck {
     this._activateRoute.params
       .pipe(
         filter(params => params.hasOwnProperty('id')),
-        switchMap(({id}) => this._usersService.getUserById(id))
+        switchMap(({id}) => this._usersService.getUserById(id)),
+        takeUntil(this._unsubscribed)
       ).subscribe(response => {
-        console.warn(response);
       this.userUpdateRequest = response;
       this.imageData = this.userUpdateRequest.image;
       this._validate();
@@ -127,19 +127,6 @@ export class RegistrarComponent implements OnInit, DoCheck {
     this._router.navigate(['/usuarios/listado']);
   }
 
-  public verificarNum(event: any) {
-    var ch = event.key;
-
-    if (ch.charCodeAt(0) >= 48 && ch.charCodeAt(0) <= 57) {
-      console.log("si es");
-    } else {
-
-      if (ch == 'e' || ch == 'E' || ch == '+' || ch == '-') {
-        this.formularyUsers.setValue({});
-      }
-    }
-  }
-
   private _buildUser(): UserCreateRequest {
     const formValue = this.formularyUsers.value;
     const user: UserCreateRequest = {
@@ -178,13 +165,23 @@ export class RegistrarComponent implements OnInit, DoCheck {
   get password() {
     return this.formularyUsers.get('password')
   }
+  public onKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'e') {
+      event.preventDefault();
+    }
+  }
+  public oneKeyDown(event: KeyboardEvent): void {
+    if (event.key === ' ') {
+      event.preventDefault();
+    }
+  }
 
   private _validate(): void {
     this.formularyUsers = this._formsBuilder.group({
       name: [this.userUpdateRequest.name ? this.userUpdateRequest.name : '', [Validators.required, Validators.minLength(4), Validators.maxLength(80), Validators.pattern('[a-zA-ZñÑ ]*')]],
       lastName: [this.userUpdateRequest.lastName ? this.userUpdateRequest.lastName : '', [Validators.required, Validators.minLength(4), Validators.maxLength(80), Validators.pattern('[a-zA-ZñÑ ]*')]],
       email: [this.userUpdateRequest.email ? this.userUpdateRequest.email : '', [Validators.required, Validators.email]],
-      phone: [this.userUpdateRequest.phone ? this.userUpdateRequest.phone : 0, [Validators.min(0), Validators.required, Validators.pattern('[7](\d{7})')]],
+      phone: [this.userUpdateRequest.phone ? this.userUpdateRequest.phone : '', [Validators.min(0), Validators.required, Validators.pattern('^([6-7][0-9]{7})$')]],
       username: [this.userUpdateRequest.username ? this.userUpdateRequest.username : '', [Validators.required,  Validators.minLength(4), Validators.maxLength(80),Validators.pattern('[a-zA-Z0-9ñÑ]*')]],
       password: [this.userUpdateRequest.password ? this.userUpdateRequest.password : '', [Validators.required, Validators.minLength(4), Validators.maxLength(10),Validators.pattern('[a-zA-Z0-9ñÑ]*')]]
     });

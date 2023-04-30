@@ -64,7 +64,7 @@
               <label>Celular</label>
             </section>
 
-            <input type="number" class="form-field-input" formControlName="phone" name="phone" [ngClass]="((formularyUser.get('phone')?.touched && formularyUser.get('phone')?.errors) ? 'incorrect-field-input': 'correct-field-input')">
+            <input type="number" class="form-field-input" formControlName="phone" maxlength="8" name="phone" [ngClass]="((formularyUser.get('phone')?.touched && formularyUser.get('phone')?.errors) ? 'incorrect-field-input': 'correct-field-input')" (keydown)="onKeyDown($event)">
             <ng-container *ngIf="formularyUser.get('phone')?.errors && formularyUser.get('phone')?.touched">
               <div *ngIf="formularyUser.get('phone')?.hasError('required')" class="error-text">El número de teléfono es obligatorio</div>
               <div *ngIf="formularyUser.get('phone')?.hasError('pattern')" class="error-text">El número de teléfono no es válido</div>
@@ -92,7 +92,10 @@
             <label>Password</label>
           </section>
 
-          <input type="password" class="form-field-input" formControlName="password" name="password" [ngClass]="((formularyUser.get('password')?.touched && formularyUser.get('password')?.errors) ? 'incorrect-field-input': 'correct-field-input')">
+          <section class="form-field-section-password-icon">
+            <input type="{{isPasswordVisible ? 'text' : 'password'}}" class="form-field-input" formControlName="password" name="password" [ngClass]="((formularyUser.get('password')?.touched && formularyUser.get('password')?.errors) ? 'incorrect-field-input': 'correct-field-input')">
+            <span class="material-symbols-rounded icon-eye" (click)="togglePasswordVisibility()">{{textIconEye}}</span>
+          </section>
           <ng-container *ngIf="formularyUser.get('password')?.errors && formularyUser.get('password')?.touched">
             <div *ngIf="formularyUser.get('password')?.hasError('required')" class="error-text">La contraseña es obligatoria</div>
             <div *ngIf="formularyUser.get('password')?.hasError('minlength')" class="error-text">La contraseña debe tener al menos {{ formularyUser.get('password')?.getError('minlength').requiredLength }} caracteres.</div>

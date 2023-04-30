@@ -44,7 +44,6 @@
         <section class="form-field-header-input">
           <span class="material-symbols-rounded" style="font-size: 35px;">email</span>
           <label>Correo electrónico</label>
-
         </section>
 
         <input type="email" class="form-field-input" formControlName="email" name="email" maxlength="81">
@@ -59,13 +58,13 @@
           <section class="form-field-header-input">
             <span class="material-symbols-rounded" style="font-size: 35px;">phone_iphone</span>
             <label>Celular</label>
-
           </section>
 
-          <input type="number" class="form-field-input" formControlName="phone" name="phone">
+          <input type="tel" class="form-field-input" formControlName="phone" name="phone"  onkeypress="return event.charCode>=48 && event.charCode<=57" maxlength="8" (keydown)="onKeyDown($event)">
           <div *ngIf="formularyUsers.get('phone')?.errors && formularyUsers.get('phone')?.dirty">
             <small class="text-danger" *ngIf="formularyUsers.get('phone')?.hasError('required')">Numero Celular requerido</small>
-            <small class="text-danger" *ngIf="formularyUsers.get('phone')?.hasError('pattern')">Solo se permiten numeros de bolivia</small>
+
+            <small class="text-danger" *ngIf="formularyUsers.get('phone')?.hasError('pattern')">Solo numeros de bolivia</small>
           </div>
         </section>
 
@@ -91,7 +90,7 @@
           <label>Password</label>
         </section>
 
-        <input type="password" id="_texto" class="form-field-input" formControlName="password" name="password"  pattern="{/S}" maxlength="10">
+        <input type="password" id="_texto" class="form-field-input" formControlName="password" name="password" maxlength="10" (keydown)="oneKeyDown($event)">
         <div *ngIf="formularyUsers.get('password')?.errors && formularyUsers.get('password')?.dirty" >
           <small class="text-danger" *ngIf="formularyUsers.get('password')?.hasError('required')">Contraseña requerida</small>
           <small class="text-danger" *ngIf="formularyUsers.get('password')?.hasError('maxlength')">Maximo 10 caracteres </small>

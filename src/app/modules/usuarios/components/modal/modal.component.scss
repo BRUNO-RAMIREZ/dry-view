@@ -11,8 +11,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    box-sizing: border-box;
   }
-  
+
   .modal-header {
     display: flex;
     justify-content: space-between;
@@ -20,40 +21,43 @@
     padding: 10px;
     border-bottom: 1px solid #ccc;
     background-color: var(--color-light-green);
-  
+    box-sizing: border-box;
+
     &-text {
       font-size: var(--font-size-title);
     }
-  
+
     &-button {
       display: grid;
       place-items: center;
       border: none;
       background-color: transparent;
     }
-  
+
     .icon-cancel {
       font-size: 40px;
     }
   }
-  
+
   .modal-content {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     padding: 20px;
-  
+    box-sizing: border-box;
+
     &-image-section {
       width: 200px;
       max-width: 200px;
-  
+
       .image {
         background-size: cover;
         width: 100%;
         border: 1px solid black;
+        box-sizing: border-box;
       }
     }
-  
+
     &-description {
       display: flex;
       flex-direction: column;
@@ -61,18 +65,20 @@
       font-size: 16px;
     }
   }
-  
+
   .modal-content-description label {
     margin-bottom: 5px;
+    box-sizing: border-box;
   }
-  
+
   .modal-footer {
     display: flex;
     justify-content: flex-end;
     padding: 5px 10px 5px 0;
     border-top: 1px solid #ccc;
     background-color: var(-color-light-green);
-  
+    box-sizing: border-box;
+
     &-button {
       display: flex;
       justify-content: center;
@@ -83,10 +89,9 @@
       border-radius: 3px;
       background-color: var(--color-dark-green);
     }
-  
+
     &-text {
       cursor: pointer;
     }
   }
-  
-  
+
