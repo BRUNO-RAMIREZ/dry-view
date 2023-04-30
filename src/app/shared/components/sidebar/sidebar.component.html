@@ -8,7 +8,7 @@
 
   <section class="sidebar-content-section sidebar-content">
       <section class="sidebar-content-item" routerLink="/productos" (click)="homeRedirect()">
-      <span class="material-symbols-rounded sidebar-header-icon">home</span>
+      <span class="material-symbols-rounded sidebar-header-icon" title="Inicio">home</span>
       <label class="sidebar-content-item-text" *ngIf="desplegado">Inicio</label>
     </section>
 
@@ -25,16 +25,16 @@
     </section>
     -->
     <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/productos/listado">
-      <span class="material-symbols-rounded sidebar-header-icon">receipt_long</span>
+      <span class="material-symbols-rounded sidebar-header-icon" title="Lista de productos">receipt_long</span>
       <label class="sidebar-content-item-text" *ngIf="desplegado">Lista de productos</label>
     </section>
 
     <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/usuarios/listado">
-      <span class="material-symbols-rounded sidebar-header-icon">list_alt</span>
+      <span class="material-symbols-rounded sidebar-header-icon" title="Lista de usuarios">list_alt</span>
       <label class="sidebar-content-item-text" *ngIf="desplegado">Lista de usuarios</label>
     </section>
     <section  class="sidebar-content-item"(click)="modal.open(contenido,{centered:true})">
-      <span class="material-symbols-rounded sidebar-header-icon">logout</span>
+      <span class="material-symbols-rounded sidebar-header-icon" title="Salir">logout</span>
       <label class="sidebar-content-item-text" *ngIf="desplegado">Salir</label>
     </section>
   </section>
