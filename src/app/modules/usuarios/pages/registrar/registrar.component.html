@@ -60,7 +60,7 @@
             <label>Celular</label>
           </section>
 
-          <input type="number" class="form-field-input" formControlName="phone" name="phone" maxlength="8 !important">
+          <input type="number" class="form-field-input" formControlName="phone" name="phone" maxlength="8">
           <div *ngIf="formularyUsers.get('phone')?.errors && formularyUsers.get('phone')?.dirty">
             <small class="text-danger" *ngIf="formularyUsers.get('phone')?.hasError('required')">Numero Celular requerido</small>
             <small class="text-danger" *ngIf="formularyUsers.get('phone')?.hasError('pattern')">Solo se permiten numeros celulares</small>
