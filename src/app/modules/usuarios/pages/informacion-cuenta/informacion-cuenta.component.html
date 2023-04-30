@@ -5,7 +5,7 @@
     <header>
         <section class="header">
         <div>
-            <h2>informacion de la cuenta</h2>
+            <h2>Información de la cuenta</h2>
         </div>
         <div>
             <label for="">cerrar sesion</label>
@@ -14,7 +14,7 @@
             </button>
         </div>
         </section>
-    </header>   
+    </header>
     <article class="dry-page-informacion-cuenta-container">
 
 <section class="contenido-info-cuenta">
@@ -27,7 +27,7 @@
     </div>
 </div>
     <div class="lado_derecho">
-        
+
             <strong>Nombre:</strong>
             <p>{{ usuario.name }}</p>
             <strong>Correo electrónico:</strong>
@@ -35,13 +35,13 @@
             <strong>Celular:</strong>
             <p>{{ usuario?.phone }}</p>
             <strong>Contraseña:</strong>
-           <p> 
+           <p>
             <span *ngFor="let item of puntitos">
                 *
             </span>
-           </p>        
+           </p>
     </div>
-    
+
 </section>
     </article>
 

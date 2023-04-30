@@ -44,7 +44,6 @@
         <section class="form-field-header-input">
           <span class="material-symbols-rounded" style="font-size: 35px;">email</span>
           <label>Correo electrónico</label>
-
         </section>
 
         <input type="email" class="form-field-input" formControlName="email" name="email" maxlength="81">
@@ -59,10 +58,9 @@
           <section class="form-field-header-input">
             <span class="material-symbols-rounded" style="font-size: 35px;">phone_iphone</span>
             <label>Celular</label>
-
           </section>
 
-          <input type="number" class="form-field-input" formControlName="phone" name="phone">
+          <input type="number" class="form-field-input" formControlName="phone" name="phone" maxlength="8">
           <div *ngIf="formularyUsers.get('phone')?.errors && formularyUsers.get('phone')?.dirty">
             <small class="text-danger" *ngIf="formularyUsers.get('phone')?.hasError('required')">Numero Celular requerido</small>
             <small class="text-danger" *ngIf="formularyUsers.get('phone')?.hasError('pattern')">Solo se permiten numeros celulares</small>

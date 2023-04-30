@@ -1,4 +1,4 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, DoCheck, OnDestroy, OnInit} from '@angular/core';
 import {UsuariosService} from '../../services/usuarios.service'
 import {
   UserCreateRequest,
@@ -7,7 +7,7 @@ import {
   UserUpdateResponse
 } from "../../../../core/models/user.model";
 import {Subject} from "rxjs";
-import {filter, switchMap, take} from "rxjs/operators";
+import {filter, switchMap, take, takeUntil} from "rxjs/operators";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -17,7 +17,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   templateUrl: './registrar.component.html',
   styleUrls: ['./registrar.component.scss']
 })
-export class RegistrarComponent implements OnInit, DoCheck {
+export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
   public formularyUsers!: FormGroup;
   public userUpdateRequest: UserUpdateRequest;
 
@@ -50,9 +50,9 @@ export class RegistrarComponent implements OnInit, DoCheck {
     this._activateRoute.params
       .pipe(
         filter(params => params.hasOwnProperty('id')),
-        switchMap(({id}) => this._usersService.getUserById(id))
+        switchMap(({id}) => this._usersService.getUserById(id)),
+        takeUntil(this._unsubscribed)
       ).subscribe(response => {
-        console.warn(response);
       this.userUpdateRequest = response;
       this.imageData = this.userUpdateRequest.image;
       this._validate();
@@ -117,19 +117,6 @@ export class RegistrarComponent implements OnInit, DoCheck {
 
   public redirectToWindowUser(): void {
     this._router.navigate(['/usuarios/listado']);
-  }
-
-  public verificarNum(event: any) {
-    var ch = event.key;
-
-    if (ch.charCodeAt(0) >= 48 && ch.charCodeAt(0) <= 57) {
-      console.log("si es");
-    } else {
-
-      if (ch == 'e' || ch == 'E' || ch == '+' || ch == '-') {
-        this.formularyUsers.setValue({});
-      }
-    }
   }
 
   private _buildUser(): UserCreateRequest {
