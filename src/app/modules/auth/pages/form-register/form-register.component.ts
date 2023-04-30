@@ -22,6 +22,8 @@ import { UserCreateRequest, UserCreateResponse } from "../../../../core/models/u
 export class FormRegisterComponent implements OnInit {
   public formularyUser!: FormGroup;
   public imageData: string;
+  public isPasswordVisible: boolean;
+  public textIconEye: string;
 
   constructor(private _usersService: UsuariosService,
     private _formsBuilder: FormBuilder,
@@ -29,6 +31,8 @@ export class FormRegisterComponent implements OnInit {
     private _router: Router,
     private _toastrService: ToastrService) {
     this.imageData = '';
+    this.isPasswordVisible = false;
+    this.textIconEye = 'visibility_off';
     this._validate();
   }
 
@@ -80,7 +84,6 @@ export class FormRegisterComponent implements OnInit {
     return user;
   }
 
-
   private _validate(): void {
     this.formularyUser = this._formsBuilder.group({
       name: ['', [
@@ -122,5 +125,15 @@ export class FormRegisterComponent implements OnInit {
       image: ['', [Validators.required]],
     });
   }
-  
+
+  public onKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'e') {
+      event.preventDefault();
+    }
+  }
+
+  public togglePasswordVisibility(): void {
+    this.isPasswordVisible = !this.isPasswordVisible;
+    this.textIconEye = this.isPasswordVisible? 'visibility': 'visibility_off';
+  }
 }
