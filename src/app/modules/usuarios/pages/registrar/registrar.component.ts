@@ -77,21 +77,24 @@ export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
   
   public createUser(): void {
     if (this.userUpdateRequest.id) {
-      const userUpdateRequest: UserUpdateRequest = {
-        ...this.formularyUsers.value,
-        id: this.userUpdateRequest.id,
-        image: this.imageData
-      };
-      this._usersService.updateUser(userUpdateRequest)
-        .pipe(take(1))
-        .subscribe(
-          (response: UserUpdateResponse) => {
-            this._toastrService.warning(`${response.name} actualizado con éxito`, 'Actualizar')
-            this.redirectToWindowUser();
-          },
-          (error) => {
-            this._toastrService.error(`Ocurrió un error al actualizar el usuario`)
-          });
+      if(this.formularyUsers.valid){
+        const userUpdateRequest: UserUpdateRequest = {
+          ...this.formularyUsers.value,
+          id: this.userUpdateRequest.id,
+          image: this.imageData
+        };
+        this._usersService.updateUser(userUpdateRequest)
+          .pipe(take(1))
+          .subscribe(
+            (response: UserUpdateResponse) => {
+              this._toastrService.warning(`${response.name} actualizado con éxito`, 'Actualizar')
+              this.redirectToWindowUser();
+            },
+            (error) => {
+              this._toastrService.error(`Ocurrió un error al actualizar el usuario`)
+            });
+      }
+      
     } else {
       if (this.formularyUsers.valid) {
         const user = this._buildUser();
@@ -180,9 +183,9 @@ export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
     this.formularyUsers = this._formsBuilder.group({
       name: [this.userUpdateRequest.name ? this.userUpdateRequest.name : '', [Validators.required, Validators.minLength(4), Validators.maxLength(80), Validators.pattern('[a-zA-ZñÑ ]*')]],
       lastName: [this.userUpdateRequest.lastName ? this.userUpdateRequest.lastName : '', [Validators.required, Validators.minLength(4), Validators.maxLength(80), Validators.pattern('[a-zA-ZñÑ ]*')]],
-      email: [this.userUpdateRequest.email ? this.userUpdateRequest.email : '', [Validators.required, Validators.email]],
+      email: [this.userUpdateRequest.email ? this.userUpdateRequest.email : '', [Validators.required, Validators.pattern('[a-zA-Z0-9_.]{3,60}[@]{1}[a-zA-Z0-9_.]{4,60}[.]{1}[a-zA-Z]{2,20}')]],
       phone: [this.userUpdateRequest.phone ? this.userUpdateRequest.phone : '', [Validators.min(0), Validators.required, Validators.pattern('^([6-7][0-9]{7})$')]],
-      username: [this.userUpdateRequest.username ? this.userUpdateRequest.username : '', [Validators.required,  Validators.minLength(4), Validators.maxLength(80),Validators.pattern('[a-zA-Z0-9ñÑ]*')]],
+      username: [this.userUpdateRequest.username ? this.userUpdateRequest.username : '', [Validators.required,  Validators.minLength(4), Validators.maxLength(16),Validators.pattern('[a-zA-ZñÑ]{1}[a-zA-Z0-9ñÑ]*')]],
       password: [this.userUpdateRequest.password ? this.userUpdateRequest.password : '', [Validators.required, Validators.minLength(4), Validators.maxLength(10),Validators.pattern('[a-zA-Z0-9ñÑ]*')]]
     });
   }
