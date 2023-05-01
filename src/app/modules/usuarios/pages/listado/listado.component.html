@@ -87,15 +87,19 @@
 
 <!--  TODO: MODAL DE ELIMINAR-->
   <ng-container *ngIf="deleteBoolean">
-    <app-modal [user]="userModal" (onCloseModal)="closeModal()" [title]="'¿Estás seguro que deseas eliminar el user?'"
-      [color]="'rgb(153,217,140)'" [icon]="'delete_forever'" [txtButton]="'Eliminar'"></app-modal>
+    <app-modal [user]="userModal"
+               (onCloseModal)="closeModal()"
+               [title]="'¿Está seguro que desea eliminar a este usuario?'"
+               [color]="'rgb(153,217,140)'"
+               [icon]="'delete'"
+               [txtButton]="'Eliminar'"></app-modal>
   </ng-container>
 
 <!--TODO: MODAL DE VISUALIZAR-->
   <ng-container *ngIf="seeBoolean">
     <app-modal [user]="userModal"
                (onCloseModal)="closeModal()"
-               [title]="'Información del user'"
+               [title]="'Información del usuario'"
                [color]="'rgb(52,160,164)'"
                [txtButton]="'Salir'"
     ></app-modal>

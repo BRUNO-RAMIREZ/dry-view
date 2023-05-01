@@ -27,7 +27,7 @@ export class AuthService {
     //console.log(token, credentials);
   }
 
-  public getAuthToken(): string | null {
+  public getAuthToken(): string | null{
     return sessionStorage.getItem(this.AUTH_TOKEN_KEY);
   }
 
