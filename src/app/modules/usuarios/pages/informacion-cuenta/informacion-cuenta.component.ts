@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../auth/services/auth.service';
 import { UsuariosService } from '../../services/usuarios.service';
+import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-informacion-cuenta',
   templateUrl: './informacion-cuenta.component.html',
@@ -10,7 +12,7 @@ export class InformacionCuentaComponent implements OnInit {
   correo: string;
   usuario: any;
   puntitos: string[] = [];
-  constructor(private authService: AuthService, private usuariosService: UsuariosService) { 
+  constructor(private _router:Router, private authService: AuthService, private usuariosService: UsuariosService,public modal: NgbModal) { 
     this.correo = "";
   }
 
@@ -29,6 +31,12 @@ export class InformacionCuentaComponent implements OnInit {
   });
 
     // console.log(this.usuario.email);
+  }
+
+  logout() {
+    this.authService.logout();
+    this.modal.dismissAll();
+    this._router.navigate(['/usuarios']);
   }
 
 }

@@ -9,7 +9,7 @@
         </div>
         <div>
             <label for="">cerrar sesion</label>
-            <button class="btn-cerrar-sesion">
+            <button class="btn-cerrar-sesion" (click)="modal.open(contenido,{centered:true})"> 
                 <img src="/assets/cerrar-sesion.png" alt="icono-cerrar-sesion" class="icono-cerrar-sesion">
             </button>
         </div>
@@ -47,3 +47,16 @@
 
 
 
+<!--  MODAL DE LOGOUT-->
+
+<ng-template data-backdrop="static" #contenido let-modal >
+    <div class="modal-header">
+          <h5>¿Est&aacute;s seguro que deseas cerrar sesi&oacute;n?</h5>
+        </div>
+        <div class="modal-body">
+          <button type="button" class="btn btn-success"  (click)="logout()">SI</button>
+          <button type="button" class="btn btn-danger" (click)="modal.close()">NO</button>
+        </div>
+        <div class="modal-footer"></div>
+  </ng-template>
+  
