@@ -114,7 +114,7 @@ export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
     }
   }
 
-  public onFileSelected(event: any): void {
+  /**public onFileSelected(event: any): void {
     const files: FileList | null = event?.target?.files;
     if (files) {
       const file = files[0];
@@ -123,6 +123,28 @@ export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
         this.imageData = reader.result as string;
       }
       reader.readAsDataURL(file);
+    }
+  }*/
+
+  public onFileSelected(event: any): void {
+    const files: FileList | null = event?.target?.files;
+    if (files) {
+      const file = files[0];
+      const reader = new FileReader();
+      
+      // validate image dimensions
+      const img = new Image();
+      img.onload = () => {
+        if (img.width <= 50 && img.height <= 50) {
+          reader.onload = () => {
+            this.imageData = reader.result as string;
+          }
+          reader.readAsDataURL(file);
+        } else {
+          alert("La imagen debe tener un tamaño menor a 50x50");
+        }
+      };
+      img.src = URL.createObjectURL(file);
     }
   }
 
