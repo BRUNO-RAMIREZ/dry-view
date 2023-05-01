@@ -17,12 +17,12 @@ export class HeaderComponent {
               private _authService: AuthService) {
     this.title = '';
     this.textButtonAdminAndLogout = '';
-    this.textButtonAdminAndLogout = this._authService.getAuthToken() ? 'Cerrar sesión' : 'Admin';
+    this.textButtonAdminAndLogout = this._authService.getAuthToken() ? 'Cerrar sesión' : 'Iniciar sesion';
     this.isVisibleModal = false;
   }
 
   public redirectToAWindowHomeOrAuth(): void {
-    if (this.textButtonAdminAndLogout === 'Admin') {
+    if (this.textButtonAdminAndLogout === 'Iniciar sesion') {
       this._router.navigate(['/auth']);
     } else {
       this.isVisibleModal = true;
