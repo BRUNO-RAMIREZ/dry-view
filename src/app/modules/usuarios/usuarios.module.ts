@@ -16,6 +16,7 @@ import {ListadoComponent} from './pages/listado/listado.component';
 import {InformacionCuentaComponent} from './pages/informacion-cuenta/informacion-cuenta.component';
 import {ModalComponent} from './components/modal/modal.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { HidePasswordPipe } from './pipes/hide-password.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     CardComponent,
     ListadoComponent,
     InformacionCuentaComponent,
-    ModalComponent
+    ModalComponent,
+    HidePasswordPipe
   ],
   imports: [
     CommonModule,
