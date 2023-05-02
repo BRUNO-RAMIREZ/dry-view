@@ -1,8 +1,9 @@
 <article class="dry-login-page-container animate__animated animate__fadeIn animate__faster">
   <section class="login-content-container login-content">
-    <section class="login-content-form form">
+    <section class="login-content-form">
       <form class="form" [formGroup]="formularyLogin" (ngSubmit)="login()">
-        <label class="form-title">LOGIN</label>
+          <label class="form-title">LOGIN</label>
+          <label class="form-title form-title-secondary">¡Hola otra ves!  👋</label>
         <section class="form-field">
           <label class="form-field-label form-field-text--bold">Correo Electrónico</label>
           <input type="email" class="form-field-input form-field--common" formControlName="email" name="email" required>
@@ -34,7 +35,7 @@
           <button type="submit" class="form-field-button form-field--common form-field-text--bold">Login</button>
         </section>
         <label class="form-field-label-footer form-field-label--size-small">¿Eres nuevo en la plataforma? <b
-            class="text-hover" (click)="navigateWindowFormRegister()">Registrate</b></label>
+            class="text-hover" (click)="navigateWindowFormRegister()">Regístrate</b></label>
       </form>
     </section>
 

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
+import {AuthService} from "../../../auth/services/auth.service";
 
 @Component({
   selector: 'app-home-router-outlet',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeRouterOutletComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _authService: AuthService) { }
 
   ngOnInit(): void {
+    this._authService.reset();
   }
 
+  @HostListener('document:mousemove') onMouseMove() {
+    this._authService.reset();
+  }
+
+  @HostListener('document:click') onClick() {
+    this._authService.reset();
+  }
 }

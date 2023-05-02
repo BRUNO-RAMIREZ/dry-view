@@ -1,10 +1,10 @@
 <h3 class="title">Registrar Usuario</h3>
 <article class="dry-form-register-page-container animate__animated animate__fadeIn animate__faster">
-  
+
   <section class="dry-form-register-content table-row animate__animated animate__fadeIn animate__faster">
-  
+
     <section class="image-container">
-      
+
       <img [src]="imageData? imageData: '../../../assets/foto-por-defecto.jpg'" class="image"/>
       <label for="fileInput">Subir Foto</label>
       <input id="fileInput" type="file" accept=".jpg,.png" title="subir foto" (change)="onFileSelected($event)">
@@ -67,7 +67,7 @@
             <input type="number" class="form-field-input" formControlName="phone" maxlength="8" name="phone" [ngClass]="((formularyUser.get('phone')?.touched && formularyUser.get('phone')?.errors) ? 'incorrect-field-input': 'correct-field-input')" (keydown)="onKeyDown($event)">
             <ng-container *ngIf="formularyUser.get('phone')?.errors && formularyUser.get('phone')?.touched">
               <div *ngIf="formularyUser.get('phone')?.hasError('required')" class="error-text">El número de teléfono es obligatorio</div>
-              <div *ngIf="formularyUser.get('phone')?.hasError('pattern')" class="error-text">El número de teléfono no es válido</div>
+              <div *ngIf="formularyUser.get('phone')?.hasError('pattern')" class="error-text">El número de teléfono debe empezar por 6 o 7 y tener 8 digitos</div>
             </ng-container>
           </section>
 
