@@ -36,5 +36,4 @@ export class HomeComponent implements OnInit {
   public trackById(index: number, product: ProductListResponse): number{
     return product.id;
   }
-
 }
