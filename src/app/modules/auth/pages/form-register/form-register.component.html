@@ -75,9 +75,9 @@
 
             <input type="text" class="form-field-input" formControlName="username" name="username" [ngClass]="((formularyUser.get('username')?.touched && formularyUser.get('username')?.errors) ? 'incorrect-field-input': 'correct-field-input')">
             <ng-container *ngIf="formularyUser.get('username')?.errors && formularyUser.get('username')?.touched">
-              <div *ngIf="formularyUser.get('username')?.hasError('required')" class="error-text">El nombre de usuario es obligatorio</div>
-              <div *ngIf="formularyUser.get('username')?.hasError('minlength')" class="error-text">El nombre de usuario debe tener al menos 4 caracteres{{ formularyUser.get('username')?.getError('minlength').requiredLength }} caracteres.</div>
-              <div *ngIf="formularyUser.get('username')?.hasError('maxlength')" class="error-text">El nombre de usuario debe tener como máximo 10 caracteres{{ formularyUser.get('username')?.getError('maxlength').requiredLength }} caracteres.</div>
+              <div *ngIf="formularyUser.get('username')?.hasError('required')" class="error-text" style="color:  #f34141">El nombre de usuario es obligatorio</div>
+              <div *ngIf="formularyUser.get('username')?.hasError('minlength')" class="error-text" style="color:  #f34141">El nombre de usuario debe tener al menos 4 caracteres{{ formularyUser.get('username')?.getError('minlength').requiredLength }} caracteres.</div>
+              <div *ngIf="formularyUser.get('username')?.hasError('maxlength')" class="error-text" style="color:  #f34141">El nombre de usuario debe tener como máximo 10 caracteres{{ formularyUser.get('username')?.getError('maxlength').requiredLength }} caracteres.</div>
             </ng-container>
           </section>
         </section>
