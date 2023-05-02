@@ -5,17 +5,18 @@ import {HomeComponent} from "./pages/home/home.component";
 import {RegistrarComponent} from "./pages/registrar/registrar.component";
 import { ListadoComponent } from './pages/listado/listado.component';
 import { InformacionCuentaComponent } from './pages/informacion-cuenta/informacion-cuenta.component';
+import {AuthGuard} from "../../guards/auth.guard";
 const routes: Routes = [
   {
     path: '',
     component: HomeRouterOutletComponent,
     children: [
       {path: 'home', component: HomeComponent},
-      {path: 'listado', component: ListadoComponent},
-      {path: 'registrar', component: RegistrarComponent},
-      {path: 'editar/:id', component: RegistrarComponent},
+      {path: 'listado', component: ListadoComponent, canActivate: [AuthGuard]},
+      {path: 'registrar', component: RegistrarComponent, canActivate: [AuthGuard]},
+      {path: 'editar/:id', component: RegistrarComponent, canActivate: [AuthGuard]},
       //aumente este path de info cuenta
-      {path: 'informacion-cuenta', component: InformacionCuentaComponent},
+      {path: 'informacion-cuenta', component: InformacionCuentaComponent, canActivate: [AuthGuard]},
       {path: '**', redirectTo: 'home'}
     ]
   }
