@@ -1,10 +1,6 @@
-<h3 class="title">Registrar Usuario</h3>
 <article class="dry-form-register-page-container animate__animated animate__fadeIn animate__faster">
-  
   <section class="dry-form-register-content table-row animate__animated animate__fadeIn animate__faster">
-  
     <section class="image-container">
-      
       <img [src]="imageData? imageData: '../../../assets/foto-por-defecto.jpg'" class="image"/>
       <label for="fileInput">Subir Foto</label>
       <input id="fileInput" type="file" accept=".jpg,.png" title="subir foto" (change)="onFileSelected($event)">
@@ -64,10 +60,10 @@
               <label>Celular</label>
             </section>
 
-            <input type="number" class="form-field-input" formControlName="phone" maxlength="8" name="phone" [ngClass]="((formularyUser.get('phone')?.touched && formularyUser.get('phone')?.errors) ? 'incorrect-field-input': 'correct-field-input')" (keydown)="onKeyDown($event)">
+            <input type="number" class="form-field-input" formControlName="phone" name="phone" [ngClass]="((formularyUser.get('phone')?.touched && formularyUser.get('phone')?.errors) ? 'incorrect-field-input': 'correct-field-input')">
             <ng-container *ngIf="formularyUser.get('phone')?.errors && formularyUser.get('phone')?.touched">
-              <div *ngIf="formularyUser.get('phone')?.hasError('required')" class="error-text">El número de teléfono es obligatorio</div>
-              <div *ngIf="formularyUser.get('phone')?.hasError('pattern')" class="error-text">El número de teléfono no es válido</div>
+              <div *ngIf="formularyUser.get('phone')?.hasError('required')" class="error-text">El número de celular es obligatorio</div>
+              <div *ngIf="formularyUser.get('phone')?.hasError('pattern')" class="error-text">el numero de celular debe contener 8 digitos y empezar por 6 o 7</div>
             </ng-container>
           </section>
 
@@ -80,8 +76,8 @@
             <input type="text" class="form-field-input" formControlName="username" name="username" [ngClass]="((formularyUser.get('username')?.touched && formularyUser.get('username')?.errors) ? 'incorrect-field-input': 'correct-field-input')">
             <ng-container *ngIf="formularyUser.get('username')?.errors && formularyUser.get('username')?.touched">
               <div *ngIf="formularyUser.get('username')?.hasError('required')" class="error-text">El nombre de usuario es obligatorio</div>
-              <div *ngIf="formularyUser.get('username')?.hasError('minlength')" class="error-text">El nombre de usuario debe tener al menos {{ formularyUser.get('username')?.getError('minlength').requiredLength }} caracteres.</div>
-              <div *ngIf="formularyUser.get('username')?.hasError('maxlength')" class="error-text">El nombre de usuario debe tener como máximo {{ formularyUser.get('username')?.getError('maxlength').requiredLength }} caracteres.</div>
+              <div *ngIf="formularyUser.get('username')?.hasError('minlength')" class="error-text">El nombre de usuario debe tener al menos 4 caracteres{{ formularyUser.get('username')?.getError('minlength').requiredLength }} caracteres.</div>
+              <div *ngIf="formularyUser.get('username')?.hasError('maxlength')" class="error-text">El nombre de usuario debe tener como máximo 10 caracteres{{ formularyUser.get('username')?.getError('maxlength').requiredLength }} caracteres.</div>
             </ng-container>
           </section>
         </section>
@@ -92,14 +88,11 @@
             <label>Password</label>
           </section>
 
-          <section class="form-field-section-password-icon">
-            <input type="{{isPasswordVisible ? 'text' : 'password'}}" class="form-field-input" formControlName="password" name="password" [ngClass]="((formularyUser.get('password')?.touched && formularyUser.get('password')?.errors) ? 'incorrect-field-input': 'correct-field-input')">
-            <span class="material-symbols-rounded icon-eye" (click)="togglePasswordVisibility()">{{textIconEye}}</span>
-          </section>
+          <input type="password" class="form-field-input" formControlName="password" name="password" [ngClass]="((formularyUser.get('password')?.touched && formularyUser.get('password')?.errors) ? 'incorrect-field-input': 'correct-field-input')">
           <ng-container *ngIf="formularyUser.get('password')?.errors && formularyUser.get('password')?.touched">
-            <div *ngIf="formularyUser.get('password')?.hasError('required')" class="error-text">La contraseña es obligatoria</div>
-            <div *ngIf="formularyUser.get('password')?.hasError('minlength')" class="error-text">La contraseña debe tener al menos {{ formularyUser.get('password')?.getError('minlength').requiredLength }} caracteres.</div>
-            <div *ngIf="formularyUser.get('password')?.hasError('maxlength')" class="error-text">La contraseña debe tener como máximo {{ formularyUser.get('password')?.getError('maxlength').requiredLength }} caracteres.</div>
+            <div *ngIf="formularyUser.get('password')?.hasError('required')" class="error-text" style="color:  #f34141">La contraseña es obligatoria</div>
+            <div *ngIf="formularyUser.get('password')?.hasError('minlength')" class="error-text" style="color:  #f34141">La contraseña debe tener al menos {{ formularyUser.get('password')?.getError('minlength').requiredLength }} caracteres.</div>
+            <div *ngIf="formularyUser.get('password')?.hasError('maxlength')" class="error-text" style="color:  #f34141">La contraseña debe tener como máximo {{ formularyUser.get('password')?.getError('maxlength').requiredLength }} caracteres.</div>
           </ng-container>
         </section>
 
