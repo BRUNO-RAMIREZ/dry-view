@@ -1,7 +1,5 @@
-
-import {Component,DoCheck, OnInit} from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-
 
 
 import {
@@ -10,13 +8,13 @@ import {
   ProductUpdateRequest,
   ProductUpdateResponse
 } from "../../../../core/models/product.model";
-import { Subject } from "rxjs";
-import { ProductosService } from "../../../productos/services/productos.service";
-import { ActivatedRoute, Router } from "@angular/router";
-import { ToastrService } from "ngx-toastr";
-import { filter, switchMap, take } from "rxjs/operators";
-import { UsuariosService } from "../../../usuarios/services/usuarios.service";
-import { UserCreateRequest, UserCreateResponse } from "../../../../core/models/user.model";
+import {Subject} from "rxjs";
+import {ProductosService} from "../../../productos/services/productos.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
+import {filter, switchMap, take} from "rxjs/operators";
+import {UsuariosService} from "../../../usuarios/services/usuarios.service";
+import {UserCreateRequest, UserCreateResponse} from "../../../../core/models/user.model";
 
 @Component({
   selector: 'app-form-register',
@@ -29,12 +27,12 @@ export class FormRegisterComponent implements OnInit {
   public isPasswordVisible: boolean;
   public textIconEye: string;
 
-  
+
   constructor(private _usersService: UsuariosService,
-    private _formsBuilder: FormBuilder,
-    private _activateRoute: ActivatedRoute,
-    private _router: Router,
-    private _toastrService: ToastrService) {
+              private _formsBuilder: FormBuilder,
+              private _activateRoute: ActivatedRoute,
+              private _router: Router,
+              private _toastrService: ToastrService) {
     this.imageData = '';
     this.isPasswordVisible = false;
     this.textIconEye = 'visibility_off';
@@ -47,18 +45,22 @@ export class FormRegisterComponent implements OnInit {
 
 
   public createUser(): void {
-    const user = this._buildUser();
-    this._usersService.createUser(user)
-      .pipe(take(1))
-      .subscribe(
-        (response: UserCreateResponse) => {
-          this._toastrService.success(`${response.name} se ha registrado con éxito`, 'Registrar')
-          this.redirectToWindowLogin();
-        },
-        (error) => {
-          this._toastrService.error(`Ocurrió un error al registrar el usuario`, 'Error')
-        });
-    this.formularyUser.reset();
+    if (this.formularyUser.valid) {
+      const user = this._buildUser();
+      this._usersService.createUser(user)
+        .pipe(take(1))
+        .subscribe(
+          (response: UserCreateResponse) => {
+            this._toastrService.success(`${response.name} se ha registrado con éxito`, 'Registrar')
+            this.redirectToWindowLogin();
+          },
+          (error) => {
+            this._toastrService.error(`Ocurrió un error al registrar el usuario`, 'Error')
+          });
+      this.formularyUser.reset();
+    }else {
+      this._toastrService.error(`Existen campos no válidos`, 'Error')
+    }
   }
 
   public onFileSelected(event: any): void {
@@ -141,6 +143,6 @@ export class FormRegisterComponent implements OnInit {
 
   public togglePasswordVisibility(): void {
     this.isPasswordVisible = !this.isPasswordVisible;
-    this.textIconEye = this.isPasswordVisible? 'visibility': 'visibility_off';
+    this.textIconEye = this.isPasswordVisible ? 'visibility' : 'visibility_off';
   }
 }
