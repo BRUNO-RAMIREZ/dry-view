@@ -1,8 +1,9 @@
-import {Injectable} from '@angular/core';
+import {HostListener, Injectable} from '@angular/core';
 import {environment} from "../../../../environments/environment";
 import {Observable} from "rxjs";
 import {UserAuthRequest, UserAuthResponse} from "../../../core/models/user.model";
 import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,9 @@ export class AuthService {
   private _baseURL: string;
   private readonly AUTH_TOKEN_KEY = 'authToken';
   private readonly CREDENTIALS_KEY = 'credentials';
+  private timeout: any;
 
-
-  constructor(private _http: HttpClient) {
+  constructor(private _http: HttpClient, private router: Router) {
     this._baseURL = environment.baseURL;
   }
 
@@ -42,7 +43,15 @@ export class AuthService {
 
   }
 
-  isLoggedIn(): boolean {
+  public isLoggedIn(): boolean {
     return !!sessionStorage.getItem(this.AUTH_TOKEN_KEY);
+  }
+
+  public reset(): void {
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      this.logout();
+      this.router.navigate(['/auth']);
+    }, 300000);
   }
 }
