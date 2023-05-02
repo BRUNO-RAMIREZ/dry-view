@@ -11,9 +11,11 @@ import {Router} from '@angular/router';
 export class InformacionCuentaComponent implements OnInit {
   correo: string;
   usuario: any;
+  //imagenPerfilUrl: string;
   puntitos: string[] = [];
   constructor(private _router:Router, private authService: AuthService, private usuariosService: UsuariosService,public modal: NgbModal) { 
     this.correo = "";
+  //  this.imagenPerfilUrl = "";
   }
 
   ngOnInit(): void {
@@ -22,15 +24,13 @@ export class InformacionCuentaComponent implements OnInit {
     if(aux){
       this.correo = aux;
     }
-    //this.correo = this.authService.getAuthToken();
     console.log(this.correo);
      this.usuariosService.getUserByEmail(this.correo).subscribe(response => {this.usuario = response;
     for(let i=0; i<this.usuario.password.length; i++){
       this.puntitos.push("*");
     }
+    //this.imagenPerfilUrl = this.usuario.imagenPerfilUrl;
   });
-
-    // console.log(this.usuario.email);
   }
 
   logout() {
