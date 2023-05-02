@@ -67,7 +67,7 @@
             <input type="number" class="form-field-input" formControlName="phone" maxlength="8" name="phone" [ngClass]="((formularyUser.get('phone')?.touched && formularyUser.get('phone')?.errors) ? 'incorrect-field-input': 'correct-field-input')" (keydown)="onKeyDown($event)">
             <ng-container *ngIf="formularyUser.get('phone')?.errors && formularyUser.get('phone')?.touched">
               <div *ngIf="formularyUser.get('phone')?.hasError('required')" class="error-text">El número de teléfono es obligatorio</div>
-              <div *ngIf="formularyUser.get('phone')?.hasError('pattern')" class="error-text">El número de teléfono no es válido</div>
+              <div *ngIf="formularyUser.get('phone')?.hasError('pattern')" class="error-text">El número de teléfono debe empezar por 6 o 7 y tener 8 digitos</div>
             </ng-container>
           </section>
 
