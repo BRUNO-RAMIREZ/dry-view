@@ -163,6 +163,7 @@ export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
     return this.formularyProducts.get('stock')
   }
 
+ 
   private _validate(): void {
     this.formularyProducts = this._formsBuilder.group({
       name: [this.productUpdateRequest.name ? this.productUpdateRequest.name : '', [Validators.required, Validators.minLength(4), Validators.maxLength(80), Validators.pattern('[a-zA-Z0-9_ñÑ ]*')]],

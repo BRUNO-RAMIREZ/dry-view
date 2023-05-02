@@ -12,11 +12,11 @@ import {SortByPipe} from "./pipes/sort-by.pipe";
 import {NgxPaginationModule} from "ngx-pagination";
 import {CardComponent} from "./components/card/card.component";
 import {ProductosService} from "../productos/services/productos.service";
-import {UsuariosService} from "./services/usuarios.service";
-import { ListadoComponent } from './pages/listado/listado.component';
-import { InformacionCuentaComponent } from './pages/informacion-cuenta/informacion-cuenta.component';
+import {ListadoComponent} from './pages/listado/listado.component';
+import {InformacionCuentaComponent} from './pages/informacion-cuenta/informacion-cuenta.component';
 import {ModalComponent} from './components/modal/modal.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { HidePasswordPipe } from './pipes/hide-password.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,9 @@ import {ReactiveFormsModule} from "@angular/forms";
     SortByPipe,
     CardComponent,
     ListadoComponent,
-    InformacionCuentaComponent
+    InformacionCuentaComponent,
+    ModalComponent,
+    HidePasswordPipe
   ],
   imports: [
     CommonModule,

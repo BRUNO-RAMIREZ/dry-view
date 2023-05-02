@@ -17,8 +17,8 @@
         <label [title]="user.lastName"><b>Apellidos: </b> {{user.lastName}}</label>
         <label [title]="user.email"><b>Correo Electrónico: </b> {{user.email}}</label>
         <label [title]="user.phone"><b>Celular: </b> {{user.phone}}</label>
-        <label [title]="user.username"><b>Username: </b> {{user.username}}</label>
-        <label [title]="user.username"><b>Password: </b> {{user.password}}</label>
+        <label [title]="user.username"><b>Usuario: </b> {{user.username}}</label>
+        <label [title]="user.username"><b>Contraseña: </b> {{user.password | hidePassword}}</label>
       </section>
     </section>
 

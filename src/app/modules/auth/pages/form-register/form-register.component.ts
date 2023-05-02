@@ -1,18 +1,22 @@
-import {Component, OnInit} from '@angular/core';
+
+import {Component,DoCheck, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+
+
+
 import {
   ProductCreateRequest,
   ProductCreateResponse,
   ProductUpdateRequest,
   ProductUpdateResponse
 } from "../../../../core/models/product.model";
-import {Subject} from "rxjs";
-import {ProductosService} from "../../../productos/services/productos.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {ToastrService} from "ngx-toastr";
-import {filter, switchMap, take} from "rxjs/operators";
-import {UsuariosService} from "../../../usuarios/services/usuarios.service";
-import {UserCreateRequest, UserCreateResponse} from "../../../../core/models/user.model";
+import { Subject } from "rxjs";
+import { ProductosService } from "../../../productos/services/productos.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
+import { filter, switchMap, take } from "rxjs/operators";
+import { UsuariosService } from "../../../usuarios/services/usuarios.service";
+import { UserCreateRequest, UserCreateResponse } from "../../../../core/models/user.model";
 
 @Component({
   selector: 'app-form-register',
@@ -22,18 +26,25 @@ import {UserCreateRequest, UserCreateResponse} from "../../../../core/models/use
 export class FormRegisterComponent implements OnInit {
   public formularyUser!: FormGroup;
   public imageData: string;
+  public isPasswordVisible: boolean;
+  public textIconEye: string;
 
+  
   constructor(private _usersService: UsuariosService,
-              private _formsBuilder: FormBuilder,
-              private _activateRoute: ActivatedRoute,
-              private _router: Router,
-              private _toastrService: ToastrService) {
+    private _formsBuilder: FormBuilder,
+    private _activateRoute: ActivatedRoute,
+    private _router: Router,
+    private _toastrService: ToastrService) {
     this.imageData = '';
+    this.isPasswordVisible = false;
+    this.textIconEye = 'visibility_off';
+
     this._validate();
   }
 
   ngOnInit(): void {
   }
+
 
   public createUser(): void {
     const user = this._buildUser();
@@ -80,7 +91,6 @@ export class FormRegisterComponent implements OnInit {
     return user;
   }
 
-
   private _validate(): void {
     this.formularyUser = this._formsBuilder.group({
       name: ['', [
@@ -104,8 +114,7 @@ export class FormRegisterComponent implements OnInit {
       ],
       phone: [0, [
         Validators.required,
-        Validators.min(0),
-        Validators.pattern(/^\+?\d{7,10}$/)
+        Validators.pattern('^([6-7][0-9]{7})$')
       ]
       ],
       username: ['', [
@@ -122,5 +131,16 @@ export class FormRegisterComponent implements OnInit {
       ],
       image: ['', [Validators.required]],
     });
+  }
+
+  public onKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'e') {
+      event.preventDefault();
+    }
+  }
+
+  public togglePasswordVisibility(): void {
+    this.isPasswordVisible = !this.isPasswordVisible;
+    this.textIconEye = this.isPasswordVisible? 'visibility': 'visibility_off';
   }
 }
