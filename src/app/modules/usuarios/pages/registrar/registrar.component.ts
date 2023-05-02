@@ -12,7 +12,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-
 @Component({
   selector: 'app-registrar',
   templateUrl: './registrar.component.html',
@@ -21,7 +20,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
   public formularyUsers!: FormGroup;
   public userUpdateRequest: UserUpdateRequest;
-  
+  public tamañoCorrecto: boolean;
 
   public title: string;
   public imageData: string;
@@ -33,6 +32,7 @@ export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
               private _activateRoute: ActivatedRoute,
               private _router: Router,
               private _toastrService: ToastrService) {
+     this.tamañoCorrecto = true;           
     this.imageData = '';
     this.userUpdateRequest = {
       id: 0,
@@ -77,21 +77,24 @@ export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
   
   public createUser(): void {
     if (this.userUpdateRequest.id) {
-      const userUpdateRequest: UserUpdateRequest = {
-        ...this.formularyUsers.value,
-        id: this.userUpdateRequest.id,
-        image: this.imageData
-      };
-      this._usersService.updateUser(userUpdateRequest)
-        .pipe(take(1))
-        .subscribe(
-          (response: UserUpdateResponse) => {
-            this._toastrService.warning(`${response.name} actualizado con éxito`, 'Actualizar')
-            this.redirectToWindowUser();
-          },
-          (error) => {
-            this._toastrService.error(`Ocurrió un error al actualizar el usuario`)
-          });
+      if(this.formularyUsers.valid){
+        const userUpdateRequest: UserUpdateRequest = {
+          ...this.formularyUsers.value,
+          id: this.userUpdateRequest.id,
+          image: this.imageData
+        };
+        this._usersService.updateUser(userUpdateRequest)
+          .pipe(take(1))
+          .subscribe(
+            (response: UserUpdateResponse) => {
+              this._toastrService.warning(`${response.name} actualizado con éxito`, 'Actualizar')
+              this.redirectToWindowUser();
+            },
+            (error) => {
+              this._toastrService.error(`Ocurrió un error al actualizar el usuario`)
+            });
+      }
+      
     } else {
       if (this.formularyUsers.valid) {
         const user = this._buildUser();
@@ -111,15 +114,44 @@ export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
     }
   }
 
-  public onFileSelected(event: any): void {
+ /* public onFileSelected(event: any): void {
+
     const files: FileList | null = event?.target?.files;
     if (files) {
       const file = files[0];
       const reader = new FileReader();
       reader.onload = () => {
-        this.imageData = reader.result as string;
+        if(reader.result){
+          if (reader.result.width <= 50 && img.height <= 50) {
+
+          }
+          this.imageData = reader.result as string;
+        }
+        
       }
       reader.readAsDataURL(file);
+    }
+  }*/
+
+  public onFileSelected(event: any): void {
+    const files: FileList | null = event?.target?.files;
+    if (files) {
+      const file = files[0];
+      const reader = new FileReader();
+      
+      // validate image dimensions
+      const img = new Image();
+      img.onload = () => {
+        if (img.width <= 500 && img.height <= 500) {
+          reader.onload = () => {
+            this.imageData = reader.result as string;
+          }
+          reader.readAsDataURL(file);
+        } else {
+          this._toastrService.error('El tamaño de la imagen no es valido', 'usuarios');
+        }
+      };
+      img.src = URL.createObjectURL(file);
     }
   }
 
@@ -178,11 +210,12 @@ export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
 
   private _validate(): void {
     this.formularyUsers = this._formsBuilder.group({
+      
       name: [this.userUpdateRequest.name ? this.userUpdateRequest.name : '', [Validators.required, Validators.minLength(4), Validators.maxLength(80), Validators.pattern('[a-zA-ZñÑ ]*')]],
       lastName: [this.userUpdateRequest.lastName ? this.userUpdateRequest.lastName : '', [Validators.required, Validators.minLength(4), Validators.maxLength(80), Validators.pattern('[a-zA-ZñÑ ]*')]],
-      email: [this.userUpdateRequest.email ? this.userUpdateRequest.email : '', [Validators.required, Validators.email]],
+      email: [this.userUpdateRequest.email ? this.userUpdateRequest.email : '', [Validators.required, Validators.pattern('[a-zA-Z0-9_.]{3,60}[@]{1}[a-zA-Z0-9_.]{4,60}[.]{1}[a-zA-Z]{2,20}')]],
       phone: [this.userUpdateRequest.phone ? this.userUpdateRequest.phone : '', [Validators.min(0), Validators.required, Validators.pattern('^([6-7][0-9]{7})$')]],
-      username: [this.userUpdateRequest.username ? this.userUpdateRequest.username : '', [Validators.required,  Validators.minLength(4), Validators.maxLength(80),Validators.pattern('[a-zA-Z0-9ñÑ]*')]],
+      username: [this.userUpdateRequest.username ? this.userUpdateRequest.username : '', [Validators.required,  Validators.minLength(4), Validators.maxLength(16),Validators.pattern('[a-zA-ZñÑ]{1}[a-zA-Z0-9ñÑ]*')]],
       password: [this.userUpdateRequest.password ? this.userUpdateRequest.password : '', [Validators.required, Validators.minLength(4), Validators.maxLength(10),Validators.pattern('[a-zA-Z0-9ñÑ]*')]]
     });
   }
