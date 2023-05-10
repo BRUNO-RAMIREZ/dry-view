@@ -27,7 +27,6 @@ export class FormRegisterComponent implements OnInit {
   public isPasswordVisible: boolean;
   public textIconEye: string;
 
-
   constructor(private _usersService: UsuariosService,
               private _formsBuilder: FormBuilder,
               private _activateRoute: ActivatedRoute,
@@ -36,7 +35,6 @@ export class FormRegisterComponent implements OnInit {
     this.imageData = '';
     this.isPasswordVisible = false;
     this.textIconEye = 'visibility_off';
-
     this._validate();
   }
 

@@ -70,7 +70,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   }
 
-
   private _validate(): void {
     this.formularyLogin = this._formsBuilder.group({
       email: ['', [Validators.required, Validators.email]],
