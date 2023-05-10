@@ -35,7 +35,7 @@ export class SidebarComponent implements OnInit {
   }
 
   isAuthenticated(): boolean {
-    return !!sessionStorage.getItem('authToken');
+    return !!localStorage.getItem('authToken');
 
   }
 
