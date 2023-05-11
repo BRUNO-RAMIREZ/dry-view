@@ -3,12 +3,14 @@ import { AuthService } from '../../../auth/services/auth.service';
 import { UsuariosService } from '../../services/usuarios.service';
 import {NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
+
 @Component({
   selector: 'app-informacion-cuenta',
   templateUrl: './informacion-cuenta.component.html',
   styleUrls: ['./informacion-cuenta.component.scss']
 })
 export class InformacionCuentaComponent implements OnInit {
+ 
   correo: string;
   usuario: any;
   puntitos: string[] = [];

@@ -42,6 +42,7 @@
   
     .table {
       font-weight: lighter;
+     
   
       &-thead-th--bold-light {
         font-weight: 600;
@@ -53,10 +54,12 @@
       }
   
       &-row--color-disabled {
+       
         background-color: var(--color-disabled);
       }
   
       &-th {
+        text-align: center;
         &-icon {
           font-size: var(--font-size-subtitle);
           cursor: pointer;
@@ -70,10 +73,15 @@
   
   
         &-td {
+          min-width: 200px;
           max-width: 200px;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          text-align: center;
+          vertical-align: middle;
+         
+          
   
           &-datos{
             text-align: center;
