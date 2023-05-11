@@ -11,7 +11,7 @@
       <section class="form-row-section">
         <section class="form-field">
           <section class="form-field-header-input">
-            <span class="material-symbols-rounded" style="font-size: 35px;">badge</span>
+            <span class="material-symbols-rounded" style="font-size:35px;">badge</span>
             <label>Nombres</label>
           </section>
 
@@ -49,7 +49,7 @@
         <input type="email" class="form-field-input" formControlName="email" name="email" maxlength="81">
         <div *ngIf="formularyUsers.get('email')?.errors && formularyUsers.get('email')?.dirty">
           <small class="text-danger" *ngIf="formularyUsers.get('email')?.hasError('requierd')">Correo electronico requerido</small>
-          <small class="text-danger" *ngIf="formularyUsers.get('email')?.hasError('pattern')">Solo se permiten correos electronicos</small>
+          <small class="text-danger" *ngIf="formularyUsers.get('email')?.hasError('pattern')">Solo se permiten correos electr&oacute;nicos</small>
         </div>
       </section>
 
@@ -64,7 +64,7 @@
           <div *ngIf="formularyUsers.get('phone')?.errors && formularyUsers.get('phone')?.dirty">
             <small class="text-danger" *ngIf="formularyUsers.get('phone')?.hasError('required')">Numero Celular requerido</small>
 
-            <small class="text-danger" *ngIf="formularyUsers.get('phone')?.hasError('pattern')">Solo numeros de bolivia</small>
+            <small class="text-danger" *ngIf="formularyUsers.get('phone')?.hasError('pattern')">Solo n&uacute;meros de bolivia</small>
           </div>
         </section>
 

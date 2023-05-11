@@ -3,15 +3,22 @@ import {AuthService} from '../../../auth/services/auth.service';
 import {UsuariosService} from '../../services/usuarios.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
-import {Subject} from "rxjs";
-import {takeUntil} from "rxjs/operators";
-import {UserGetByEmailResponse} from "../../../../core/models/user.model";
+
 
 @Component({
   selector: 'app-informacion-cuenta',
   templateUrl: './informacion-cuenta.component.html',
   styleUrls: ['./informacion-cuenta.component.scss']
 })
+
+export class InformacionCuentaComponent implements OnInit {
+ 
+  correo: string;
+  usuario: any;
+  puntitos: string[] = [];
+  constructor(private _router:Router, private authService: AuthService, private usuariosService: UsuariosService,public modal: NgbModal) { 
+    this.correo = "";
+=======
 export class InformacionCuentaComponent implements OnInit, OnDestroy {
   public email: string;
   public userAccount: UserGetByEmailResponse;
@@ -42,6 +49,7 @@ export class InformacionCuentaComponent implements OnInit, OnDestroy {
     this.textIconEye = 'visibility_off';
     this._passwordCodificada = '';
     this._passwordNoCodificada = '';
+
   }
 
   ngOnInit(): void {
