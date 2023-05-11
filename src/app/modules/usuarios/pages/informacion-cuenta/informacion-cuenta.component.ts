@@ -80,4 +80,3 @@ export class InformacionCuentaComponent implements OnInit, OnDestroy {
     this.textIconEye = this.isPasswordVisible ? 'visibility' : 'visibility_off';
   }
 }
-

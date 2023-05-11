@@ -11,7 +11,7 @@
       <span class="material-symbols-rounded listado-header-search-icon">search</span>
     </section>
 
-    <button type="button" class="listado-header-button" (click)="goNavigateWindowRegister()">Registrar</button>
+    <button type="button" class="listado-header-button" (click)="goNavigateWindowRegister()">Registrar usuario</button>
   </section>
 
   <section class="listado-content-section listado-content" style="min-width: 1077px;">
@@ -51,11 +51,12 @@
         <td>
           <img style="width: 50px; height: 50px;" src="{{user.image}}" alt="image" class="item-img">
         </td>
-        <td  class="table-row-td" [title]="user.name">{{user.name}}</td>
+        <td class="table-row-td" [title]="user.name">{{user.name}}</td>
         <td class="table-row-td" [title]="user.lastName">{{user.lastName}}</td>
         <td class="table-row-td" [title]="user.email">{{user.email}}</td>
         <td class="table-row-td" [title]="user.phone">{{user.phone}}</td>
         <td>
+
           <span class="material-symbols-rounded table-row-icon icon-plus icon"
                 (click)="goNavigateWindowRegister()">add</span>
           <span class="material-symbols-rounded table-row-icon icon-visibility"
@@ -87,17 +88,13 @@
     </section>
   </section>
 
-<!--  TODO: MODAL DE ELIMINAR-->
+<!--  TODO: MODAL DE ELIMINAR
   <ng-container *ngIf="deleteBoolean">
-    <app-modal [user]="userModal" 
-    (onCloseModal)="closeModal()" 
-    [title]="'¿Estás seguro que deseas eliminar el user?'"
-    [color]="'rgb(153,217,140)'" 
-    [icon]="'delete_forever'" 
-    [txtButton]="'Eliminar'"></app-modal>
+    <app-modal [user]="userModal" (onCloseModal)="closeModal()" [title]="'¿Estás seguro que deseas eliminar el usuario?'"
+      [color]="'rgb(153,217,140)'" [icon]="'delete_forever'" [txtButton]="'Eliminar'"></app-modal>
   </ng-container>
-  
-<!--TODO: MODAL DE VISUALIZAR-->
+
+ TODO: MODAL DE VISUALIZAR
   <ng-container *ngIf="seeBoolean">
     <app-modal [user]="userModal"
                (onCloseModal)="closeModal()"
@@ -106,4 +103,5 @@
                [txtButton]="'Salir'"
     ></app-modal>
   </ng-container>
+-->
 </article>
