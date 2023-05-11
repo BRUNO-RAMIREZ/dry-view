@@ -46,7 +46,7 @@
   
       &-thead-th--bold-light {
         font-weight: 600;
-        text-align: center;
+        text-align: left;
       }
   
       &-row--color-white {
@@ -59,7 +59,7 @@
       }
   
       &-th {
-        text-align: center;
+        text-align: left;
         &-icon {
           font-size: var(--font-size-subtitle);
           cursor: pointer;
@@ -78,13 +78,13 @@
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-          text-align: center;
+          text-align: left;
           vertical-align: middle;
          
           
   
           &-datos{
-            text-align: center;
+            text-align: left;
           }
   
         }
