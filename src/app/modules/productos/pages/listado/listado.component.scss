@@ -45,7 +45,7 @@
 
     &-thead-th--bold-light {
       font-weight: 600;
-      text-align: center;
+      text-align: left;
     }
 
     &-row--color-white {
@@ -148,7 +148,7 @@
 }
 
 .my-pagination ::ng-deep .ngx-pagination .current {
-  background: var(--color-black);
+  background: #5b6265;
   color: var(--color-white);
   border-radius: 50%;
 }

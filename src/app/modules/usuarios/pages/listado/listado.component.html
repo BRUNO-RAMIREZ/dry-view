@@ -1,4 +1,4 @@
-<app-header [title]="'Lista de Usuarios'"></app-header>
+<app-header [title]="'Lista de usuarios'" ></app-header>
 <article class="dry-page-listado-container animate__animated animate__fadeIn animate__faster">
   <section class="listado-header-section listado-header">
     <section class="listado-header-search-section listado-header-search">
@@ -14,7 +14,7 @@
     <button type="button" class="listado-header-button" (click)="goNavigateWindowRegister()">Registrar usuario</button>
   </section>
 
-  <section class="listado-content-section listado-content">
+  <section class="listado-content-section listado-content" style="min-width: 1077px;">
     <table class="listado-content-table table">
       <thead>
       <th></th>
@@ -26,16 +26,16 @@
         <label class="table-th-label">Apellidos</label>
         <span class="material-symbols-rounded table-th-icon"(click)="changeOrder('lastName')">{{iconArrow}}</span>
       </th>
-      <th class="table-thead-th--bold-light table-th">
-        <label class="table-th-label">Correos Electrónicos</label>
+      <th class="table-thead-th--bold-light table-th" style="min-width: 205px;">
+        <label class="table-th-label">Correo Electrónico</label>
         <span class="material-symbols-rounded table-th-icon" (click)="changeOrder('email')">{{iconArrow}}</span>
       </th>
       <th class="table-thead-th--bold-light table-th">
         <label class="table-th-label">Celular</label>
         <span class="material-symbols-rounded table-th-icon" (click)="changeOrder('phone')">{{iconArrow}}</span>
       </th>
-      <th class="table-thead-th--bold-light">
-        <label class="table-th-label">Acciones</label>
+      <th class="table-thead-th--bold-light" style="min-width: 198px;">
+        <label class="table-th-label"> &nbsp; &nbsp; Acciones</label>
       </th>
       </thead>
 
@@ -49,15 +49,16 @@
           | paginate: { itemsPerPage:10  , currentPage: page, totalItems: (users | async | filterSearchPipeUser:userNameSearch).length};
            let i = index; trackBy: trackById">
         <td>
-          <img src="{{user.image}}" alt="image" class="item-img">
+          <img style="width: 50px; height: 50px;" src="{{user.image}}" alt="image" class="item-img">
         </td>
         <td class="table-row-td" [title]="user.name">{{user.name}}</td>
         <td class="table-row-td" [title]="user.lastName">{{user.lastName}}</td>
         <td class="table-row-td" [title]="user.email">{{user.email}}</td>
         <td class="table-row-td" [title]="user.phone">{{user.phone}}</td>
         <td>
-          <!--<span class="material-symbols-rounded table-row-icon icon-plus icon"
-                (click)="incrementStock(user.id)">add</span> -->
+
+          <span class="material-symbols-rounded table-row-icon icon-plus icon"
+                (click)="goNavigateWindowRegister()">add</span>
           <span class="material-symbols-rounded table-row-icon icon-visibility"
                 (click)="openModalSee(user)">visibility</span>
           <span class="material-symbols-rounded table-row-icon icon-edit icon"
