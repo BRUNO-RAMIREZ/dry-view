@@ -24,6 +24,7 @@ export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
 
   public title: string;
   public imageData: string;
+  //public showPassword: boolean = false;
   private _unsubscribed: Subject<void>;
   
 
@@ -158,6 +159,10 @@ export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
   public redirectToWindowUser(): void {
     this._router.navigate(['/usuarios/listado']);
   }
+  /*
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+}*/
 
   private _buildUser(): UserCreateRequest {
     const formValue = this.formularyUsers.value;
