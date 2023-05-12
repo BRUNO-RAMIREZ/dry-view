@@ -32,10 +32,8 @@
           contraseña?</label>
 
         <section class="form-field">
-          <button type="submit" class="form-field-button form-field--common form-field-text--bold">Login</button>
+          <button type="submit" class="form-field-button form-field--common form-field-text--bold" [disabled]="!formularyLogin.valid">Login</button>
         </section>
-        <label class="form-field-label-footer form-field-label--size-small">¿Eres nuevo en la plataforma? <b
-            class="text-hover" (click)="navigateWindowFormRegister()">Regístrate</b></label>
       </form>
     </section>
 

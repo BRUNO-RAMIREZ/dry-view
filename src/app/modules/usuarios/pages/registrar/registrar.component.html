@@ -11,15 +11,15 @@
       <section class="form-row-section">
         <section class="form-field">
           <section class="form-field-header-input">
-            <span class="material-symbols-rounded" style="font-size: 35px;">badge</span>
+            <span class="material-symbols-rounded" style="font-size:35px;">badge</span>
             <label>Nombres</label>
           </section>
 
-          <input type="text" class="form-field-input" formControlName="name" name="name" maxlength="81">
+          <input type="text" class="form-field-input_name" formControlName="name" name="name" maxlength="81">
           <div *ngIf="formularyUsers.get('name')?.errors && formularyUsers.get('name')?.dirty">
             <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('required')">Nombre requerido</small>
-            <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('minlength')">Minimo 4 caracteres </small>
-            <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('maxlength')">Maximo 80 caracteres </small>
+            <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('minlength')">M&iacute;nimo 4 caracteres </small>
+            <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('maxlength')">M&aacute;ximo 80 caracteres </small>
             <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('pattern')">No se permiten caracteres especiales </small>
           </div>
         </section>
@@ -30,11 +30,11 @@
             <label>Apellidos</label>
           </section>
 
-          <input type="text" class="form-field-input" formControlName="lastName" name="lastName" maxlength="81">
+          <input type="text" class="form-field-input-lastaname" formControlName="lastName" name="lastName" maxlength="81">
           <div *ngIf="formularyUsers.get('lastName')?.errors && formularyUsers.get('lastName')?.dirty">
             <small class="text-danger" *ngIf="formularyUsers.get('lastName')?.hasError('required')">Apellido requerido</small>
-            <small class="text-danger" *ngIf="formularyUsers.get('lastName')?.hasError('minlength')">Minimo 4 caracteres </small>
-            <small class="text-danger" *ngIf="formularyUsers.get('lastName')?.hasError('maxlength')">Maximo 80 caracteres </small>
+            <small class="text-danger" *ngIf="formularyUsers.get('lastName')?.hasError('minlength')">M&iacute;nimo 4 caracteres </small>
+            <small class="text-danger" *ngIf="formularyUsers.get('lastName')?.hasError('maxlength')">M&aacute;ximo 80 caracteres </small>
             <small class="text-danger" *ngIf="formularyUsers.get('lastName')?.hasError('pattern')">No se permiten caracteres especiales ni numeros </small>
           </div>
         </section>
@@ -48,8 +48,8 @@
 
         <input type="email" class="form-field-input" formControlName="email" name="email" maxlength="81">
         <div *ngIf="formularyUsers.get('email')?.errors && formularyUsers.get('email')?.dirty">
-          <small class="text-danger" *ngIf="formularyUsers.get('email')?.hasError('requierd')">Correo electronico requerido</small>
-          <small class="text-danger" *ngIf="formularyUsers.get('email')?.hasError('pattern')">Solo se permiten correos electronicos</small>
+          <small class="text-danger" *ngIf="formularyUsers.get('email')?.hasError('requierd')">Correo electr&oacute;nico requerido</small>
+          <small class="text-danger" *ngIf="formularyUsers.get('email')?.hasError('pattern')">Solo se permiten correos electr&oacute;nicos</small>
         </div>
       </section>
 
@@ -64,7 +64,7 @@
           <div *ngIf="formularyUsers.get('phone')?.errors && formularyUsers.get('phone')?.dirty">
             <small class="text-danger" *ngIf="formularyUsers.get('phone')?.hasError('required')">Numero Celular requerido</small>
 
-            <small class="text-danger" *ngIf="formularyUsers.get('phone')?.hasError('pattern')">Solo numeros de bolivia</small>
+            <small class="text-danger" *ngIf="formularyUsers.get('phone')?.hasError('pattern')">Solo n&uacute;meros de Bolivia</small>
           </div>
         </section>
 
@@ -77,8 +77,8 @@
           <input type="text" class="form-field-input" formControlName="username" name="username">
           <div *ngIf="formularyUsers.get('username')?.errors && formularyUsers.get('username')?.dirty">
             <small class="text-danger" *ngIf="formularyUsers.get('username')?.hasError('required')">usuario requerido</small>
-            <small class="text-danger" *ngIf="formularyUsers.get('username')?.hasError('minlength')">Minimo 4 caracteres </small>
-            <small class="text-danger" *ngIf="formularyUsers.get('username')?.hasError('maxlength')">Maximo 16 caracteres </small>
+            <small class="text-danger" *ngIf="formularyUsers.get('username')?.hasError('minlength')">M&iacute;nimo 4 caracteres </small>
+            <small class="text-danger" *ngIf="formularyUsers.get('username')?.hasError('maxlength')">M&aacute;ximo 16 caracteres </small>
             <small class="text-danger" *ngIf="formularyUsers.get('username')?.hasError('pattern')">Debe empezar con una letra y sin caracteres especiales</small>
           </div>
         </section>
@@ -90,15 +90,19 @@
           <label>Password</label>
         </section>
 
-        <input type="password" id="_texto" class="form-field-input" formControlName="password" name="password" maxlength="10" (keydown)="oneKeyDown($event)">
-        <div *ngIf="formularyUsers.get('password')?.errors && formularyUsers.get('password')?.dirty" >
+
+        <div>
+        <input type="{{showPassword ? 'text' : 'password'}}" class="form-field-input-pass" id="password" formControlName="password" name="password" maxlength="10" (keydown)="oneKeyDown($event)">
+        <button type="button" class="btn" (click)="toggleShowPassword()">
+          <i class="{{showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'}}"></i>
+          <img src="../../../../assets/ojin.png" alt="Descripción de la imagen">
+        </button>
+        <div *ngIf="formularyUsers.get('password')?.errors && formularyUsers.get('password')?.dirty">
           <small class="text-danger" *ngIf="formularyUsers.get('password')?.hasError('required')">Contraseña requerida</small>
-          <small class="text-danger" *ngIf="formularyUsers.get('password')?.hasError('maxlength')">Maximo 10 caracteres </small>
-          <small class="text-danger" *ngIf="formularyUsers.get('password')?.hasError('minlength')">Minimo 4 caracteres </small>
-          
-         
-         
-        </div>
+          <small class="text-danger" *ngIf="formularyUsers.get('password')?.hasError('maxlength')">M&aacute;ximo 10 caracteres</small>
+          <small class="text-danger" *ngIf="formularyUsers.get('password')?.hasError('minlength')">M&iacute;nimo 4 caracteres</small>
+        </div> 
+      </div>
       </section>
 
       <section class="form-field-buttons"
