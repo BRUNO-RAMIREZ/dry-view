@@ -90,15 +90,19 @@
           <label>Password</label>
         </section>
 
-        <input type="password" id="_texto" class="form-field-input" formControlName="password" name="password" maxlength="10" (keydown)="oneKeyDown($event)">
-        <div *ngIf="formularyUsers.get('password')?.errors && formularyUsers.get('password')?.dirty" >
+
+        <div>
+        <input type="{{showPassword ? 'text' : 'password'}}" class="form-field-input-pass" id="password" formControlName="password" name="password" maxlength="10" (keydown)="oneKeyDown($event)">
+        <button type="button" class="btn" (click)="toggleShowPassword()">
+          <i class="{{showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'}}"></i>
+          <img src="../../../../assets/ojin.png" alt="Descripción de la imagen">
+        </button>
+        <div *ngIf="formularyUsers.get('password')?.errors && formularyUsers.get('password')?.dirty">
           <small class="text-danger" *ngIf="formularyUsers.get('password')?.hasError('required')">Contraseña requerida</small>
-          <small class="text-danger" *ngIf="formularyUsers.get('password')?.hasError('maxlength')">M&aacute;ximo 10 caracteres </small>
-          <small class="text-danger" *ngIf="formularyUsers.get('password')?.hasError('minlength')">M&iacute;nimo 4 caracteres </small>
-          
-         
-         
-        </div>
+          <small class="text-danger" *ngIf="formularyUsers.get('password')?.hasError('maxlength')">M&aacute;ximo 10 caracteres</small>
+          <small class="text-danger" *ngIf="formularyUsers.get('password')?.hasError('minlength')">M&iacute;nimo 4 caracteres</small>
+        </div> 
+      </div>
       </section>
 
       <section class="form-field-buttons"
