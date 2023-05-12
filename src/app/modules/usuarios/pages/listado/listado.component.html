@@ -49,7 +49,7 @@
           | paginate: { itemsPerPage:10  , currentPage: page, totalItems: (users | async | filterSearchPipeUser:userNameSearch).length};
            let i = index; trackBy: trackById">
         <td>
-          <img style="width: 50px; height: 50px;" src="{{user.image}}" alt="image" class="item-img">
+          <img style="width: 40px; height: 40px;" src="{{user.image}}" alt="image" class="item-img">
         </td>
         <td class="table-row-td" [title]="user.name">{{user.name}}</td>
         <td class="table-row-td" [title]="user.lastName">{{user.lastName}}</td>
