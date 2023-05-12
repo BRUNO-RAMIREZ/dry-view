@@ -21,9 +21,9 @@ export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
   public formularyUsers!: FormGroup;
   public userUpdateRequest: UserUpdateRequest;
   public tamañoCorrecto: boolean;
-
   public title: string;
   public imageData: string;
+  public showPassword: boolean = false;
   private _unsubscribed: Subject<void>;
   
 
@@ -72,6 +72,9 @@ export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
   ngOnDestroy(): void {
     this._unsubscribed.next();
     this._unsubscribed.complete();
+  }
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
   }
  
   
@@ -158,6 +161,10 @@ export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
   public redirectToWindowUser(): void {
     this._router.navigate(['/usuarios/listado']);
   }
+  /*
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+}*/
 
   private _buildUser(): UserCreateRequest {
     const formValue = this.formularyUsers.value;

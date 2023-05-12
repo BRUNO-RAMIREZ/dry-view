@@ -3,18 +3,15 @@ import {AuthService} from '../../../auth/services/auth.service';
 import {UsuariosService} from '../../services/usuarios.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
-import { UserGetByEmailResponse } from 'src/app/core/models/user.model';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-
+import {UserGetByEmailResponse} from '../../../../core/models/user.model';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-informacion-cuenta',
   templateUrl: './informacion-cuenta.component.html',
   styleUrls: ['./informacion-cuenta.component.scss']
 })
-
-
 
 export class InformacionCuentaComponent implements OnInit, OnDestroy {
   public email: string;
@@ -81,4 +78,3 @@ export class InformacionCuentaComponent implements OnInit, OnDestroy {
     this.textIconEye = this.isPasswordVisible ? 'visibility' : 'visibility_off';
   }
 }
-
