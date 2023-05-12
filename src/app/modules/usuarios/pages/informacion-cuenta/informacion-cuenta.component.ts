@@ -18,6 +18,7 @@ export class InformacionCuentaComponent implements OnInit, OnDestroy {
   public userAccount: UserGetByEmailResponse;
   public isPasswordVisible: boolean;
   public textIconEye: string;
+  public imageData: string;
 
   private _unsubscribed: Subject<void>;
   private _passwordCodificada: string;
@@ -28,6 +29,7 @@ export class InformacionCuentaComponent implements OnInit, OnDestroy {
               private usuariosService: UsuariosService,
               public modal: NgbModal) {
     this.email = "";
+    this.imageData = '';
     this.userAccount = {
       id: 0,
       name: '',
@@ -54,6 +56,9 @@ export class InformacionCuentaComponent implements OnInit, OnDestroy {
         .subscribe(response => {
           this.userAccount = response;
           this._passwordNoCodificada = this.userAccount.password;
+          if(this.userAccount.image){
+            this.imageData = this.userAccount.image;
+          }
           for (let char of this.userAccount.password) {
             this._passwordCodificada += '*';
           }
