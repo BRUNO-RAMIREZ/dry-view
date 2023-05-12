@@ -33,7 +33,9 @@
       box-sizing: border-box;
     }
   }
-  
+  .table-body{
+    height: 80px;
+  }
   .listado-content {
     background-color: var(--color-white);
     box-sizing: border-box;
@@ -69,9 +71,8 @@
   
       &-row {
         min-height: 20px;
-        vertical-align: middle;
-  
-  
+        height: 70px;
+       
         &-td {
           min-width: 200px;
           max-width: 200px;
@@ -80,15 +81,12 @@
           text-overflow: ellipsis;
           text-align: center;
           vertical-align: middle;
-         
-          
   
           &-datos{
             text-align: center;
           }
   
         }
-  
   
         &-icon {
           border-radius: 50%;
@@ -142,7 +140,7 @@
   
         .item-img {
           background-size: cover;
-          width: 50px;
+          width: 40px;
         }
       }
     }
