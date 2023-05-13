@@ -74,6 +74,7 @@ export class ListadoComponent implements OnInit, OnDestroy {
   }
 
   public openModalSee(user: UserListResponse): void {
+    console.log("adsfdf");
     this.seeBoolean = true;
     this.userModal = user;
   }
