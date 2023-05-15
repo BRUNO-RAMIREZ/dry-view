@@ -2,7 +2,6 @@ import {Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {Observable, Subject} from "rxjs";
 import {map, take, takeUntil, tap} from "rxjs/operators";
-
 import {ProductosService} from "../../services/productos.service";
 import {ProductDeleteRequest, ProductListResponse} from "../../../../core/models/product.model";
 import {ProductMapper} from "../../../../core/mappers/product.mapper";
