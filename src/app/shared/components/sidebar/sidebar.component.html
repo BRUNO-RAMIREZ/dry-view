@@ -16,6 +16,14 @@
 
    <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/ventas/registro">
       <span class="material-symbols-rounded sidebar-header-icon"  title="Registro de ventas">format_list_numbered</span>
+    <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/estadisticas" >
+      <span class="material-symbols-rounded sidebar-header-icon" title="Lista de productos">Monitoring</span>
+      <label class="sidebar-content-item-text" *ngIf="desplegado">Estadisticas</label>
+    </section>
+
+
+   <!-- <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/productos/ventas">
+      <span class="material-symbols-rounded sidebar-header-icon">format_list_numbered</span>
       <label class="sidebar-content-item-text" *ngIf="desplegado">Registro de ventas</label>
     </section>
  
@@ -38,7 +46,7 @@
       <label class="sidebar-content-item-text" *ngIf="desplegado">Salir</label>
     </section>
   </section>
-</article>
+
 
 
 
