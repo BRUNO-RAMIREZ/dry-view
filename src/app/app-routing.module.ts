@@ -13,6 +13,12 @@ const routes: Routes = [
    
   },
   {
+    path: 'notificaciones',
+    loadChildren: () => import('./modules/notificaciones/notificaciones.module').then(m => m.NotificacionesModule),
+    canActivate: [AuthGuard]
+  }, 
+
+  {
     path: 'productos',
     loadChildren: () => import('./modules/productos/productos.module').then(m => m.ProductosModule),
     canActivate: [AuthGuard]
