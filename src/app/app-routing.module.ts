@@ -17,10 +17,10 @@ const routes: Routes = [
     path: 'usuarios',
     loadChildren: () => import('./modules/usuarios/usuarios.module').then(m => m.UsuariosModule)
   },
- /* {
-    path: 'mi-cuenta',
-    loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
-  },*/
+   {
+   path: 'ventas',
+    loadChildren: () => import('./modules/ventas/ventas.module').then(m => m.VentasModule)
+  },
   {
     path: '**',
     redirectTo: 'usuarios'

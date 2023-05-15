@@ -6,7 +6,7 @@ import { ListadoComponent } from './pages/listado/listado.component';
 
 const routes: Routes = [
   {
-    path: 'ventas',
+    path: '',
     component: VentasRouterOutletComponent,
     children: [
       /*{path: '', component: },
@@ -14,11 +14,26 @@ const routes: Routes = [
       {path: '', component: },
       {path: '', component: },
       {path: '**', redirectTo: 'login'}*/
-      {path: 'listado', component: ListadoComponent}
+      {path: 'listado', component: ListadoComponent},
+      {path: '**', redirectTo: 'home'}
     ]
   }
 
 ];
+/*const routes: Routes = [
+  {
+    path: '',
+    component: HomeRouterOutletComponent,
+    children: [
+      {path: 'home', component: HomeComponent},
+      {path: 'listado', component: ListadoComponent},
+      {path: 'registrar', component: RegistrarComponent},
+      {path: 'editar/:id', component: RegistrarComponent},
+      {path: '**', redirectTo: 'home'}
+    ]
+  }
+];*/
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

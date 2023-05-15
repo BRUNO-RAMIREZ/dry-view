@@ -20,7 +20,7 @@ import {Router} from "@angular/router";
 import {Observable, Subject} from "rxjs";
 import {map, take, takeUntil, tap} from "rxjs/operators";
 
-import {ProductosService} from "../../services/productos.service";
+//import {ProductosService} from "../../services/productos.service";
 import {ProductDeleteRequest, ProductListResponse} from "../../../../core/models/product.model";
 import {ProductMapper} from "../../../../core/mappers/product.mapper";
 
@@ -43,7 +43,7 @@ export class ListadoComponent implements OnInit, OnDestroy {
   public productModal!: ProductListResponse;
   private _unsubscribed: Subject<void>;
 
-  constructor(private _productService: ProductosService,
+  constructor(
               private _router: Router) {
     this.products          = new Observable<ProductListResponse[]>();
     this.totalProducts     = 0;
@@ -59,10 +59,7 @@ export class ListadoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.products = this._productService.productsObservable
-      .pipe(
-        tap(products => this.totalProducts = products.length)
-      );
+
   }
 
   ngOnDestroy(): void {
@@ -84,15 +81,6 @@ export class ListadoComponent implements OnInit, OnDestroy {
 
     this.productNameSearch = productName;
   }
-
-  public incrementStock(productId: number): void {
-    if (productId) {
-      this._productService.updateStock(productId)
-        .pipe(takeUntil(this._unsubscribed))
-        .subscribe();
-    }
-  }
-
 
 
   public seeProductById(): void {
