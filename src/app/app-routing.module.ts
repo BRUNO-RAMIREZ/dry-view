@@ -7,7 +7,11 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
   },
-
+  {
+    path: 'informacion',
+    loadChildren: () => import('./modules/informacion-pagina/informacion-pagina.module').then(m => m.InformacionPaginaModule),
+   
+  },
   {
     path: 'productos',
     loadChildren: () => import('./modules/productos/productos.module').then(m => m.ProductosModule),
