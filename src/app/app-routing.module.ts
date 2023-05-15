@@ -17,6 +17,10 @@ const routes: Routes = [
     path: 'usuarios',
     loadChildren: () => import('./modules/usuarios/usuarios.module').then(m => m.UsuariosModule)
   },
+  {
+    path: 'estadisticas',
+    loadChildren: () => import('./modules/estadisticas/estadisticas.module').then(m => m.EstadisticasModule)
+  },
  /* {
     path: 'mi-cuenta',
     loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
