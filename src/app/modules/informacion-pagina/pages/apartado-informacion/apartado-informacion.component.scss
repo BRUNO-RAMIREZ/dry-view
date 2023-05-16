@@ -206,17 +206,21 @@
       color: #f34141;
     }
   }
-  
-  .dry-page-apartado-informacion-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px
-    
-  }
-  .mid-content-text-section {
-    border-radius: 5px;
-    box-sizing: border-box;
-    padding: 5px;
-    background-color: var(--color-white);
-    margin-bottom: 5px;
+.pie {
+    background: #2A6078;
 }
+.img {
+    width: 100%px;
+    height: 90%;
+}
+
+.login-form-section {
+    background-color: var(--color-light-blue-secondary);
+}
+.form-section {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    animation: bordercont 1s infinite alternate both;
+  }
+  
