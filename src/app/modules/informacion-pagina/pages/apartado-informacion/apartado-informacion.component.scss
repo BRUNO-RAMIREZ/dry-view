@@ -207,3 +207,16 @@
     }
   }
   
+  .dry-page-apartado-informacion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+    
+  }
+  .mid-content-text-section {
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 5px;
+    background-color: var(--color-white);
+    margin-bottom: 5px;
+}
