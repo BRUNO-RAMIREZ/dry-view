@@ -3,6 +3,7 @@ import {Chart,registerables} from 'node_modules/chart.js';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subject} from "rxjs";
 import {EstadisticasService} from '../../services/estadisticas.service';
+import {VentasListResponse} from '../../../../core/models/ventas.model';
 Chart.register(...registerables);
 @Component({
   selector: 'app-home-estadisticas',
@@ -15,7 +16,7 @@ Chart.register(...registerables);
 export class HomeEstadisticasComponent implements OnInit, OnDestroy {
 
   private _unsubscribed: Subject<void>;
-
+  public ventas:VentasListResponse[] = [];
   public desde1:any;
   public hasta1:any;
   public tiempoElegido1:number;
@@ -74,8 +75,12 @@ export class HomeEstadisticasComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
     this.tiempoElegido1 = 0;
     this.renderChart();
+    this._estadisticasServices.getAllVentas().subscribe(res =>{
+      this.ventas = res;
+    })
    // this.renderChart2();
     //this.renderChart3();
 
@@ -86,14 +91,34 @@ export class HomeEstadisticasComponent implements OnInit, OnDestroy {
     this._unsubscribed.complete();
   }
 
+  getSubVentasFechas(desde:Date, hasta:Date):VentasListResponse[]{
+    var res:VentasListResponse[] = [];
+    var d = new Date();
+    d.setDate(desde.getDate());
+    d.setFullYear(desde.getFullYear());
+    d.setMonth(desde.getMonth());
+    d.setHours(0,0);
 
+    var h = new Date();
+    h.setDate(hasta.getDate());
+    h.setFullYear(hasta.getFullYear());
+    h.setMonth(hasta.getMonth());
+    h.setHours(23,59);
+    for(let i = 0 ; i < this.ventas.length ; i++){
+      if(this.ventas[i].dateSale >= d && this.ventas[i].dateSale <= h){
+        res.push(this.ventas[i]);
+      }
+    }
+    return res;
+
+  }
   renderChart(){
 
     if(this.desde1 != '' && this.hasta1 != '' && this.desde1 != undefined && this.hasta1 != undefined){
       let des = this.convertirADate(this.desde1);
       let has = this.convertirADate(this.hasta1);
       if(des <= has){
-        this._estadisticasServices.getVentasPorFecha(des,has).subscribe(ventas =>{
+        var ventas = this.getSubVentasFechas(des, has);
 
           var labelsProductos:string[] = [];
           var ventasdata:number[] = [];
@@ -156,33 +181,6 @@ export class HomeEstadisticasComponent implements OnInit, OnDestroy {
               }
             });
           }
-          
-          
-        },err =>{
-          if (this.myChart) {
-            this.myChart.destroy();
-          }
-          const ctx = document.getElementById('myChart');
-                
-          this.myChart = new Chart("myChart", {
-            type: 'bar',
-            data: {
-              labels: [''],
-              datasets: [{
-                label: 'Numero de ventas',
-                data: [],
-                borderWidth: 1
-              }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
-            }
-          });
-         });
         
       }
     }else{

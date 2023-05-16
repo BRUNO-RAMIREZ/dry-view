@@ -13,8 +13,8 @@ export class EstadisticasService {
     this._baseURL = environment.baseURL;
    }
 
-   public getVentasPorFecha(desde:Date, hasta:Date): Observable<VentasListResponse[]> {
-    return this._http.get<VentasGetAllResponse>(`${this._baseURL}/products/getAll`)
+   public getAllVentas(): Observable<VentasListResponse[]> {
+    return this._http.get<VentasGetAllResponse>(`${this._baseURL}/ventas/getAll`)
       .pipe(map(res => res.ventas));
   }
 }
