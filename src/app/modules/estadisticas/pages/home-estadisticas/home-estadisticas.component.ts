@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {Chart,registerables} from 'node_modules/chart.js';
-import { MaterialAngularSelectModule } from 'material-angular-select';
 Chart.register(...registerables);
 @Component({
   selector: 'app-home-estadisticas',

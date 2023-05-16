@@ -40,7 +40,7 @@
   }
   
   export interface VentasGetAllResponse {
-    users: VentasListResponse[];
+    ventas: VentasListResponse[];
   }
   export interface VentasListResponse {
     id: number;

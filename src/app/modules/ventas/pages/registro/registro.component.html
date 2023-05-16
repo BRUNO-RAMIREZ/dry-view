@@ -17,13 +17,14 @@
             
             <h3 class="registro-header-total">TOTAL:</h3>
             <div class="component-search">
-            <input type="text"
-                   class="registro-header-search-input"
-                   placeholder="Ingrese el nombre del usuario a buscar..."
-                   #textSearch
-                   (keyup)="searchProductByName(textSearch.value)">
-                   <button>Agregar</button>
-            </div>
+              <input type="text" [(ngModel)]="searchTerm$" (input)='searchTerm$.next($event.target.value)' placeholder="Search">
+              <ul>
+                <li *ngFor="let product of listFiltered">{{ product.name }}</li>
+              </ul>
+              
+          </div>
+           
+            
           </section>
           
           <section class="registro-content-section registro-content">
@@ -50,20 +51,13 @@
               </thead>
               
               <tbody>
-              <tr [ngClass]="(i % 2 === 0) ? 'table-row--color-disabled' : 'table-row--color-white'"
-              class="table-row animate__animated animate__fadeIn animate__faster"
-              *ngFor="let product of products
-              | async
-              | filterSearchPipeProd:productNameSearch
-              
-              | paginate: { itemsPerPage:10  , currentPage: page, totalItems: (products | async | filterSearchPipeProd:productNameSearch).length};
-               let i = index; trackBy: trackById">
+              <tr>
                 <td>
-                  <img src="{{product.image}}" alt="image" class="item-img" style="width: 50px; height: 50px;">
+                  <img>
                 </td>
-                <td class="table-row-td" [title]="product.name">{{product.name}}</td>
-                <td class="table-row-td" [title]="product.salePrice">{{product.salePrice  | number : '1.2-2'}}</td>
-                <td class="table-row-td"><input type="number"></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
                 
                
                 
