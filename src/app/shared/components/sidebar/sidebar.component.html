@@ -13,6 +13,11 @@
     </section>
 
     <hr class="hr">
+    <section class="sidebar-content-item" routerLink="/informacion">
+      <span class="material-symbols-rounded sidebar-header-icon" title="Informacion">receipt_long</span>
+      <label class="sidebar-content-item-text" *ngIf="desplegado">Informacion</label>
+    </section>
+
 
         <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/ventas/registro">
             <span class="material-symbols-rounded sidebar-header-icon"  title="Registro de ventas">format_list_numbered</span>
