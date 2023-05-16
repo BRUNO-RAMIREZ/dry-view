@@ -20,8 +20,8 @@ import {Router} from "@angular/router";
 import {Observable, Subject} from "rxjs";
 import {map, take, takeUntil, tap} from "rxjs/operators";
 
-//import {ProductosService} from "../../services/productos.service";
-import {ProductDeleteRequest, ProductListResponse} from "../../../../core/models/product.model";
+import {VentasService} from "../../services/ventas.service";
+import {VentasListResponse} from "../../../../core/models/ventas.model";
 import {ProductMapper} from "../../../../core/mappers/product.mapper";
 
 @Component({
@@ -30,7 +30,7 @@ import {ProductMapper} from "../../../../core/mappers/product.mapper";
   styleUrls: ['./listado.component.scss']
 })
 export class ListadoComponent implements OnInit, OnDestroy {
-  public products: Observable<ProductListResponse[]>;
+  public ventas: Observable<VentasListResponse[]>;
   public totalProducts: number;
   public productMapper: ProductMapper;
   public deleteBoolean: boolean;
@@ -40,12 +40,12 @@ export class ListadoComponent implements OnInit, OnDestroy {
   public sortBy: string;
   public order: string;
   public iconArrow: string;
-  public productModal!: ProductListResponse;
+  public productModal!: VentasListResponse;
   private _unsubscribed: Subject<void>;
 
-  constructor(
+  constructor(private _ventasService: VentasService,
               private _router: Router) {
-    this.products          = new Observable<ProductListResponse[]>();
+    this.ventas         = new Observable<VentasListResponse[]>();
     this.totalProducts     = 0;
     this.productMapper     = new ProductMapper();
     this.deleteBoolean     = false;
@@ -59,7 +59,10 @@ export class ListadoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
+    this.ventas = this._ventasService.productsObservable
+    .pipe(
+      tap(ventas => this.totalProducts = ventas.length)
+    );
   }
 
   ngOnDestroy(): void {
@@ -69,7 +72,7 @@ export class ListadoComponent implements OnInit, OnDestroy {
 
 
 
-  public trackById(index: number, product: ProductListResponse): number{
+  public trackById(index: number, product: VentasListResponse): number{
     return product.id;
   }
 
@@ -89,12 +92,12 @@ export class ListadoComponent implements OnInit, OnDestroy {
     }
   }
 
-  public openModalSee(product: ProductListResponse): void {
+  public openModalSee(product: VentasListResponse): void {
     this.seeBoolean = true;
     this.productModal = product;
   }
 
-  public openModalDelete(product: ProductListResponse): void {
+  public openModalDelete(product: VentasListResponse): void {
     this.deleteBoolean = true;
     this.productModal = product;
   }
