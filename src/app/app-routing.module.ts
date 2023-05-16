@@ -7,6 +7,16 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
   },
+  {
+    path: 'informacion',
+    loadChildren: () => import('./modules/informacion-pagina/informacion-pagina.module').then(m => m.InformacionPaginaModule),
+   
+  },
+  {
+    path: 'notificaciones',
+    loadChildren: () => import('./modules/notificaciones/notificaciones.module').then(m => m.NotificacionesModule),
+    canActivate: [AuthGuard]
+  }, 
 
   {
     path: 'productos',
@@ -21,6 +31,14 @@ const routes: Routes = [
    path: 'ventas',
     loadChildren: () => import('./modules/ventas/ventas.module').then(m => m.VentasModule)
   },
+  {
+    path: 'estadisticas',
+    loadChildren: () => import('./modules/estadisticas/estadisticas.module').then(m => m.EstadisticasModule)
+  },
+ /* {
+    path: 'mi-cuenta',
+    loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
+  },*/
   {
     path: '**',
     redirectTo: 'usuarios'

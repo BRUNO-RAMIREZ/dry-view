@@ -33,6 +33,10 @@ export class HeaderComponent {
     this._router.navigate(['/usuarios/informacion-cuenta']);
   }
 
+  public irAnotificaciones(): void{
+    this._router.navigate(['/notificaciones']);
+  }
+
   public closeSession(): void {
     this._authService.logout();
     this._router.navigate(['/usuarios']);
