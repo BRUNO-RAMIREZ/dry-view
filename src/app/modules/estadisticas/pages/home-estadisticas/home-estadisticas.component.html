@@ -1,37 +1,34 @@
 <app-header title="Estadisticas"></app-header>
 
 
-<div class="row">
-    <div class="col-rg-6">
-        <h2>Grafico Numero 1</h2>
+<div class="contenedor">
+    
+        <h2>Gráfico Ventas en función de Producto</h2>
         <div class="filaw">
-            <div>
+            <div class = "inpFecha">
                 <label for="">Desde</label>
-                <input type="date" [(ngModel)] = "desde"  >
+                <br>
+                <input type="date" [(ngModel)] = "desde1" >
             </div>
-            <div>
+            <div class = "inpFecha">
                 <label for="">Hasta</label>
-                <input type="date" [(ngModel)] = "hasta"   [min]="desde">
+                <br>
+                <input type="date" [(ngModel)] = "hasta1"   [min]="desde1">
             </div>
-        </div>
-        
 
-        <div>
-            <label for="">Elegir unidad de tiempo</label>
-            <select name="select" [(ngModel)] = "tiempoElegido1">
-                <option value="0">Dias </option>
-                <option value="1" selected>Meses</option>
-                <option value="2">Años</option>
-            </select>
-            <button (click)="renderChart()"  >Generar Grafico</button>
+         
+            <div class = "inpFecha">
+                <br>
+                <button (click)="renderChart()" class="btn btn-primary" style="min-width: 137px;">Generar Gráfico</button>
+            </div>
+            
         </div>
-        <br>
+
 
         <br>
 
         <div class="ContenedorCanvas" >
-            hola
             <canvas id="myChart" ></canvas>
           </div>
-    </div>
+   
 </div>
