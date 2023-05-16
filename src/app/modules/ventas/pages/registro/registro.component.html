@@ -17,12 +17,8 @@
             
             <h3 class="registro-header-total">TOTAL:</h3>
             <div class="component-search">
-              <input type="text" [(ngModel)]="searchTerm$" (input)='searchTerm$.next($event.target.value)' placeholder="Search">
-              <ul>
-                <li *ngFor="let product of listFiltered">{{ product.name }}</li>
-              </ul>
-              
-          </div>
+              <input type="text" placeholder="Search">
+        </div>
            
             
           </section>
@@ -73,14 +69,7 @@
               </tbody>
             </table>
             <section class="registro-footer-pagination">
-              <pagination-controls>
-                class="my-pagination"
-                  (pageChange)="pageChangeA($event)"
-                  (pageBoundsCorrection)="pageChangeA($event)"
-                  previousLabel="Anterior"
-                  nextLabel="Siguiente"
-                  [autoHide]="true">
-              </pagination-controls>
+            
             <button type="button" class="registro-button">Cobrar</button>
           </section>
          </section>

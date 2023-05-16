@@ -23,7 +23,7 @@ export class RegistroComponent {
   listFiltered: ProductListResponse[] = [];
 
   
-  constructor(private _productService: ProductosService) {
+  constructor(private _productService: ProductosService,private _router: Router) {
     this.products = this._productService.getAllProducts();
     this.filterList();
   }
