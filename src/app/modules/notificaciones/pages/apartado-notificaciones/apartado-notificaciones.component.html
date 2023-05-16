@@ -7,6 +7,9 @@
 <section class="listado-content-section listado-content">
   <table class="listado-content-table table">
     <thead>
+      <th class="table-thead-th--bold-light table-th">
+        <label class="table-th-label">Producto</label>
+      </th>
     <th class="table-thead-th--bold-light table-th">
       <label class="table-th-label">Nombre</label>
     </th>
@@ -19,15 +22,19 @@
     </thead>
 
     <tbody>
-    <tr [ngClass]="(i % 2 === 0) ? 'table-row--color-disabled' : 'table-row--color-white'"
-        class="table-row animate__animated animate__fadeIn animate__faster"
-        *ngFor="let product of products
-        
-         let i = index">
-      <td class="table-row-td" [title]="product.name">{{product.name}}</td>
-      <td class="table-row-td" [title]="product.stock">{{product.stock}}</td>
-
-    </tr>
+      <tr *ngFor="let producto of products">
+        <ng-container *ngIf="producto.stock < 10 || producto.stock === 0">
+          <td>
+            <img src="{{producto.image}}" alt="image" class="item-img" style="width: 50px; height: 50px;">
+          </td>
+          <td>{{ producto.name }}</td>
+          <td>{{ producto.stock }}</td>
+          <td>
+            {{ producto.stock === 0 ? 'Agotado' : producto.stock !=0 ? 'Por acabarse' : '' }}
+          </td>
+        </ng-container>
+      </tr>
+    
     <!--<td *ngIf="(products | async | filterSearchPipeProd:productNameSearch)?.length === 0">No existen productos para esta busqueda</td>-->
     </tbody>
   </table>
