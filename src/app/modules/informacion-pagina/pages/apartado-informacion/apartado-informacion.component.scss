@@ -215,6 +215,7 @@
 }
 
 
+
 .login-form-section {
     background-color: var(--color-light-blue-secondary);
 }
@@ -254,4 +255,31 @@
     
   }
 }
-  
+.fex-direction {
+    display: flex;
+
+  }
+  .logoo-text-section{
+    display: flex;
+    text-align: justify;
+    font-size: 16px;
+    color: var(--color-white);
+    font-weight: 600;
+    width: 60%;
+  }
+  .login-content-container{
+    display: flex;
+    text-align: justify;
+    font-size: 16px;
+    color: var(--color-white);
+    font-weight: 600;
+    width: 60%;
+    margin-left: 10px;
+  }
+  .logoo-text-section {
+    display: flex;
+    padding-left: 90px;
+  }
+  .flex-direction {
+    padding-left: 10px;
+  }
