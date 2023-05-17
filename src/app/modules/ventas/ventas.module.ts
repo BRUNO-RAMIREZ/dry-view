@@ -10,7 +10,7 @@ import { ListadoComponent } from './pages/listado/listado.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { FilterSearchPipe } from './pipes/filter-search.pipe';
 import {VentasService} from "./services/ventas.service";
-import { ModalComponent } from './components/modal/modal.component';
+//import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { ModalComponent } from './components/modal/modal.component';
     ListadoComponent,
     RegistroComponent,
     FilterSearchPipe,
-    ModalComponent
+  //  ModalComponent
   ],
   imports: [
     CommonModule,

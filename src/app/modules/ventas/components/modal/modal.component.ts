@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+/*import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
@@ -13,7 +13,7 @@ export class ModalComponent implements OnInit {
   }
 
 }
-
+*/
 /*
 import {AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {VentasListResponse} from "../../../../core/models/ventas.model";
