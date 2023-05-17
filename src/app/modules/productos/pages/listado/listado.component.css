@@ -1,0 +1,127 @@
+.dry-page-listado-container {
+  border-radius: 3px;
+  border-style: none;
+  box-sizing: border-box;
+}
+
+.listado-header {
+  display: flex;
+  justify-content: space-between;
+}
+.listado-header-search {
+  display: flex;
+  width: 60%;
+}
+.listado-header-search-input {
+  border-style: none;
+  padding-left: 10px;
+  flex: 1;
+}
+.listado-header-search-icon {
+  background-color: #d9d9d9;
+  padding: 7px;
+  box-sizing: border-box;
+}
+.listado-header-button {
+  width: 15%;
+  border-style: none;
+  border-radius: 7px;
+  background-color: var(--color-warning);
+  box-sizing: border-box;
+}
+
+.listado-content {
+  background-color: var(--color-white);
+  box-sizing: border-box;
+  margin-top: 40px;
+  padding: 10px;
+}
+.listado-content .table {
+  font-weight: lighter;
+}
+.listado-content .table-thead-th--bold-light {
+  font-weight: 600;
+  text-align: left;
+}
+.listado-content .table-row--color-white {
+  background-color: var(--color-white);
+}
+.listado-content .table-row--color-disabled {
+  background-color: var(--color-disabled);
+}
+.listado-content .table-th {
+  text-align: left;
+}
+.listado-content .table-th-icon {
+  font-size: var(--font-size-subtitle);
+  cursor: pointer;
+}
+.listado-content .table-row {
+  min-height: 20px;
+  vertical-align: middle;
+}
+.listado-content .table-row-td {
+  min-width: 200px;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.listado-content .table-row-td-datos {
+  text-align: center;
+}
+.listado-content .table-row-icon {
+  border-radius: 50%;
+  font-weight: bold;
+  padding: 7px;
+  font-size: 15px;
+  margin-left: 9px;
+}
+.listado-content .table-row .icon-plus {
+  background-color: var(--color-light-accent);
+  margin-left: 30px;
+}
+.listado-content .table-row .icon-plus:hover {
+  cursor: pointer;
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+.listado-content .table-row .icon-visibility {
+  background-color: rgb(44, 168, 255);
+}
+.listado-content .table-row .icon-visibility:hover {
+  cursor: pointer;
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+.listado-content .table-row .icon-edit {
+  background-color: rgb(255, 178, 54);
+}
+.listado-content .table-row .icon-edit:hover {
+  cursor: pointer;
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+.listado-content .table-row .icon-delete {
+  background-color: rgb(255, 54, 54);
+}
+.listado-content .table-row .icon-delete:hover {
+  cursor: pointer;
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+.listado-content .table-row .item-img {
+  background-size: cover;
+  width: 50px;
+}
+
+.listado-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.my-pagination ::ng-deep .ngx-pagination .current {
+  background: #5b6265;
+  color: var(--color-white);
+  border-radius: 50%;
+}/*# sourceMappingURL=listado.component.css.map */
