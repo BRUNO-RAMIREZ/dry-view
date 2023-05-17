@@ -1,0 +1,7 @@
+.auth-page-container {
+  display: grid;
+  place-items: center;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+}/*# sourceMappingURL=notificaciones-router-outlet.component.css.map */

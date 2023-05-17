@@ -4,6 +4,20 @@
 }
 
 .filaw{
-    display: flexbox;
+    display: flex;
     flex-direction: row;
+    
+}
+.inpFecha{
+    padding: 15px;
+}
+
+.inpFecha input{
+    border: none;
+}
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 635px;
 }

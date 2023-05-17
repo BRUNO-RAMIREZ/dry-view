@@ -1,16 +1,10 @@
-/*import { Injectable } from '@angular/core';
-@Injectable({
-  providedIn: 'root'
-})
-export class VentasService {
-
-  constructor() { }
-}*/
 
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, of} from "rxjs";
 import {switchMap, tap} from "rxjs/operators";
 import {environment} from "../../../../environments/environment";
+import {HttpClient} from "@angular/common/http";
+import {map} from "rxjs/operators";
 import {
   VentasCreateRequest,
   VentasUpdateRequest,
@@ -20,8 +14,6 @@ import {
   VentasCreateResponse,
   VentasListResponse,
 } from "../../../core/models/ventas.model";
-import {HttpClient} from "@angular/common/http";
-import {map} from "rxjs/operators";
 
 /*@Injectable({
   providedIn: 'root'
@@ -29,32 +21,32 @@ import {map} from "rxjs/operators";
 @Injectable()
 export class VentasService {
    private _baseURL: string;
-  private _products: BehaviorSubject<VentasListResponse[]>;
+  private _ventas: BehaviorSubject<VentasListResponse[]>;
 
   constructor(private _http: HttpClient) { 
     this._baseURL = environment.baseURL;
-    this._products = new BehaviorSubject<VentasListResponse[]>([]);
-    this.getAllProducts().subscribe(response => {
-      this._products.next(response);
+    this._ventas = new BehaviorSubject<VentasListResponse[]>([]);
+    this.getAllVentas().subscribe(response => {
+      this._ventas.next(response);
     })
   }
 
-   public get productsObservable(): Observable<VentasListResponse[]> {
-    return this._products.asObservable();
+   public get ventasObservable(): Observable<VentasListResponse[]> {
+    return this._ventas.asObservable();
    }
-    /*public createProduct(product: ProductCreateRequest): Observable<ProductCreateResponse> {
-    return this._http.post<ProductCreateResponse>(`${this._baseURL}/products/create`, product)
-      .pipe(map((newProduct: ProductCreateResponse) => {
-        const currentProducts = this._products.getValue();
-        this._products.next([...currentProducts, newProduct]);
-        return newProduct;
+   public createProduct(venta: VentasCreateRequest): Observable<VentasCreateResponse> {
+    return this._http.post<VentasCreateResponse>(`${this._baseURL}/ventas/create`, venta)
+      .pipe(map((newVenta: VentasCreateResponse) => {
+        const currentVentas = this._ventas.getValue();
+        this._ventas.next([...currentVentas, newVenta]);
+        return newVenta;
       }));
-  }*/
+  }
 
   // Evitar usar este metodo directamente utilizar el productsObservable
-  public getAllProducts(): Observable<VentasListResponse[]> {
-    return this._http.get<VentasGetAllResponse>(`${this._baseURL}/products/getAll`)
-      .pipe(map(res => res.users));
+  public getAllVentas(): Observable<VentasListResponse[]> {
+    return this._http.get<VentasGetAllResponse>(`${this._baseURL}/ventas/getAll`)
+      .pipe(map(res => res.ventas));
   }
 
  /* public updateStock(productId: number): Observable<void> {
@@ -100,18 +92,19 @@ export class VentasService {
   }*/
 
 
-  public getProductById(productId: number): Observable<VentasGetByIdResponse> {
-    return this._http.get<VentasGetByIdResponse>(`${this._baseURL}/products/${productId}/findById`);
+  public getVentasById(ventaId: number): Observable<VentasGetByIdResponse> {
+    return this._http.get<VentasGetByIdResponse>(`${this._baseURL}/ventas/${ventaId}/findById`);
   }
 
-  public deleteProductById(productId: number): Observable<void> {
-    return this._http.delete<void>(`${this._baseURL}/products/${productId}`)
+  public deleteVentasById(ventaId: number): Observable<void> {
+    return this._http.delete<void>(`${this._baseURL}/products/${ventaId}`)
       .pipe(
         map(() => {
-          const currentProducts = this._products.getValue();
-          const updatedProducts = currentProducts.filter((product: VentasUpdateRequest) => product.id !== productId);
-          this._products.next(updatedProducts);
+          const currentVentas = this._ventas.getValue();
+          const updatedVentas = currentVentas.filter((venta: VentasUpdateRequest) => venta.id !== ventaId);
+          this._ventas.next(updatedVentas);
         })
       );
   }
   }
+

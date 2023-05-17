@@ -8,33 +8,24 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { SharedModule } from "../../shared/shared.module";
 import { ListadoComponent } from './pages/listado/listado.component';
 import { RegistroComponent } from './pages/registro/registro.component';
-import { FilterSearchPipe } from './pipes/filter-search.pipe';
-import {VentasService} from "./services/ventas.service";
-//import { ModalComponent } from './components/modal/modal.component';
+import { ProductosModule } from "../productos/productos.module";
 
 @NgModule({
-  declarations: [
-    VentasRouterOutletComponent,
-    ListadoComponent,
-    RegistroComponent,
-    FilterSearchPipe,
-  //  ModalComponent
-  ],
-  imports: [
-    CommonModule,
-    VentasRoutingModule,
+    declarations: [
+        VentasRouterOutletComponent,
+        ListadoComponent,
+        RegistroComponent
+    ],
+    imports: [
+        CommonModule,
+        VentasRoutingModule,
         RouterModule,
         ReactiveFormsModule,
+        NgxPaginationModule,
         FormsModule,
         SharedModule,
-        NgxPaginationModule,
-  ],
-  exports: [
-    FilterSearchPipe
-  ],
-  providers: [
-    VentasService,
-  ]
+        ProductosModule
+    ]
 })
 export class VentasModule { }
 
