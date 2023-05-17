@@ -1,0 +1,71 @@
+dry-home-page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.top-content-text-section {
+  border-radius: 3px;
+  box-sizing: border-box;
+  background-color: var(--color-dark-blue);
+  padding: 5px;
+  width: 50%;
+  max-width: 50%;
+  margin-bottom: 10px;
+}
+.top-content-text-section .text {
+  color: var(--color-white);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.mid-content-text-section-father {
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 10px;
+  background-color: var(--color-white);
+  margin-bottom: 15px;
+}
+.mid-content-text-section-father .mid-content-text-section-children {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 20px;
+  background-color: var(--color-light-blue-secondary);
+}
+.mid-content-text-section-father .imagen {
+  border-radius: 5px;
+  box-sizing: border-box;
+  width: 200px;
+  height: 200px;
+}
+.mid-content-text-section-father .label {
+  display: flex;
+  text-align: justify;
+  font-size: 16px;
+  color: var(--color-white);
+  font-weight: 600;
+  width: 50%;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+@media (max-width: 500px) {
+  .mid-content-text-section-children {
+    display: flex;
+    flex-direction: column;
+  }
+  /* styles to apply for screens smaller than or equal to 768 pixels wide */
+}
+@media (max-width: 500px) {
+  .mid-content-text-section-children bottom {
+    display: flex;
+    flex-direction: column;
+  }
+  /* styles to apply for screens smaller than or equal to 768 pixels wide */
+}/*# sourceMappingURL=home.component.css.map */

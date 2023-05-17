@@ -1,1 +1,114 @@
-<p>listado works!</p>
+<app-header [title]="'Lista de Ventas'"></app-header>
+<article class="dry-page-listado-container animate__animated animate__fadeIn animate__faster">
+  <section class="listado-header-section listado-header">
+    <section class="listado-header-search-section listado-header-search">
+      <input type="text"
+             class="listado-header-search-input"
+             placeholder="buscar..."
+             #textSearch
+             (keyup)="searchProductByName(textSearch.value)">
+
+      <span class="material-symbols-rounded listado-header-search-icon">search</span>
+    </section>
+
+    <button type="button" class="listado-header-button" (click)="goNavigateWindowRegister()">Registrar producto</button>
+  </section>
+
+  <section class="listado-content-section listado-content">
+    <table class="listado-content-table table">
+      <thead>
+      <th></th>
+      <th class="table-thead-th--bold-light table-th">
+        <label class="table-th-label">#Codigo</label>
+      </th>
+      <th class="table-thead-th--bold-light table-th">
+        <label class="table-th-label">Apellido_cliente</label>
+        <!-- <span class="material-symbols-rounded table-th-icon"(click)="changeOrder('purchasePrice')">{{iconArrow}}</span> -->
+      </th>
+      <th class="table-thead-th--bold-light table-th">
+        <label class="table-th-label">Precio_total_venta</label>
+      </th>
+      <th class="table-thead-th--bold-light table-th">
+        <label class="table-th-label">Estado</label>
+      </th>
+      <th class="table-thead-th--bold-light" style="max-width: 197px;">
+        <label class="table-th-label">&nbsp;&nbsp;&nbsp;Acciones</label>
+      </th>
+      </thead>
+
+      <tbody>
+      <tr
+      class="table-row animate__animated animate__fadeIn animate__faster"
+      *ngFor="let venta of ventas
+      | async
+      | filterSearchPipeProd:productNameSearch
+      | paginate: { itemsPerPage:10  , currentPage: page, totalItems: (ventas | async | filterSearchPipeProd:productNameSearch).length};
+       let i = index; trackBy: trackById">
+        <td>
+          
+        </td>
+        
+        <td class="table-row-td" [title]="venta.id">{{venta.id}}>
+            
+        </td>
+        
+        <td class="table-row-td" [title]="venta.client.lastName">{{venta.client.lastName}}</td>
+          
+        <td class="table-row-td" [title]="venta.finalPrice">{{venta.finalPrice | number : '1.2-2'}}</td>
+        <td class="table-row-td" [title]="venta.status">{{venta.status  | number : '1.2-2'}}</td>
+        <!-- <td class="table-row-td" [title]="venta.stock">{{venta.stock}}</td>  -->
+         <td style="min-width: 197px;">       <!--********************** -->
+          <!-- <span class="material-symbols-rounded table-row-icon icon-plus icon"
+                (click)="incrementStock(product.id)">add</span>
+          <span class="material-symbols-rounded table-row-icon icon-visibility"
+                (click)="openModalSee(product)">visibility</span>
+          <span class="material-symbols-rounded table-row-icon icon-edit icon"
+                [routerLink]="['/productos/editar', product.id ]">edit_square</span>
+          <span class="material-symbols-rounded table-row-icon icon-delete icon"
+          (click)="openModalDelete(product)">delete</span>
+        </td> -->
+
+      </tr>
+      <td >No existen ventas para esta busqueda</td>
+      </tbody>
+    </table>
+
+    <section class="listado-footer-section listado-footer">
+      <!-- <label class="listado-footer-quantity"> ventas en total</label> -->
+      <label class="listado-footer-quantity">{{(ventas | async | filterSearchPipeProd:productNameSearch).length }} ventas en total</label>      
+      <section class="listado-footer-pagination">
+        <pagination-controls
+          class="my-pagination"
+          (pageChange)="pageChangeA($event)"
+          (pageBoundsCorrection)="pageChangeA($event)"
+          previousLabel="Anterior"
+          nextLabel="Siguiente"
+          [autoHide]="true">
+        </pagination-controls>
+      </section>
+    </section>
+  </section>
+
+   <!-- TODO: MODAL DE ELIMINAR
+   <ng-container *ngIf="deleteBoolean">
+    <app-modal [product]="productModal"
+               (onCloseModal)="closeModal()"
+               [title]="'¿Estás seguro que deseas eliminar el producto?'"
+               [color]="'rgb(160,217,140)'"
+               [icon]="'delete_forever'"
+               [txtButton]="'Eliminar'"
+    ></app-modal>
+  </ng-container>
+-->
+  <!-- TODO: MODAL DE VISUALIZAR
+  <ng-container *ngIf="seeBoolean">
+    <app-modal [product]="productModal"
+               (onCloseModal)="closeModal()"
+               [title]="'Información del producto'"
+               [color]="'rgb(52,160,164)'"
+               [txtButton]="'Salir'"
+    ></app-modal>
+  </ng-container>
+  -->
+
+</article>

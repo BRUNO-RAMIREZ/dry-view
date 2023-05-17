@@ -1,1 +1,87 @@
-<p>registro works!</p>
+<app-header [title]="'Vender productos'"></app-header>
+<article class="dry-page-registro-container animate__animated animate__fadeIn animate__faster">
+   
+      <section  class="registro-content-section registro-content" style="min-width: 1077px;">
+        
+         
+          <section class="registro-header-search-section registro-header-search">
+            
+            <h3 class="registro-header-total">TOTAL:</h3>
+            
+            <div class="registroVentas">  
+              <input type="text" [formControl]="control" placeholder="Buscar Producto" aria-autocomplete="product.name">
+              <select name="productos">
+              <option *ngFor="let product of products" >
+                {{ product.name }}></option>
+                
+              </select>
+             
+              <button class="btn-registrar" (click)="registrarVenta()">Registrar</button>
+            </div>
+            
+            
+           
+            
+          </section>
+          
+          <section class="registro-content-section registro-content">
+            <table class="registro-content-table table">
+              <thead>
+                <th></th>
+              <th class="table-thead-th--bold-light table-th">
+                <label class="table-th-label">Producto</label>
+                <span class="material-symbols-rounded table-th-icon"></span>
+              </th>
+              <th class="table-thead-th--bold-light table-th">
+                <label class="table-th-label">Precio</label>
+                <span class="material-symbols-rounded table-th-icon"></span>
+              </th>
+              <th class="table-thead-th--bold-light table-th" style="min-width: 205px;">
+                <label class="table-th-label">Estado</label>
+                <span class="material-symbols-rounded table-th-icon"></span>
+              </th>
+              <th class="table-thead-th--bold-light table-th">
+                <label class="table-th-label">Cantidad</label>
+                <span class="material-symbols-rounded table-th-icon"></span>
+              </th>
+             
+              </thead>
+              
+              <tbody>
+              <tr>
+                <td>
+                  <img>
+                </td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                
+               
+                
+                <td>
+        
+                  <span class="material-symbols-rounded table-row-icon icon-plus icon"
+                        >cancel</span>
+                 
+                </td>
+        
+              </tr>
+              <td>Lista vacia de productos</td>
+              </tbody>
+            </table>
+              <section class="registro-footer-pagination">
+              
+              <button type="button" class="registro-button">Cobrar</button>
+            </section>
+         </section>
+    
+      </section>
+      
+   
+  
+</article>
+
+
+
+
+

@@ -1,0 +1,152 @@
+.dry-page-registrar-container {
+  background-color: var(--color-white);
+  box-sizing: border-box;
+  box-shadow: var(--box-shadow-primary);
+  margin-top: 40px;
+  padding: 50px 40px;
+  display: flex;
+  gap: 40px;
+}
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  flex-basis: 22%;
+  align-items: center;
+}
+.image-container .image {
+  width: 100%;
+  background-size: cover;
+  box-shadow: var(--box-shadow-secondary);
+}
+
+.form-section {
+  display: flex;
+  flex-basis: 70%;
+}
+.form-section .form {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  width: 100%;
+}
+.form-section .form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.form-section .form-field-header-input {
+  display: flex;
+}
+.form-section .form-field-input {
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+  font-size: var(--font-size-text);
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+.form-section .form-field-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.form-section .form-row-section {
+  display: flex;
+  gap: 35%;
+}
+.form-section .form-button {
+  border-radius: 3px;
+  border-style: none;
+  box-sizing: border-box;
+  padding: 7px;
+}
+.form-section .form-button:hover {
+  cursor: pointer;
+}
+.form-section .form-button-registrar {
+  width: 620px;
+  height: 35px;
+  background-color: #1A759F;
+  color: white;
+}
+.form-section .form-button-cancelar {
+  width: 45%;
+  min-width: 45%;
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.disabled {
+  background-color: rgb(167, 168, 168);
+  color: var(--color-black);
+}
+
+.enable {
+  background-color: var(--color-light-blue);
+  color: var(--color-white);
+}
+
+label[for=fileInput] {
+  display: inline-block;
+  padding: 3px;
+  background-color: var(--color-light-blue);
+  color: #fff;
+  font-size: 16px;
+  width: 147px;
+  height: 29px;
+  cursor: pointer;
+  text-align: center;
+  align-content: center;
+  border-radius: var(--border-radius-buttons);
+}
+
+input[type=file] {
+  display: none;
+}
+
+.correct-field-text-icon {
+  color: #1A759F;
+}
+
+.incorrect-field-text-icon {
+  color: #f34141;
+}
+
+.correct-field-input {
+  border-bottom: 1px solid rgb(26, 117, 159) !important;
+}
+
+.incorrect-field-input {
+  border-bottom: 1px solid red !important;
+}
+
+.error-text {
+  font-size: var(--font-size-text);
+  color: #f34141;
+}
+
+@media (max-width: 600px) {
+  .dry-form-register-content {
+    flex-direction: column;
+  }
+  .image-container {
+    display: grid;
+    place-items: center;
+    width: 100%;
+  }
+  .image-container .image {
+    width: 250px;
+  }
+  .form-field {
+    width: 100%;
+  }
+  .form-row-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .form-row-section .form-field {
+    min-width: 100%;
+  }
+}/*# sourceMappingURL=registrar.component.css.map */

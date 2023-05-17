@@ -2,17 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { InformacionPaginaRouterOutletComponent } from './pages/informacion-pagina-router-outlet/informacion-pagina-router-outlet.component';
+import { ApartadoInformacionComponent } from './pages/apartado-informacion/apartado-informacion.component';
 
 const routes: Routes = [
   {
-    path: 'informacion',
+    path: '',
     component: InformacionPaginaRouterOutletComponent,
     children: [
-      /*{path: '', component: },
-      {path: '', component: },
-      {path: '', component: },
-      {path: '', component: },
-      {path: '**', redirectTo: 'login'}*/
+      {path: '', component:ApartadoInformacionComponent },
+      {path: '**', redirectTo: 'usuarios/home'}
     ]
   }
 

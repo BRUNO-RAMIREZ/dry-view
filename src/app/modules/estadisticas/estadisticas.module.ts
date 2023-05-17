@@ -5,10 +5,12 @@ import {EstadisticasRoutingModule} from './estadisticas-routing.module';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { SharedModule } from "../../shared/shared.module";
 import { EstadisticasRouterOutletComponent } from './pages/estadisticas-router-outlet/estadisticas-router-outlet.component';
+import { HomeEstadisticasComponent } from './pages/home-estadisticas/home-estadisticas.component';
 
 @NgModule({
   declarations: [
-    EstadisticasRouterOutletComponent
+    EstadisticasRouterOutletComponent,
+    HomeEstadisticasComponent
   ],
   imports: [
         CommonModule,
@@ -16,7 +18,7 @@ import { EstadisticasRouterOutletComponent } from './pages/estadisticas-router-o
         RouterModule,
         ReactiveFormsModule,
         FormsModule,
-        SharedModule
+        SharedModule,
   ]
 })
 export class EstadisticasModule { }
