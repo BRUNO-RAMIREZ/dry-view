@@ -14,7 +14,6 @@ export class ListadoComponent implements OnInit {
 
 }
 */
-
 import {Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {Observable, Subject} from "rxjs";
@@ -59,7 +58,7 @@ export class ListadoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.ventas = this._ventasService.productsObservable
+    this.ventas = this._ventasService.ventasObservable
     .pipe(
       tap(ventas => this.totalProducts = ventas.length)
     );
@@ -72,8 +71,8 @@ export class ListadoComponent implements OnInit, OnDestroy {
 
 
 
-  public trackById(index: number, product: VentasListResponse): number{
-    return product.id;
+  public trackById(index: number, venta: VentasListResponse): number{
+    return venta.id;
   }
 
   public goNavigateWindowRegister(): void {
