@@ -214,6 +214,7 @@
     height: 90%;
 }
 
+
 .login-form-section {
     background-color: var(--color-light-blue-secondary);
 }
@@ -223,4 +224,34 @@
     width: 100%;
     animation: bordercont 1s infinite alternate both;
   }
+
+  .login-content-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    animation: bordercont 1s infinite alternate both;
+   
+  }
+  .login-content-forms{
+    background-color: #2A6078;
+    .logoo {
+        align-items: center;
+        text-align: center;
+        padding: 50px 0;
+        flex-direction: column-reverse;
+    }
+    &-text-big-tex {
+        color: var(--color-white);
+        font-size: 120px;
+        font-weight: bold;
+      }
+    
+      &-text-small-tex {
+        color: var(--color-white);
+        font-size: 30px;
+        font-weight: bold;
+        margin-top: -20px;
+    
+  }
+}
   
