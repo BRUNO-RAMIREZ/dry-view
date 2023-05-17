@@ -11,7 +11,7 @@ const routes: Routes = [
     path: '',
     component: VentasRouterOutletComponent,
     children: [
-      {path: '/create', component: RegistroComponent },
+      {path: 'create', component: RegistroComponent },
       /*{path: '', component: },
       {path: '', component: },
       {path: '', component: },

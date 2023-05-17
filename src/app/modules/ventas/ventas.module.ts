@@ -9,13 +9,16 @@ import { SharedModule } from "../../shared/shared.module";
 import { ListadoComponent } from './pages/listado/listado.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { FilterSearchPipe } from './pipes/filter-search.pipe';
+import {VentasService} from "./services/ventas.service";
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
     VentasRouterOutletComponent,
     ListadoComponent,
     RegistroComponent,
-    FilterSearchPipe
+    FilterSearchPipe,
+    ModalComponent
   ],
   imports: [
     CommonModule,
@@ -25,6 +28,12 @@ import { FilterSearchPipe } from './pipes/filter-search.pipe';
         FormsModule,
         SharedModule,
         NgxPaginationModule,
+  ],
+  exports: [
+    FilterSearchPipe
+  ],
+  providers: [
+    VentasService,
   ]
 })
 export class VentasModule { }

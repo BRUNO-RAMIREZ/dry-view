@@ -48,12 +48,15 @@
           
         </td>
         
+        <td class="table-row-td" [title]="venta.id">{{venta.id}}>
+            
+        </td>
+        
         <td class="table-row-td" [title]="venta.client.lastName">{{venta.client.lastName}}</td>
-        <!-- <td class="table-row-td" ></td>
           
-        <td class="table-row-td" [title]="product.purchasePrice">{{product.purchasePrice | number : '1.2-2'}}</td>
-        <td class="table-row-td" [title]="product.salePrice">{{product.salePrice  | number : '1.2-2'}}</td>
-        <td class="table-row-td" [title]="product.stock">{{product.stock}}</td> -->
+        <td class="table-row-td" [title]="venta.finalPrice">{{venta.finalPrice | number : '1.2-2'}}</td>
+        <td class="table-row-td" [title]="venta.status">{{venta.status  | number : '1.2-2'}}</td>
+        <!-- <td class="table-row-td" [title]="venta.stock">{{venta.stock}}</td>  -->
          <td style="min-width: 197px;">       <!--********************** -->
           <!-- <span class="material-symbols-rounded table-row-icon icon-plus icon"
                 (click)="incrementStock(product.id)">add</span>
@@ -66,16 +69,46 @@
         </td> -->
 
       </tr>
-      <td >No existen productos para esta busqueda</td>
+      <td >No existen ventas para esta busqueda</td>
       </tbody>
     </table>
 
     <section class="listado-footer-section listado-footer">
-      <label class="listado-footer-quantity"> productos en total</label>
-
+      <!-- <label class="listado-footer-quantity"> ventas en total</label> -->
+      <label class="listado-footer-quantity">{{(ventas | async | filterSearchPipeProd:productNameSearch).length }} ventas en total</label>      
       <section class="listado-footer-pagination">
-
+        <pagination-controls
+          class="my-pagination"
+          (pageChange)="pageChangeA($event)"
+          (pageBoundsCorrection)="pageChangeA($event)"
+          previousLabel="Anterior"
+          nextLabel="Siguiente"
+          [autoHide]="true">
+        </pagination-controls>
       </section>
     </section>
   </section>
+
+   <!-- TODO: MODAL DE ELIMINAR
+   <ng-container *ngIf="deleteBoolean">
+    <app-modal [product]="productModal"
+               (onCloseModal)="closeModal()"
+               [title]="'¿Estás seguro que deseas eliminar el producto?'"
+               [color]="'rgb(160,217,140)'"
+               [icon]="'delete_forever'"
+               [txtButton]="'Eliminar'"
+    ></app-modal>
+  </ng-container>
+-->
+  <!-- TODO: MODAL DE VISUALIZAR
+  <ng-container *ngIf="seeBoolean">
+    <app-modal [product]="productModal"
+               (onCloseModal)="closeModal()"
+               [title]="'Información del producto'"
+               [color]="'rgb(52,160,164)'"
+               [txtButton]="'Salir'"
+    ></app-modal>
+  </ng-container>
+  -->
+
 </article>
