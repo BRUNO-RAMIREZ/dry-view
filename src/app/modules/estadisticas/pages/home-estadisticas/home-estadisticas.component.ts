@@ -1,5 +1,8 @@
 import { Component, OnInit , OnDestroy} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import {Chart,registerables} from 'node_modules/chart.js';
+import { Subject } from 'rxjs/internal/Subject';
+import { EstadisticasService } from '../../services/estadisticas.service';
 Chart.register(...registerables);
 @Component({
   selector: 'app-home-estadisticas',

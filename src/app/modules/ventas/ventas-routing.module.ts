@@ -6,7 +6,7 @@ import {RegistroComponent} from './pages/registro/registro.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 const routes: Routes = [
   {
-    path: 'ventas',
+    path: '',
     component: VentasRouterOutletComponent,
     children: [
 

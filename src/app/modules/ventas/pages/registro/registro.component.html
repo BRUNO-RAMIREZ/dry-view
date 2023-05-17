@@ -3,22 +3,23 @@
    
       <section  class="registro-content-section registro-content" style="min-width: 1077px;">
         
-          <section class="form-section">
-              <form action=""><h4>Informaci&oacute;n Cliente</h4>
-              
-                <label for="">Cedula de Identidad</label>
-                <input type="number">
-                
-                <label for="">Apellido</label>
-                <input type="text">
-              </form>
-          </section>
+         
           <section class="registro-header-search-section registro-header-search">
             
             <h3 class="registro-header-total">TOTAL:</h3>
-            <div class="component-search">
-              <input type="text" placeholder="Search">
-        </div>
+            
+            <div class="registroVentas">  
+              <input type="text" [formControl]="control" placeholder="Buscar Producto" aria-autocomplete="product.name">
+              <select name="productos">
+              <option *ngFor="let product of products" >
+                {{ product.name }}></option>
+                
+              </select>
+             
+              <button class="btn-registrar" (click)="registrarVenta()">Registrar</button>
+            </div>
+            
+            
            
             
           </section>
@@ -68,16 +69,19 @@
               <td>Lista vacia de productos</td>
               </tbody>
             </table>
-            <section class="registro-footer-pagination">
-            
-            <button type="button" class="registro-button">Cobrar</button>
-          </section>
+              <section class="registro-footer-pagination">
+              
+              <button type="button" class="registro-button">Cobrar</button>
+            </section>
          </section>
     
-       </section>
+      </section>
       
    
   
 </article>
+
+
+
 
 

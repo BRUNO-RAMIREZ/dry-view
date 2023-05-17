@@ -9,6 +9,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
 import {AuthGuard} from "./guards/auth.guard";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +20,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    MatFormFieldModule,
+    MatInputModule,
     
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
