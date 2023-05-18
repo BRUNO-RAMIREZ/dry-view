@@ -1,5 +1,5 @@
 .dry-login-page-container {
-    display: grid;
+    
     place-items: center;
     width: 100vw;
     height: 100vh;
@@ -7,25 +7,7 @@
     animation: bgcolorLog 2s infinite alternate both;
   
   }
-  @keyframes bordercont {
-    0%{
-      box-shadow: 3px -3px 3px -3px #2A6078;
-    }
-    100%{
-      box-shadow: 0px -0px #2A6078;
-    }
-  }
-  
-  @keyframes bgcolorLog {
-    0%{
-      background-color: var(--color-light-blue);
-  
-    }
-    100%{
-      background-color: #186A90;
-  
-    }
-  }
+ 
   
   .login-content-container {
     display: flex;
@@ -34,53 +16,29 @@
     animation: bordercont 1s infinite alternate both;
   }
   
-  .form {
-    background-color: var(--color-dark-blue);
+  .panel-inf {
+    width: 400px;
+    height: 100vh;
+    margin-left: 10px;
+    
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    padding: 0 60px;
+    padding: 0 30px;
     gap: 25px;
     color: var(--color-white);
     font-size: var(--font-size-text);
-    font-weight: 600;
-    width: 500px;
-    height: 100%;
+    font-weight: 500;
+    
+    
   
-    .section-titles {
-      display: flex;
-      justify-content: start;
-    }
-  
-    &-title {
+    .title {
       text-transform: uppercase;
       text-align: center;
-      font-size: 30px;
+      font-size: 25px;
       margin-top: 40px;
       box-sizing: border-box;
     }
-  
-    &-title-secondary {
-      text-transform: none;
-    }
-  
-    &-field {
-      display: flex;
-      flex-direction: column;
-      font-weight: lighter;
-      gap: 7px;
-  
-      &--common {
-        border-style: none;
-        border-radius: 3px;
-        box-sizing: border-box;
-        min-height: 40px;
-      }
-  
-      &-label {
-        font-size: 14px;
-      }
-  
       &-text--bold {
         font-size: 14px;
         font-weight: 400;
@@ -91,31 +49,27 @@
       }
   
   
-      &-input {
-        padding-left: 10px;
-      }
+     
   
-      &-button {
-        background-color: var(--color-light-blue-secondary);
-        color: var(--color-white);
+      
   
-        &:hover {
-          background-color: var(--color-light-blue);
-        }
-      }
-  
-      &-label-footer {
-        text-align: center;
-      }
+      
     }
   
-    .text-hover {
-      &:hover {
-        color: var(--color-warning);
-        cursor: pointer;
-      }
+    .mision{
+      margin-top: 70px;
     }
-  }
+     h3{
+     font-weight: bold;
+    }
+    .parrafo{
+      text-align:center justify;
+    }
+    .datos{
+      margin-top: 120px;
+      text-align: left;
+    }
+  
   
   .logo {
     align-items: center;
@@ -125,7 +79,9 @@
     justify-content: space-evenly;
     text-align: center;
     width: 100%;
-    padding: 100px 0;
+    height: 100%;
+    
+    
   
     &-text-section {
       display: flex;
@@ -142,7 +98,7 @@
       color: var(--color-white);
       font-size: 30px;
       font-weight: bold;
-      margin-top: -20px;
+      margin-top: 60px;
     }
   
     &-img-section {
@@ -153,8 +109,42 @@
         max-height: 370px;
       }
     }
+    .redes-links{
+      align-items: center;
+      justify-content: center;
+      text-align: center;
   }
-  
+  .link{
+    margin-right: 30px;
+  }
+  .redes-img{
+    border-radius: 15px;
+    width:40px; 
+    height:40px;
+  }
+  .redes-img:hover{
+    transform: scale(1.5); 
+  }
+}
+@keyframes bordercont {
+  0%{
+    box-shadow: 3px -3px 3px -3px #2A6078;
+  }
+  100%{
+    box-shadow: 0px -0px #2A6078;
+  }
+}
+
+@keyframes bgcolorLog {
+  0%{
+    background-color: var(--color-light-blue);
+
+  }
+  100%{
+    background-color: #186A90;
+
+  }
+}
   @media (max-width: 1024px) {
     .login-content-container {
       width: 80%;
@@ -206,9 +196,7 @@
       color: #f34141;
     }
   }
-.pie {
-    background: #2A6078;
-}
+
 .img {
     width: 100%px;
     height: 90%;
@@ -216,15 +204,8 @@
 
 
 
-.login-form-section {
-    background-color: var(--color-light-blue-secondary);
-}
-.form-section {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    animation: bordercont 1s infinite alternate both;
-  }
+
+
 
   .login-content-container {
     display: flex;
@@ -235,6 +216,7 @@
   }
   .login-content-forms{
     background-color: #2A6078;
+    
     .logoo {
         align-items: center;
         text-align: center;
