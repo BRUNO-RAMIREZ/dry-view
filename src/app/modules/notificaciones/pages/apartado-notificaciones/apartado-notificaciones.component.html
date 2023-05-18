@@ -22,21 +22,19 @@
     </thead>
 
     <tbody>
-      <tr *ngFor="let producto of products">
-        <ng-container *ngIf="producto.stock < 10 || producto.stock === 0">
-          <td>
-            <img src="{{producto.image}}" alt="image" class="item-img" style="width: 50px; height: 50px;">
+      <tr *ngFor="let producto of products" [ngClass]="{'text-yellow': producto.stock < 10, 'text-red': producto.stock === 0, 'text-green': producto.stock === 10}">
+        <ng-container *ngIf="producto.stock <= 10 || producto.stock === 0">
+        <td>
+              <img src="{{producto.image}}" alt="image" class="item-img" style="width: 50px; height: 50px;">
           </td>
           <td>{{ producto.name }}</td>
-          <td>{{ producto.stock }}</td>
+          <td>quedan {{ producto.stock }} productos </td>
           <td>
-            {{ producto.stock === 0 ? 'Agotado' : producto.stock !=0 ? 'Por acabarse' : '' }}
+              {{ producto.stock === 0 ? 'Agotado' : producto.stock !=0 ? 'Por acabarse' : '' }}
           </td>
         </ng-container>
       </tr>
-    
-    <!--<td *ngIf="(products | async | filterSearchPipeProd:productNameSearch)?.length === 0">No existen productos para esta busqueda</td>-->
-    </tbody>
+      </tbody>
   </table>
 </section>    
 </article>
