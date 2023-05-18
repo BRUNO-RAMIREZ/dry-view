@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {Chart,registerables} from 'node_modules/chart.js';
 import { Subject } from 'rxjs/internal/Subject';
 import { EstadisticasService } from '../../services/estadisticas.service';
-import {Subject} from "rxjs";
+
 import {VentasListResponse} from '../../../../core/models/ventas.model';
 
 Chart.register(...registerables);

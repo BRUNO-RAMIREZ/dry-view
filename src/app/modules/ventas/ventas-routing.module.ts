@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { VentasRouterOutletComponent } from './pages/ventas-router-outlet/ventas-router-outlet.component';
 import { ListadoComponent } from './pages/listado/listado.component';
 import {RegistroComponent} from './pages/registro/registro.component';
-import { AuthGuard } from 'src/app/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -12,7 +11,7 @@ const routes: Routes = [
     component: VentasRouterOutletComponent,
     children: [
 
-      {path: 'registro', component: RegistroComponent, canActivate: [AuthGuard]},
+      {path: 'registrar', component: RegistroComponent},
      /* {path: 'listado', component: ListadoComponent},
 =======
       {path: '/create', component: RegistroComponent },
