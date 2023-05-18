@@ -13,20 +13,22 @@
     </section>
 
     <hr class="hr">
-    <section class="sidebar-content-item" routerLink="/informacion">
-      <span class="material-symbols-rounded sidebar-header-icon" title="Informacion">receipt_long</span>
+    <section *ngIf="!isAuthenticated()" class="sidebar-content-item" routerLink="/informacion">
+      <span class="material-symbols-rounded sidebar-header-icon" title="Informacion">Info</span>
       <label class="sidebar-content-item-text" *ngIf="desplegado">Informacion</label>
     </section>
 
+    <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/estadisticas" >
+      <span class="material-symbols-rounded sidebar-header-icon" title="Estadisticas">Monitoring</span>
+      <label class="sidebar-content-item-text" *ngIf="desplegado">Estadisticas</label>
+    </section>
 
-        <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/ventas/registro">
-            <span class="material-symbols-rounded sidebar-header-icon"  title="Registro de ventas">format_list_numbered</span>
+
+        <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/ventas/registrar">
+            <span class="material-symbols-rounded sidebar-header-icon"  title="Registro de ventas">point_of_sale</span>
             <label class="sidebar-content-item-text" *ngIf="desplegado">Registro de ventas</label>
         </section>
-            <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/estadisticas" >
-              <span class="material-symbols-rounded sidebar-header-icon" title="Lista de productos">Monitoring</span>
-              <label class="sidebar-content-item-text" *ngIf="desplegado">Estadisticas</label>
-            </section>
+            
 
 
    <!-- <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/productos/ventas">
@@ -36,9 +38,8 @@
   -->
  
     <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/ventas/listado">
-
       <span class="material-symbols-rounded sidebar-header-icon">edit_square</span>
-      <label class="sidebar-content-item-text" *ngIf="desplegado">Facturar</label>
+      <label class="sidebar-content-item-text" *ngIf="desplegado">Lista de Ventas</label>
     </section>
 
     <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/productos/listado" >

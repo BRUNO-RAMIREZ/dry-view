@@ -14,14 +14,14 @@ export class ListadoComponent implements OnInit {
 
 }
 */
-import {Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {Observable, Subject} from "rxjs";
-import {map, take, takeUntil, tap} from "rxjs/operators";
+import {tap} from "rxjs/operators";
 
 import {VentasService} from "../../services/ventas.service";
 import {VentasListResponse} from "../../../../core/models/ventas.model";
-import {ProductMapper} from "../../../../core/mappers/product.mapper";
+
 
 @Component({
   selector: 'app-listado',
@@ -30,38 +30,36 @@ import {ProductMapper} from "../../../../core/mappers/product.mapper";
 })
 export class ListadoComponent implements OnInit, OnDestroy {
   public ventas: Observable<VentasListResponse[]>;
-  public totalProducts: number;
-  public productMapper: ProductMapper;
+  public totalventas: number;
   public deleteBoolean: boolean;
   public seeBoolean: boolean;
-  public productNameSearch: string;
+  public ventasCodeSearch: string;
   public page: number;
   public sortBy: string;
   public order: string;
   public iconArrow: string;
-  public productModal!: VentasListResponse;
+  public ventasModal!: VentasListResponse;
   private _unsubscribed: Subject<void>;
 
-  constructor(private _ventasService: VentasService,
+  constructor(private _ventaservice: VentasService,
               private _router: Router) {
-    this.ventas         = new Observable<VentasListResponse[]>();
-    this.totalProducts     = 0;
-    this.productMapper     = new ProductMapper();
+    this.ventas          = new Observable<VentasListResponse[]>();
+    this.totalventas     = 0;
     this.deleteBoolean     = false;
     this.order             = 'ascendent';
     this.iconArrow         = 'unfold_more';
     this.seeBoolean        = false;
-    this.productNameSearch = '';
+    this.ventasCodeSearch = '';
     this.page              = 0;
     this.sortBy            = '';
     this._unsubscribed = new Subject<void>();
   }
 
   ngOnInit(): void {
-    this.ventas = this._ventasService.ventasObservable
-    .pipe(
-      tap(ventas => this.totalProducts = ventas.length)
-    );
+    this.ventas = this._ventaservice.ventasObservable
+      .pipe(
+        tap(ventas => this.totalventas = ventas.length)
+      );
   }
 
   ngOnDestroy(): void {
@@ -69,36 +67,33 @@ export class ListadoComponent implements OnInit, OnDestroy {
     this._unsubscribed.complete();
   }
 
-
-
-  public trackById(index: number, venta: VentasListResponse): number{
-    return venta.id;
+  public trackById(index: number, user: VentasListResponse): number{
+    return user.id;
   }
 
   public goNavigateWindowRegister(): void {
-    this._router.navigate(['/productos/registrar']);
+    this._router.navigate(['/ventas/registrar']);
   }
 
-  public searchProductByName(productName: string): void {
+  public searchUserByName(code: string): void {
 
-    this.productNameSearch = productName;
+    this.ventasCodeSearch = code;
   }
 
-
-  public seeProductById(): void {
+  public seeventasById(): void {
     if (this.seeBoolean) {
       this.seeBoolean = false;
     }
   }
 
-  public openModalSee(product: VentasListResponse): void {
+  public openModalSee(venta: VentasListResponse): void {
     this.seeBoolean = true;
-    this.productModal = product;
+    this.ventasModal = venta;
   }
 
-  public openModalDelete(product: VentasListResponse): void {
+  public openModalDelete(venta: VentasListResponse): void {
     this.deleteBoolean = true;
-    this.productModal = product;
+    this.ventasModal = venta;
   }
   public pageChangeA(event:any):void{
     this.page = event;
@@ -125,4 +120,5 @@ export class ListadoComponent implements OnInit, OnDestroy {
       }; break;
     }
   }
+
 }

@@ -10,15 +10,15 @@ export class FilterSearchPipe implements PipeTransform {
     return null;
   }*/
 
-  transform(ventas: VentasListResponse[] | null, productNameSearch: string = ''): VentasListResponse[] {
+  transform(ventas: VentasListResponse[] | null, saleCodeSearch: string = ''): VentasListResponse[] {
     if (ventas === null) return [];
 
-    if (productNameSearch.length === 0) return ventas;
+    if (saleCodeSearch.length === 0) return ventas;
 
-    productNameSearch = productNameSearch.trim().toUpperCase();
-    const ventasFiltered = ventas.filter(product => {
-      const name = product.client.lastName.trim().toUpperCase();
-      return name.includes(productNameSearch)
+    saleCodeSearch = saleCodeSearch.trim().toUpperCase();
+    const ventasFiltered = ventas.filter(venta => {
+      const name = venta.code.trim().toUpperCase();
+      return name.includes(saleCodeSearch)
     });
     return ventasFiltered;
   }
