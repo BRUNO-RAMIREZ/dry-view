@@ -7,9 +7,9 @@
           <section class="registro-header-search-section registro-header-search">
             
             <h3 class="registro-header-total">TOTAL:</h3>
-            
+
             <div class="registroVentas">  
-              <input type="text" [formControl]="control" placeholder="Buscar Producto" aria-autocomplete="product.name">
+              <input type="text" [formControl] = "control" placeholder="Buscar Producto" aria-autocomplete="product.name">
               <select name="productos">
               <option *ngFor="let product of products" >
                 {{ product.name }}></option>

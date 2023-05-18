@@ -15,6 +15,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule } from '@angular/material/input';
 import { MatTableDataSource } from '@angular/material/table';
 
+
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
