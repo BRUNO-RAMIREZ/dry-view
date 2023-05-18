@@ -1,12 +1,14 @@
 .dry-page-container {
   display: flex;
   width: 100vw;
-  min-height: 100vh;
-  background-color: var(--color-disabled);
+  height: 100%;
+  
+  background-color: var(--color-light-blue-secondary);
+  
 
   .dry-page-content {
     width: 100%;
-    padding: 10px 40px;
+    z-index: 1;
     box-sizing: border-box;
   }
 }
