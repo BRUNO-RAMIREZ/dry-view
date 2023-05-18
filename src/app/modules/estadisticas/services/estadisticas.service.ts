@@ -14,7 +14,7 @@ export class EstadisticasService {
    }
 
    public getAllVentas(): Observable<VentasListResponse[]> {
-    return this._http.get<VentasGetAllResponse>(`${this._baseURL}/ventas/getAll`)
-      .pipe(map(res => res.ventas));
+    return this._http.get<VentasGetAllResponse>(`${this._baseURL}/sales/getAllSales`)
+      .pipe(map(res => res.sales));
   }
 }
