@@ -11,17 +11,25 @@ import {AuthGuard} from "./guards/auth.guard";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
+import { MatAutocompleteModule } from '@angular/material/autocomplete'
 @NgModule({
   declarations: [
     AppComponent,
+    
     ViewComponentesExampleComponent
   ],
-  imports: [
+  imports:
+   [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
+    FormsModule, 
+    ReactiveFormsModule,
+    MatAutocompleteModule,
     
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
