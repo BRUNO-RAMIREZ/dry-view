@@ -1,0 +1,26 @@
+<article class="dry-modal-container">
+  <div class="modal-header-section modal-header" #marginTopModal>
+    <label class="modal-header-text">{{title}}</label>
+
+    <button (click)="closeModal()" class="modal-header-button">
+      <span class="material-symbols-rounded icon-cancel">cancel</span>
+    </button>
+  </div>
+
+  <section class="modal-content-section modal-content">
+
+    <section class="modal-content-description content-description">
+      <label [title]="venta.code"><b>Código: </b> {{venta.code}}</label>
+      <label [title]="venta.client.lastName"><b>Apellido Cliente: </b> {{venta.client.lastName}</label>
+      <label [title]="venta.client.ci"><b>Ci: </b> {{venta.client.ci}}</label>
+      <label [title]="venta.finalPrice"><b>Precio total de venta: </b> {{venta.finalPrice}</label>
+    </section>
+  </section>
+
+  <div class="modal-footer-section modal-footer" #marginBottomModal>
+    <button class="modal-footer-button" (click)="cancelVenta()">
+      <span class="material-symbols-rounded" #iconBottomModal>{{icon}}</span>
+      <label class="modal-footer-text">{{txtButton}}</label>
+    </button>
+  </div>
+</article>

@@ -27,16 +27,16 @@ const routes: Routes = [
     path: 'usuarios',
     loadChildren: () => import('./modules/usuarios/usuarios.module').then(m => m.UsuariosModule)
   },
-
-   
+ /*  {
+   path: 'ventas',
+    loadChildren: () => import('./modules/ventas/ventas.module').then(m => m.VentasModule)
+  },*/  
   {
     path: 'ventas',
     loadChildren: () => import('./modules/ventas/ventas.module').then(m => m.VentasModule),
     canActivate: [AuthGuard]
   },
   
- 
-
   {
     path: 'estadisticas',
     loadChildren: () => import('./modules/estadisticas/estadisticas.module').then(m => m.EstadisticasModule)
