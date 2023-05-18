@@ -49,14 +49,14 @@
            let i = index; trackBy: trackById">
         <td class="table-row-td" [title]="venta.code">{{venta.code}}</td>
         <td class="table-row-td" [title]="venta.client.lastName">{{venta.client.lastName}}</td>
-        <td class="table-row-td" [title]="venta.finalPrice">{{venta.finalPrice}}</td>
-        <td class="table-row-td" [title]="venta.status">{{venta.status}}</td>
+        <td class="table-row-td" [title]="venta.total">{{venta.total}}</td>
+        <td class="table-row-td" [title]="venta.state"><span *ngIf="venta.state">Aceptado</span> <span *ngIf="!venta.state">Cancelado</span></td>
         <td>
 
           <span class="material-symbols-rounded table-row-icon icon-visibility"
                 (click)="openModalSee(venta)">visibility</span>
 
-          <span class="material-symbols-rounded table-row-icon icon-delete icon"
+          <span *ngIf="venta.state" class="material-symbols-rounded table-row-icon icon-delete icon"
                 (click)="openModalDelete(venta)">delete</span>
         </td>
 

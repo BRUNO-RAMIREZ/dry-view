@@ -25,8 +25,8 @@
 
 
         <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/ventas/registrar">
-            <span class="material-symbols-rounded sidebar-header-icon"  title="Registro de ventas">point_of_sale</span>
-            <label class="sidebar-content-item-text" *ngIf="desplegado">Registro de ventas</label>
+            <span class="material-symbols-rounded sidebar-header-icon"  title="Vender Productos">point_of_sale</span>
+            <label class="sidebar-content-item-text" *ngIf="desplegado">Vender</label>
         </section>
             
 
@@ -38,7 +38,7 @@
   -->
  
     <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/ventas/listado">
-      <span class="material-symbols-rounded sidebar-header-icon">edit_square</span>
+      <span class="material-symbols-rounded sidebar-header-icon" title="Lista de ventas">edit_square</span>
       <label class="sidebar-content-item-text" *ngIf="desplegado">Lista de Ventas</label>
     </section>
 
@@ -52,7 +52,7 @@
           <label class="sidebar-content-item-text" *ngIf="desplegado">Lista de usuarios</label>
         </section>
         
-        <section  class="sidebar-content-item"(click)="modal.open(contenido,{centered:true})">
+        <section *ngIf="isAuthenticated()" class="sidebar-content-item"(click)="modal.open(contenido,{centered:true})">
           <span class="material-symbols-rounded sidebar-header-icon" title="Salir">logout</span>
           <label class="sidebar-content-item-text" *ngIf="desplegado">Salir</label>
         </section>

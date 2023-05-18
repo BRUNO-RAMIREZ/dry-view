@@ -27,15 +27,15 @@ export class SortByPipePipe implements PipeTransform {
           return ventas.sort(
             (ventaPrevious, ventaNext) => {
               return (order === 'ascendent') ?
-                ((ventaPrevious.finalPrice > ventaNext.finalPrice) ? 1 : -1):
-                ((ventaPrevious.finalPrice > ventaNext.finalPrice) ? -1 : 1);
+                ((ventaPrevious.total > ventaNext.total) ? 1 : -1):
+                ((ventaPrevious.total > ventaNext.total) ? -1 : 1);
             });
       case 'status':
           return ventas.sort(
             (ventaPrevious, ventaNext) => {
               return (order === 'ascendent') ?
-                ((ventaPrevious.status > ventaNext.status) ? 1 : -1):
-                ((ventaPrevious.status > ventaNext.status) ? -1 : 1);
+                ((ventaPrevious.state > ventaNext.state) ? 1 : -1):
+                ((ventaPrevious.state > ventaNext.state) ? -1 : 1);
             });
       default:
         return ventas;

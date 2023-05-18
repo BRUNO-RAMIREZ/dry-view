@@ -2,21 +2,42 @@
 <article class="dry-page-registro-container animate__animated animate__fadeIn animate__faster">
    
       <section  class="registro-content-section registro-content" style="min-width: 1077px;">
-        
-         
-          <section class="registro-header-search-section registro-header-search">
+
+          <div class="formCliente">
+            <div class="campoCliente">
+              <label for="">Apellido Cliente</label><br>
+              <input type="text" [(ngModel)] = "venta.client.lastName">
+            </div>
+            <div class="campoCliente">
+              <label for="">CI</label><br>
+              <input type="text" [(ngModel)] = "venta.client.ci">
+            </div>
+          </div>
+         <br>
+          <section class="conteTotalBusqueda">
             
-            <h3 class="registro-header-total">TOTAL:</h3>
+            <h3 >TOTAL: {{venta.total}} Bs</h3>
             
-            <div class="registroVentas">  
-              <input type="text" [formControl]="control" placeholder="Buscar Producto" aria-autocomplete="product.name">
-              <select name="productos">
-              <option *ngFor="let product of products" >
-                {{ product.name }}></option>
+            <div  >
+              <div class="bucadorContenedor">
+                <input type="text"
+             placeholder="Nombre producto"
+             #textSearch
+             (keyup)="searchProductByName(textSearch.value)">
+             <span class="material-symbols-rounded listado-header-search-icon">search</span> 
+              </div>  
+              
+
+
+              <div *ngIf="productNameSearch.trim() != ''" class="listaBusqueda">
+                <div *ngFor="let product of products | filterSearchPipeProd: productNameSearch" >
+                  <button (click) = "addProd(product)"> {{ product.name }} </button>
+                </div>
+                <div *ngIf="(products | filterSearchPipeProd: productNameSearch).length == 0">
+                  No existe este producto
+                </div>
                 
-              </select>
-             
-              <button class="btn-registrar" (click)="registrarVenta()">Registrar</button>
+              </div>
             </div>
             
             
@@ -24,8 +45,8 @@
             
           </section>
           
-          <section class="registro-content-section registro-content">
-            <table class="registro-content-table table">
+          <section class="listado-content-section listado-content">
+            <table class="listado-content-table table">
               <thead>
                 <th></th>
               <th class="table-thead-th--bold-light table-th">
@@ -36,10 +57,6 @@
                 <label class="table-th-label">Precio</label>
                 <span class="material-symbols-rounded table-th-icon"></span>
               </th>
-              <th class="table-thead-th--bold-light table-th" style="min-width: 205px;">
-                <label class="table-th-label">Estado</label>
-                <span class="material-symbols-rounded table-th-icon"></span>
-              </th>
               <th class="table-thead-th--bold-light table-th">
                 <label class="table-th-label">Cantidad</label>
                 <span class="material-symbols-rounded table-th-icon"></span>
@@ -48,30 +65,55 @@
               </thead>
               
               <tbody>
-              <tr>
-                <td>
-                  <img>
-                </td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
+
+                
+              <tr [ngClass]="(i % 2 === 0) ? 'table-row--color-disabled' : 'table-row--color-white'"
+              class="table-row animate__animated animate__fadeIn animate__faster" *ngFor="let product of productosEnCarrito 
+              | paginate: { itemsPerPage:6  , currentPage: page, totalItems: (venta.products).length}; let i = index;">
+              <td>
+                <img src="{{product.image}}" alt="image" class="item-img" style="width: 50px; height: 50px;">
+              </td>
+                <td >{{product.name}}</td>
+                <td >{{product.salePrice}}</td>
+                <td >{{cantidadesVentas[i]}}</td>
                 
                
                 
                 <td>
-        
-                  <span class="material-symbols-rounded table-row-icon icon-plus icon"
-                        >cancel</span>
-                 
+
+                <span class="material-symbols-rounded table-row-icon icon-plus icon"
+                (click)="addProd(product)">add</span>
+                <span class="material-symbols-rounded table-row-icon icon-edit icon"
+                (click)="restProduct(product)">remove</span>
+                <span class="material-symbols-rounded table-row-icon icon-delete icon"
+                (click)="quitarProducto(product)">close</span>
+
+     
                 </td>
         
               </tr>
               <td>Lista vacia de productos</td>
               </tbody>
             </table>
+            <section class="listado-footer-section listado-footer">
+              <label class="listado-footer-quantity">{{(venta.products).length }} productos en total</label>
+        
+              <section class="listado-footer-pagination">
+                <pagination-controls
+                  class="my-pagination"
+                  (pageChange)="pageChangeA($event)"
+                  (pageBoundsCorrection)="pageChangeA($event)"
+                  previousLabel="Anterior"
+                  nextLabel="Siguiente"
+                  [autoHide]="true">
+                </pagination-controls>
+              </section>
+            </section>
+
+
               <section class="registro-footer-pagination">
               
-              <button type="button" class="registro-button">Cobrar</button>
+              <button type="button" class="registro-button" (click)="registrarVenta()">Cobrar</button>
             </section>
          </section>
     

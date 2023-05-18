@@ -1,14 +1,14 @@
-  import {Cliente} from './client.model';
-  import {ProductGetByIdResponse} from './product.model';
+  import {ClienteCreate, Cliente} from './client.model';
+  import {ProductGetByIdResponse, ProductCreateRequest} from './product.model';
   export interface VentasUpdateRequest {
     id: number;
     code: string;
-    client:Cliente;
-    products:ProductGetByIdResponse[];
-    total:number[];
-    finalPrice: number;
-    dateSale: Date;
-    status:string;
+    client:ClienteCreate;
+    products:ProductCreateRequest[];
+    total:number;
+    
+    saleDate: Date;
+    state:boolean;
   }
   
 
@@ -17,60 +17,57 @@
   export interface VentasUpdateResponse {
     id: number;
     code: string;
-    client:Cliente;
-    products:ProductGetByIdResponse[];
-    total:number[];
-    finalPrice: number;
-    dateSale: Date;
-    status:string;
+    client:ClienteCreate;
+    products:ProductCreateRequest[];
+    total:number;
+    
+    saleDate: Date;
+    state:boolean;
   }
   
   
   export interface VentasGetByIdResponse {
     id: number;
     code: string;
-    client:Cliente;
-    products:ProductGetByIdResponse[];
-    total:number[];
-    finalPrice: number;
-    dateSale: Date;
-    status:string;
+    client:ClienteCreate;
+    products:ProductCreateRequest[];
+    total:number;
+    
+    saleDate: Date;
+    state:boolean;
   }
   
   export interface VentasGetAllResponse {
-    ventas: VentasListResponse[];
+    sales: VentasListResponse[];
   }
   export interface VentasListResponse {
     id: number;
     code: string;
-    client:Cliente;
-    products:ProductGetByIdResponse[];
-    total:number[];
-    finalPrice: number;
-    dateSale: Date;
-    status:string;
+    client:ClienteCreate;
+    products:ProductCreateRequest[];
+    total:number;
+    
+    saleDate: Date;
+    state:boolean;
   }
   
 
   
   export interface VentasCreateRequest {
-    id: number;
     code: string;
-    client:Cliente;
-    products:ProductGetByIdResponse[];
-    total:number[];
-    finalPrice: number;
-    dateSale: Date;
-    status:string;
+    client:ClienteCreate;
+    products:ProductCreateRequest[];
+    total:number;
+    saleDate: Date;
+    state:boolean;
   }
   
   export interface VentasCreateResponse {
     id: number;
     code: string;
-    client:Cliente;
-    products:ProductGetByIdResponse[];
-    total:number[];
-    finalPrice: number;
-    dateSale: Date;
-    status:string;
+    client:ClienteCreate;
+    products:ProductCreateRequest[];
+    total:number;
+    saleDate: Date;
+    state:boolean;
   }

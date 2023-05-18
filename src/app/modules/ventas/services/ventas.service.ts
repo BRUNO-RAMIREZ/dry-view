@@ -28,8 +28,8 @@ export class VentasService {
     this.getAllVenta().subscribe(response => this._ventas.next(response));
   }
 
-  public createVenta(user: VentasCreateRequest): Observable<VentasCreateResponse> {
-    return this._http.post<VentasCreateResponse>(`${this._baseURL}/sales/create`, user);
+  public createVenta(venta: VentasCreateRequest): Observable<VentasCreateResponse> {
+    return this._http.post<VentasCreateResponse>(`${this._baseURL}/sales/create`, venta);
   }
 
   public get ventasObservable(): Observable<VentasListResponse[]> {
@@ -38,8 +38,8 @@ export class VentasService {
 
   // Evitar usar este metodo directamente utilizar el usersObservable
   public getAllVenta(): Observable<VentasListResponse[]> {
-    return this._http.get<VentasGetAllResponse>(`${this._baseURL}/sales/getAll`)
-      .pipe(map(res => res.ventas));
+    return this._http.get<VentasGetAllResponse>(`${this._baseURL}/sales/getAllSales`)
+      .pipe(map(res => res.sales));
   }
 
   public updateVenta(ventasUpdateRequest: VentasUpdateRequest): Observable<VentasUpdateResponse> {
