@@ -1,26 +1,21 @@
   import {ClienteCreate, Cliente} from './client.model';
-  import {ProductGetByIdResponse, ProductCreateRequest} from './product.model';
-  export interface VentasUpdateRequest {
+  import {ProductGetByIdResponse, ProductCreateRequest,ProductListRequest,ProductListResponse} from './product.model';
+
+
+  export interface VentasCancelRequest {
     id: number;
-    code: string;
-    client:ClienteCreate;
-    products:ProductCreateRequest[];
-    total:number;
-    
-    saleDate: Date;
+    quantityStockOfProductsSaled:number[];
+    idsproducts:number[];
     state:boolean;
   }
   
-
-
-
-  export interface VentasUpdateResponse {
+  export interface VentasCancelResponse {
     id: number;
     code: string;
     client:ClienteCreate;
-    products:ProductCreateRequest[];
+    products:ProductListResponse[];
+    quantityStockOfProductsSaled:number[];
     total:number;
-    
     saleDate: Date;
     state:boolean;
   }
@@ -30,9 +25,9 @@
     id: number;
     code: string;
     client:ClienteCreate;
-    products:ProductCreateRequest[];
+    products:ProductListResponse[];
     total:number;
-    
+    quantityStockOfProductsSaled:number[];
     saleDate: Date;
     state:boolean;
   }
@@ -44,9 +39,9 @@
     id: number;
     code: string;
     client:ClienteCreate;
-    products:ProductCreateRequest[];
+    products:ProductListResponse[];
     total:number;
-    
+    quantityStockOfProductsSaled:number[];
     saleDate: Date;
     state:boolean;
   }
@@ -56,7 +51,8 @@
   export interface VentasCreateRequest {
     code: string;
     client:ClienteCreate;
-    products:ProductCreateRequest[];
+    products:ProductListRequest[];
+    quantityStockOfProductsSaled:number[];
     total:number;
     saleDate: Date;
     state:boolean;
@@ -66,7 +62,8 @@
     id: number;
     code: string;
     client:ClienteCreate;
-    products:ProductCreateRequest[];
+    products:ProductListRequest[];
+    quantityStockOfProductsSaled:number[];
     total:number;
     saleDate: Date;
     state:boolean;
