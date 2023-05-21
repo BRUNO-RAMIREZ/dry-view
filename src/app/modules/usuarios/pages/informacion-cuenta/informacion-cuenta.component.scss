@@ -1,39 +1,85 @@
 .dry-page-informacion-cuenta-container {
-    background-color: var(--color-white);
-    box-sizing: border-box;
-    box-shadow: var(--box-shadow-primary);
-    margin-top: 40px;
-    padding: 50px 40px;
-    display: flex;
-    gap: 40px;
-  }
-  .header{
-    display: flex;
-    justify-content: space-between;
-  }
-  .btn-cerrar-sesion{
-    border: none;
-  }
-  .icono-cerrar-sesion{
-    width: 50px;
-    height: 50px;
-    border: none;
-  }
-  img{
-    width: 150px;
-    height: 150px;
-  }
-  .contenido-info-cuenta{
-    display: flex;
-    justify-content: space-between;
-    width: 100vh;
-  }
-  .lado_izquierdo{
-    //background-color: blue;
-  }
-  .lado_derecho{
-    //background-color: red;
-  }
-h1{
+  background-color: var(--color-white);
+  box-sizing: border-box;
+  box-shadow: var(--box-shadow-primary);
+  margin-top: 40px;
+  padding: 50px 40px;
+  display: flex;
+  gap: 40px;
+}
 
+img {
+  width: 150px;
+  height: 150px;
+}
+
+.contenido-info-cuenta {
+  display: flex;
+  justify-content: space-evenly;
+  min-width: 100%;
+}
+
+.lado_izquierdo {
+  //background-color: blue;
+}
+
+.lado_derecho {
+  border: 1px solid;
+  padding: 10px 200px 0 10px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.icon-eye {
+  cursor: pointer;
+}
+
+.field-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.close-sesion-section {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.modal-header {
+  background-color: rgb(160, 217, 140);
+  justify-content: center;
+}
+
+.modal-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  display: flex;
+  width: 85px;
+  justify-content: center;
+  border-radius: 30px;
+  font-weight: 600;
+  margin: 0px 20px;
+
+  &.btn-success {
+    background-color: rgb(50, 206, 25);
+  }
+
+  &.btn-danger {
+    background-color: rgb(254, 0, 15);
+  }
+}
+
+.modal-footer {
+  background-color: rgb(160, 217, 140);
+  height: 55px;
+}
+
+.text-information {
+  width: 100%;
 }

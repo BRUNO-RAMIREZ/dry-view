@@ -15,7 +15,7 @@ export class SidebarComponent implements OnInit {
   constructor(config: NgbModalConfig, private _router: Router, public modal: NgbModal,
               private _authService: AuthService) {
     config.backdrop = 'static';
-    this.desplegado = true;
+    this.desplegado = false;
 
 
   }
@@ -25,7 +25,7 @@ export class SidebarComponent implements OnInit {
     }else{
       this._router.navigate(['/usuarios/home']);
     }
-    
+
   }
   ngOnInit(): void {
   }
@@ -35,13 +35,13 @@ export class SidebarComponent implements OnInit {
   }
 
   isAuthenticated(): boolean {
-    return !!sessionStorage.getItem('authToken');
+    return !!localStorage.getItem('authToken');
 
   }
 
   logout() {
     this._authService.logout();
     this.modal.dismissAll();
-    this._router.navigate(['/auth']);
+    this._router.navigate(['/usuarios']);
   }
 }

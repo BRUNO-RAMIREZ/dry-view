@@ -5,6 +5,13 @@
   height: 100vh;
   max-width: 100%;
 }
+h3{
+  font-size: var(--font-size-big);
+  margin-left: 10%;
+  margin-top: 1%;
+ color: #212529;
+ font-weight: 400;
+}
 
 .dry-form-register-content {
   background-color: var(--color-white);
@@ -57,11 +64,21 @@
         font-size: var(--font-size-text);
         padding-left: 10px;
         box-sizing: border-box;
+        min-width: 100%;
       }
       &-buttons {
         display: flex;
         justify-content: space-between;
         gap: 10px;
+      }
+
+      &-section-password-icon {
+        display: flex;
+        width: 100%;
+
+        .icon-eye {
+          cursor: pointer;
+        }
       }
     }
 
@@ -137,6 +154,9 @@ label[for="fileInput"] {
 
 input[type="file"] {
   display: none;
+}
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }
 
 .correct-field-text-icon {

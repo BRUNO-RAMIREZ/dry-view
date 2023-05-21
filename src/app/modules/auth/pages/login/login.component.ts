@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe(
       response => {
         this._authService.setAuthToken(response.email, response.password);
-        console.log(userAuthRequest);
         this._router.navigate(['/productos/home'])
       },
       (error) => {
@@ -70,7 +69,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       field.markAsTouched();
     }
   }
-
 
   private _validate(): void {
     this.formularyLogin = this._formsBuilder.group({

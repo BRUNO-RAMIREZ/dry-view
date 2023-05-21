@@ -12,7 +12,7 @@
   --color-light-green: rgb(153, 217, 140);
   --color-light-green-secondary: rgb(181, 228, 140);
   --color-warning: rgb(217, 237, 146);
-  --color-disabled: rgb(206, 203, 203);
+  --color-disabled: rgb(236, 236, 236);
 
   --color-black: rgb(0, 0, 0);
   --color-white: rgb(255, 255, 255);
@@ -66,3 +66,12 @@ body {
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

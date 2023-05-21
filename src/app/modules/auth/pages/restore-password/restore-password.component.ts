@@ -37,6 +37,10 @@ export class RestorePasswordComponent implements OnInit {
     }
   }
 
+  public navigateWindowLogin(): void {
+    this._router.navigate(['/auth']);
+  }
+
   private _validateEmail(): boolean {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return this.email.trim().length !== 0 && regex.test(this.email);

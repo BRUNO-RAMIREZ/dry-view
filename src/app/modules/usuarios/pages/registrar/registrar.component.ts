@@ -1,4 +1,4 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, DoCheck, OnDestroy, OnInit} from '@angular/core';
 import {UsuariosService} from '../../services/usuarios.service'
 import {
   UserCreateRequest,
@@ -7,7 +7,7 @@ import {
   UserUpdateResponse
 } from "../../../../core/models/user.model";
 import {Subject} from "rxjs";
-import {filter, switchMap, take} from "rxjs/operators";
+import {filter, switchMap, take, takeUntil} from "rxjs/operators";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -17,19 +17,22 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   templateUrl: './registrar.component.html',
   styleUrls: ['./registrar.component.scss']
 })
-export class RegistrarComponent implements OnInit, DoCheck {
+export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
   public formularyUsers!: FormGroup;
   public userUpdateRequest: UserUpdateRequest;
-
+  public tamañoCorrecto: boolean;
   public title: string;
   public imageData: string;
+  public showPassword: boolean = false;
   private _unsubscribed: Subject<void>;
+  
 
   constructor(private _usersService: UsuariosService,
               private _formsBuilder: FormBuilder,
               private _activateRoute: ActivatedRoute,
               private _router: Router,
               private _toastrService: ToastrService) {
+     this.tamañoCorrecto = true;           
     this.imageData = '';
     this.userUpdateRequest = {
       id: 0,
@@ -46,13 +49,16 @@ export class RegistrarComponent implements OnInit, DoCheck {
     this._validate();
   }
 
+
+  
+  
   ngOnInit(): void {
     this._activateRoute.params
       .pipe(
         filter(params => params.hasOwnProperty('id')),
-        switchMap(({id}) => this._usersService.getUserById(id))
+        switchMap(({id}) => this._usersService.getUserById(id)),
+        takeUntil(this._unsubscribed)
       ).subscribe(response => {
-        console.warn(response);
       this.userUpdateRequest = response;
       this.imageData = this.userUpdateRequest.image;
       this._validate();
@@ -67,24 +73,31 @@ export class RegistrarComponent implements OnInit, DoCheck {
     this._unsubscribed.next();
     this._unsubscribed.complete();
   }
-
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+  }
+ 
+  
   public createUser(): void {
     if (this.userUpdateRequest.id) {
-      const userUpdateRequest: UserUpdateRequest = {
-        ...this.formularyUsers.value,
-        id: this.userUpdateRequest.id,
-        image: this.imageData
-      };
-      this._usersService.updateUser(userUpdateRequest)
-        .pipe(take(1))
-        .subscribe(
-          (response: UserUpdateResponse) => {
-            this._toastrService.warning(`${response.name} actualizado con éxito`, 'Actualizar')
-            this.redirectToWindowUser();
-          },
-          (error) => {
-            this._toastrService.error(`Ocurrió un error al actualizar el usuario`)
-          });
+      if(this.formularyUsers.valid){
+        const userUpdateRequest: UserUpdateRequest = {
+          ...this.formularyUsers.value,
+          id: this.userUpdateRequest.id,
+          image: this.imageData
+        };
+        this._usersService.updateUser(userUpdateRequest)
+          .pipe(take(1))
+          .subscribe(
+            (response: UserUpdateResponse) => {
+              this._toastrService.warning(`${response.name} actualizado con éxito`, 'Actualizar')
+              this.redirectToWindowUser();
+            },
+            (error) => {
+              this._toastrService.error(`Ocurrió un error al actualizar el usuario`)
+            });
+      }
+      
     } else {
       if (this.formularyUsers.valid) {
         const user = this._buildUser();
@@ -92,6 +105,7 @@ export class RegistrarComponent implements OnInit, DoCheck {
           .pipe(take(1))
           .subscribe(
             (response: UserCreateResponse) => {
+              
               this._toastrService.success(`${response.name} registrado con éxito`, 'Registrar')
               this.redirectToWindowUser();
             },
@@ -103,34 +117,54 @@ export class RegistrarComponent implements OnInit, DoCheck {
     }
   }
 
-  public onFileSelected(event: any): void {
+ /* public onFileSelected(event: any): void {
+
     const files: FileList | null = event?.target?.files;
     if (files) {
       const file = files[0];
       const reader = new FileReader();
       reader.onload = () => {
-        this.imageData = reader.result as string;
+        if(reader.result){
+          if (reader.result.width <= 50 && img.height <= 50) {
+
+          }
+          this.imageData = reader.result as string;
+        }
+        
       }
       reader.readAsDataURL(file);
+    }
+  }*/
+
+  public onFileSelected(event: any): void {
+    const files: FileList | null = event?.target?.files;
+    if (files) {
+      const file = files[0];
+      const reader = new FileReader();
+      
+      // validate image dimensions
+      const img = new Image();
+      img.onload = () => {
+        if (img.width <= 500 && img.height <= 500) {
+          reader.onload = () => {
+            this.imageData = reader.result as string;
+          }
+          reader.readAsDataURL(file);
+        } else {
+          this._toastrService.error('El tamaño de la imagen no es valido', 'usuarios');
+        }
+      };
+      img.src = URL.createObjectURL(file);
     }
   }
 
   public redirectToWindowUser(): void {
     this._router.navigate(['/usuarios/listado']);
   }
-
-  public verificarNum(event: any) {
-    var ch = event.key;
-
-    if (ch.charCodeAt(0) >= 48 && ch.charCodeAt(0) <= 57) {
-      console.log("si es");
-    } else {
-
-      if (ch == 'e' || ch == 'E' || ch == '+' || ch == '-') {
-        this.formularyUsers.setValue({});
-      }
-    }
-  }
+  /*
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+}*/
 
   private _buildUser(): UserCreateRequest {
     const formValue = this.formularyUsers.value;
@@ -144,6 +178,7 @@ export class RegistrarComponent implements OnInit, DoCheck {
       image: this.imageData ? this.imageData : '../../../../../assets/image-default.jpg'
     }
     return user;
+    
   }
 
   get nombre() {
@@ -169,15 +204,26 @@ export class RegistrarComponent implements OnInit, DoCheck {
   get password() {
     return this.formularyUsers.get('password')
   }
+  public onKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'e') {
+      event.preventDefault();
+    }
+  }
+  public oneKeyDown(event: KeyboardEvent): void {
+    if (event.key === ' ') {
+      event.preventDefault();
+    }
+  }
 
   private _validate(): void {
     this.formularyUsers = this._formsBuilder.group({
+      
       name: [this.userUpdateRequest.name ? this.userUpdateRequest.name : '', [Validators.required, Validators.minLength(4), Validators.maxLength(80), Validators.pattern('[a-zA-ZñÑ ]*')]],
       lastName: [this.userUpdateRequest.lastName ? this.userUpdateRequest.lastName : '', [Validators.required, Validators.minLength(4), Validators.maxLength(80), Validators.pattern('[a-zA-ZñÑ ]*')]],
-      email: [this.userUpdateRequest.email ? this.userUpdateRequest.email : '', [Validators.required, Validators.email]],
-      phone: [this.userUpdateRequest.phone ? this.userUpdateRequest.phone : 0, [Validators.min(0), Validators.required, Validators.pattern('[0-9]{8}')]],
-      username: [this.userUpdateRequest.username ? this.userUpdateRequest.username : '', [Validators.required,  Validators.minLength(4), Validators.maxLength(80),Validators.pattern('[a-zA-Z0-9ñÑ]*')]],
-      password: [this.userUpdateRequest.password ? this.userUpdateRequest.password : '', Validators.required, Validators.minLength(4), Validators.maxLength(80)]
+      email: [this.userUpdateRequest.email ? this.userUpdateRequest.email : '', [Validators.required, Validators.pattern('[a-zA-Z0-9_.]{3,60}[@]{1}[a-zA-Z0-9_.]{4,60}[.]{1}[a-zA-Z]{2,20}')]],
+      phone: [this.userUpdateRequest.phone ? this.userUpdateRequest.phone : '', [Validators.min(0), Validators.required, Validators.pattern('^([6-7][0-9]{7})$')]],
+      username: [this.userUpdateRequest.username ? this.userUpdateRequest.username : '', [Validators.required,  Validators.minLength(4), Validators.maxLength(16),Validators.pattern('[a-zA-ZñÑ]{1}[a-zA-Z0-9ñÑ]*')]],
+      password: [this.userUpdateRequest.password ? this.userUpdateRequest.password : '', [Validators.required, Validators.minLength(4), Validators.maxLength(10),Validators.pattern('[a-zA-Z0-9ñÑ]*')]]
     });
   }
 }

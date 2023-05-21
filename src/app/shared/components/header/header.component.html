@@ -6,8 +6,25 @@
     <button (click)="irAMiCuenta()" type="button" class="btn-avatar">
       <img src="/assets/avatar.png" alt="" class="avatar">
     </button>
+    
+    <button (click)="irAnotificaciones()" type="button" class="btn-notifi">
+      <img src="/assets/campana.png" alt="" class="notic">
+    </button>
     <!-- <img src="/assets/avatar.png" alt="" class="avatar"> -->
-    <button (click)="redirectToWindowLogin()" type="button" class="btn btn-primary button">Admin</button>
+
+    <button type="button" class="button-top" (click)="redirectToAWindowHomeOrAuth()">{{textButtonAdminAndLogout}}</button>
   </section>
 
+  <ng-container *ngIf="isVisibleModal">
+    <article class="dry-modal-container">
+      <div class="modal-header">
+        <h5>¿Estás seguro que deseas cerrar sesión?</h5>
+      </div>
+      <div class="modal-body">
+        <button type="button" class="btn btn-success" (click)="closeSession()">SI</button>
+        <button type="button" class="btn btn-danger" (click)="closeModal()">NO</button>
+      </div>
+      <div class="modal-footer"></div>
+    </article>
+  </ng-container>
 </article>

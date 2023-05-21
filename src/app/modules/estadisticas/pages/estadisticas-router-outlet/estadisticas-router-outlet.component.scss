@@ -1,0 +1,22 @@
+.auth-page-container {
+    display: grid;
+    place-items: center;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+  }
+  
+
+  .dry-page-container {
+    display: flex;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: var(--color-disabled);
+  
+    .dry-page-content {
+      width: 100%;
+      padding: 10px 40px;
+      box-sizing: border-box;
+    }
+  }
+  

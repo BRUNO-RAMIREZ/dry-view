@@ -50,9 +50,59 @@
         padding-left: 10px;
         box-sizing: border-box;
       }
+      .form-field-input-lastaname{
+        border: none;
+        border-bottom: 1px solid black;
+        outline: none;
+        font-size: var(--font-size-text);
+        padding-left: 10px;
+        box-sizing: border-box;
+        width: 250px;
+
+      }
+      .form-field-input_name{
+        border: none;
+        border-bottom: 1px solid black;
+        outline: none;
+        font-size: var(--font-size-text);
+        padding-left: 10px;
+        box-sizing: border-box;
+        width: 250px;
+      }
+      .form-field-input_user{
+        border: none;
+        border-bottom: 1px solid black;
+        outline: none;
+        font-size: var(--font-size-text);
+        padding-left: 10px;
+        box-sizing: border-box;
+        width: 250px;
+      }
+      .form-field-input-pass{
+        border: none;
+        border-bottom: 1px solid black;
+        outline: none;
+        font-size: var(--font-size-text);
+        padding-left: 10px;
+        box-sizing: border-box;
+        width: 350px;
+
+      }
+      .btn {
+        background-color: transparent;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+        padding: 0;
+        position: relative;
+        top: -2px;
+      }
+      
+
       &-buttons {
         display: flex;
         justify-content: space-between;
+        gap: 15px;
       }
     }
 
@@ -60,7 +110,9 @@
       display: flex;
       gap: 35%;
     }
-
+    input[type=number]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
     &-button {
       border-radius: 3px;
       border-style: none;
@@ -110,6 +162,7 @@ label[for="fileInput"] {
   align-content: center;
   border-radius: var(--border-radius-buttons);
 }
+
 
 input[type="file"] {
   display: none;

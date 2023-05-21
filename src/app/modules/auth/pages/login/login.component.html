@@ -1,31 +1,39 @@
 <article class="dry-login-page-container animate__animated animate__fadeIn animate__faster">
   <section class="login-content-container login-content">
-    <section class="login-content-form form">
+    <section class="login-content-form">
       <form class="form" [formGroup]="formularyLogin" (ngSubmit)="login()">
-        <label class="form-title">LOGIN</label>
+          <label class="form-title">LOGIN</label>
+          <label class="form-title form-title-secondary">¡Hola otra ves!  👋</label>
         <section class="form-field">
-          <label class="form-field-label form-field-text--bold">Correo Electronico</label>
+          <label class="form-field-label form-field-text--bold">Correo Electrónico</label>
           <input type="email" class="form-field-input form-field--common" formControlName="email" name="email" required>
-          <div *ngIf="formularyLogin.controls['email'].invalid && (formularyLogin.controls['email'].dirty || formularyLogin.controls['email'].touched)">
-            <div *ngIf="formularyLogin.controls['email'].errors?.required">Este campo es requerido</div>
-            <div *ngIf="formularyLogin.controls['email'].errors?.email">Correo electrónico inválido</div>
-          </div>
+          <ng-container
+            *ngIf="formularyLogin.controls['email'].invalid && (formularyLogin.controls['email'].dirty || formularyLogin.controls['email'].touched)">
+            <div *ngIf="formularyLogin.controls['email'].errors?.required" class="error-text"  style="color:  #f34141">Este campo es requerido
+            </div>
+            <div *ngIf="formularyLogin.controls['email'].errors?.email" class="error-text" style="color:  #f34141">Correo electrónico inválido
+            </div>
+          </ng-container>
         </section>
 
         <section class="form-field">
           <label class="form-field-label form-field-text--bold">Contraseña</label>
-          <input type="password" class="form-field-input form-field--common" formControlName="password" name="password" required>
-          <div *ngIf="formularyLogin.controls['password'].invalid && (formularyLogin.controls['password'].dirty || formularyLogin.controls['password'].touched)">
-            <div *ngIf="formularyLogin.controls['password'].errors?.required">Este campo es requerido</div>
-            <div *ngIf="formularyLogin.controls['password'].errors?.minlength">La contraseña debe tener al menos 3 caracteres</div>
+          <input type="password" class="form-field-input form-field--common" formControlName="password" name="password"
+            required>
+          <div
+            *ngIf="formularyLogin.controls['password'].invalid && (formularyLogin.controls['password'].dirty || formularyLogin.controls['password'].touched)">
+            <div *ngIf="formularyLogin.controls['password'].errors?.required" class="error-text"  style="color:  #f34141">Este campo es requerido
+            </div>
+            <div *ngIf="formularyLogin.controls['password'].errors?.minlength" class="error-text"  style="color:  #f34141">La contraseña debe
+              tener al menos 3 caracteres</div>
           </div>
         </section>
-        <label class="form-field-label--size-small text-hover" (click)="navigateWindowRestorePassword()">¿Olvidaste tu contraseña?</label>
+        <label class="form-field-label--size-small text-hover" (click)="navigateWindowRestorePassword()">¿Olvidaste tu
+          contraseña?</label>
 
         <section class="form-field">
-          <button type="submit" class="form-field-button form-field--common form-field-text--bold">Login</button>
+          <button type="submit" class="form-field-button form-field--common form-field-text--bold" [disabled]="!formularyLogin.valid">Login</button>
         </section>
-        <label class="form-field-label-footer form-field-label--size-small">¿Eres nuevo en la plataforma? <b class="text-hover" (click)="navigateWindowFormRegister()">Registrate</b></label>
       </form>
     </section>
 
