@@ -1,5 +1,6 @@
   import {ClienteCreate, Cliente} from './client.model';
-  import {ProductGetByIdResponse, ProductCreateRequest} from './product.model';
+  import {ProductGetByIdResponse, ProductCreateRequest,ProductListRequest,ProductListResponse} from './product.model';
+
   export interface VentasUpdateRequest {
     id: number;
     code: string;
