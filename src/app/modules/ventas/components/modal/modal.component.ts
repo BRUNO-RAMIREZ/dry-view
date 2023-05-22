@@ -29,7 +29,7 @@ export class ModalComponent implements AfterViewInit {
               private _authService: AuthService) {
     this.onCloseModal = new EventEmitter<boolean>();
     this.title = '';
-    this.venta = {client:{ci:'',id:0,lastName:''},code:'',dateSale:new Date(),finalPrice:0,id:0,products:[],status:"",total:[]};
+    this.venta = {client:{ci:'',lastName:''},code:'',saleDate:new Date(),id:0,products:[],state:true,total:0};
     this.color = '';
     this.icon = '';
     this.txtButton = '';
@@ -47,7 +47,7 @@ export class ModalComponent implements AfterViewInit {
 
   public cancelVenta(): void {
     if (this.txtButton === 'Cancelar') {
-      this.venta.status = "Cancelado";
+      this.venta.state = false;
       this._ventaService.updateVenta(this.venta).pipe(take(1)).subscribe(() =>{
         this._toastrService.warning(`${this.venta.code} fue cancelado exitosamente`, 'Cancelar');
       }, (error) =>{

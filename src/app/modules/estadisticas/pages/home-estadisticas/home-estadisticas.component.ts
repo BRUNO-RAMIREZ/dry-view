@@ -107,7 +107,7 @@ export class HomeEstadisticasComponent implements OnInit, OnDestroy {
     h.setMonth(hasta.getMonth());
     h.setHours(23,59);
     for(let i = 0 ; i < this.ventas.length ; i++){
-      if(this.ventas[i].dateSale >= d && this.ventas[i].dateSale <= h){
+      if(this.ventas[i].saleDate >= d && this.ventas[i].saleDate <= h){
         res.push(this.ventas[i]);
       }
     }

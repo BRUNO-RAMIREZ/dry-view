@@ -16,7 +16,11 @@
       <label class="text-information"><b>Celular:</b> {{ userAccount.phone }}</label>
       <label class="text-information"><b>Usuario:</b> {{ userAccount.username }}</label>
       <section class="field-row text-information">
-        <label><b>Contraseña:</b> {{userAccount.password}}</label>
+        <label><b>Contraseña:</b>
+          <span *ngIf="isPasswordVisible">{{userAccount.password}}</span>
+          <span  *ngIf="!isPasswordVisible"> *****</span>
+          
+        </label>
         <span class="material-symbols-rounded icon-eye" (click)="togglePasswordVisibility()">{{textIconEye}}</span>
       </section>
     </div>

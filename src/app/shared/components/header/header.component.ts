@@ -45,4 +45,9 @@ export class HeaderComponent {
   public closeModal(): void {
     this.isVisibleModal = false;
   }
+
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('authToken');
+
+  }
 }
