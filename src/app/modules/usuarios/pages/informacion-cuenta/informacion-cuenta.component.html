@@ -18,7 +18,7 @@
       <section class="field-row text-information">
         <label><b>Contraseña:</b>
           <span *ngIf="isPasswordVisible">{{userAccount.password}}</span>
-          <span  *ngIf="!isPasswordVisible"> *****</span>
+          <span  *ngIf="!isPasswordVisible" > {{getHiddenPassword() }}</span>
           
         </label>
         <span class="material-symbols-rounded icon-eye" (click)="togglePasswordVisibility()">{{textIconEye}}</span>
