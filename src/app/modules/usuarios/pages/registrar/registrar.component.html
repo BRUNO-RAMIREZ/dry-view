@@ -16,7 +16,7 @@
           </section>
 
           <input type="text" class="form-field-input_name" formControlName="name" name="name" maxlength="81">
-          <div *ngIf="formularyUsers.get('name')?.errors && formularyUsers.get('name')?.dirty">
+          <div *ngIf="formularyUsers.get('name')?.invalid && formularyUsers.get('name')?.dirty">
             <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('required')">Nombre requerido</small>
             <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('minlength')">M&iacute;nimo 4 caracteres </small>
             <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('maxlength')">M&aacute;ximo 80 caracteres </small>
