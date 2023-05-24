@@ -15,11 +15,11 @@
             <label>Nombres</label>
           </section>
 
-          <input type="text" class="form-field-input_name" formControlName="name" name="name" maxlength="81">
+          <input type="text" class="form-field-input_name" formControlName="name" name="name" maxlength="30">
           <div *ngIf="formularyUsers.get('name')?.errors && formularyUsers.get('name')?.dirty">
             <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('required')">Nombre requerido</small>
             <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('minlength')">M&iacute;nimo 4 caracteres </small>
-            <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('maxlength')">M&aacute;ximo 80 caracteres </small>
+            <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('maxlength')">M&aacute;ximo 30 caracteres </small>
             <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('pattern')">No se permiten caracteres especiales </small>
           </div>
         </section>
@@ -30,11 +30,11 @@
             <label>Apellidos</label>
           </section>
 
-          <input type="text" class="form-field-input-lastaname" formControlName="lastName" name="lastName" maxlength="81">
+          <input type="text" class="form-field-input-lastaname" formControlName="lastName" name="lastName" maxlength="30">
           <div *ngIf="formularyUsers.get('lastName')?.errors && formularyUsers.get('lastName')?.dirty">
             <small class="text-danger" *ngIf="formularyUsers.get('lastName')?.hasError('required')">Apellido requerido</small>
             <small class="text-danger" *ngIf="formularyUsers.get('lastName')?.hasError('minlength')">M&iacute;nimo 4 caracteres </small>
-            <small class="text-danger" *ngIf="formularyUsers.get('lastName')?.hasError('maxlength')">M&aacute;ximo 80 caracteres </small>
+            <small class="text-danger" *ngIf="formularyUsers.get('lastName')?.hasError('maxlength')">M&aacute;ximo 30 caracteres </small>
             <small class="text-danger" *ngIf="formularyUsers.get('lastName')?.hasError('pattern')">No se permiten caracteres especiales ni numeros </small>
           </div>
         </section>
