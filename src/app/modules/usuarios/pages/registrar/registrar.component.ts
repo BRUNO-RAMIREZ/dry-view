@@ -81,6 +81,7 @@ export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
   public createUser(): void {
     if (this.userUpdateRequest.id) {
       if(this.formularyUsers.valid){
+        
         const userUpdateRequest: UserUpdateRequest = {
           ...this.formularyUsers.value,
           id: this.userUpdateRequest.id,
@@ -99,7 +100,7 @@ export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
       }
       
     } else {
-      if (this.formularyUsers.valid) {
+      if (this.formularyUsers.valid && this.nombre?.value.trim() && this.lastname?.value.trim()) {
         const user = this._buildUser();
         this._usersService.createUser(user)
           .pipe(take(1))
@@ -226,4 +227,10 @@ export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
       password: [this.userUpdateRequest.password ? this.userUpdateRequest.password : '', [Validators.required, Validators.minLength(4), Validators.maxLength(10),Validators.pattern('[a-zA-Z0-9ñÑ]*')]]
     });
   }
+  Space(event:any){
+    if(event.target.selectionStart == 0 && event.code === "Space")
+    event.preventDefault();
+  }
+ 
+  
 }
