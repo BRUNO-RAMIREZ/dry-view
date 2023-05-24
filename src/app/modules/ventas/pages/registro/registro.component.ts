@@ -23,6 +23,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./registro.component.scss']
 })
 export class RegistroComponent implements OnInit, OnDestroy{
+  public myForm!: FormGroup;
   private _unsubscribed: Subject<void>;
   public products: ProductListResponse[]=[];
   public cantidadesVentas:number[] = [];
@@ -39,6 +40,7 @@ export class RegistroComponent implements OnInit, OnDestroy{
   datosDetalleVenta= new MatTableDataSource(this.listaProductosParaVenta)
 
   constructor(private _productService: ProductosService,
+              private formBuilder: FormBuilder,
               private _router: Router,
               private _ventaService:VentasService,
               private _toastService:ToastrService) {
@@ -55,7 +57,11 @@ export class RegistroComponent implements OnInit, OnDestroy{
     });
     this.observerChangeSearch();
 
-
+    this.myForm = this.formBuilder.group({
+      lastName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z ]+$/)]],
+      ci: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+      
+    });
   }
   public pageChangeA(event:any):void{
     this.page = event;
@@ -127,30 +133,48 @@ export class RegistroComponent implements OnInit, OnDestroy{
     this.cantidadesVentas.splice(inde,1);
     this.calcularPrecioTotal();
   }
-  registrarVenta(){
-    this._ventaService.getAllVenta().subscribe(res =>{
-      
-        this.venta.code = '#'+(res.length+1);
-      
-      
+  registrarVenta() {
+    // Verificar si los campos obligatorios están vacíos
+    if (!this.venta.client.ci || !this.venta.client.lastName || this.productosEnCarrito.length === 0) {
+      this._toastService.error('Por favor, complete todos los campos obligatorios.', 'Error');
+      return; // Salir de la función sin registrar la venta
+    }
+  
+    this._ventaService.getAllVenta().subscribe(res => {
+      this.venta.code = '#' + (res.length + 1);
       this.venta.saleDate = new Date();
       this.venta.client.ci = this.venta.client.ci.trim();
       this.venta.client.lastName = this.venta.client.lastName.trim();
       this.venta.state = true;
       this.venta.products = [];
-      for(let i = 0 ; i < this.productosEnCarrito.length ; i++){
-        this.venta.products.push({description:this.productosEnCarrito[i].description,image:this.productosEnCarrito[i].image,name:this.productosEnCarrito[i].name,purchasePrice:this.productosEnCarrito[i].purchasePrice,salePrice:this.productosEnCarrito[i].salePrice,stock:this.productosEnCarrito[i].stock});
+      for (let i = 0; i < this.productosEnCarrito.length; i++) {
+        this.venta.products.push({
+          description: this.productosEnCarrito[i].description,
+          image: this.productosEnCarrito[i].image,
+          name: this.productosEnCarrito[i].name,
+          purchasePrice: this.productosEnCarrito[i].purchasePrice,
+          salePrice: this.productosEnCarrito[i].salePrice,
+          stock: this.productosEnCarrito[i].stock
+        });
       }
       this._ventaService.createVenta(this.venta).subscribe(() => {
-        this._toastService.success(`Venta registrada con éxito`, 'Registrar')
-       this._router.navigate(['ventas/listado']);
+        this._toastService.success(`Venta registrada con éxito`, 'Registrar');
+        this._router.navigate(['ventas/listado']);
       }, error => {
         this._toastService.error('No se pudo registrar esta venta', 'Error');
       });
-    })
+    });
   }
+  
+
   public searchProductByName(productName: string): void {
     this.productNameSearch = productName;
   }
- 
+
+  isInvalid(controlName: string): boolean {
+    const control = this.myForm.get(controlName);
+    return control !== null && control.invalid && (control.dirty || control.touched);
+  }
+
 }
+
