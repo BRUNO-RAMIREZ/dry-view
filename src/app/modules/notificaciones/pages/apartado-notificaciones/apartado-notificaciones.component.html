@@ -8,16 +8,16 @@
   <table class="listado-content-table table">
     <thead>
       <th class="table-thead-th--bold-light table-th">
-        <label class="table-th-label">Producto</label>
+        <label class="table-th-label">Producto :</label>
       </th>
     <th class="table-thead-th--bold-light table-th">
-      <label class="table-th-label">Nombre</label>
+      <label class="table-th-label">Nombre :</label>
     </th>
     <th class="table-thead-th--bold-light table-th">
-      <label class="table-th-label">Cantidad</label>
+      <label class="table-th-label">Cantidad :</label>
     </th>
   <th class="table-thead-th--bold-light table-th">
-    <label class="table-th-label">estado</label>
+    <label class="table-th-label">estado :</label>
   </th>
     </thead>
 
@@ -28,7 +28,7 @@
               <img src="{{producto.image}}" alt="image" class="item-img" style="width: 50px; height: 50px;">
           </td>
           <td>{{ producto.name }}</td>
-          <td>quedan {{ producto.stock }} productos </td>
+          <td>Quedan {{ producto.stock }} productos </td>
           <td>
               {{ producto.stock === 0 ? 'Agotado' : producto.stock !=0 ? 'Por acabarse' : '' }}
           </td>
