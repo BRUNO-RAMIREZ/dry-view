@@ -1,0 +1,34 @@
+<app-header title="Estad&iacute;sticas"></app-header>
+
+
+<div class="contenedor">
+    
+        <h2>Gráfico Ventas en función de Producto</h2>
+        <div class="filaw">
+            <div class = "inpFecha">
+                <label for="">Desde</label>
+                <br>
+                <input type="date" [(ngModel)] = "desde1" >
+            </div>
+            <div class = "inpFecha">
+                <label for="">Hasta</label>
+                <br>
+                <input type="date" [(ngModel)] = "hasta1"   [min]="desde1">
+            </div>
+
+         
+            <div class = "inpFecha">
+                <br>
+                <button (click)="renderChart()" class="btn btn-primary" style="min-width: 137px;">Generar Gráfico</button>
+            </div>
+            
+        </div>
+
+
+        <br>
+
+        <div class="ContenedorCanvas" >
+            <canvas id="myChart" ></canvas>
+          </div>
+   
+</div>

@@ -17,6 +17,10 @@ export interface ProductCreateRequest {
   stock: number;
 }
 
+export interface ProductListRequest {
+  id: number;
+  stock: number;
+}
 export interface ProductCreateResponse {
   id: number;
   name: string;

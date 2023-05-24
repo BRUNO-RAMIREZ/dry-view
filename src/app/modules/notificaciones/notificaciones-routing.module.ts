@@ -2,17 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import {NotificacionesRouterOutletComponent} from './pages/notificaciones-router-outlet/notificaciones-router-outlet.component';
+import { ApartadoNotificacionesComponent } from './pages/apartado-notificaciones/apartado-notificaciones.component';
 
 const routes: Routes = [
   {
-    path: 'estadisticas',
+    path: '',
     component: NotificacionesRouterOutletComponent,
     children: [
-      /*{path: '', component: },
-      {path: '', component: },
-      {path: '', component: },
-      {path: '', component: },
-      {path: '**', redirectTo: 'login'}*/
+      {path: '', component: ApartadoNotificacionesComponent },
+
+      {path: '**', redirectTo: 'login'}
     ]
   }
 

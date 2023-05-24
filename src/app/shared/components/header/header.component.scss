@@ -28,6 +28,15 @@
       // height: 50px;
       cursor: pointer;
     }
+    .btn-notifi{
+      border: none;
+      background: none;
+      border-radius: 40%;
+      //width: 50px;
+      // height: 50px;
+      cursor: pointer;
+
+    }
 
     .avatar {
       //display: block;
@@ -45,6 +54,14 @@
       background-size: cover;
       width: 40px;
       height: 40px;
+    }
+    .notic{
+      border: 2px solid var(--color-white);
+      border-radius: 50%;
+      background-size: cover;
+      width: 40px;
+      height: 40px;
+
     }
   }
 

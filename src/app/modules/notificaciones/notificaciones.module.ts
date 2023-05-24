@@ -6,7 +6,8 @@ import { NotificacionesRouterOutletComponent } from './pages/notificaciones-rout
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { SharedModule } from "../../shared/shared.module";
 import { ApartadoNotificacionesComponent } from './pages/apartado-notificaciones/apartado-notificaciones.component';
-
+import {ProductosModule} from '../productos/productos.module';
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import { ApartadoNotificacionesComponent } from './pages/apartado-notificaciones
         RouterModule,
         ReactiveFormsModule,
         FormsModule,
-        SharedModule
+        SharedModule,
+        ProductosModule,
+        NgxPaginationModule
   ]
 })
 export class NotificacionesModule { }

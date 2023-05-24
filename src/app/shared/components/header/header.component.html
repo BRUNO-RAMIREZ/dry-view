@@ -6,6 +6,10 @@
     <button (click)="irAMiCuenta()" type="button" class="btn-avatar">
       <img src="/assets/avatar.png" alt="" class="avatar">
     </button>
+    
+    <button *ngIf="isAuthenticated()" (click)="irAnotificaciones()" type="button" class="btn-notifi">
+      <img src="/assets/campana.png" alt="" class="notic">
+    </button>
     <!-- <img src="/assets/avatar.png" alt="" class="avatar"> -->
 
     <button type="button" class="button-top" (click)="redirectToAWindowHomeOrAuth()">{{textButtonAdminAndLogout}}</button>
