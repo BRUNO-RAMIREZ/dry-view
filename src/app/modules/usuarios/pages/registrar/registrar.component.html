@@ -16,7 +16,7 @@
           </section>
 
 
-          <input type="text" class="form-field-input_name" formControlName="name" name="name" maxlength="30">
+          <input type="text" class="form-field-input_name" formControlName="name" name="name" maxlength="30" (keydown)="Space($event)">
           <div *ngIf="formularyUsers.get('name')?.errors && formularyUsers.get('name')?.dirty">
 
             <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('required')">Nombre requerido</small>
@@ -32,7 +32,7 @@
             <label>Apellidos</label>
           </section>
 
-          <input type="text" class="form-field-input-lastaname" formControlName="lastName" name="lastName" maxlength="30">
+          <input type="text" class="form-field-input-lastaname" formControlName="lastName" name="lastName" maxlength="30" (keydown)="Space($event)">
           <div *ngIf="formularyUsers.get('lastName')?.errors && formularyUsers.get('lastName')?.dirty">
             <small class="text-danger" *ngIf="formularyUsers.get('lastName')?.hasError('required')">Apellido requerido</small>
             <small class="text-danger" *ngIf="formularyUsers.get('lastName')?.hasError('minlength')">M&iacute;nimo 4 caracteres </small>
