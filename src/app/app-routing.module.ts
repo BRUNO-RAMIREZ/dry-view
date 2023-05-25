@@ -17,6 +17,11 @@ const routes: Routes = [
     loadChildren: () => import('./modules/notificaciones/notificaciones.module').then(m => m.NotificacionesModule),
     canActivate: [AuthGuard]
   }, 
+  {
+    path: 'informacionEdit',
+    loadChildren: () => import('./modules/edicionInformacion/edicion-informacion.module').then(m => m.EdicionInformacionModule),
+    canActivate: [AuthGuard]
+  }, 
 
   {
     path: 'productos',

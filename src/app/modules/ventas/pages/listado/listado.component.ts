@@ -20,7 +20,7 @@ import {Observable, Subject} from "rxjs";
 import {tap} from "rxjs/operators";
 
 import {VentasService} from "../../services/ventas.service";
-import {VentasListResponse} from "../../../../core/models/ventas.model";
+import {VentasListResponse,VentasCancelRequest,VentasCancelResponse} from "../../../../core/models/ventas.model";
 
 
 @Component({

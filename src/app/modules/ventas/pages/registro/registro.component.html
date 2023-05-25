@@ -31,7 +31,7 @@
 
               <div *ngIf="productNameSearch.trim() != ''" class="listaBusqueda">
                 <div *ngFor="let product of products | filterSearchPipeProd: productNameSearch" >
-                  <button (click) = "addProd(product)"> {{ product.name }} </button>
+                  <button (click) = "addProd(product)"> {{ product.name }} <span *ngIf="product.stock == 0">(Agotado)</span> </button>
                 </div>
                 <div *ngIf="(products | filterSearchPipeProd: productNameSearch).length == 0">
                   No existe este producto
@@ -75,7 +75,7 @@
               </td>
                 <td >{{product.name}}</td>
                 <td >{{product.salePrice}}</td>
-                <td >{{cantidadesVentas[i]}}</td>
+                <td >{{venta.quantityStockOfProductsSaled[i]}}</td>
                 
                
                 
