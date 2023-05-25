@@ -42,25 +42,8 @@ export class VentasService {
       .pipe(map(res => res.sales));
   }
 
-  public cancelVenta(ventasCancelRequest: VentasCancelRequest): Observable<VentasCancelResponse> {
-    return this._http.put<VentasCancelResponse>(`${this._baseURL}/sales/${ventasCancelRequest.id}`, ventasCancelRequest)
-      .pipe(
-        tap((response) => console.warn("VENTA", response)),
-        map((response: VentasCancelResponse) => {
-          const currentVentas = this._ventas.getValue();
-          const updatedVentas = currentVentas.map((venta) => {
-            if (venta.id === ventasCancelRequest.id) {
-              return {
-                ...venta,
-                ...ventasCancelRequest // Optional: update the product locally as well
-              };
-            }
-            return venta;
-          });
-          this._ventas.next(updatedVentas);
-          return response;
-        })
-      );
+  public cancelVenta(ventasCancelRequest: VentasCancelRequest): Observable<void> {
+    return this._http.put<void>(`${this._baseURL}/sales/${ventasCancelRequest.id}`, []);
   }
 
   public getVentaById(ventaId: number): Observable<VentasGetByIdResponse> {

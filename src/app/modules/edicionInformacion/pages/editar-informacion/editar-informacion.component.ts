@@ -37,7 +37,8 @@ export class EditarInformacionComponent implements OnInit, OnDestroy {
 
 
   updateInfo(){
-    if(this.formularyInfo.valid){
+    this._toastrService.error(`Apartado en proceso`);
+    /*if(this.formularyInfo.valid){
       const infoUpdateRequest: InformacionUpdateRequest = {
         ...this.formularyInfo.value,
         id: this.infoUpdateRequest.id
@@ -72,7 +73,7 @@ export class EditarInformacionComponent implements OnInit, OnDestroy {
       
     }else{
       this._toastrService.error(`Alguno de los campos de Información no son validos`);
-    }
+    }*/
   }
 
   get tittle() {
