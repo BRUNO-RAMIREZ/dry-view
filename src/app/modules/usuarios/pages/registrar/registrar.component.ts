@@ -100,7 +100,7 @@ export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
       }
       
     } else {
-      if (this.formularyUsers.valid && this.nombre?.value.trim() && this.lastname?.value.trim()) {
+      if (this.formularyUsers.valid ) {
         const user = this._buildUser();
         this._usersService.createUser(user)
           .pipe(take(1))
