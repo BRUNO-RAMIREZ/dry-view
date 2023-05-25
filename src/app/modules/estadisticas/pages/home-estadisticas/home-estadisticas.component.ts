@@ -147,7 +147,7 @@ export class HomeEstadisticasComponent implements OnInit, OnDestroy {
               data: {
                 labels: labelsProductos,
                 datasets: [{
-                  label: 'Numero de ventas',
+                  label: 'Número de ventas',
                   data: ventasdata,
                   borderWidth: 1
                 }]
@@ -171,7 +171,7 @@ export class HomeEstadisticasComponent implements OnInit, OnDestroy {
               data: {
                 labels: [''],
                 datasets: [{
-                  label: 'Numero de ventas',
+                  label: 'Número de ventas',
                   data: [],
                   borderWidth: 1
                 }]
@@ -201,7 +201,7 @@ export class HomeEstadisticasComponent implements OnInit, OnDestroy {
         data: {
           labels: [''],
           datasets: [{
-            label: 'Numero de ventas',
+            label: 'Número de ventas',
             data: [],
             borderWidth: 1
           }]

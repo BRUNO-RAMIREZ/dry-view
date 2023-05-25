@@ -7,7 +7,7 @@
       <img src="/assets/avatar.png" alt="" class="avatar">
     </button>
     
-    <button (click)="irAnotificaciones()" type="button" class="btn-notifi">
+    <button *ngIf="isAuthenticated()" (click)="irAnotificaciones()" type="button" class="btn-notifi">
       <img src="/assets/campana.png" alt="" class="notic">
     </button>
     <!-- <img src="/assets/avatar.png" alt="" class="avatar"> -->
