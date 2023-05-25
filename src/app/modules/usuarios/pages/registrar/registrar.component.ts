@@ -219,8 +219,8 @@ export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
   private _validate(): void {
     this.formularyUsers = this._formsBuilder.group({
       
-      name: [this.userUpdateRequest.name ? this.userUpdateRequest.name : '', [Validators.required, Validators.minLength(4), Validators.maxLength(30), Validators.pattern('[a-zA-ZñÑ ]*')]],
-      lastName: [this.userUpdateRequest.lastName ? this.userUpdateRequest.lastName : '', [Validators.required, Validators.minLength(4), Validators.maxLength(30), Validators.pattern('[a-zA-ZñÑ ]*')]],
+      name: [this.userUpdateRequest.name ? this.userUpdateRequest.name : '', [Validators.required, Validators.minLength(4), Validators.maxLength(30), Validators.pattern('[a-zA-ZáéíóúÁÉÍÓÚñÑ ]*')]],
+      lastName: [this.userUpdateRequest.lastName ? this.userUpdateRequest.lastName : '', [Validators.required, Validators.minLength(4), Validators.maxLength(30), Validators.pattern('[a-zA-ZáéíóúÁÉÍÓÚñÑ ]*')]],
       email: [this.userUpdateRequest.email ? this.userUpdateRequest.email : '', [Validators.required, Validators.pattern('[a-zA-Z0-9_.]{3,60}[@]{1}[a-zA-Z0-9_.]{4,60}[.]{1}[a-zA-Z]{2,20}')]],
       phone: [this.userUpdateRequest.phone ? this.userUpdateRequest.phone : '', [Validators.min(0), Validators.required, Validators.pattern('^([6-7][0-9]{7})$')]],
       username: [this.userUpdateRequest.username ? this.userUpdateRequest.username : '', [Validators.required,  Validators.minLength(4), Validators.maxLength(16),Validators.pattern('[a-zA-ZñÑ]{1}[a-zA-Z0-9ñÑ]*')]],
