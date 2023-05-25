@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import {InformacionService} from '../../../edicionInformacion/services/informacion.service';
+import {InformacionGetResponce} from '../../../../core/models/informacion.model';
 @Component({
   selector: 'app-apartado-informacion',
   templateUrl: './apartado-informacion.component.html',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApartadoInformacionComponent implements OnInit {
 
-  constructor() { }
+  info:InformacionGetResponce;
+  constructor(private _informacionService:InformacionService) { 
+    this.info = {description:'Es brindar información al usuario sobre nuestros productos, con finalidad de entregar una buena experiencia',
+                direction:'Calle Oquendo',
+                email:'dryelectronic@gmail.com',
+                fblink:'https://www.facebook.com/profile.php?id=100093075485231',
+                ytlink:'https://www.youtube.com/@dryelectronic',
+                id:0,
+                phone:64878483,
+                tittle:'Nuestra misión',wslink:'https://wa.link/ib2imf'};
+  }
 
   ngOnInit(): void {
+    this._informacionService.getInfo().subscribe(res=>{
+      this.info = res;
+    });
   }
 
 }
