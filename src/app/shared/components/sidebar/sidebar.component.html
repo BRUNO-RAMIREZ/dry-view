@@ -19,8 +19,8 @@
     </section>
 
     <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/estadisticas" >
-      <span class="material-symbols-rounded sidebar-header-icon" title="Estadisticas">Monitoring</span>
-      <label class="sidebar-content-item-text" *ngIf="desplegado">Estadisticas</label>
+      <span class="material-symbols-rounded sidebar-header-icon" title="Estadísticas">Monitoring</span>
+      <label class="sidebar-content-item-text" *ngIf="desplegado">Estadísticas</label>
     </section>
 
 
@@ -51,6 +51,10 @@
           <span class="material-symbols-rounded sidebar-header-icon" title="Lista de usuarios">list_alt</span>
           <label class="sidebar-content-item-text" *ngIf="desplegado">Lista de usuarios</label>
         </section>
+        <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/informacionEdit">
+          <span class="material-symbols-rounded sidebar-header-icon" title="Informacion">Info</span>
+          <label class="sidebar-content-item-text" *ngIf="desplegado">Información</label>
+        </section>
         
         <section *ngIf="isAuthenticated()" class="sidebar-content-item"(click)="modal.open(contenido,{centered:true})">
           <span class="material-symbols-rounded sidebar-header-icon" title="Salir">logout</span>
@@ -58,10 +62,7 @@
         </section>
       </section>
 
-      <section *ngIf="isAuthenticated()" class="sidebar-content-item" routerLink="/informacionEdit">
-        <span class="material-symbols-rounded sidebar-header-icon" title="Informacion">Info</span>
-        <label class="sidebar-content-item-text" *ngIf="desplegado">Información</label>
-      </section>
+     
 
 </article>
 
