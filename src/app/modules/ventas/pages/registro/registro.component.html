@@ -3,7 +3,7 @@
    
       <section  class="registro-content-section registro-content" style="min-width: 1077px;">
 
-          <!-- <div class="formCliente">
+          <div class="formCliente">
             <div class="campoCliente">
               <label for="">Apellido Cliente</label><br>
               <input type="text" [(ngModel)] = "venta.client.lastName">
@@ -12,33 +12,13 @@
               <label for="">CI</label><br>
               <input type="text" [(ngModel)] = "venta.client.ci">
             </div>
-          </div> -->
-
-          <form [formGroup]="myForm">  
-            <div class="formCliente">
-              <div class="campoCliente">
-                <label for="lastName">Apellido Cliente</label><br>
-                <input type="text" id="lastName" formControlName="lastName">
-                <div *ngIf="isInvalid('lastName')" class="error-message">
-                  Ingrese solo letras en el campo Apellido Cliente.
-                </div>
-              </div>
-              <div class="campoCliente">
-                <label for="ci">CI</label><br>
-                <input type="text" id="ci" formControlName="ci">
-                <div *ngIf="isInvalid('ci')" class="error-message">
-                  Ingrese solo números en el campo CI.
-                </div>
-              </div>
-            </div>
-           </form>
-
+          </div>
          <br>
           <section class="conteTotalBusqueda">
             
             <h3 >TOTAL: {{venta.total}} Bs</h3>
             
-            <div  >
+            <div>
               <div class="bucadorContenedor">
                 <input type="text"
              placeholder="Nombre producto"
@@ -59,10 +39,7 @@
                 
               </div>
             </div>
-            
-            
            
-            
           </section>
           
           <section class="listado-content-section listado-content">

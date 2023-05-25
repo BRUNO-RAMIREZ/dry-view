@@ -23,7 +23,8 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./registro.component.scss']
 })
 export class RegistroComponent implements OnInit, OnDestroy{
-  public myForm!: FormGroup;
+ // public myForm!: FormGroup;
+  public ventasUpdateRequest:VentasUpdateRequest;
   private _unsubscribed: Subject<void>;
   public products: ProductListResponse[]=[];
   public cantidadesVentas:number[] = [];
@@ -40,12 +41,14 @@ export class RegistroComponent implements OnInit, OnDestroy{
   datosDetalleVenta= new MatTableDataSource(this.listaProductosParaVenta)
 
   constructor(private _productService: ProductosService,
-              private formBuilder: FormBuilder,
+             // private formBuilder: FormBuilder, .......................
               private _router: Router,
               private _ventaService:VentasService,
               private _toastService:ToastrService) {
                 this._unsubscribed = new Subject<void>();
                 this.venta = {client:{ci:'',lastName:''},code:"0",saleDate:new Date(),products:[],state:true,total:0};
+                this.ventasUpdateRequest = {id:0, client:{ci:'',lastName:''},code:"0",saleDate:new Date(),products:[],state:true,total:0};
+                
                 this.productNameSearch = "";
                 this.page              = 0;
               }
@@ -56,12 +59,12 @@ export class RegistroComponent implements OnInit, OnDestroy{
       this.products = prod;
     });
     this.observerChangeSearch();
-
-    this.myForm = this.formBuilder.group({
+   // this._validate();
+   /* this.myForm = this.formBuilder.group({
       lastName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z ]+$/)]],
       ci: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       
-    });
+    });*/
   }
   public pageChangeA(event:any):void{
     this.page = event;
@@ -135,11 +138,23 @@ export class RegistroComponent implements OnInit, OnDestroy{
   }
   registrarVenta() {
     // Verificar si los campos obligatorios están vacíos
-    if (!this.venta.client.ci || !this.venta.client.lastName || this.productosEnCarrito.length === 0) {
+   if (!this.venta.client.ci || !this.venta.client.lastName || this.productosEnCarrito.length === 0) {
       this._toastService.error('Por favor, complete todos los campos obligatorios.', 'Error');
       return; // Salir de la función sin registrar la venta
     }
-  
+  // Validar formato de campos
+  const lastNamePattern = /^[a-zA-Z\s]*$/; // Expresión regular para permitir solo letras y espacios en blanco
+  if (!lastNamePattern.test(this.venta.client.lastName)) {
+    this._toastService.error('El apellido del cliente solo puede contener letras', 'Error');
+    return;
+  }
+
+  const ciPattern = /^[0-9]*$/; // Expresión regular para permitir solo números
+  if (!ciPattern.test(this.venta.client.ci)) {
+    this._toastService.error('El número de CI solo puede contener números', 'Error');
+    return;
+  }
+
     this._ventaService.getAllVenta().subscribe(res => {
       this.venta.code = '#' + (res.length + 1);
       this.venta.saleDate = new Date();
@@ -165,16 +180,8 @@ export class RegistroComponent implements OnInit, OnDestroy{
       });
     });
   }
-  
-
   public searchProductByName(productName: string): void {
     this.productNameSearch = productName;
   }
-
-  isInvalid(controlName: string): boolean {
-    const control = this.myForm.get(controlName);
-    return control !== null && control.invalid && (control.dirty || control.touched);
-  }
-
 }
 
