@@ -82,4 +82,7 @@ export class InformacionCuentaComponent implements OnInit, OnDestroy {
     this.userAccount.password = this.isPasswordVisible ? this._passwordNoCodificada : this._passwordCodificada;
     this.textIconEye = this.isPasswordVisible ? 'visibility' : 'visibility_off';
   }
+   getHiddenPassword(): string {
+    return "•".repeat(this.userAccount.password.length);
+  }
 }
