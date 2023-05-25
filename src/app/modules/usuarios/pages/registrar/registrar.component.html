@@ -7,7 +7,7 @@
   </section>
 
   <section class="form-section">
-    <form class="form" [formGroup]="formularyUsers" (ngSubmit)="createUser()">
+    <form class="form" [formGroup]="formularyUsers" (ngSubmit)="createUser()" >
       <section class="form-row-section">
         <section class="form-field">
           <section class="form-field-header-input">
@@ -15,8 +15,10 @@
             <label>Nombres</label>
           </section>
 
+
           <input type="text" class="form-field-input_name" formControlName="name" name="name" maxlength="30">
           <div *ngIf="formularyUsers.get('name')?.errors && formularyUsers.get('name')?.dirty">
+
             <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('required')">Nombre requerido</small>
             <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('minlength')">M&iacute;nimo 4 caracteres </small>
             <small class="text-danger" *ngIf="formularyUsers.get('name')?.hasError('maxlength')">M&aacute;ximo 30 caracteres </small>
