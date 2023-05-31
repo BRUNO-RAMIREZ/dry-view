@@ -152,7 +152,7 @@ export class RegistrarComponent implements OnInit, DoCheck, OnDestroy {
           }
           reader.readAsDataURL(file);
         } else {
-          this._toastrService.error('El tamaño de la imagen no es valido', 'usuarios');
+          this._toastrService.error('El tamaño de la imagen no es válido', 'usuarios');
         }
       };
       img.src = URL.createObjectURL(file);
