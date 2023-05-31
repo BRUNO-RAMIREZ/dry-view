@@ -29,6 +29,14 @@ export class ProductosService {
     return this._products.asObservable();
   }
 
+
+  public recargarProductos() {
+    this._products = new BehaviorSubject<ProductListResponse[]>([]);
+    return this.getAllProducts().subscribe(response => {
+      this._products.next(response);
+    });
+  }
+
   public createProduct(product: ProductCreateRequest): Observable<ProductCreateResponse> {
     return this._http.post<ProductCreateResponse>(`${this._baseURL}/products/create`, product)
       .pipe(map((newProduct: ProductCreateResponse) => {

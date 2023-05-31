@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {VentasListResponse} from "../../../../core/models/ventas.model";
+import {VentasListResponse,VentasCancelRequest} from "../../../../core/models/ventas.model";
 import {take} from "rxjs/operators";
 import {VentasService} from "../../services/ventas.service";
 import {ToastrService} from "ngx-toastr";
@@ -19,7 +19,7 @@ export class ModalComponent implements AfterViewInit {
   @Output() public onCloseModal: EventEmitter<boolean>;
 
   @Input() public title: string;
-  @Input() public venta: VentasListResponse;
+  @Input() public venta?: VentasListResponse;
   @Input() public color: string;
   @Input() public icon: string;
   @Input() public txtButton: string;
@@ -29,7 +29,7 @@ export class ModalComponent implements AfterViewInit {
               private _authService: AuthService) {
     this.onCloseModal = new EventEmitter<boolean>();
     this.title = '';
-    this.venta = {client:{ci:'',lastName:''},code:'',saleDate:new Date(),id:0,products:[],state:true,total:0};
+  
     this.color = '';
     this.icon = '';
     this.txtButton = '';
@@ -46,12 +46,16 @@ export class ModalComponent implements AfterViewInit {
   }
 
   public cancelVenta(): void {
-    if (this.txtButton === 'Cancelar') {
+    if (this.txtButton === 'Cancelar' && this.venta) {
       this.venta.state = false;
-      this._ventaService.updateVenta(this.venta).pipe(take(1)).subscribe(() =>{
-        this._toastrService.warning(`${this.venta.code} fue cancelado exitosamente`, 'Cancelar');
+      let cv:VentasCancelRequest = {id:this.venta.id,idsproducts:[],quantityStockOfProductsSaled:this.venta.quantityStockOfProductsSaled,state:false}; 
+      for(let i = 0; i < this.venta.products.length; i++){
+        cv.idsproducts.push(this.venta.products[i].id);
+      }
+      this._ventaService.cancelVenta(cv).pipe(take(1)).subscribe(() =>{
+        this._toastrService.warning(`${this.venta?.code} fue cancelado exitosamente`, 'Cancelar');
       }, (error) =>{
-        this._toastrService.error(`${this.venta.code} no fue cancelado, intente nuevamente`)
+        this._toastrService.error(`${this.venta?.code} no fue cancelado, intente nuevamente`)
       });
     }
     this.closeModal();

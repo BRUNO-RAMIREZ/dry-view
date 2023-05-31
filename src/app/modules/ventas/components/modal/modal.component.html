@@ -10,10 +10,10 @@
   <section class="modal-content-section modal-content">
 
     <section class="modal-content-description content-description">
-      <label [title]="venta.code"><b>Código: </b> {{venta.code}}</label>
-      <label [title]="venta.client.lastName"><b>Apellido Cliente: </b> {{venta.client.lastName}}</label>
-      <label [title]="venta.client.ci"><b>Ci: </b> {{venta.client.ci}}</label>
-      <label [title]="venta.total"><b>Precio total de venta: </b> {{venta.total}}</label>
+      <label [title]="venta?.code"><b>Código: </b> {{venta?.code}}</label>
+      <label [title]="venta?.client?.lastName"><b>Apellido Cliente: </b> {{venta?.client?.lastName}}</label>
+      <label [title]="venta?.client?.ci"><b>Ci: </b> {{venta?.client?.ci}}</label>
+      <label [title]="venta?.total"><b>Precio total de venta: </b> {{venta?.total}}</label>
     </section>
   </section>
 

@@ -64,7 +64,7 @@
 
           <input type="tel" class="form-field-input" formControlName="phone" name="phone"  onkeypress="return event.charCode>=48 && event.charCode<=57" maxlength="8" (keydown)="onKeyDown($event)">
           <div *ngIf="formularyUsers.get('phone')?.errors && formularyUsers.get('phone')?.dirty">
-            <small class="text-danger" *ngIf="formularyUsers.get('phone')?.hasError('required')">Numero Celular requerido</small>
+            <small class="text-danger" *ngIf="formularyUsers.get('phone')?.hasError('required')">N&uacute;mero Celular requerido</small>
 
             <small class="text-danger" *ngIf="formularyUsers.get('phone')?.hasError('pattern')">Solo n&uacute;meros de Bolivia</small>
           </div>

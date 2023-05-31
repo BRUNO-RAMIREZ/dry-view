@@ -120,7 +120,9 @@ export class HomeEstadisticasComponent implements OnInit, OnDestroy {
       let des = this.convertirADate(this.desde1);
       let has = this.convertirADate(this.hasta1);
       if(des <= has){
-        var ventas = this.getSubVentasFechas(des, has);
+        this._estadisticasServices.getAllVentas().subscribe(res =>{
+          this.ventas = res;
+          var ventas = this.getSubVentasFechas(des, has);
 
           var labelsProductos:string[] = [];
           var ventasdata:number[] = [];
@@ -183,6 +185,9 @@ export class HomeEstadisticasComponent implements OnInit, OnDestroy {
               }
             });
           }
+        });
+
+        
         
       }
     }else{

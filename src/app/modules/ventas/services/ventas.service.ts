@@ -8,8 +8,8 @@ import {
   VentasGetAllResponse,
   VentasGetByIdResponse,
   VentasListResponse,
-  VentasUpdateRequest,
-  VentasUpdateResponse
+  VentasCancelRequest,
+  VentasCancelResponse
 } from "../../../core/models/ventas.model";
 import {BehaviorSubject, Observable} from "rxjs";
 import {map, tap} from "rxjs/operators";
@@ -42,25 +42,8 @@ export class VentasService {
       .pipe(map(res => res.sales));
   }
 
-  public updateVenta(ventasUpdateRequest: VentasUpdateRequest): Observable<VentasUpdateResponse> {
-    return this._http.put<VentasUpdateResponse>(`${this._baseURL}/sales/${ventasUpdateRequest.id}`, ventasUpdateRequest)
-      .pipe(
-        tap((response) => console.warn("VENTA", response)),
-        map((response: VentasUpdateResponse) => {
-          const currentVentas = this._ventas.getValue();
-          const updatedVentas = currentVentas.map((venta) => {
-            if (venta.id === ventasUpdateRequest.id) {
-              return {
-                ...venta,
-                ...ventasUpdateRequest // Optional: update the product locally as well
-              };
-            }
-            return venta;
-          });
-          this._ventas.next(updatedVentas);
-          return response;
-        })
-      );
+  public cancelVenta(ventasCancelRequest: VentasCancelRequest): Observable<void> {
+    return this._http.put<void>(`${this._baseURL}/sales/${ventasCancelRequest.id}`, []);
   }
 
   public getVentaById(ventaId: number): Observable<VentasGetByIdResponse> {

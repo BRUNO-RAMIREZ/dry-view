@@ -1,0 +1,16 @@
+.dry-page-container {
+    display: flex;
+    width: 100vw;
+    height: 100%;
+    
+    background-color: var(--color-light-blue-secondary);
+    
+  
+    .dry-page-content {
+      width: 100%;
+      z-index: 1;
+      box-sizing: border-box;
+    }
+  }
+  
+    

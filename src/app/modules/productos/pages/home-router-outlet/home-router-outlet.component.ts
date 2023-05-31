@@ -8,7 +8,9 @@ import {AuthService} from "../../../auth/services/auth.service";
 })
 export class HomeRouterOutletComponent implements OnInit {
 
-  constructor(private _authService: AuthService) { }
+  constructor(private _authService: AuthService) {
+    
+   }
 
   ngOnInit(): void {
     this._authService.reset();

@@ -2,7 +2,7 @@ import {Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {Observable, Subject} from "rxjs";
 import {map, take, takeUntil, tap} from "rxjs/operators";
-
+import {BehaviorSubject, of} from "rxjs";
 import {ProductosService} from "../../services/productos.service";
 import {ProductDeleteRequest, ProductListResponse} from "../../../../core/models/product.model";
 import {ProductMapper} from "../../../../core/mappers/product.mapper";
@@ -42,10 +42,20 @@ export class ListadoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.products = this._productService.productsObservable
+      let _products = new BehaviorSubject<ProductListResponse[]>([]);
+      this._productService.getAllProducts().subscribe(response => {
+        _products.next(response);
+        this.products = _products.asObservable()
+        .pipe(
+          tap(products => this.totalProducts = products.length)
+        );
+      });
+
+
+   /* this.products = this._productService.productsObservable
       .pipe(
         tap(products => this.totalProducts = products.length)
-      );
+      );*/
   }
 
   ngOnDestroy(): void {

@@ -1,0 +1,61 @@
+ 
+        <form action="" [formGroup]="formularyInfo" (ngSubmit)="updateInfo()">
+<article class="dry-page-apartado-informacion-container animate__animated animate__fadeIn animate__faster">
+  <section class="login-content-logo logo">
+      <section class="login-content-forms">
+
+            <div class="panel-inf"> 
+                <h2 class="title">REPUESTOS ELECTRÓNICOS</h2>
+                <div class="mision">
+                    
+                <h3><label for="">Título</label><br>
+                    <input type="text" formControlName="tittle"></h3>
+
+                <p class="parrafo">
+                    <label for="">Descripción</label><br>
+                  <textarea name="" id="" cols="30" rows="10" formControlName="description">
+                  </textarea>
+                </p>
+              </div>
+                <div class="datos">
+                  <p>Teléfono: &nbsp;<input type="number" formControlName="phone"></p> 
+                  <p>Direcci&oacute;n: <input type="number" formControlName="direction"></p>
+                  <p>Correo:&nbsp;&nbsp;&nbsp;&nbsp; <input type="number" formControlName="email" ></p>
+                  <p>Redes Sociales:</p>
+                    <div class="redes-links" formControlName="name">
+                        <label for="">Link de Youtube&nbsp;&nbsp;&nbsp;&nbsp;</label>&nbsp;&nbsp;
+                        <input type="text" formControlName="ytlink"><br>
+                        <label for="">Link de Facebook&nbsp;</label>&nbsp;&nbsp;
+                        <input type="text" formControlName="fblink"><br>
+                        <label for="">Link de WhatsApp</label>&nbsp;&nbsp;
+                        <input type="text" formControlName="wslink"><br>
+
+                    </div>
+                    <div class="contenedorBotones">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    &nbsp;&nbsp; <button style="min-width: 150px;" class="btn btn-primary" type="submit">Editar</button>
+                    </div>
+                </div>
+             </div>
+         
+       
+      
+      </section>
+
+                  <section class="login-content-logo logo">
+                    <section class="logo-text-section">
+                      <label class="logo-text-big">DRY</label>
+                      <label class="logo-text-small">Electronic shop</label>
+                      <label class="logo-text-small">Apartado de Edición</label>
+                    </section>
+                    
+                    <section class="logo-img-section">
+                      <img src="./assets/robot.png" alt="logo" class="logo-img">
+                    </section>
+                  </section>
+                  
+  </section>
+  
+</article>
+
+
+</form>
