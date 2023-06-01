@@ -4,7 +4,7 @@
     <section class="listado-header-search-section listado-header-search">
       <input type="text"
              class="listado-header-search-input"
-             placeholder="Ingrese el codigo de la venta que desea buscar..."
+             placeholder="Ingrese el codigo o apellido de la venta que desea buscar..."
              #textSearch
              (keyup)="searchUserByName(textSearch.value)">
 
@@ -15,6 +15,7 @@
   </section>
 
   <section class="listado-content-section listado-content" style="min-width: 1077px;">
+    <div class="table-responsive">
     <table class="listado-content-table table">
       <thead>
       <th class="table-thead-th--bold-light table-th">
@@ -64,7 +65,7 @@
       <td *ngIf="(ventas | async | filterSearchPipeVenta:ventasCodeSearch)?.length === 0">Lista vacía de ventas</td>
       </tbody>
     </table>
-
+  </div>
     <section class="listado-footer-section listado-footer">
       <label class="listado-footer-quantity">{{(ventas | async | filterSearchPipeVenta:ventasCodeSearch).length }} ventas en total</label>
 
