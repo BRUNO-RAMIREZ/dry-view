@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import {VentasListResponse} from "../../../core/models/ventas.model";
+import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 @Pipe({
   name: 'sortByPipe'
 })
