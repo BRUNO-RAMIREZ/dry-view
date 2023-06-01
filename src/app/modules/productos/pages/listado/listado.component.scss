@@ -7,6 +7,7 @@
 .listado-header {
   display: flex;
   justify-content: space-between;
+  vertical-align: middle;
 
   &-search {
     display: flex;
@@ -40,12 +41,14 @@
   margin-top: 40px;
   padding: 10px;
 
+
   .table {
     font-weight: lighter;
 
+
     &-thead-th--bold-light {
       font-weight: 600;
-      text-align: left;
+      text-align: center;
     }
 
     &-row--color-white {
@@ -57,7 +60,8 @@
     }
 
     &-th {
-      text-align: left;
+      
+      text-align: center;
       &-icon {
         font-size: var(--font-size-subtitle);
         cursor: pointer;
@@ -76,9 +80,12 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        text-align: center;
+        vertical-align: middle;
 
         &-datos{
           text-align: center;
+          vertical-align: center;
         }
 
       }
@@ -90,6 +97,8 @@
         padding: 7px;
         font-size: 15px;
         margin-left: 9px;
+        margin-top: 8px;
+        vertical-align: middle;
       }
 
       .icon-plus {

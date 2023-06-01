@@ -51,6 +51,7 @@
   
     .table {
       font-weight: lighter;
+      
   
       &-thead-th--bold-light {
         font-weight: 600;
@@ -80,6 +81,7 @@
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          
         }
   
         &-icon {

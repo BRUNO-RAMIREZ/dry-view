@@ -218,7 +218,7 @@
   
       &-thead-th--bold-light {
         font-weight: 600;
-        text-align: left;
+        text-align: center;
       }
   
       &-row--color-white {
@@ -231,7 +231,7 @@
       }
   
       &-th {
-        text-align: left;
+        text-align: center;
         &-icon {
           font-size: var(--font-size-subtitle);
           cursor: pointer;
@@ -251,6 +251,7 @@
           text-overflow: ellipsis;
           text-align: left;
           vertical-align: middle;
+          text-align: center;
   
           &-datos{
             text-align: left;
@@ -264,6 +265,7 @@
           padding: 7px;
           font-size: 15px;
           margin-left: 9px;
+          margin-top: 8px;
         }
   
         .icon-plus {
