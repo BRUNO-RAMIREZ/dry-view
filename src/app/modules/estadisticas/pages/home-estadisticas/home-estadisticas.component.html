@@ -1,4 +1,4 @@
-<app-header title="Estad&iacute;sticas de Ventas"></app-header>
+<app-header title="Estad&iacute;sticas"></app-header>
 <!-- "Estadísticas" -->
 
 <div class="contenedor">
@@ -8,12 +8,12 @@
             <div class = "inpFecha">
                 <label for="">Desde</label>
                 <br>
-                <input type="date" [(ngModel)] = "desde1" >
+                <input type="date" [(ngModel)] = "desde1"  >
             </div>
             <div class = "inpFecha">
                 <label for="">Hasta</label>
                 <br>
-                <input type="date" [(ngModel)] = "hasta1"   [min]="desde1">
+                <input type="date" [(ngModel)] = "hasta1"   [min]="desde1" [max]="maximaFecha">
             </div>
 
          

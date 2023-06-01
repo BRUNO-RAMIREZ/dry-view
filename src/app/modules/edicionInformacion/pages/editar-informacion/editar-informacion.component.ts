@@ -13,19 +13,19 @@ import {filter, switchMap, take, takeUntil} from "rxjs/operators";
 export class EditarInformacionComponent implements OnInit, OnDestroy {
   private _unsubscribed: Subject<void>;
   public formularyInfo!: FormGroup;
-  public infoUpdateRequest:InformacionUpdateRequest;
+ // public infoUpdateRequest:InformacionUpdateRequest;
   constructor(private _informacionService:InformacionService,
               private _formsBuilder: FormBuilder,
               private _toastrService: ToastrService) {
     this._unsubscribed = new Subject<void>();
-    this.infoUpdateRequest = {description:'',direction:'',email:'',fblink:'',id:0,phone:0,tittle:'',wslink:'',ytlink:''};
+   // this.infoUpdateRequest = {description:'',direction:'',email:'',fblink:'',id:0,phone:0,tittle:'',wslink:'',ytlink:''};
     this._validate();
    }
 
   ngOnInit(): void {
 
     this._informacionService.getInfo().subscribe(res =>{
-      this.infoUpdateRequest = res;
+     // this.infoUpdateRequest = res;
       this._validate();
     });
 
@@ -107,7 +107,7 @@ export class EditarInformacionComponent implements OnInit, OnDestroy {
   }
 
   private _validate(): void {
-    this.formularyInfo = this._formsBuilder.group({
+   /* this.formularyInfo = this._formsBuilder.group({
       tittle: [this.infoUpdateRequest.tittle ? this.infoUpdateRequest.tittle : '', [Validators.required, Validators.maxLength(30), Validators.pattern('[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ. ]*')]],
       description: [this.infoUpdateRequest.description ? this.infoUpdateRequest.description : '', [Validators.required, Validators.pattern('[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.,;:/ ]*')]],
       direction: [this.infoUpdateRequest.direction ? this.infoUpdateRequest.direction : '', [Validators.required, Validators.pattern('[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.,;:/ ]*')]],
@@ -116,7 +116,7 @@ export class EditarInformacionComponent implements OnInit, OnDestroy {
       wslink: [this.infoUpdateRequest.wslink ? this.infoUpdateRequest.wslink : '', [Validators.required]],
       fblink: [this.infoUpdateRequest.fblink ? this.infoUpdateRequest.fblink : '', [Validators.required]],
       ytlink: [this.infoUpdateRequest.ytlink ? this.infoUpdateRequest.ytlink : '', [Validators.required]]
-    });
+    });*/
   }
 /*tittle:string;
     description: string;
