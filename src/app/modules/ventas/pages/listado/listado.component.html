@@ -15,7 +15,7 @@
   </section>
 
   <section class="listado-content-section listado-content" style="min-width: 1077px;">
-    <div class="table-responsive"></div>
+    <div class="table-responsive">
     <table class="listado-content-table table">
       <thead>
       <th class="table-thead-th--bold-light table-th">
@@ -65,6 +65,7 @@
       <td *ngIf="(ventas | async | filterSearchPipeVenta:ventasCodeSearch)?.length === 0">Lista vacia de ventas</td>
       </tbody>
     </table>
+  </div>
     <section class="listado-footer-section listado-footer">
       <label class="listado-footer-quantity">{{(ventas | async | filterSearchPipeVenta:ventasCodeSearch).length }} ventas en total</label>
 
