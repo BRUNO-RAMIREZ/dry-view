@@ -338,3 +338,41 @@
 @media screen and (max-width: 720px){
 
 }
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+@media screen and (max-width: 500px) {
+  .table-responsive {
+    width: 100%;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  .table-responsive table {
+    width: 100%;
+    margin: 0;
+  }
+}
+@media screen and (max-width: 250px) {
+  .table-responsive {
+    width: 100%;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  .table-responsive table {
+    width: 100%;
+    margin: 0;
+  }
+}
+@media screen and (max-width: 750px) {
+  .table-responsive {
+    width: 100%;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  .table-responsive table {
+    width: 100%;
+    margin: 0;
+  }
+}
