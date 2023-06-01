@@ -9,7 +9,10 @@
     </button>
     
     <button *ngIf="isAuthenticated()" (click)="irAnotificaciones()" type="button" class="btn-notifi">
-      <img src="/assets/campana.png" alt="" class="notic">
+      <div class="notic">
+      <img src="/assets/campi.png" alt="">
+      <span class="spi" style="color: red; " *ngIf="calcularCantidadStockMenorADiez(products)!=0 ">{{calcularCantidadStockMenorADiez(products)}}</span>
+    </div>
     </button>
     <!-- <img src="/assets/avatar.png" alt="" class="avatar"> -->
 
