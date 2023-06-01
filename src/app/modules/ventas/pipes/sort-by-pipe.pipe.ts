@@ -11,9 +11,11 @@ export class SortByPipePipe implements PipeTransform {
       case 'code':
           return ventas.sort(
             (ventaPrevious, ventaNext) => {
+              let vp = parseInt( ventaPrevious.code.substring(1));
+              let vn = parseInt( ventaNext.code.substring(1));
               return (order === 'ascendent') ?
-                ((ventaPrevious.code > ventaNext.code) ? 1 : -1):
-                ((ventaPrevious.code > ventaNext.code) ? -1 : 1);
+                (vp> vn ? 1 : -1):
+                (vp> vn ? -1 : 1);
             });
         break;
       case 'lastName':

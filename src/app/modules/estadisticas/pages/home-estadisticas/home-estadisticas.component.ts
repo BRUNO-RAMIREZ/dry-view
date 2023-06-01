@@ -26,6 +26,7 @@ export class HomeEstadisticasComponent implements OnInit, OnDestroy {
   public hasta2:any;
   public tiempoElegido2:number;
   public desde3:any;
+  public maximaFecha:string;
   public hasta3:any;
   public tiempoElegido3:number;
   public myChart?:Chart;
@@ -39,8 +40,19 @@ export class HomeEstadisticasComponent implements OnInit, OnDestroy {
       this.tiempoElegido1 = 0;
       this.tiempoElegido2 = 0;
       this.tiempoElegido3 = 0;
+      let datAct = new Date();
+      this.maximaFecha = ""+datAct.getFullYear()+"-";
+      if(datAct.getMonth() <9){
+        this.maximaFecha += "0";
+      }
+      this.maximaFecha += (datAct.getMonth() +1)+"-";
+      if(datAct.getDate() <10){
+        this.maximaFecha += "0";
+      }
+      this.maximaFecha += datAct.getDate();
     }
   
+
   convertirADate(fecha:any):Date{
     if(fecha){
       var f:string = fecha;
@@ -83,6 +95,9 @@ export class HomeEstadisticasComponent implements OnInit, OnDestroy {
     this._estadisticasServices.getAllVentas().subscribe(res =>{
       this.ventas = res;
     })
+
+
+    //05-30-2023
    // this.renderChart2();
     //this.renderChart3();
 
@@ -130,10 +145,10 @@ export class HomeEstadisticasComponent implements OnInit, OnDestroy {
             for(let  i = 0 ; i < ventas.length ; i++){
               for(let j = 0 ; j < ventas[i].products.length ; j++){
                 if( labelsProductos.indexOf(ventas[i].products[j].name) != -1){
-                  ventasdata[labelsProductos.indexOf(ventas[i].products[j].name)]++;
+                  ventasdata[labelsProductos.indexOf(ventas[i].products[j].name)] += ventas[i].quantityStockOfProductsSaled[j];
                 }else{
                   labelsProductos.push(ventas[i].products[j].name);
-                  ventasdata.push(1);
+                  ventasdata.push(ventas[i].quantityStockOfProductsSaled[j]);
                 }
               }
             }
@@ -218,149 +233,5 @@ export class HomeEstadisticasComponent implements OnInit, OnDestroy {
   }
 
 
-  /*renderChart2(){
-    if(this.desde1 != '' && this.hasta1 != '' && this.desde1 != undefined && this.hasta1 != undefined){
-      let des = this.convertirADate(this.desde1);
-      let has = this.convertirADate(this.hasta1);
-      if(des <= has){
-        this._estadisticasServices.getVentasPorFecha(des,has).subscribe(ventas =>{
-
-          var labelsFecha:string[] = [];
-          var ventasdata:number[] = [];
-          var n = 
-          if(ventas){
-            for(let  i = 0 ; i < ventas.length ; i++){ 
-              
-            }
-            if (this.myChart2) {
-              this.myChart2.destroy();
-            }
-            const ctx = document.getElementById('myChart2');
-                  
-            this.myChart2 = new Chart("myChart2", {
-              type: 'line',
-              data: {
-                labels: labelsProductos,
-                datasets: [{
-                  label: 'Numero de ventas',
-                  data: ventasdata,
-                  borderWidth: 1
-                }]
-              },
-              options: {
-                scales: {
-                  y: {
-                    beginAtZero: true
-                  }
-                }
-              }
-            });
-          }else{
-            if (this.myChart2) {
-              this.myChart2.destroy();
-            }
-            const ctx = document.getElementById('myChart2');
-                  
-            this.myChart2 = new Chart("myChart2", {
-              type: 'bar',
-              data: {
-                labels: [''],
-                datasets: [{
-                  label: 'Numero de ventas',
-                  data: [],
-                  borderWidth: 1
-                }]
-              },
-              options: {
-                scales: {
-                  y: {
-                    beginAtZero: true
-                  }
-                }
-              }
-            });
-          }
-          
-          
-        },err =>{
-          if (this.myChart2) {
-            this.myChart2.destroy();
-          }
-          const ctx = document.getElementById('myChart2');
-                
-          this.myChart2 = new Chart("myChart2", {
-            type: 'bar',
-            data: {
-              labels: [''],
-              datasets: [{
-                label: 'Numero de ventas',
-                data: [],
-                borderWidth: 1
-              }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
-            }
-          });
-         });
-        
-      }
-    }else{
-      if (this.myChart2) {
-        this.myChart2.destroy();
-      }
-      const ctx = document.getElementById('myChart2');
-            
-      this.myChart2 = new Chart("myChart2", {
-        type: 'bar',
-        data: {
-          labels: [''],
-          datasets: [{
-            label: 'Numero de ventas',
-            data: [],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
-    }
-  }*/
-
-
- /* renderChart3(){
-    if (this.myChart3) {
-      this.myChart3.destroy();
-    }
-    const ctx = document.getElementById('myChart3');
-          
-    this.myChart3 = new Chart("myChart3", {
-      type: 'bar',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
-  }*/
 
 }

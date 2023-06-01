@@ -18,7 +18,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {Observable, Subject} from "rxjs";
 import {tap} from "rxjs/operators";
-
+import {BehaviorSubject} from "rxjs";
 import {VentasService} from "../../services/ventas.service";
 import {VentasListResponse,VentasCancelRequest,VentasCancelResponse} from "../../../../core/models/ventas.model";
 
@@ -56,10 +56,15 @@ export class ListadoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.ventas = this._ventaservice.ventasObservable
-      .pipe(
+    this._ventaservice.getAllVenta().subscribe(res =>{
+      let _ventas: BehaviorSubject<VentasListResponse[]>;
+      _ventas = new BehaviorSubject<VentasListResponse[]>([]);
+      _ventas.next(res);
+      this.ventas = _ventas.asObservable().pipe(
         tap(ventas => this.totalventas = ventas.length)
-      );
+      ); ;
+    });
+    
   }
 
   ngOnDestroy(): void {

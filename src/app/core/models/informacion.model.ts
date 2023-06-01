@@ -5,9 +5,7 @@ export interface InformacionGetResponce {
     phone: number;
     direction:string;
     email:string;
-    wslink: string;
-    fblink: string;
-    ytlink: string;
+    links: string[]; //1 fb, 2 yt, 3 ws
   }
 
   export interface InformacionUpdateRequest {
@@ -17,9 +15,7 @@ export interface InformacionGetResponce {
     phone: number;
     direction:string;
     email:string;
-    wslink: string;
-    fblink: string;
-    ytlink: string;
+    links: string[]; //1 fb, 2 yt, 3 ws
   }
 
   export interface InformacionUpdateResponse {
@@ -29,7 +25,5 @@ export interface InformacionGetResponce {
     phone: number;
     direction:string;
     email:string;
-    wslink: string;
-    fblink: string;
-    ytlink: string;
+    links: string[]; //1 fb, 2 yt, 3 ws
   }

@@ -43,7 +43,7 @@ export class VentasService {
   }
 
   public cancelVenta(ventasCancelRequest: VentasCancelRequest): Observable<void> {
-    return this._http.put<void>(`${this._baseURL}/sales/${ventasCancelRequest.id}`, []);
+    return this._http.put<void>(`${this._baseURL}/sales/cancelSale/${ventasCancelRequest.id}`, {});
   }
 
   public getVentaById(ventaId: number): Observable<VentasGetByIdResponse> {

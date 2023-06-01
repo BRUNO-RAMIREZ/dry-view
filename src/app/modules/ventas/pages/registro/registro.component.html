@@ -90,11 +90,14 @@
                 </td>
         
               </tr>
-              <td>Lista vacia de productos</td>
+              <tr *ngIf="productosEnCarrito.length == 0">
+                <td>Lista vacía de productos</td>
+              </tr>
+              
               </tbody>
             </table>
             <section class="listado-footer-section listado-footer">
-              <label class="listado-footer-quantity">{{(venta.products).length }} productos en total</label>
+              <label class="listado-footer-quantity">{{productosEnCarrito.length }} productos en total</label>
         
               <section class="listado-footer-pagination">
                 <pagination-controls
