@@ -17,9 +17,9 @@ export class FilterSearchPipe implements PipeTransform {
 
     saleCodeSearch = saleCodeSearch.trim().toUpperCase();
     const ventasFiltered = ventas.filter(venta => {
-      const name = venta.code.trim().toUpperCase();
-      //return name.includes(saleCodeSearch)
-      return name === "#" + saleCodeSearch; //se cambio esta linea
+      const lastName = venta.client.lastName.trim().toUpperCase();
+      const code = venta.code.trim().toUpperCase();
+      return lastName.includes(saleCodeSearch) || code.includes(saleCodeSearch);
     });
     return ventasFiltered;
   }
