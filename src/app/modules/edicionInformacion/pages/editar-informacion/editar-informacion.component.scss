@@ -36,7 +36,26 @@
     font-size: var(--font-size-text);
     font-weight: 500;
     
-    
+    .inputNormal{
+      border: none;
+        border-bottom: 1px solid black;
+        outline: none;
+        font-size: var(--font-size-text);
+        padding-left: 10px;
+        box-sizing: border-box;
+        width: 250px;
+    }
+    .textArean{
+      border: none;
+        border-bottom: 1px solid black;
+        outline: none;
+        font-size: var(--font-size-text);
+        padding-left: 10px;
+        box-sizing: border-box;
+        width: 250px;
+        max-height: 75px;
+        resize: none;
+    }
   
     .title {
       text-transform: uppercase;
@@ -65,9 +84,7 @@
     .mision{
       margin-top: 20px;
     }
-     h3{
-     font-weight: bold;
-    }
+
     .parrafo{
       text-align:center justify;
     }
