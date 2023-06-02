@@ -13,12 +13,12 @@ import {filter, switchMap, take, takeUntil} from "rxjs/operators";
 export class EditarInformacionComponent implements OnInit, OnDestroy {
   private _unsubscribed: Subject<void>;
   public formularyInfo!: FormGroup;
- // public infoUpdateRequest:InformacionUpdateRequest;
+  public infoUpdateRequest:InformacionUpdateRequest;
   constructor(private _informacionService:InformacionService,
               private _formsBuilder: FormBuilder,
               private _toastrService: ToastrService) {
     this._unsubscribed = new Subject<void>();
-   // this.infoUpdateRequest = {description:'',direction:'',email:'',fblink:'',id:0,phone:0,tittle:'',wslink:'',ytlink:''};
+    this.infoUpdateRequest = {description:'',direction:'',email:'',links:[],id:0,phone:0,tittle:''};
     this._validate();
    }
 
@@ -38,7 +38,7 @@ export class EditarInformacionComponent implements OnInit, OnDestroy {
 
   updateInfo(){
     this._toastrService.error(`Apartado en proceso`);
-    /*if(this.formularyInfo.valid){
+    if(this.formularyInfo.valid){
       const infoUpdateRequest: InformacionUpdateRequest = {
         ...this.formularyInfo.value,
         id: this.infoUpdateRequest.id
@@ -46,17 +46,17 @@ export class EditarInformacionComponent implements OnInit, OnDestroy {
       infoUpdateRequest.description =  infoUpdateRequest.description.trim();
       infoUpdateRequest.direction =  infoUpdateRequest.direction.trim();
       infoUpdateRequest.email =  infoUpdateRequest.email.trim();
-      infoUpdateRequest.fblink =  infoUpdateRequest.fblink.trim();
+      infoUpdateRequest.links[0] =  infoUpdateRequest.links[0].trim();
       infoUpdateRequest.tittle =  infoUpdateRequest.tittle.trim();
-      infoUpdateRequest.wslink =  infoUpdateRequest.wslink.trim();
-      infoUpdateRequest.ytlink =  infoUpdateRequest.ytlink.trim();
+      infoUpdateRequest.links[1] =  infoUpdateRequest.links[1].trim();
+      infoUpdateRequest.links[2] =  infoUpdateRequest.links[2].trim();
       if(this.infoUpdateRequest.description != '' &&
       this.infoUpdateRequest.direction != '' &&
       this.infoUpdateRequest.email != '' &&
-      this.infoUpdateRequest.fblink != '' &&
+      this.infoUpdateRequest.links[0] != '' &&
       this.infoUpdateRequest.tittle != '' &&
-      this.infoUpdateRequest.wslink != '' &&
-      this.infoUpdateRequest.ytlink != ''
+      this.infoUpdateRequest.links[1] != '' &&
+      this.infoUpdateRequest.links[2] != ''
       ){
         this._informacionService.editInfo(infoUpdateRequest)
         .pipe(take(1))
@@ -73,7 +73,7 @@ export class EditarInformacionComponent implements OnInit, OnDestroy {
       
     }else{
       this._toastrService.error(`Alguno de los campos de Información no son validos`);
-    }*/
+    }
   }
 
   get tittle() {
@@ -107,24 +107,22 @@ export class EditarInformacionComponent implements OnInit, OnDestroy {
   }
 
   private _validate(): void {
-   /* this.formularyInfo = this._formsBuilder.group({
+    this.formularyInfo = this._formsBuilder.group({
       tittle: [this.infoUpdateRequest.tittle ? this.infoUpdateRequest.tittle : '', [Validators.required, Validators.maxLength(30), Validators.pattern('[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ. ]*')]],
-      description: [this.infoUpdateRequest.description ? this.infoUpdateRequest.description : '', [Validators.required, Validators.pattern('[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.,;:/ ]*')]],
+      description: [this.infoUpdateRequest.description ? this.infoUpdateRequest.description : '', [Validators.required, Validators.maxLength(80), Validators.pattern('[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.,;:/ ]*')]],
       direction: [this.infoUpdateRequest.direction ? this.infoUpdateRequest.direction : '', [Validators.required, Validators.pattern('[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.,;:/ ]*')]],
       phone: [this.infoUpdateRequest.phone ? this.infoUpdateRequest.phone : '', [Validators.min(0), Validators.required, Validators.pattern('^([6-7][0-9]{7})$')]],
       email: [this.infoUpdateRequest.email ? this.infoUpdateRequest.email : '', [Validators.required,  Validators.pattern('[a-zA-Z0-9_.]{3,60}[@]{1}[a-zA-Z0-9_.]{4,60}[.]{1}[a-zA-Z]{2,20}')]],
-      wslink: [this.infoUpdateRequest.wslink ? this.infoUpdateRequest.wslink : '', [Validators.required]],
-      fblink: [this.infoUpdateRequest.fblink ? this.infoUpdateRequest.fblink : '', [Validators.required]],
-      ytlink: [this.infoUpdateRequest.ytlink ? this.infoUpdateRequest.ytlink : '', [Validators.required]]
-    });*/
+      wslink: [this.infoUpdateRequest.links[2] ? this.infoUpdateRequest.links[2] : '', [Validators.required]],
+      fblink: [this.infoUpdateRequest.links[0] ? this.infoUpdateRequest.links[0] : '', [Validators.required]],
+      ytlink: [this.infoUpdateRequest.links[1] ? this.infoUpdateRequest.links[1] : '', [Validators.required]]
+    });
   }
 /*tittle:string;
     description: string;
     phone: number;
     direction:string;
     email:string;
-    wslink: string;
-    fblink: string;
-    ytlink: string;*/
+    links: string[]; //1 fb, 2 yt, 3 ws*/
 
 }
