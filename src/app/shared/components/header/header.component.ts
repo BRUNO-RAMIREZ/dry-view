@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input,OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService} from "../../../modules/auth/services/auth.service";
 
@@ -9,7 +9,7 @@ import {ProductDeleteRequest, ProductListResponse} from "../../../core/models/pr
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
   @Input() public title: string;
 
   public textButtonAdminAndLogout: string;
