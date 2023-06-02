@@ -108,9 +108,9 @@ export class EditarInformacionComponent implements OnInit, OnDestroy {
 
   private _validate(): void {
     this.formularyInfo = this._formsBuilder.group({
-      tittle: [this.infoUpdateRequest.tittle ? this.infoUpdateRequest.tittle : '', [Validators.required, Validators.maxLength(30), Validators.pattern('[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ. ]*')]],
+      tittle: [this.infoUpdateRequest.tittle ? this.infoUpdateRequest.tittle : '', [Validators.required, Validators.maxLength(40), Validators.pattern('[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ. ]*')]],
       description: [this.infoUpdateRequest.description ? this.infoUpdateRequest.description : '', [Validators.required, Validators.maxLength(80), Validators.pattern('[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.,;:/ ]*')]],
-      direction: [this.infoUpdateRequest.direction ? this.infoUpdateRequest.direction : '', [Validators.required, Validators.pattern('[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.,;:/ ]*')]],
+      direction: [this.infoUpdateRequest.direction ? this.infoUpdateRequest.direction : '', [Validators.required, Validators.maxLength(30),Validators.minLength(2),Validators.pattern('[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.,;:/ ]*')]],
       phone: [this.infoUpdateRequest.phone ? this.infoUpdateRequest.phone : '', [Validators.min(0), Validators.required, Validators.pattern('^([6-7][0-9]{7})$')]],
       email: [this.infoUpdateRequest.email ? this.infoUpdateRequest.email : '', [Validators.required,  Validators.pattern('[a-zA-Z0-9_.]{3,60}[@]{1}[a-zA-Z0-9_.]{4,60}[.]{1}[a-zA-Z]{2,20}')]],
       wslink: [this.infoUpdateRequest.links[2] ? this.infoUpdateRequest.links[2] : '', [Validators.required]],

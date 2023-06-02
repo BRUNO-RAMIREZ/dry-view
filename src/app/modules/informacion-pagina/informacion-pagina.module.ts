@@ -6,7 +6,7 @@ import {InformacionPaginaRoutingModule} from './informacion-pagina-routing.modul
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { SharedModule } from "../../shared/shared.module";
 import { ApartadoInformacionComponent } from './pages/apartado-informacion/apartado-informacion.component';
-
+import {ProductosService} from '../productos/services/productos.service';
 @NgModule({
   declarations: [
     InformacionPaginaRouterOutletComponent,
@@ -19,6 +19,9 @@ import { ApartadoInformacionComponent } from './pages/apartado-informacion/apart
         ReactiveFormsModule,
         FormsModule,
         SharedModule
+  ],
+  providers:[
+    ProductosService
   ]
 })
 export class InformacionPaginaModule { }
