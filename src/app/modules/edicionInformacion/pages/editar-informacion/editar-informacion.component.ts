@@ -24,8 +24,8 @@ export class EditarInformacionComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this._informacionService.getInfo().subscribe(res =>{
-     // this.infoUpdateRequest = res;
+    this._informacionService.getInfo(1).subscribe(res =>{
+      this.infoUpdateRequest = res;
       this._validate();
     });
 

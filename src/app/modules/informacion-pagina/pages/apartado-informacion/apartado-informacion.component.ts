@@ -23,7 +23,7 @@ export class ApartadoInformacionComponent implements OnInit {
   }
 //links: string[]; //1 fb, 2 yt, 3 ws
   ngOnInit(): void {
-    this._informacionService.getInfo().subscribe(res=>{
+    this._informacionService.getInfo(1).subscribe(res=>{
       this.info = res;
     });
   }
