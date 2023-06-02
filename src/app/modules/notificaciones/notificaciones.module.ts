@@ -8,7 +8,7 @@ import { SharedModule } from "../../shared/shared.module";
 import { ApartadoNotificacionesComponent } from './pages/apartado-notificaciones/apartado-notificaciones.component';
 import {ProductosModule} from '../productos/productos.module';
 import {NgxPaginationModule} from "ngx-pagination";
-
+import {ProductosService} from "../productos/services/productos.service";
 @NgModule({
   declarations: [
     NotificacionesRouterOutletComponent,

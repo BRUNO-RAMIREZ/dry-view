@@ -44,7 +44,8 @@ const routes: Routes = [
   
   {
     path: 'estadisticas',
-    loadChildren: () => import('./modules/estadisticas/estadisticas.module').then(m => m.EstadisticasModule)
+    loadChildren: () => import('./modules/estadisticas/estadisticas.module').then(m => m.EstadisticasModule),
+    canActivate:[AuthGuard]
   },
  /* {
 

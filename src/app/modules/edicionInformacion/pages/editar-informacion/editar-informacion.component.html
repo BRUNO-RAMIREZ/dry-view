@@ -1,85 +1,77 @@
  
-        <form action="" [formGroup]="formularyInfo" (ngSubmit)="updateInfo()" class="formEdicion">
+        
 <article class="dry-page-apartado-informacion-container animate__animated animate__fadeIn animate__faster">
   <section class="login-content-logo logo">
       <section class="login-content-forms">
-
+        
             <div class="panel-inf"> 
+              <form action="" [formGroup]="formularyInfo" (ngSubmit)="updateInfo()" class="formEdicion">
                 <h2 class="title">REPUESTOS ELECTRÓNICOS</h2>
                 <div class="mision">
-                    
-                <h3><label for="">Título</label><br>
+                  
+                    <h3><label for="">Título</label><br>
                     <input type="text" formControlName="tittle"></h3>
                     <div *ngIf="formularyInfo.get('tittle')?.errors && formularyInfo.get('tittle')?.dirty">
                       <small class="text-danger" *ngIf="formularyInfo.get('tittle')?.hasError('required')">Título requerido</small>
-                      <small class="text-danger" *ngIf="formularyInfo.get('tittle')?.hasError('maxlength')">Maximo 30 caracteres </small>
+                      <small class="text-danger" *ngIf="formularyInfo.get('tittle')?.hasError('maxlength')">Máximo 40 caracteres </small>
                       <small class="text-danger" *ngIf="formularyInfo.get('tittle')?.hasError('pattern')">No se permiten caracteres especiales </small>
-                  </div>
-                <p class="parrafo">
+                    </div>
+                    <p class="parrafo">
                     <label for="">Descripción</label><br>
-                  <textarea name="" id="" cols="30" rows="10" formControlName="description">
-                  </textarea>
+                    <textarea name="" id="" cols="30" rows="10" formControlName="description">
+                    </textarea>
                   
-                </p>
-                <div *ngIf="formularyInfo.get('description')?.errors && formularyInfo.get('description')?.dirty">
-                  <small class="text-danger" *ngIf="formularyInfo.get('description')?.hasError('required')">Descripción requerida</small>
-                  <small class="text-danger" *ngIf="formularyInfo.get('description')?.hasError('maxlength')">Maximo 80 caracteres </small>
-                  <small class="text-danger" *ngIf="formularyInfo.get('description')?.hasError('pattern')">No se permiten caracteres especiales </small>
-              </div>
-              </div>
+                    </p>
+                    <div *ngIf="formularyInfo.get('description')?.errors && formularyInfo.get('description')?.dirty">
+                      <small class="text-danger" *ngIf="formularyInfo.get('description')?.hasError('required')">Descripción requerida</small>
+                      <small class="text-danger" *ngIf="formularyInfo.get('description')?.hasError('maxlength')">Máximo 80 caracteres </small>
+                      <small class="text-danger" *ngIf="formularyInfo.get('description')?.hasError('pattern')">No se permiten caracteres especiales </small>
+                    </div>
+                </div>
                 <div class="datos">
                   <p>Teléfono: &nbsp;<input type="number" formControlName="phone"></p> 
                   <div *ngIf="formularyInfo.get('phone')?.errors && formularyInfo.get('phone')?.dirty">
                     <small class="text-danger" *ngIf="formularyInfo.get('phone')?.hasError('required')">Teléfono requerido</small>
                     <small class="text-danger" *ngIf="formularyInfo.get('phone')?.hasError('pattern')">Solo Teléfonos de Bolivia </small>
-                </div>
-                  <p>Direcci&oacute;n: <input type="number" formControlName="direction"></p>
-                  <div *ngIf="formularyInfo.get('name')?.errors && formularyInfo.get('name')?.dirty">
-                    <small class="text-danger" *ngIf="formularyInfo.get('name')?.hasError('required')">Nombre requerido</small>
-                    <small class="text-danger" *ngIf="formularyInfo.get('name')?.hasError('minlength')">Minimo 4 caracteres </small>
-                    <small class="text-danger" *ngIf="formularyInfo.get('name')?.hasError('maxlength')">Maximo 80 caracteres </small>
-                    <small class="text-danger" *ngIf="formularyInfo.get('name')?.hasError('pattern')">No se permiten caracteres especiales </small>
-                </div>
-                  <p>Correo:&nbsp;&nbsp;&nbsp;&nbsp; <input type="number" formControlName="email" ></p>
-                  <div *ngIf="formularyInfo.get('name')?.errors && formularyInfo.get('name')?.dirty">
-                    <small class="text-danger" *ngIf="formularyInfo.get('name')?.hasError('required')">Nombre requerido</small>
-                    <small class="text-danger" *ngIf="formularyInfo.get('name')?.hasError('minlength')">Minimo 4 caracteres </small>
-                    <small class="text-danger" *ngIf="formularyInfo.get('name')?.hasError('maxlength')">Maximo 80 caracteres </small>
-                    <small class="text-danger" *ngIf="formularyInfo.get('name')?.hasError('pattern')">No se permiten caracteres especiales </small>
-                </div>
+                  </div>
+                  <p>Direcci&oacute;n: <input type="text" formControlName="direction"></p>
+                  <div *ngIf="formularyInfo.get('direction')?.errors && formularyInfo.get('direction')?.dirty">
+                    <small class="text-danger" *ngIf="formularyInfo.get('direction')?.hasError('required')">Direcci&oacute;n requerida</small>
+                    <small class="text-danger" *ngIf="formularyInfo.get('direction')?.hasError('minlength')">Mínimo 2 caracteres </small>
+                    <small class="text-danger" *ngIf="formularyInfo.get('direction')?.hasError('maxlength')">Máximo 30 caracteres </small>
+                    <small class="text-danger" *ngIf="formularyInfo.get('direction')?.hasError('pattern')">No se permiten caracteres especiales </small>
+                  </div>
+                  <p>Correo:&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" formControlName="email" ></p>
+                  <div *ngIf="formularyInfo.get('email')?.errors && formularyInfo.get('email')?.dirty">
+                    <small class="text-danger" *ngIf="formularyInfo.get('email')?.hasError('required')">Correo requerido</small>
+                    <small class="text-danger" *ngIf="formularyInfo.get('email')?.hasError('pattern')">No es un correo valido </small>
+                  </div>
                   <p>Redes Sociales:</p>
-                    <div class="redes-links" formControlName="name">
+                    <div class="redes-links">
                         <label for="">Link de Youtube&nbsp;&nbsp;&nbsp;&nbsp;</label>&nbsp;&nbsp;
                         <input type="text" formControlName="ytlink"><br>
-                        <div *ngIf="formularyInfo.get('name')?.errors && formularyInfo.get('name')?.dirty">
-                          <small class="text-danger" *ngIf="formularyInfo.get('name')?.hasError('required')">Nombre requerido</small>
-                          <small class="text-danger" *ngIf="formularyInfo.get('name')?.hasError('minlength')">Minimo 4 caracteres </small>
-                          <small class="text-danger" *ngIf="formularyInfo.get('name')?.hasError('maxlength')">Maximo 80 caracteres </small>
-                          <small class="text-danger" *ngIf="formularyInfo.get('name')?.hasError('pattern')">No se permiten caracteres especiales </small>
-                      </div>
+                        <div *ngIf="formularyInfo.get('ytlink')?.errors && formularyInfo.get('ytlink')?.dirty">
+                          <small class="text-danger" *ngIf="formularyInfo.get('ytlink')?.hasError('required')">Link de Youtube requerido</small>
+                        </div>
                         <label for="">Link de Facebook&nbsp;</label>&nbsp;&nbsp;
                         <input type="text" formControlName="fblink"><br>
-                        <div *ngIf="formularyInfo.get('name')?.errors && formularyInfo.get('name')?.dirty">
-                          <small class="text-danger" *ngIf="formularyInfo.get('name')?.hasError('required')">Nombre requerido</small>
-                          <small class="text-danger" *ngIf="formularyInfo.get('name')?.hasError('minlength')">Minimo 4 caracteres </small>
-                          <small class="text-danger" *ngIf="formularyInfo.get('name')?.hasError('maxlength')">Maximo 80 caracteres </small>
-                          <small class="text-danger" *ngIf="formularyInfo.get('name')?.hasError('pattern')">No se permiten caracteres especiales </small>
-                      </div>
+                        <div *ngIf="formularyInfo.get('fblink')?.errors && formularyInfo.get('fblink')?.dirty">
+                          <small class="text-danger" *ngIf="formularyInfo.get('fblink')?.hasError('required')">Link de Facebook requerido</small>
+                        </div>
                         <label for="">Link de WhatsApp</label>&nbsp;&nbsp;
                         <input type="text" formControlName="wslink"><br>
-                        <div *ngIf="formularyInfo.get('name')?.errors && formularyInfo.get('name')?.dirty">
-                          <small class="text-danger" *ngIf="formularyInfo.get('name')?.hasError('required')">Nombre requerido</small>
-                          <small class="text-danger" *ngIf="formularyInfo.get('name')?.hasError('minlength')">Minimo 4 caracteres </small>
-                          <small class="text-danger" *ngIf="formularyInfo.get('name')?.hasError('maxlength')">Maximo 80 caracteres </small>
-                          <small class="text-danger" *ngIf="formularyInfo.get('name')?.hasError('pattern')">No se permiten caracteres especiales </small>
-                      </div>
+                        <div *ngIf="formularyInfo.get('wslink')?.errors && formularyInfo.get('wslink')?.dirty">
+                          <small class="text-danger" *ngIf="formularyInfo.get('wslink')?.hasError('required')">Link de WhatsApp requerido</small>
+                        </div>
                     </div>
-                    <div class="contenedorBotones">
+                  <div class="contenedorBotones">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    &nbsp;&nbsp; <button style="min-width: 150px;" class="btn btn-primary" type="submit">Editar</button>
-                    </div>
+                  </div>
+                    
                 </div>
+              </form>
              </div>
-         
+           
        
       
       </section>
@@ -101,4 +93,3 @@
 </article>
 
 
-</form>

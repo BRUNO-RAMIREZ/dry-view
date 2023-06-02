@@ -8,8 +8,9 @@ import {RouterModule} from "@angular/router";
 
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { SharedModule } from "../../shared/shared.module";
-
-
+import {InformacionService} from './services/informacion.service';
+import {ToastrModule, ToastrService} from "ngx-toastr";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [EditarInformacionComponent,
@@ -20,7 +21,11 @@ import { SharedModule } from "../../shared/shared.module";
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    ToastrModule
+  ],
+  providers:[
+    InformacionService
   ]
 })
 export class EdicionInformacionModule { }

@@ -6,7 +6,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { SharedModule } from "../../shared/shared.module";
 import { EstadisticasRouterOutletComponent } from './pages/estadisticas-router-outlet/estadisticas-router-outlet.component';
 import { HomeEstadisticasComponent } from './pages/home-estadisticas/home-estadisticas.component';
-
+import {EstadisticasService} from './services/estadisticas.service';
+import {ProductosService} from '../productos/services/productos.service';
 @NgModule({
   declarations: [
     EstadisticasRouterOutletComponent,
@@ -19,6 +20,11 @@ import { HomeEstadisticasComponent } from './pages/home-estadisticas/home-estadi
         ReactiveFormsModule,
         FormsModule,
         SharedModule,
+        
+  ],
+  providers: [
+    EstadisticasService,
+    ProductosService
   ]
 })
 export class EstadisticasModule { }
