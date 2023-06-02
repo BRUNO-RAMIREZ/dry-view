@@ -4,21 +4,20 @@
          <div class="panel-inf">
             <h2 class="title">REPUESTOS ELECTRÓNICOS</h2>
             <div class="mision">
-            <h3>Nuestra misi&oacute;n</h3>
+            <h3>{{info.tittle}}</h3>
             <p class="parrafo">
-              Es brindar al usuario una experiencia de compra sencilla ofrecemos también el servicio de 
-              ventas en linea.
+              {{info.description}}
             </p>
           </div>
             <div class="datos">
-              <p>Teléfono: 64878483</p>
-              <p>Direcci&oacute;n: Avenida Oquendo</p>
-              <p>Correo: dryelectronic@gmail.com</p>
+              <p>Teléfono: {{info.phone}}</p>
+              <p>Direcci&oacute;n: {{info.direction}}</p>
+              <p>Correo: {{info.email}}</p>
               <p>Redes Sociales:</p>
                 <div class="redes-links">
-                  <a  class="link" target="_blank" href="https://www.youtube.com/@dryelectronic"><img class="redes-img" src="./assets/youtube.png"/></a>
-                  <a class="link" target="_blank"href="https://www.facebook.com/profile.php?id=100093075485231"><img class="redes-img" src="./assets/face.png" /></a>
-                  <a class="link" target="_blank"href="https://wa.link/ib2imf"><img class="redes-img" src="./assets/whats.png" /></a>
+                  <a  class="link" target="_blank" [href]="info.links[1]"><img class="redes-img" src="./assets/youtube.png"/></a>
+                  <a class="link" target="_blank" [href]="info.links[0]"><img class="redes-img" src="./assets/face.png" /></a>
+                  <a class="link" target="_blank" [href]="info.links[2]"><img class="redes-img" src="./assets/whats.png" /></a>
                 </div>
               
             </div>

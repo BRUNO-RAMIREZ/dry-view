@@ -8,21 +8,23 @@ import {InformacionGetResponce} from '../../../../core/models/informacion.model'
 })
 export class ApartadoInformacionComponent implements OnInit {
 
-  //info:InformacionGetResponce;
+  info:InformacionGetResponce;
   constructor(private _informacionService:InformacionService) { 
-    /*this.info = {description:'Es brindar información al usuario sobre nuestros productos, con finalidad de entregar una buena experiencia',
+    this.info = {description:'Es brindar información al usuario sobre nuestros productos, con finalidad de entregar una buena experiencia',
                 direction:'Calle Oquendo',
                 email:'dryelectronic@gmail.com',
-                fblink:'https://www.facebook.com/profile.php?id=100093075485231',
-                ytlink:'https://www.youtube.com/@dryelectronic',
+                links:['https://www.facebook.com/profile.php?id=100093075485231',
+                'https://www.youtube.com/@dryelectronic',
+                'https://wa.link/ib2imf'],
+               
                 id:0,
                 phone:64878483,
-                tittle:'Nuestra misión',wslink:'https://wa.link/ib2imf'};*/
+                tittle:'Nuestra misión'};
   }
-
+//links: string[]; //1 fb, 2 yt, 3 ws
   ngOnInit(): void {
     this._informacionService.getInfo().subscribe(res=>{
-      //this.info = res;
+      this.info = res;
     });
   }
 

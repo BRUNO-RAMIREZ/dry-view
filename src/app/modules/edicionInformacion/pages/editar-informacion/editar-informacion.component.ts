@@ -37,7 +37,6 @@ export class EditarInformacionComponent implements OnInit, OnDestroy {
 
 
   updateInfo(){
-    this._toastrService.error(`Apartado en proceso`);
     if(this.formularyInfo.valid){
       const infoUpdateRequest: InformacionUpdateRequest = {
         ...this.formularyInfo.value,
@@ -62,7 +61,7 @@ export class EditarInformacionComponent implements OnInit, OnDestroy {
         .pipe(take(1))
         .subscribe(
           (response: InformacionUpdateResponse) => {
-            this._toastrService.warning(`Información actualizado con éxito`, 'Actualizar');
+            this._toastrService.success(`Información actualizado con éxito`, 'Actualizar');
           },
           (error) => {
             this._toastrService.error(`Ocurrió un error al actualizar la Información`);
