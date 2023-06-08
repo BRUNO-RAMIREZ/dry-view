@@ -55,6 +55,7 @@ export class ApartadoNotificacionesComponent implements OnInit, OnDestroy {
       });
     })
   }
+ 
   filtrarProductos(): Array<any> {
     return this.products.filter(producto => producto.stock <= 10);
   }

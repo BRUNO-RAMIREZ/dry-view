@@ -156,18 +156,7 @@
     color: var(--color-white);
     border-radius: 50%;
   }
-  
-  @media screen and (max-width: 1200px){
-  
-  }
-  
-  @media screen and (max-width: 1020px){
-  
-  }
-  
   @media screen and (max-width: 720px){
-  
-  }
   .dry-page-listado-container {
     border-radius: 3px;
     border-style: none;
@@ -328,7 +317,7 @@
     color: var(--color-white);
     border-radius: 50%;
   }
-  
+}
   @media screen and (max-width: 1200px){
   
   }
@@ -340,4 +329,83 @@
   @media screen and (max-width: 720px){
   
   }
+  .table-responsive {
+  overflow-x: auto;
+}
+@media screen and (max-width: 500px) {
+  .table-responsive {
+    width: 100%;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  .table-responsive table {
+    width: 100%;
+    margin: 0;
+  }
+}
+@media screen and (max-width: 250px) {
+  .table-responsive {
+    width: 100%;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  .table-responsive table {
+    width: 100%;
+    margin: 0;
+  }
+}
+@media screen and (max-width: 750px) {
+  .table-responsive {
+    width: 100%;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  .table-responsive table {
+    width: 100%;
+    margin: 0;
+  }
+}
+@media screen and (max-width: 412px) {
+  .table-responsive {
+    width: 100%;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  .table-responsive table {
+    width: 100%;
+    margin: 0;
+  }
+  .listado-header {
+    display: flex;
+    justify-content: start;
+    
+    &-search {
+      display: flex;
+      width: 64%;
+   
   
+      &-input {
+        border-style: none;
+        padding-left: 0px;
+        font-size: 10px;
+        flex: 1;
+       
+      }
+  
+      &-icon {
+        background-color: #d9d9d9;
+        padding: 7px;
+        box-sizing: border-box;
+      }
+    }
+    &-button {
+      width: 25%;
+      border-style: none;
+      border-radius: 7px;
+      margin-left: 12px;
+      background-color: var(--color-warning);
+      box-sizing: border-box;
+    }
+  }
+  
+}

@@ -30,7 +30,7 @@
       <tbody>
         <tr *ngFor="let producto of products; let i = index;"
           [ngClass]="{'text-yellow': producto.stock < 10, 'text-red': producto.stock === 0, 'text-green': producto.stock === 10}">
-          <ng-container *ngIf="producto.stock <= 10 || producto.stock === 0">
+          <ng-container *ngIf="producto.stock <= 10 || producto.stock === 0"  >
             <td>
               <img src="{{producto.image}}" alt="image" class="item-img" style="width: 50px; height: 50px;">
             </td>
@@ -39,12 +39,19 @@
             <td style="vertical-align: middle; padding-left: 20px;">
               {{ producto.stock === 0 ? 'Agotado' : producto.stock !=0 ? 'Por acabarse' : '' }}
             </td>
+
+          
+
             <td>{{fechasProd[i] | date: 'dd/MM/yyyy'}}</td>
+
 
           </ng-container>
         </tr>
         <tr *ngIf="products.length == 0"> <td>No existen notificaciones</td></tr>
       </tbody>
+      
     </table>
+   
+
   </section>
 </article>

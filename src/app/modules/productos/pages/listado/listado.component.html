@@ -15,6 +15,7 @@
   </section>
 
   <section class="listado-content-section listado-content">
+     <div class="table-responsive">
     <table class="listado-content-table table">
       <thead>
       <th></th>
@@ -70,7 +71,7 @@
       <td *ngIf="(products | async | filterSearchPipeProd:productNameSearch)?.length === 0">No existen productos para esta busqueda</td>
       </tbody>
     </table>
-
+</div>
     <section class="listado-footer-section listado-footer">
       <label class="listado-footer-quantity">{{(products | async | filterSearchPipeProd:productNameSearch).length }} productos en total</label>
 
