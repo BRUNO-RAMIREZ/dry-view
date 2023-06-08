@@ -1,6 +1,6 @@
 export interface InformacionGetResponce {
     id: number;
-    tittle:string;
+    title:string;
     description: string;
     phone: number;
     direction:string;
@@ -10,7 +10,7 @@ export interface InformacionGetResponce {
 
   export interface InformacionUpdateRequest {
     id: number;
-    tittle:string;
+    title:string;
     description: string;
     phone: number;
     direction:string;
@@ -20,7 +20,7 @@ export interface InformacionGetResponce {
 
   export interface InformacionUpdateResponse {
     id: number;
-    tittle:string;
+    title:string;
     description: string;
     phone: number;
     direction:string;
