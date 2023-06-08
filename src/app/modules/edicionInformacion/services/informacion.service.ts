@@ -12,10 +12,10 @@ export class InformacionService {
     this._baseURL = environment.baseURL;
   }
 
-  public getInfo(): Observable<InformacionGetResponce> {
-    return this._http.get<InformacionGetResponce>(`${this._baseURL}/information/getInfo`);
+  public getInfo(id:number): Observable<InformacionGetResponce> {
+    return this._http.get<InformacionGetResponce>(`${this._baseURL}/information/getById/${id}`);
   }
   public editInfo(info:InformacionUpdateRequest): Observable<InformacionUpdateResponse>{
-    return this._http.put<InformacionUpdateResponse>(`${this._baseURL}/information/updateInfo`,info);
+    return this._http.put<InformacionUpdateResponse>(`${this._baseURL}/information/updateById/${info.id}`,info);
   }
 }

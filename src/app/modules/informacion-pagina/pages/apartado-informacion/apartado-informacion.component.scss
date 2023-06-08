@@ -15,7 +15,11 @@
     width: 100%;
     animation: bordercont 1s infinite alternate both;
   }
-  
+    //Font Size
+    //--font-size-title: 18px;
+    //--font-size-subtitle: 15px;
+//--font-size-text: 13px;
+  //  --font-size-big: 25px;
   .panel-inf {
     width: 400px;
     height: 100vh;
@@ -27,7 +31,7 @@
     padding: 0 30px;
     gap: 25px;
     color: var(--color-white);
-    font-size: var(--font-size-text);
+    font-size: var(--font-size-subtitle);
     font-weight: 500;
     
     
