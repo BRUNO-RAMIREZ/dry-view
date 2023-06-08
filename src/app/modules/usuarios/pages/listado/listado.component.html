@@ -14,7 +14,8 @@
     <button type="button" class="listado-header-button" (click)="goNavigateWindowRegister()">Registrar usuario</button>
   </section>
 
-  <section class="listado-content-section listado-content" style="min-width: 1077px;">
+  <section class="listado-content-section listado-content">
+    <div class="table-responsive">
     <table class="listado-content-table table">
       <thead>
       <th></th>
@@ -71,7 +72,7 @@
       <td *ngIf="(users | async | filterSearchPipeUser:userNameSearch)?.length === 0">Lista vacia de usuarios</td>
       </tbody>
     </table>
-
+  </div>
     <section class="listado-footer-section listado-footer">
       <label class="listado-footer-quantity">{{(users | async | filterSearchPipeUser:userNameSearch).length }} usuarios en total</label>
 

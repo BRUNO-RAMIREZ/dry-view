@@ -65,7 +65,9 @@ export class ListadoComponent implements OnInit, OnDestroy {
       ); ;
     });
     
+    
   }
+  
 
   ngOnDestroy(): void {
     this._unsubscribed.next();
