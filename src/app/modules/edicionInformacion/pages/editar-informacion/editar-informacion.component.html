@@ -18,13 +18,13 @@
                     </div>
                     <p class="parrafo">
                     <label for="">Descripción</label><br>
-                    <textarea name="" id="" cols="40" rows="2" formControlName="description" class="textArean" maxlength="81">
+                    <textarea name="" id="" cols="40" rows="2" formControlName="description" class="textArean" maxlength="110">
                     </textarea>
                   
                     </p>
                     <div *ngIf="formularyInfo.get('description')?.errors && formularyInfo.get('description')?.dirty">
                       <small class="text-danger" *ngIf="formularyInfo.get('description')?.hasError('required')">Descripción requerida</small>
-                      <small class="text-danger" *ngIf="formularyInfo.get('description')?.hasError('maxlength')">Máximo 80 caracteres </small>
+                      <small class="text-danger" *ngIf="formularyInfo.get('description')?.hasError('maxlength')">Máximo 110 caracteres </small>
                       <small class="text-danger" *ngIf="formularyInfo.get('description')?.hasError('pattern')">No se permiten caracteres especiales </small>
                     </div>
                 </div>
