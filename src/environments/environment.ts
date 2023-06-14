@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseURL: "https://dry-backend-production-9ac7.up.railway.app/api"
+  baseURL: "https://dry-backend-production-4854.up.railway.app/api"
   // baseURL: "http://localhost:8085/api"
 };
 
